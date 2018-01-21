@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Rudycommerce.LanguageResources"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="save">Opslaan</system:String>
+    <system:String x:Key="languageName">Naam van de taal: </system:String>
+    <system:String x:Key="languageActive">Is taal actief?: </system:String>
+    <system:String x:Key="languageDefault">Standaard taal?: </system:String>
+
+    <system:String x:Key="language">Taal</system:String>
+
+    <system:String x:Key="addLanguage">Voeg nieuwe taal toe</system:String>
+    <system:String x:Key="languageOverview">Overzicht talen</system:String>
+    <system:String x:Key="addProduct">Voeg nieuw product toe</system:String>
+
+    <system:String x:Key="manageAccount">Beheer account</system:String>
+
+</ResourceDictionary>

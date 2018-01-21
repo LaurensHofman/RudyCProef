@@ -16,13 +16,24 @@ using System.Windows.Shapes;
 namespace Rudycommerce
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ManageAccount.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ManageAccount : UserControl
     {
-        public MainWindow()
+        string _selectedLanguage;
+
+        public delegate void AccountSaved(string selectedLanguage);
+        public event AccountSaved OnAccountSave;
+
+        public ManageAccount()
         {
             InitializeComponent();
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            _selectedLanguage = cmbxLanguage.SelectedValue.ToString();
+            OnAccountSave(_selectedLanguage);
+        }        
     }
 }
