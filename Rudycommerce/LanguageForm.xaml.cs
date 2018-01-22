@@ -49,25 +49,9 @@ namespace Rudycommerce
         private void SetLanguageDictionary(string selectedLanguage)
         {
             ResourceDictionary dict = new ResourceDictionary();
-            switch (selectedLanguage)
-            {
-                case "Nederlands":
-                    dict.Source = new Uri("..\\LanguageResources\\Dutch.xaml",
-                                  UriKind.Relative);
-                    break;
-                case "français":
-                    dict.Source = new Uri("..\\LanguageResources\\French.xaml",
-                                       UriKind.Relative);
-                    break;
-                case "English":
-                    dict.Source = new Uri("..\\LanguageResources\\English.xaml",
-                                       UriKind.Relative);
-                    break;
-                default:
-                    dict.Source = new Uri("..\\LanguageResources\\English.xaml",
-                                       UriKind.Relative);
-                    break;
-            }
+
+            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
+
             this.Resources.MergedDictionaries.Add(dict);
         }
     }

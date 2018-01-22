@@ -3,17 +3,56 @@
                     xmlns:local="clr-namespace:Rudycommerce.LanguageResources"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <system:String x:Key="save">Opslaan</system:String>
-    <system:String x:Key="languageName">Naam van de taal: </system:String>
-    <system:String x:Key="languageActive">Is taal actief?: </system:String>
-    <system:String x:Key="languageDefault">Standaard taal?: </system:String>
+    <!-- duf: DesktopUserForm.xaml  -->
+    <system:String x:Key="aufTitle">Maak beheerders account aan</system:String>
+    <system:String x:Key="aufFirstName">Voornaam:</system:String>
+    <system:String x:Key="aufLastName">Achternaam</system:String>
+    <system:String x:Key="aufUsername">Gebruikersnaam:</system:String>
+    <system:String x:Key="aufEmail">E-mail adres:</system:String>
+    <system:String x:Key="aufPassword">Wachtwoord:</system:String>
+    <system:String x:Key="aufPrefLang">Voorkeurstaal:</system:String>
+    <system:String x:Key="aufSave">Sla op</system:String>
+    
+    <!-- lw: LoginWindow.xaml -->
+    <system:String x:Key="lwTitle">Inloggen</system:String>
+    <system:String x:Key="lwUsername">Gebruikersnaam:</system:String>
+    <system:String x:Key="lwPassword">Wachtwoord:</system:String>
+    <system:String x:Key="lwLogin">Inloggen</system:String>
+    <system:String x:Key="lwNewUser">Nieuwe gebruiker</system:String>
 
-    <system:String x:Key="language">Taal</system:String>
+    <!-- ndu: NewDesktopUser.xaml  -->
+    <system:String x:Key="nduTitle">Maak nieuwe account aan</system:String>
+    <system:String x:Key="nduFirstName">Voornaam:</system:String>
+    <system:String x:Key="nduLastName">Achternaam:</system:String>
+    <system:String x:Key="nduUsername">Gebruikersnaam:</system:String>
+    <system:String x:Key="nduEmail">E-mail adres:</system:String>
+    <system:String x:Key="nduPassword">Wachtwoord:</system:String>
+    <system:String x:Key="nduPrefLang">Voorkeurstaal:</system:String>
+    <system:String x:Key="nduSave">Sla op</system:String>
 
-    <system:String x:Key="addLanguage">Voeg nieuwe taal toe</system:String>
-    <system:String x:Key="languageOverview">Overzicht talen</system:String>
-    <system:String x:Key="addProduct">Voeg nieuw product toe</system:String>
+    <!-- ma: ManageAccount.xaml  -->
+    <system:String x:Key="maPrefLang">Voorkeurstaal</system:String>
+    <system:String x:Key="maSave">Sla op</system:String>
 
-    <system:String x:Key="manageAccount">Beheer account</system:String>
+    <!-- lf: LanguageForm.xaml  -->
+    <system:String x:Key="lfSave">Opslaan</system:String>
+    <system:String x:Key="lfLanguageName">Naam van de taal: </system:String>
+    <system:String x:Key="lfLanguageActive">Is taal actief?: </system:String>
+    <system:String x:Key="lfLanguageDefault">Standaard taal?: </system:String>
+
+    <!-- navi: NavigationWindow.xaml -->
+    <system:String x:Key="naviPlaceholder">Plaatshouder</system:String>
+    
+    <system:String x:Key="naviManageLanguages">Beheer talen</system:String>
+    <system:String x:Key="naviAddLanguage">Voeg nieuwe taal toe</system:String>
+    <system:String x:Key="naviLanguageOverview">Overzicht talen</system:String>
+
+    <system:String x:Key="naviManageProducts">Beheer producten</system:String>
+    <system:String x:Key="naviAddProduct">Voeg nieuw product toe</system:String>
+
+    <system:String x:Key="naviUsers">Gebruikers</system:String>
+    <system:String x:Key="naviManageUsers">Beheer gebruikers</system:String>
+    
+    <system:String x:Key="naviManageAccount">Beheer account</system:String>
 
 </ResourceDictionary>

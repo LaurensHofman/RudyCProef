@@ -11,16 +11,21 @@
            
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu KeyTip="F">
-                    <RibbonApplicationMenuItem x:Name="ramiManageCurrentAccount" Header="{DynamicResource ResourceKey=manageAccount}" Click="ramiManageCurrentAccount_Click"/>
+                    <RibbonApplicationMenuItem x:Name="ramiManageCurrentAccount" Header="{DynamicResource ResourceKey=naviManageAccount}" Click="ramiManageCurrentAccount_Click"/>
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
-            <RibbonTab Header="{DynamicResource ResourceKey=language}">
-                <RibbonGroup Header="Manage Languages">
-                    <RibbonButton x:Name="rbtnAddLanguage" Label="{DynamicResource ResourceKey=addLanguage}" Click="rbtnAddLanguage_Click"/>
-                    <RibbonButton x:Name="rbtnOverviewLanguage" Label="{DynamicResource ResourceKey=languageOverview}" Click="rbtnOverviewLanguage_Click"/>
+            <RibbonTab Header="{DynamicResource ResourceKey=naviPlaceholder}">
+                <RibbonGroup Header="{DynamicResource ResourceKey=naviManageLanguages}">
+                    <RibbonButton x:Name="rbtnAddLanguage" Label="{DynamicResource ResourceKey=naviAddLanguage}" Click="rbtnAddLanguage_Click"/>
+                    <RibbonButton x:Name="rbtnOverviewLanguage" Label="{DynamicResource ResourceKey=naviLanguageOverview}" Click="rbtnOverviewLanguage_Click"/>
                 </RibbonGroup>
-                <RibbonGroup Header="Product">
-                    <RibbonButton x:Name="rbtnAddProduct" Label="{DynamicResource ResourceKey=addProduct}" Click="rbtnAddProduct_Click"/>
+                <RibbonGroup Header="{DynamicResource ResourceKey=naviManageProducts}">
+                    <RibbonButton x:Name="rbtnAddProduct" Label="{DynamicResource ResourceKey=naviAddProduct}" Click="rbtnAddProduct_Click"/>
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="{DynamicResource ResourceKey=naviUsers}">
+                <RibbonGroup Header="{DynamicResource ResourceKey=naviManageUsers}">
+                    <RibbonButton x:Name="rbtnUserOverview" Label="UserOverview NO-ML" Click="rbtnUserOverview_Click"/>
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>

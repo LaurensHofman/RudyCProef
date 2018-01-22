@@ -3,16 +3,16 @@ namespace RudycommerceLibrary.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class GetProductPrice : DbMigration
+    public partial class AdminVerifyUser : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.localized_product", "LanguageName", c => c.String());
+            AddColumn("dbo.desktop_users", "verified_by_admin", c => c.Boolean(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.localized_product", "LanguageName");
+            DropColumn("dbo.desktop_users", "verified_by_admin");
         }
     }
 }

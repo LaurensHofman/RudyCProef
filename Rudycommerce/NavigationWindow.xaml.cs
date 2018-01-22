@@ -22,23 +22,35 @@ namespace Rudycommerce
     /// </summary>
     public partial class NavigationWindow : RibbonWindow
     {
-        string _selectedLanguage;
+        int _currentUserID = 0;
+        string _preferredLanguage = "Nederlands";
 
-        public NavigationWindow(string selectedLanguage)
+        public NavigationWindow(int currentUserID)
         {
             InitializeComponent();
-            _selectedLanguage = selectedLanguage;
-            SetLanguageDictionary(_selectedLanguage);
+            _currentUserID = currentUserID;
+
+            SetLanguage(currentUserID);
         }
 
-        public NavigationWindow() : this ("Nederlands")
+        private void SetLanguage(int currentUserID)
         {
-
+            _preferredLanguage = BL_DesktopUser.UserPreferredLanguage(currentUserID);
+            SetLanguageDictionary(_preferredLanguage);
         }
-                
+        
+        private void SetLanguageDictionary(string selectedLanguage)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+
+            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
+
+            this.Resources.MergedDictionaries.Add(dict);
+        }
+        
         private void rbtnAddLanguage_Click(object sender, RoutedEventArgs e)
         {
-            navigationControl.Content = new LanguageForm(_selectedLanguage);
+            navigationControl.Content = new LanguageForm(_preferredLanguage);
         }
 
         private void rbtnAddProduct_Click(object sender, RoutedEventArgs e)
@@ -48,21 +60,12 @@ namespace Rudycommerce
 
         private void rbtnOverviewLanguage_Click(object sender, RoutedEventArgs e)
         {
-            navigationControl.Content = new Test();
-        }
-
-        private void SetLanguageDictionary(string selectedLanguage)
-        {
-            ResourceDictionary dict = new ResourceDictionary();
-
-            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
-            
-            this.Resources.MergedDictionaries.Add(dict);
+            //navigationControl.Content = new Test();
         }
 
         private void ramiManageCurrentAccount_Click(object sender, RoutedEventArgs e)
         {
-            var _settings = new ManageAccount();
+            var _settings = new ManageAccount(_currentUserID);
             _settings.OnAccountSave += ApplySettings;
 
             navigationControl.Content = _settings;
@@ -70,9 +73,14 @@ namespace Rudycommerce
 
         private void ApplySettings(string selectedLanguage)
         {
-            _selectedLanguage = selectedLanguage;
+            _preferredLanguage = selectedLanguage;
             SetLanguageDictionary(selectedLanguage);
             navigationControl.Content = null;
+        }
+
+        private void rbtnUserOverview_Click(object sender, RoutedEventArgs e)
+        {
+            navigationControl.Content = new UserOverview();
         }
     }
 }

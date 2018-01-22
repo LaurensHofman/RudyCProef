@@ -47,39 +47,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\BL_DesktopUser.cs" />
+    <Compile Include="BL\BL_Encryption.cs" />
     <Compile Include="BL\BL_Language.cs" />
     <Compile Include="BL\BL_LocalizedProduct.cs" />
+    <Compile Include="BL\BL_Mailing.cs" />
     <Compile Include="BL\BL_Multilingual.cs" />
     <Compile Include="BL\BL_Product.cs" />
+    <Compile Include="DAL\DAL_DesktopUser.cs" />
     <Compile Include="DAL\DAL_Language.cs" />
     <Compile Include="DAL\DAL_LocalizedProduct.cs" />
     <Compile Include="DAL\DAL_Product.cs" />
     <Compile Include="Data\AppDBContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\DesktopUser.cs" />
     <Compile Include="Entities\Language.cs" />
     <Compile Include="Entities\LocalizedProduct.cs" />
     <Compile Include="Entities\Product.cs" />
-    <Compile Include="Migrations\201801071928042_LocalizedProducts.cs" />
-    <Compile Include="Migrations\201801071928042_LocalizedProducts.Designer.cs">
-      <DependentUpon>201801071928042_LocalizedProducts.cs</DependentUpon>
+    <Compile Include="Migrations\201801211254166_DesktopUser.cs" />
+    <Compile Include="Migrations\201801211254166_DesktopUser.Designer.cs">
+      <DependentUpon>201801211254166_DesktopUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801081940120_GetProductPrice.cs" />
-    <Compile Include="Migrations\201801081940120_GetProductPrice.Designer.cs">
-      <DependentUpon>201801081940120_GetProductPrice.cs</DependentUpon>
+    <Compile Include="Migrations\201801211810430_AdminVerifyUser.cs" />
+    <Compile Include="Migrations\201801211810430_AdminVerifyUser.Designer.cs">
+      <DependentUpon>201801211810430_AdminVerifyUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\SecurityExtensions.cs" />
+    <Compile Include="Utilities\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801071928042_LocalizedProducts.resx">
-      <DependentUpon>201801071928042_LocalizedProducts.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801211254166_DesktopUser.resx">
+      <DependentUpon>201801211254166_DesktopUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801081940120_GetProductPrice.resx">
-      <DependentUpon>201801081940120_GetProductPrice.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801211810430_AdminVerifyUser.resx">
+      <DependentUpon>201801211810430_AdminVerifyUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

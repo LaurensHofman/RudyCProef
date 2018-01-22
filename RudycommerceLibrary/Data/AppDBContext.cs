@@ -12,6 +12,7 @@ namespace RudycommerceLibrary
     {
         #region Database Sets
 
+        public DbSet<DesktopUser> DesktopUsers { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<LocalizedProduct> LocalizedProducts { get; set; }
@@ -39,17 +40,17 @@ namespace RudycommerceLibrary
 
         public AppDBContext(string connectionString) : base(connectionString) { }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Product>()
-        //        .HasMany<Language>(p => p.Languages)
-        //        .WithMany(l => l.Products)
-        //        .Map(m =>
-        //        {
-        //            m.MapLeftKey("product_id");
-        //            m.MapRightKey("language_id");
-        //            m.ToTable("localized_product");
-        //        });
-        //}
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<Product>()
+            //    .HasMany<Language>(p => p.Languages)
+            //    .WithMany(l => l.Products)
+            //    .Map(m =>
+            //    {
+            //        m.MapLeftKey("product_id");
+            //        m.MapRightKey("language_id");
+            //        m.ToTable("localized_product");
+            //    });
+        }
     }
 }

@@ -16,14 +16,14 @@
             <TextBox x:Name="txtISO" VerticalAlignment="Top" Width="300" Height="30" Margin="0,30,0,0"/>
             <CheckBox x:Name="cbxIsActive" IsChecked="True" VerticalAlignment="Top" Width="300" Height="30" Margin="0,30,0,0"/>
             <CheckBox x:Name="cbxIsDefault" IsChecked="False" VerticalAlignment="Top" Width="300" Height="30" Margin="0,30,0,0"/>
-            <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=save}" VerticalAlignment="Top" Width="100" Height="30" Margin="0,60,0,0" Click="btnSave_Click"/>
+            <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=lfSave}" VerticalAlignment="Top" Width="100" Height="30" Margin="0,60,0,0" Click="btnSave_Click"/>
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Center" Width="200" Margin="-500,40,0,0">
-            <Label x:Name="lblLanguageName" Content="{DynamicResource ResourceKey=languageName}" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0"/>
+            <Label x:Name="lblLanguageName" Content="{DynamicResource ResourceKey=lfLanguageName}" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0"/>
             <Label x:Name="lblISO" Content="ISO Code: " VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0"/>
-            <Label x:Name="lblIsActive" Content="{DynamicResource ResourceKey=languageActive}" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0"/>
-            <Label x:Name="lblIsDefault" Content="{DynamicResource ResourceKey=languageDefault}" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0"/>
+            <Label x:Name="lblIsActive" Content="{DynamicResource ResourceKey=lfLanguageActive}" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0"/>
+            <Label x:Name="lblIsDefault" Content="{DynamicResource ResourceKey=lfLanguageDefault}" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0"/>
         </StackPanel>
 
         

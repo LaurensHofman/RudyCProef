@@ -6,13 +6,40 @@
              xmlns:local="clr-namespace:Rudycommerce"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Background="White">
-    <Grid>
-        <ComboBox x:Name="cmbxLanguage" SelectedValuePath="Content" Height="31" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300">
-            <ComboBoxItem>English</ComboBoxItem>
-            <ComboBoxItem>Nederlands</ComboBoxItem>
-            <ComboBoxItem>français</ComboBoxItem>
-        </ComboBox>
+    <Grid Margin="0,0,0,10">
+        <Label Content="{DynamicResource ResourceKey=maPrefLang}"></Label>
+        <WrapPanel Margin="0,50,0,0" Height="40" VerticalAlignment="Top">
+            <WrapPanel.Resources>
+                <Style x:Key="Flag" TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="3"/>
+                        </Trigger>
+                    </Style.Triggers>
 
-        <Button x:Name="btnSave" Content="Save" Click="btnSave_Click" Height="46" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="Transparent"
+                                    CornerRadius="20">
+                                    <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </WrapPanel.Resources>
+            <RadioButton x:Name="rbPreferNL" GroupName="Lang"  Content="../Resources/Icons/32_NL.png" Style="{StaticResource Flag}" Margin="10,0,10,0" Width="40" Height="40" Checked="RadioButton_Checked"/>
+            <RadioButton x:Name="rbPreferEN" GroupName="Lang" Content="../Resources/Icons/32_EN.png" Style="{StaticResource Flag}" Margin="10,0,10,0" Width="40" Height="40" Checked="RadioButton_Checked"/>
+        </WrapPanel>
+
+        <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=maSave}" Click="btnSave_Click" Height="46" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+      
     </Grid>
 </UserControl>

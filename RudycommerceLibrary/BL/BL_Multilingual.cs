@@ -14,15 +14,12 @@ namespace RudycommerceLibrary.BL
             {
                 case "Nederlands":
                     return "..\\LanguageResources\\Dutch.xaml";
-
-                case "français":
-                    return "..\\LanguageResources\\French.xaml";
-
+                    
                 case "English":
                     return "..\\LanguageResources\\English.xaml";
 
                 default:
-                    return "..\\LanguageResources\\English.xaml";
+                    return "..\\LanguageResources\\Dutch.xaml";
             }
         }
     }

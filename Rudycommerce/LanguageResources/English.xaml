@@ -3,17 +3,56 @@
                     xmlns:local="clr-namespace:Rudycommerce.LanguageResources"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <system:String x:Key="save">Save</system:String>
-    <system:String x:Key="languageName">Language name:</system:String>
-    <system:String x:Key="languageActive">Is language active?:</system:String>
-    <system:String x:Key="languageDefault">Is language default?:</system:String>
+    <!-- duf: DesktopUserForm.xaml  -->
+    <system:String x:Key="aufTitle">Create admin account</system:String>
+    <system:String x:Key="aufFirstName">First name:</system:String>
+    <system:String x:Key="aufLastName">Last name:</system:String>
+    <system:String x:Key="aufUsername">Username:</system:String>
+    <system:String x:Key="aufEmail">E-mail address:</system:String>
+    <system:String x:Key="aufPassword">Password:</system:String>
+    <system:String x:Key="aufPrefLang">Preferred language:</system:String>
+    <system:String x:Key="aufSave">Save</system:String>
 
-    <system:String x:Key="language">Language</system:String>
+    <!-- lw: LoginWindow.xaml -->
+    <system:String x:Key="lwTitle">Login</system:String>
+    <system:String x:Key="lwUsername">Username</system:String>
+    <system:String x:Key="lwPassword">Password</system:String>
+    <system:String x:Key="lwLogin">Login</system:String>
+    <system:String x:Key="lwPrefLang">Preferred Language</system:String>
+    <system:String x:Key="lwNewUser">New user</system:String>
 
-    <system:String x:Key="addLanguage">Add language</system:String>
-    <system:String x:Key="languageOverview">Language overview</system:String>
-    <system:String x:Key="addProduct">Add product</system:String>
+    <!-- ndu: NewDesktopUser.xaml  -->
+    <system:String x:Key="nduTitle">Create new account</system:String>
+    <system:String x:Key="nduFirstName">First name:</system:String>
+    <system:String x:Key="nduLastName">Last name:</system:String>
+    <system:String x:Key="nduUsername">Username:</system:String>
+    <system:String x:Key="nduEmail">E-mail address:</system:String>
+    <system:String x:Key="nduPassword">Password:</system:String>
+    <system:String x:Key="nduSave">Save</system:String>
 
-    <system:String x:Key="manageAccount">Manage account</system:String>
+    <!-- ndu: NewDesktopUser.xaml  -->
+    <system:String x:Key="maPrefLang">Preferred Language</system:String>
+    <system:String x:Key="maSave">Save</system:String>
+
+    <!-- lf: LanguageForm.xaml  -->
+    <system:String x:Key="lfSave">Save</system:String>
+    <system:String x:Key="lfLanguageName">Language name:</system:String>
+    <system:String x:Key="lfLanguageActive">Is language active?:</system:String>
+    <system:String x:Key="lfLanguageDefault">Is language default?:</system:String>
+
+    <!-- navi: NavigationWindow.xaml -->
+    <system:String x:Key="naviPlaceholder">Placeholder</system:String>
+    
+    <system:String x:Key="naviManageLanguages">Manage languages</system:String>
+    <system:String x:Key="naviAddLanguage">Add language</system:String>
+    <system:String x:Key="naviLanguageOverview">Language overview</system:String>
+
+    <system:String x:Key="naviManageProducts">Manage products</system:String>
+    <system:String x:Key="naviAddProduct">Add product</system:String>
+
+    <system:String x:Key="naviUsers">Users</system:String>
+    <system:String x:Key="naviManageUsers">Manage users</system:String>
+    
+    <system:String x:Key="naviManageAccount">Manage account</system:String>
 
 </ResourceDictionary>
