@@ -94,8 +94,8 @@ namespace Rudycommerce
                     BL_Mailing.SendMailToAdmin(NewUser.FirstName, NewUser.LastName, NewUser.EMail, NewUser.Username);
                     BL_Mailing.SendMailToUser(NewUser.FirstName, NewUser.LastName, NewUser.EMail, NewUser.Username, NewUser.PreferredLanguage);
 
-                    NavigationWindow naviWin = new NavigationWindow(NewUser.UserID);
-                    naviWin.Show();
+                    LoginWindow login = new LoginWindow();
+                    login.Show();
 
                     this.Close();
                 }

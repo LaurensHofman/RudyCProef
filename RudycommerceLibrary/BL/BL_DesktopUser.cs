@@ -78,7 +78,8 @@ namespace RudycommerceLibrary.BL
 
         public static void Delete(DesktopUser du)
         {
-            DAL_DesktopUser.Delete(du);
+            du.DeletedAt = DateTime.Now;
+            Update(du);
         }
 
         // finds the user id to remember which user is currently logged in
@@ -95,7 +96,15 @@ namespace RudycommerceLibrary.BL
 
         public static void Update(DesktopUser currentUser)
         {
+            currentUser.ModifiedAt = DateTime.Now;
             DAL_DesktopUser.Update(currentUser);
+        }
+
+        public static void AdminLoseHisRights()
+        {
+            DesktopUser oldAdmin = DAL_DesktopUser.GetAdminUser();
+            oldAdmin.IsAdmin = false;
+            Update(oldAdmin);            
         }
     }
 }

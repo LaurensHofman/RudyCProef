@@ -24,6 +24,9 @@ namespace Rudycommerce
     /// </summary>
     public partial class UserOverview : UserControl
     {
+        public delegate void AdminLostRights();
+        public event AdminLostRights LostAdminRights;
+
         public UserOverview()
         {
             InitializeComponent();
@@ -60,12 +63,14 @@ namespace Rudycommerce
         {
             var obj = ((FrameworkElement)sender).DataContext as DesktopUser;
 
-            if (MessageBox.Show($"Are you sure you want to give {obj.LastName} {obj.FirstName} access to this application?", $"Verify {obj.LastName} {obj.FirstName}", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"NO-ML Are you sure you want to give {obj.LastName} {obj.FirstName} access to this application?", $"Verify {obj.LastName} {obj.FirstName}", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 obj.VerifiedByAdmin = true;
 
                 BL_DesktopUser.Update(obj);
                 BindData();
+
+                BL_Mailing.UserVerified(obj.LastName, obj.FirstName, obj.EMail, obj.Username, obj.PreferredLanguage);
             }
         }
 
@@ -75,6 +80,38 @@ namespace Rudycommerce
             var _changedValue = _dgRow.DataContext as DesktopUser;
 
             BindData();
+        }
+
+        private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            var obj = ((FrameworkElement)sender).DataContext as DesktopUser;
+
+            if (MessageBox.Show($"NO-ML Are you sure you want to delete {obj.LastName} {obj.FirstName} as a user?",
+                                $"Delete {obj.LastName} {obj.FirstName}?",
+                                MessageBoxButton.YesNo,
+                                MessageBoxImage.Warning) 
+                == MessageBoxResult.Yes)
+            {
+                dataSourceUsers.Remove(obj);
+            }
+        }
+
+        private void btnMakeUserAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            var obj = ((FrameworkElement)sender).DataContext as DesktopUser;
+
+            if (MessageBox.Show($"NO-ML Are you sure you want to make {obj.LastName} {obj.FirstName} the new administator? \r\nIf you choose YES, you will have to relog to gain access to the application.",
+                                $"New administrator: {obj.LastName} {obj.FirstName}?",
+                                MessageBoxButton.YesNo,
+                                MessageBoxImage.Warning)
+                == MessageBoxResult.Yes)
+            {
+                obj.IsAdmin = true;
+                obj.VerifiedByAdmin = true;
+                BL_DesktopUser.AdminLoseHisRights();
+
+                LostAdminRights();
+            }
         }
     }
 }

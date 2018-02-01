@@ -15,7 +15,41 @@
                 <DataGridTextColumn Header="E-mail NO-ML" Binding="{Binding Path=EMail}"/>
                 <DataGridTextColumn Header="Username NO-ML" Binding="{Binding Path=Username}"/>
 
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnMakeUserAdmin" Content="Make user admin NO-ML" Click="btnMakeUserAdmin_Click">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsAdmin}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnDeleteUser" Content="Delete user NO-ML" Click="btnDeleteUser_Click">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsAdmin}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>

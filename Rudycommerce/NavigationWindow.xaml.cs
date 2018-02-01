@@ -80,7 +80,18 @@ namespace Rudycommerce
 
         private void rbtnUserOverview_Click(object sender, RoutedEventArgs e)
         {
-            navigationControl.Content = new UserOverview();
+            UserOverview _userOverview = new UserOverview();
+            _userOverview.LostAdminRights += LogOut;
+
+            navigationControl.Content = _userOverview;
+        }
+
+        private void LogOut()
+        {
+            LoginWindow relogWindow = new LoginWindow();
+            relogWindow.Show();
+
+            this.Close();
         }
     }
 }

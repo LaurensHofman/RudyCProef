@@ -28,6 +28,7 @@
     <system:String x:Key="nduUsername">Username:</system:String>
     <system:String x:Key="nduEmail">E-mail address:</system:String>
     <system:String x:Key="nduPassword">Password:</system:String>
+    <system:String x:Key="nduPrefLang">Preferred Language:</system:String>
     <system:String x:Key="nduSave">Save</system:String>
 
     <!-- ndu: NewDesktopUser.xaml  -->

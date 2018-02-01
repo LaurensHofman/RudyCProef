@@ -63,14 +63,7 @@ namespace RudycommerceLibrary.DAL
                     .ThenBy(du => du.LastName)
                     .ToList();
         }
-
-        public static void Delete(DesktopUser du)
-        {
-            var ctx = AppDBContext.Instance();
-
-
-        }
-
+        
         public static DesktopUser GetCurrentUserByID(int currentUserID)
         {
             var ctx = AppDBContext.Instance();
