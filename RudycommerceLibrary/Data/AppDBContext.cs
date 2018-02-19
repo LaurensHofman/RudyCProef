@@ -1,4 +1,5 @@
 ﻿using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Entities.Products;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,7 +16,6 @@ namespace RudycommerceLibrary
         public DbSet<DesktopUser> DesktopUsers { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<LocalizedProduct> LocalizedProducts { get; set; }
 
         #endregion
 

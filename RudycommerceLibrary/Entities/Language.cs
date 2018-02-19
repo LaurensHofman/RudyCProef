@@ -33,7 +33,7 @@ namespace RudycommerceLibrary.Entities
             return this.LanguageID <= 0;
         }
 
-        public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
+        //public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
     }
 }
 

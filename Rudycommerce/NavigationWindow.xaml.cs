@@ -55,7 +55,7 @@ namespace Rudycommerce
 
         private void rbtnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            navigationControl.Content = new NewProductForm();
+            navigationControl.Content = new NewProductForm(_preferredLanguage);
         }
 
         private void rbtnOverviewLanguage_Click(object sender, RoutedEventArgs e)

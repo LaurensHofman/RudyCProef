@@ -1,6 +1,7 @@
 ﻿using RudycommerceLibrary.DAL;
 using RudycommerceLibrary.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,18 +11,53 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_Product
     {
-        public static void Save(Product model)
+        //public static void Save(Product model)
+        //{
+        //    if (model.IsNew())
+        //    {
+        //        Create(model);
+        //    }
+        //}
+
+        //private static void Create(Product model)
+        //{
+        //    DAL_Product.Create(model);
+        //}
+
+        public static string[] GetProductTypes(string selectedLanguage)
         {
-            if (model.IsNew())
+            string[] productTypes;
+            switch (selectedLanguage)
             {
-                Create(model);
+                case "Nederlands":
+                    productTypes = new string[]
+                    {
+                        "Gaming uitrusting",
+                        "Game",
+                        "Game console"
+                    };
+                    break;
+
+                case "English":
+                    productTypes = new string[]
+                    {
+                        "Gaming equipment",
+                        "Game",
+                        "Game console"
+                    };
+                    break;
+
+                default:
+                    productTypes = new string[]
+                    {
+                        "Gaming equipment",
+                        "Game",
+                        "Game console"
+                    };
+                    break;
             }
-        }
 
-        private static void Create(Product model)
-        {
-            DAL_Product.Create(model);
+            return productTypes;
         }
-
     }
 }

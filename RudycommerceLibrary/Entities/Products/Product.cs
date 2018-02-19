@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RudycommerceLibrary.Entities
+namespace RudycommerceLibrary.Entities.Products
 {
     [Table("product")]
     public class Product : BaseEntity
@@ -15,7 +15,7 @@ namespace RudycommerceLibrary.Entities
         [Column("product_id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductID { get; set; }
-
+        
         [Column("unit_price")]
         public Decimal UnitPrice { get; set; }
 
@@ -24,12 +24,34 @@ namespace RudycommerceLibrary.Entities
 
         [Column("initial_stock")]
         public int InitialStock { get; set; }
-        
+
+        [Column("current_stock")]
+        public int CurrentStock { get; set; }
+
+        [Column("available_stock")]
+        public int AvailableStock { get; set; }
+
+        [Column("iron_stock")]
+        public int IronStock { get; set; }
+
+        [Column("maximum_stock")]
+        public int MaximumStock { get; set; }
+
+        //[Column("ean_barcode")]
+        //public string EANBarcode { get; set; }
+
+        //[Column("product_code")]
+        //public string ProductCode { get; set; }
+
         public override bool IsNew()
         {
             return this.ProductID <= 0;
         }
 
-        public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
+        [Column("type_of_product")]
+        public string TypeOfProduct { get; set; }
+
+        [Column("type_of_equipment")]
+        public string TypeOfEquipment { get; set; }
     }
 }

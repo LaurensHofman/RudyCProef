@@ -1,5 +1,7 @@
 ﻿using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Entities.Products;
+using RudycommerceLibrary.Entities.Products.GamingEquipments.NonElectronicEquipments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,51 +25,75 @@ namespace Rudycommerce
     public partial class NewProductForm : UserControl
     {
         public Language DefaultLanguage { get; set; }
+
         public Product ProductModel { get; set; }
-        public LocalizedProduct LocalizedProductModel { get; set; }
 
-        public NewProductForm() : this(new Product()) { }
+        public NewProductForm(string selectedLanguage) : this(new Product(), selectedLanguage) { }
 
-        public NewProductForm(Product productModel)
+        public NewProductForm(Product product, string selectedLanguage)
         {
             InitializeComponent();
 
-            this.ProductModel = productModel;
+            this.ProductModel = product;
             grdNewProductForm.DataContext = this;
 
-            this.LocalizedProductModel = new LocalizedProduct();
+            SetLanguageDictionary(selectedLanguage);
 
-            GetDefaultLanguage();
-            SetLabels();
+            SetDropdownItemsProducts(selectedLanguage);
+
+
+            //GetDefaultLanguage();
+            //SetLabels();
         }
 
-        private void SetLabels()
+        private void SetDropdownItemsProducts(string selectedLanguage)
         {
-            lblDefaultLanguage.Content = "Current Default Language = " + DefaultLanguage.LanguageName;
+            cmbxProductType.ItemsSource = BL_Product.GetProductTypes(selectedLanguage);
+            cmbxProductType.SelectedIndex = 0;
         }
 
-        private void GetDefaultLanguage()
+        private void SetLanguageDictionary(string selectedLanguage)
         {
-            DefaultLanguage = BL_Language.GetDefaultLanguage();
+            ResourceDictionary dict = new ResourceDictionary();
+
+            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
+
+            this.Resources.MergedDictionaries.Add(dict);
         }
+
+        //private void SetLabels()
+        //{
+        //    lblDefaultLanguage.Content = "Current Default Language = " + DefaultLanguage.LanguageName;
+        //}
+
+        //private void GetDefaultLanguage()
+        //{
+        //    DefaultLanguage = BL_Language.GetDefaultLanguage();
+        //}
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            ProductModel.UnitPrice = decimal.Parse(txtUnitPrice.Text);
-            ProductModel.InitialStock = int.Parse(txtInitialStock.Text);
-            ProductModel.IsActive = cbxIsActive.IsChecked.Value;
+            //ProductModel.UnitPrice = decimal.Parse(txtUnitPrice.Text);
+            //ProductModel.InitialStock = int.Parse(txtInitialStock.Text);
+            //ProductModel.IsActive = cbxIsActive.IsChecked.Value;
 
-            BL_Product.Save(ProductModel);
+            //BL_Product.Save(ProductModel);
 
-            LocalizedProductModel.LanguageID = DefaultLanguage.LanguageID;
-            LocalizedProductModel.ProductID = ProductModel.ProductID;
+            //LocalizedProductModel.LanguageID = DefaultLanguage.LanguageID;
+            //LocalizedProductModel.ProductID = ProductModel.ProductID;
 
-            LocalizedProductModel.Name = txtLocalizedName.Text;
-            LocalizedProductModel.Description = txtLocalizedDescription.Text;
+            //LocalizedProductModel.Name = txtLocalizedName.Text;
+            //LocalizedProductModel.Description = txtLocalizedDescription.Text;
 
-            BL_LocalizedProduct.Save(LocalizedProductModel);
+            //BL_LocalizedProduct.Save(LocalizedProductModel);
 
-            MessageBox.Show("You saved!");
+            //MessageBox.Show("You saved!");
+        }
+
+        private void cbProductType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ProductModel.TypeOfProduct = BL_Product.GetProductTypes("English")[cmbxProductType.SelectedIndex];
+            MessageBox.Show(ProductModel.TypeOfProduct);
         }
     }
 }

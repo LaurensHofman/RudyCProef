@@ -50,20 +50,23 @@
     <Compile Include="BL\BL_DesktopUser.cs" />
     <Compile Include="BL\BL_Encryption.cs" />
     <Compile Include="BL\BL_Language.cs" />
-    <Compile Include="BL\BL_LocalizedProduct.cs" />
     <Compile Include="BL\BL_Mailing.cs" />
     <Compile Include="BL\BL_Multilingual.cs" />
     <Compile Include="BL\BL_Product.cs" />
     <Compile Include="DAL\DAL_DesktopUser.cs" />
     <Compile Include="DAL\DAL_Language.cs" />
-    <Compile Include="DAL\DAL_LocalizedProduct.cs" />
     <Compile Include="DAL\DAL_Product.cs" />
     <Compile Include="Data\AppDBContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\DesktopUser.cs" />
+    <Compile Include="Entities\DesktopUsers\DesktopUser.cs" />
     <Compile Include="Entities\Language.cs" />
-    <Compile Include="Entities\LocalizedProduct.cs" />
-    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Products\GamingEquipments\ElectronicEquipment.cs" />
+    <Compile Include="Entities\Products\GamingEquipments\ElectronicEquipments\Controller.cs" />
+    <Compile Include="Entities\Products\GamingEquipments\ElectronicEquipments\Keyboard.cs" />
+    <Compile Include="Entities\Products\GamingEquipments\NonElectronicEquipment.cs" />
+    <Compile Include="Entities\Products\GamingEquipments\NonElectronicEquipments\MouseMat.cs" />
+    <Compile Include="Entities\Products\GamingEquipment.cs" />
+    <Compile Include="Entities\Products\Product.cs" />
     <Compile Include="Migrations\201801211254166_DesktopUser.cs" />
     <Compile Include="Migrations\201801211254166_DesktopUser.Designer.cs">
       <DependentUpon>201801211254166_DesktopUser.cs</DependentUpon>
@@ -71,6 +74,18 @@
     <Compile Include="Migrations\201801211810430_AdminVerifyUser.cs" />
     <Compile Include="Migrations\201801211810430_AdminVerifyUser.Designer.cs">
       <DependentUpon>201801211810430_AdminVerifyUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802081934419_ReworkProductsStart.cs" />
+    <Compile Include="Migrations\201802081934419_ReworkProductsStart.Designer.cs">
+      <DependentUpon>201802081934419_ReworkProductsStart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802191243544_NoProductTypes.cs" />
+    <Compile Include="Migrations\201802191243544_NoProductTypes.Designer.cs">
+      <DependentUpon>201802191243544_NoProductTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802191248196_NoProductTypes1.cs" />
+    <Compile Include="Migrations\201802191248196_NoProductTypes1.Designer.cs">
+      <DependentUpon>201802191248196_NoProductTypes1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,6 +103,16 @@
     <EmbeddedResource Include="Migrations\201801211810430_AdminVerifyUser.resx">
       <DependentUpon>201801211810430_AdminVerifyUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802081934419_ReworkProductsStart.resx">
+      <DependentUpon>201802081934419_ReworkProductsStart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802191243544_NoProductTypes.resx">
+      <DependentUpon>201802191243544_NoProductTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802191248196_NoProductTypes1.resx">
+      <DependentUpon>201802191248196_NoProductTypes1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
