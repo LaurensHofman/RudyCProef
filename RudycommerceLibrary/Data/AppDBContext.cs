@@ -1,5 +1,7 @@
 ﻿using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.Products;
+using RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquipments;
+using RudycommerceLibrary.Entities.Products.GamingEquipments.NonElectronicEquipments;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,8 +16,17 @@ namespace RudycommerceLibrary
         #region Database Sets
 
         public DbSet<DesktopUser> DesktopUsers { get; set; }
-        public DbSet<Language> Languages { get; set; }
+        public DbSet<SiteLanguage> Languages { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<LocalizedProduct> LocalizedProducts { get; set; }
+
+        #region GamingEquipment
+        public DbSet<GamingController> Controllers { get; set; }
+        public DbSet<Headset> Headsets { get; set; }
+        public DbSet<GamingKeyboard> Keyboards { get; set; }
+        public DbSet<MouseMat> MouseMats { get; set; }
+        public DbSet<GamingMouse> Mice { get; set; }
+        #endregion GamingEquipment
 
         #endregion
 
@@ -43,7 +54,7 @@ namespace RudycommerceLibrary
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Product>()
-            //    .HasMany<Language>(p => p.Languages)
+            //    .HasMany(p => p.Languages)
             //    .WithMany(l => l.Products)
             //    .Map(m =>
             //    {
@@ -51,6 +62,19 @@ namespace RudycommerceLibrary
             //        m.MapRightKey("language_id");
             //        m.ToTable("localized_product");
             //    });
+
+            modelBuilder.Entity<LocalizedProduct>()
+               .HasKey(lp => new { lp.ProductID, lp.LanguageID });
+
+            modelBuilder.Entity<Product>()
+                        .HasMany(p => p.LocalizedProducts)
+                        .WithRequired()
+                        .HasForeignKey(lp => lp.ProductID);
+
+            modelBuilder.Entity<SiteLanguage>()
+                        .HasMany(l => l.LocalizedProducts)
+                        .WithRequired()
+                        .HasForeignKey(lp => lp.LanguageID);
         }
     }
 }

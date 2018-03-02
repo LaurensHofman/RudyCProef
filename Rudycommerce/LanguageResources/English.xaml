@@ -1,9 +1,75 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Rudycommerce.LanguageResources"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="EMPTY">---/// MISTAKE ///---</system:String>
 
-    <!-- duf: DesktopUserForm.xaml  -->
+    <!--
+    <TextBlock>
+                    <TextBlock Text="{DynamicResource ResourceKey=EMPTY}"/>
+                    <TextBlock Text=": "/>
+                </TextBlock>
+    -->
+
+
+    <system:String x:Key="Save">Save</system:String>
+    <system:String x:Key="FirstName">First name</system:String>
+    <system:String x:Key="LastName">Last name</system:String>
+    <system:String x:Key="Username">Username</system:String>
+    <system:String x:Key="Email">E-mail</system:String>
+    <system:String x:Key="Password">Password</system:String>
+    <system:String x:Key="PreferredLanguage">Preferred language</system:String>
+    <system:String x:Key="CreateAdminAccount">Create admin account</system:String>
+
+    <system:String x:Key="LanguageName">Language name</system:String>
+    <system:String x:Key="ISOCode">ISO code</system:String>
+    <system:String x:Key="IsLanguageActive">Is language active?</system:String>
+    <system:String x:Key="IsLanguageDefault">Is language default?</system:String>
+
+    <!--INF = INFINITIVE-->
+    <system:String x:Key="LoginINF">Login</system:String>
+    <system:String x:Key="LoginACTION">Login</system:String>
+
+    <system:String x:Key="NewUser">New user</system:String>
+
+    <system:String x:Key="ManageAccount">Manage account</system:String>
+    <system:String x:Key="ManageLanguages">Manage languages</system:String>
+    <system:String x:Key="AddLanguage">Add language</system:String>
+    <system:String x:Key="LanguageOverview">Language overview</system:String>
+    <system:String x:Key="ManageProducts">Manage products</system:String>
+    <system:String x:Key="AddProduct">Add product</system:String>
+    <system:String x:Key="Users">Users</system:String>
+    <system:String x:Key="ManageUsers">Manage users</system:String>
+    <system:String x:Key="UserOverview">User overview</system:String>
+
+    <system:String x:Key="NewDesktopUser">New desktop user</system:String>
+
+    <system:String x:Key="Create">Create</system:String>
+    <system:String x:Key="ProductName">Product name</system:String>
+    <system:String x:Key="Description">Description</system:String>
+    <system:String x:Key="UnitPrice">Unit price(€)</system:String>
+    <system:String x:Key="InitialStock">Initial stock</system:String>
+    <system:String x:Key="IronStock">Iron stock</system:String>
+    <system:String x:Key="MaxStock">Maximum stock</system:String>
+    <system:String x:Key="IsProductActive">Is product active?</system:String>
+    <system:String x:Key="TypeOfProduct">Product type</system:String>
+
+    <system:String x:Key="Administrator">Administrator</system:String>
+    
+    <system:String x:Key="DeleteUser">Delete user</system:String>
+    <system:String x:Key="MakeUserAdmin">Make user admin</system:String>
+    <system:String x:Key="VerifyUser">Verify user</system:String>
+
+    <system:String x:Key="Length">Length (cm)</system:String>
+    <system:String x:Key="Height">Height (cm)</system:String>
+    <system:String x:Key="Width">Width (cm)</system:String>
+    <system:String x:Key="Depth">Depth (cm)</system:String>
+    <system:String x:Key="Weight">Weight (kg)</system:String>
+    <system:String x:Key="MaxResolution">Maximum resolution (dpi)</system:String>
+    <system:String x:Key="ProgrammableButtons">Amount of programmable buttons</system:String>
+    <system:String x:Key="FunctionKeys">Amount of function keys</system:String>
+    <system:String x:Key="Layout">Layout</system:String>
+
+    <!-- duf: DesktopUserForm.xaml  --><!--
     <system:String x:Key="aufTitle">Create admin account</system:String>
     <system:String x:Key="aufFirstName">First name:</system:String>
     <system:String x:Key="aufLastName">Last name:</system:String>
@@ -13,7 +79,7 @@
     <system:String x:Key="aufPrefLang">Preferred language:</system:String>
     <system:String x:Key="aufSave">Save</system:String>
 
-    <!-- lw: LoginWindow.xaml -->
+    --><!-- lw: LoginWindow.xaml --><!--
     <system:String x:Key="lwTitle">Login</system:String>
     <system:String x:Key="lwUsername">Username</system:String>
     <system:String x:Key="lwPassword">Password</system:String>
@@ -21,7 +87,7 @@
     <system:String x:Key="lwPrefLang">Preferred Language</system:String>
     <system:String x:Key="lwNewUser">New user</system:String>
 
-    <!-- ndu: NewDesktopUser.xaml  -->
+    --><!-- ndu: NewDesktopUser.xaml  --><!--
     <system:String x:Key="nduTitle">Create new account</system:String>
     <system:String x:Key="nduFirstName">First name:</system:String>
     <system:String x:Key="nduLastName">Last name:</system:String>
@@ -31,17 +97,17 @@
     <system:String x:Key="nduPrefLang">Preferred Language:</system:String>
     <system:String x:Key="nduSave">Save</system:String>
 
-    <!-- ndu: NewDesktopUser.xaml  -->
+    --><!-- ndu: NewDesktopUser.xaml  --><!--
     <system:String x:Key="maPrefLang">Preferred Language</system:String>
     <system:String x:Key="maSave">Save</system:String>
 
-    <!-- lf: LanguageForm.xaml  -->
+    --><!-- lf: LanguageForm.xaml  --><!--
     <system:String x:Key="lfSave">Save</system:String>
     <system:String x:Key="lfLanguageName">Language name:</system:String>
     <system:String x:Key="lfLanguageActive">Is language active?:</system:String>
     <system:String x:Key="lfLanguageDefault">Is language default?:</system:String>
 
-    <!-- navi: NavigationWindow.xaml -->
+    --><!-- navi: NavigationWindow.xaml --><!--
     <system:String x:Key="naviPlaceholder">Placeholder</system:String>
     
     <system:String x:Key="naviManageLanguages">Manage languages</system:String>
@@ -55,5 +121,43 @@
     <system:String x:Key="naviManageUsers">Manage users</system:String>
     
     <system:String x:Key="naviManageAccount">Manage account</system:String>
+
+    --><!-- npf: NewProductForm.xaml --><!--
+    <system:String x:Key="npfCreate">Create product</system:String>
+    <system:String x:Key="npfName">Product name: </system:String>
+    <system:String x:Key="npfDescription">Product description:</system:String>
+    <system:String x:Key="npfUnitPrice">Unit price (€):</system:String>
+    <system:String x:Key="npfInitialStock">Initial stock:</system:String>
+    <system:String x:Key="npfIronStock">Iron stock:</system:String>
+    <system:String x:Key="npfMaxStock">Maximum stock:</system:String>
+    <system:String x:Key="npfIsActive">Is product active?:</system:String>
+    <system:String x:Key="npfTypeOfProduct">Type of product:</system:String>
+
+    <system:String x:Key="npfTitle">Create new product</system:String>
+    <system:String x:Key="npfCurrentDefaultLanguage">Current default site language:</system:String>
+    
+    --><!-- uo: UserOverview.xaml  -->
+    <!-- Datagrid headers worden niet als normale visuals gezien --><!--
+    <Style x:Key="uoLastName" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Content" Value="Last name" />
+    </Style>
+    
+    <Style x:Key="uoFirstName" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Content" Value="First name" />
+    </Style>
+    
+    <Style x:Key="uoIsAdmin" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Content" Value="Admin?" />
+    </Style>
+    
+    <Style x:Key="uoEMail" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Content" Value="E-mail" />
+    </Style>
+
+    <Style x:Key="uoUsername" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Content" Value="Username" />
+    </Style>
+    
+    <system:String x:Key="uoDeleteUser">Delete user</system:String>-->
 
 </ResourceDictionary>

@@ -8,18 +8,20 @@ using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.Products
 {
-    public class GamingEquipment : BaseEntity, IGamingEquipment
+    [Table("localized_product")]
+    public class LocalizedProduct : BaseEntity
     {
-        [Key]
         [Column("product_id")]
         public int ProductID { get; set; }
 
-        [Column("weight")]
-        public float Weight { get; set; }
+        [Column("language_id")]
+        public int LanguageID { get; set; }
 
-        //public string OtherCharacteristics { get; set; }
+        [Column("name")]
+        public string Name { get; set; }
 
-        //public string Colour { get; set; }
+        [Column("description")]
+        public string Description { get; set; }
 
         public override bool IsNew()
         {

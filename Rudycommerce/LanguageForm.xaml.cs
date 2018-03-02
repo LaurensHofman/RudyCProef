@@ -23,11 +23,11 @@ namespace Rudycommerce
     /// </summary>
     public partial class LanguageForm : UserControl
     {
-        public Language Model { get; private set; }
+        public SiteLanguage Model { get; private set; }
 
-        public LanguageForm(string selectedLanguage) : this(new Language(), selectedLanguage) { }
+        public LanguageForm(string selectedLanguage) : this(new SiteLanguage(), selectedLanguage) { }
 
-        public LanguageForm(Language model, string selectedLanguage)
+        public LanguageForm(SiteLanguage model, string selectedLanguage)
         {
             InitializeComponent();
             this.Model = model;

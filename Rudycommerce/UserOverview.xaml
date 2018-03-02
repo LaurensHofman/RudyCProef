@@ -6,19 +6,52 @@
              xmlns:local="clr-namespace:Rudycommerce"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+            <!--Datagrid headers worden niet als normale visuals gezien-->
+            
+            <Style x:Key="LastNameDG" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Content" Value="{DynamicResource ResourceKey=LastName}" />
+            </Style>
+
+            <Style x:Key="FirstNameDG" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Content" Value="{DynamicResource ResourceKey=FirstName}"/>
+            </Style>
+
+            <Style x:Key="IsAdminDG" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Content" Value="{DynamicResource ResourceKey=Administrator}" />
+            </Style>
+
+            <Style x:Key="EmailDG" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Content" Value="{DynamicResource ResourceKey=Email}" />
+            </Style>
+
+            <Style x:Key="UsernameDG" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Content" Value="{DynamicResource ResourceKey=Username}" />
+            </Style>
+
+        </ResourceDictionary>
+       
+    </UserControl.Resources>
+
     <Grid>
         <DataGrid Name="dgrdUserOverview" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" AlternatingRowBackground="LightGray" RowEditEnding="dgrdUserOverview_RowEditEnding" AlternationCount="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Last name NO-ML" Binding="{Binding Path=LastName}"/>
-                <DataGridTextColumn Header="First name NO-ML" Binding="{Binding Path=FirstName}"/>
-                <DataGridCheckBoxColumn Header="Admin NO-ML" Binding="{Binding Path=IsAdmin}"/>
-                <DataGridTextColumn Header="E-mail NO-ML" Binding="{Binding Path=EMail}"/>
-                <DataGridTextColumn Header="Username NO-ML" Binding="{Binding Path=Username}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=LastNameDG}" Binding="{Binding Path=LastName}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=FirstNameDG}" Binding="{Binding Path=FirstName}"/>
+                <DataGridCheckBoxColumn HeaderStyle="{StaticResource ResourceKey=IsAdminDG}" Binding="{Binding Path=IsAdmin}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=EmailDG}" Binding="{Binding Path=EMail}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=UsernameDG}" Binding="{Binding Path=Username}"/>
 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnMakeUserAdmin" Content="Make user admin NO-ML" Click="btnMakeUserAdmin_Click">
+                            <Button x:Name="btnMakeUserAdmin" Content="{DynamicResource ResourceKey=MakeUserAdmin}" Click="btnMakeUserAdmin_Click">
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
                                         <Style.Triggers>
@@ -36,7 +69,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnDeleteUser" Content="Delete user NO-ML" Click="btnDeleteUser_Click">
+                            <Button x:Name="btnDeleteUser" Content="{DynamicResource ResourceKey=uoDeleteUser}" Click="btnDeleteUser_Click">
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
                                         <Style.Triggers>
@@ -54,7 +87,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnVerifyByAdmin" Background="OrangeRed" Foreground="Yellow" Click="btnVerifyByAdmin_Click" Content="Verify user NO-ML">
+                            <Button x:Name="btnVerifyByAdmin" Background="Black" Foreground="Yellow" FontWeight="ExtraBold" Click="btnVerifyByAdmin_Click" Content="{DynamicResource ResourceKey=VerifyUser}">
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
                                         <Style.Triggers>

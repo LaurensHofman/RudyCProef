@@ -6,26 +6,65 @@
         xmlns:local="clr-namespace:Rudycommerce"
         mc:Ignorable="d"
         Title="DesktopUserForm" Height="700" Width="400">
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <Grid x:Name="grdUserForm" Margin="0,0,0.2,0">
-        <Label FontSize="16" Content="{DynamicResource ResourceKey=aufTitle}" HorizontalContentAlignment="Center" Margin="10,10,9.4,0" VerticalAlignment="Top" Height="47"/>
-        <Button x:Name="btnSave" FontSize="16" Content="{DynamicResource ResourceKey=aufSave}" Margin="0,41,10,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="75" Click="btnSave_Click"/>
+        <Label FontSize="16" Content="{DynamicResource ResourceKey=CreateAdminAccount}" HorizontalContentAlignment="Center" Margin="10,10,9.4,0" VerticalAlignment="Top" Height="47"/>
+        <Button x:Name="btnSave" FontSize="16" Content="{DynamicResource ResourceKey=Save}" Margin="0,41,10,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="75" Click="btnSave_Click"/>
 
-        <Label Content="{DynamicResource ResourceKey=aufFirstName}" FontSize="16" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top"/>
+        <Label FontSize="16" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top">
+            <TextBlock>
+                <TextBlock Text="{DynamicResource ResourceKey=FirstName}"/>
+                <TextBlock Text=": "/>
+            </TextBlock>
+        </Label>
         <TextBox x:Name="txtFirstName" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="10,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
 
-        <Label Content="{DynamicResource ResourceKey=aufLastName}" FontSize="16" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top"/>
+        <Label FontSize="16" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top">
+            <TextBlock>
+                <TextBlock Text="{DynamicResource ResourceKey=LastName}"/>
+                <TextBlock Text=": "/>
+            </TextBlock>
+        </Label>
         <TextBox x:Name="txtLastName" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="10,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
 
-        <Label Content="{DynamicResource ResourceKey=aufUsername}" FontSize="16" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top"/>
+        <Label FontSize="16" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top">
+            <TextBlock>
+                <TextBlock Text="{DynamicResource ResourceKey=Username}"/>
+                <TextBlock Text=": "/>
+            </TextBlock>
+        </Label>
         <TextBox x:Name="txtUsername" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="10,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
 
-        <Label Content="{DynamicResource ResourceKey=aufEmail}" FontSize="16" HorizontalAlignment="Left" Margin="10,295,0,0" VerticalAlignment="Top"/>
+        <Label FontSize="16" HorizontalAlignment="Left" Margin="10,295,0,0" VerticalAlignment="Top">
+            <TextBlock>
+                <TextBlock Text="{DynamicResource ResourceKey=Email}"/>
+                <TextBlock Text=": "/>
+            </TextBlock>
+        </Label>
         <TextBox x:Name="txtEmail" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="10,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
 
-        <Label Content="{DynamicResource ResourceKey=aufPassword}" FontSize="16" HorizontalAlignment="Left" Margin="10,376,0,0" VerticalAlignment="Top"/>
+        <Label FontSize="16" HorizontalAlignment="Left" Margin="10,376,0,0" VerticalAlignment="Top">
+            <TextBlock>
+                <TextBlock Text="{DynamicResource ResourceKey=Password}"/>
+                <TextBlock Text=": "/>
+            </TextBlock>
+        </Label>
         <PasswordBox x:Name="pwdPassword" VerticalContentAlignment="Center" Height="30" HorizontalAlignment="Left" Margin="10,413,0,0" VerticalAlignment="Top" Width="280" />
 
-        <Label Content="{DynamicResource ResourceKey=aufPrefLang}" FontSize="16" HorizontalAlignment="Left" Margin="10,448,0,0" VerticalAlignment="Top"/>
+        <Label FontSize="16" HorizontalAlignment="Left" Margin="10,448,0,0" VerticalAlignment="Top">
+            <TextBlock>
+                <TextBlock Text="{DynamicResource ResourceKey=PreferredLanguage}"/>
+                <TextBlock Text=": "/>
+            </TextBlock>
+        </Label>
 
         <WrapPanel Margin="0,480,0,0" Height="40" VerticalAlignment="Top">
             <WrapPanel.Resources>

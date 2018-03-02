@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquipments
 {
     [Table("controller")]
-    public class Controller : ElectronicEquipment
+    public class GamingController : ElectronicEquipment
     {
         //public string AudioInput { get; set; }
 

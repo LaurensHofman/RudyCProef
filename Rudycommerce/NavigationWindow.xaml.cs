@@ -31,6 +31,16 @@ namespace Rudycommerce
             _currentUserID = currentUserID;
 
             SetLanguage(currentUserID);
+            EnableUserTab(currentUserID);
+        }
+
+        private void EnableUserTab(int currentUserID)
+        {
+            if (BL_DesktopUser.IsUserAdmin(currentUserID))
+            {
+                rtabUsers.IsEnabled = true;
+                rtabUsers.Visibility = Visibility.Visible;
+            }
         }
 
         private void SetLanguage(int currentUserID)
@@ -80,7 +90,7 @@ namespace Rudycommerce
 
         private void rbtnUserOverview_Click(object sender, RoutedEventArgs e)
         {
-            UserOverview _userOverview = new UserOverview();
+            UserOverview _userOverview = new UserOverview(_preferredLanguage);
             _userOverview.LostAdminRights += LogOut;
 
             navigationControl.Content = _userOverview;

@@ -9,7 +9,7 @@ namespace RudycommerceLibrary.DAL
 {
     public static class DAL_Language
     {
-        public static void Create(Language model)
+        public static void Create(SiteLanguage model)
         {
             var ctx = AppDBContext.Instance();
 
@@ -17,7 +17,7 @@ namespace RudycommerceLibrary.DAL
             ctx.SaveChanges();
         }
 
-        public static Language GetDefaultLanguage()
+        public static SiteLanguage GetDefaultLanguage()
         {
             var ctx = AppDBContext.Instance();
 

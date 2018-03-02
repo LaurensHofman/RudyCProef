@@ -1,5 +1,6 @@
 ﻿using RudycommerceLibrary.DAL;
 using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Entities.Products;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,53 +12,59 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_Product
     {
-        //public static void Save(Product model)
-        //{
-        //    if (model.IsNew())
-        //    {
-        //        Create(model);
-        //    }
-        //}
+        public static void Save(Product product)
+        {
+            if (product.IsNew())
+            {
+                Create(product);
+            }
+        }
 
-        //private static void Create(Product model)
-        //{
-        //    DAL_Product.Create(model);
-        //}
+        private static void Create(Product product)
+        {
+            DAL_Product.Create(product);
+        }
 
         public static string[] GetProductTypes(string selectedLanguage)
         {
             string[] productTypes;
-            switch (selectedLanguage)
+
+            productTypes = BL_Multilingual.ProductTypes(selectedLanguage);
+
+            //productTypes = new string[]
+            //{
+            //    BL_Multilingual.GamingEquipment(selectedLanguage),
+            //    BL_Multilingual.Game(selectedLanguage)
+            //    //, BL_Multilingual.GameConsole(selectedLanguage)
+            //};
+                        
+            return productTypes;
+        }
+
+        /// <summary>
+        /// Returns array of the specific product types, based on the selected product type
+        /// </summary>
+        /// <param name="selectedLanguage"></param>
+        /// <param name="productType"></param>
+        /// <returns></returns>
+        public static string[] GetSpecificProductTypes(string selectedLanguage, string productType)
+        {
+            string[] specificProductTypes;
+
+            switch (productType)
             {
-                case "Nederlands":
-                    productTypes = new string[]
-                    {
-                        "Gaming uitrusting",
-                        "Game",
-                        "Game console"
-                    };
+                case "Gaming equipment":
+                    specificProductTypes = BL_Multilingual.SpecificTypesGamingEquipment(selectedLanguage);
                     break;
 
-                case "English":
-                    productTypes = new string[]
-                    {
-                        "Gaming equipment",
-                        "Game",
-                        "Game console"
-                    };
-                    break;
+                    // Game doesn't have subtypes -yet-
 
                 default:
-                    productTypes = new string[]
-                    {
-                        "Gaming equipment",
-                        "Game",
-                        "Game console"
-                    };
+                    specificProductTypes = null;
                     break;
             }
 
-            return productTypes;
+            return specificProductTypes;
         }
     }
 }

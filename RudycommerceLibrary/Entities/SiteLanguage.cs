@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RudycommerceLibrary.Entities.Products;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace RudycommerceLibrary.Entities
 {
     [Table("language")]
-    public class Language: BaseEntity
+    public class SiteLanguage: BaseEntity
     {
         [Key]
         [Column("language_id")]
@@ -33,7 +34,7 @@ namespace RudycommerceLibrary.Entities
             return this.LanguageID <= 0;
         }
 
-        //public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
+        public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
     }
 }
 

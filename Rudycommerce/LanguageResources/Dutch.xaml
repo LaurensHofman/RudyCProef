@@ -1,9 +1,82 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Rudycommerce.LanguageResources"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="EMPTY">---/// MISTAKE ///---</system:String>
+
+    <!--
+    <TextBlock>
+                    <TextBlock Text="{DynamicResource ResourceKey=EMPTY}"/>
+                    <TextBlock Text=": "/>
+                </TextBlock>
+    -->
+
+
+    <system:String x:Key="Save">Opslaan</system:String>
+    <system:String x:Key="FirstName">Voornaam</system:String>
+    <system:String x:Key="LastName">Achternaam</system:String>
+    <system:String x:Key="Username">Gebruikersnaam</system:String>
+    <system:String x:Key="Email">E-mail</system:String>
+    <system:String x:Key="Password">Wachtwoord</system:String>
+    <system:String x:Key="PreferredLanguage">Voorkeurstaal</system:String>
+    <system:String x:Key="CreateAdminAccount">Beheerdersaccount aanmaken</system:String>
+
+    <system:String x:Key="LanguageName">Naam</system:String>
+    <system:String x:Key="ISOCode">ISO-code</system:String>
+    <system:String x:Key="IsLanguageActive">Is taal actief?</system:String>
+    <system:String x:Key="IsLanguageDefault">Is deze de standaardtaal?</system:String>
+
+    <!--INF = INFINITIVE-->
+    <system:String x:Key="LoginINF">Aanmelden</system:String>
+    <system:String x:Key="LoginACTION">Meld aan</system:String>
+
+    <system:String x:Key="NewUser">Nieuwe gebruiker</system:String>
+
+    <system:String x:Key="ManageAccount">Beheer account</system:String>
+    <system:String x:Key="ManageLanguages">Beheer talen</system:String>
+    <system:String x:Key="AddLanguage">Voeg taal toe</system:String>
+    <system:String x:Key="LanguageOverview">Overzicht talen</system:String>
+    <system:String x:Key="ManageProducts">Beheer producten</system:String>
+    <system:String x:Key="AddProduct">Voeg product toe</system:String>
+    <system:String x:Key="Users">Gebruikers</system:String>
+    <system:String x:Key="ManageUsers">Beheer gebruikers</system:String>
+    <system:String x:Key="UserOverview">Overzicht gebruikers</system:String>
+
+    <system:String x:Key="NewDesktopUser">Nieuwe gebruiker</system:String>
+
+    <system:String x:Key="Create">Maak aan</system:String>
+    <system:String x:Key="ProductName">Product naam</system:String>
+    <system:String x:Key="Description">Beschrijving</system:String>
+    <system:String x:Key="UnitPrice">Eenheidsprijs (€)</system:String>
+    <system:String x:Key="InitialStock">Initiële voorraad</system:String>
+    <system:String x:Key="IronStock">IJzeren voorraad</system:String>
+    <system:String x:Key="MaxStock">Maximum voorraad</system:String>
+    <system:String x:Key="IsProductActive">Is product actief?</system:String>
+    <system:String x:Key="TypeOfProduct">Product type</system:String>
+
+    <system:String x:Key="Administrator">Beheerder</system:String>
+    
+    <system:String x:Key="DeleteUser">Verwijder gebruiker</system:String>
+    <system:String x:Key="MakeUserAdmin">Maak gebruiker beheerder</system:String>
+    <system:String x:Key="VerifyUser">Verifieer gebruiker</system:String>
+
+    <system:String x:Key="Length">Lengte (cm)</system:String>
+    <system:String x:Key="Height">Hoogte (cm)</system:String>
+    <system:String x:Key="Width">Breedte (cm)</system:String>
+    <system:String x:Key="Depth">Diepte (cm)</system:String>
+    <system:String x:Key="Weight">Gewicht (kg)</system:String>
+    <system:String x:Key="MaxResolution">Maximum resolutie (dpi)</system:String>
+    <system:String x:Key="ProgrammableButtons">Aantal programmeerbare knoppen</system:String>
+    <system:String x:Key="FunctionKeys">Aantal functietoetsen</system:String>
+    <system:String x:Key="Layout">Indeling</system:String>
+
+    <!--Datagrid headers worden niet als normale visuals gezien-->
+
+    
+
+
 
     <!-- duf: DesktopUserForm.xaml  -->
+    <!--
     <system:String x:Key="aufTitle">Maak beheerders account aan</system:String>
     <system:String x:Key="aufFirstName">Voornaam:</system:String>
     <system:String x:Key="aufLastName">Achternaam</system:String>
@@ -13,14 +86,18 @@
     <system:String x:Key="aufPrefLang">Voorkeurstaal:</system:String>
     <system:String x:Key="aufSave">Sla op</system:String>
     
+    -->
     <!-- lw: LoginWindow.xaml -->
+    <!--
     <system:String x:Key="lwTitle">Inloggen</system:String>
     <system:String x:Key="lwUsername">Gebruikersnaam:</system:String>
     <system:String x:Key="lwPassword">Wachtwoord:</system:String>
     <system:String x:Key="lwLogin">Inloggen</system:String>
     <system:String x:Key="lwNewUser">Nieuwe gebruiker</system:String>
 
+    -->
     <!-- ndu: NewDesktopUser.xaml  -->
+    <!--
     <system:String x:Key="nduTitle">Maak nieuwe account aan</system:String>
     <system:String x:Key="nduFirstName">Voornaam:</system:String>
     <system:String x:Key="nduLastName">Achternaam:</system:String>
@@ -30,17 +107,23 @@
     <system:String x:Key="nduPrefLang">Voorkeurstaal:</system:String>
     <system:String x:Key="nduSave">Sla op</system:String>
 
+    -->
     <!-- ma: ManageAccount.xaml  -->
+    <!--
     <system:String x:Key="maPrefLang">Voorkeurstaal</system:String>
     <system:String x:Key="maSave">Sla op</system:String>
 
+    -->
     <!-- lf: LanguageForm.xaml  -->
+    <!--
     <system:String x:Key="lfSave">Opslaan</system:String>
     <system:String x:Key="lfLanguageName">Naam van de taal: </system:String>
     <system:String x:Key="lfLanguageActive">Is taal actief?: </system:String>
     <system:String x:Key="lfLanguageDefault">Standaard taal?: </system:String>
 
+    -->
     <!-- navi: NavigationWindow.xaml -->
+    <!--
     <system:String x:Key="naviPlaceholder">Plaatshouder</system:String>
     
     <system:String x:Key="naviManageLanguages">Beheer talen</system:String>
@@ -54,5 +137,48 @@
     <system:String x:Key="naviManageUsers">Beheer gebruikers</system:String>
     
     <system:String x:Key="naviManageAccount">Beheer account</system:String>
+    
+    -->
+    <!-- npf: NewProductForm.xaml -->
+    <!--
+    <system:String x:Key="npfCreate">Maak product aan</system:String>
+    <system:String x:Key="npfName">Product naam: </system:String>
+    <system:String x:Key="npfDescription">Productbeschrijving: </system:String>
+    <system:String x:Key="npfUnitPrice">Eenheidsprijs (€): </system:String>
+    <system:String x:Key="npfInitialStock">Initiële voorraad: </system:String>
+    <system:String x:Key="npfIronStock">IJzeren voorraad: </system:String>
+    <system:String x:Key="npfMaxStock">Maximum voorraad: </system:String>
+    <system:String x:Key="npfIsActive">Is product actief?: </system:String>
+    <system:String x:Key="npfTypeOfProduct">Soort product: </system:String>
+
+    <system:String x:Key="npfTitle">Nieuw product aanmaken</system:String>
+    <system:String x:Key="npfCurrentDefaultLanguage">Huidige standaard taal voor de site: </system:String>
+
+    -->
+     <!--uo: UserOverview.xaml-->  
+     <!--Datagrid headers worden niet als normale visuals gezien-->
+
+    <Style x:Key="uoLastName" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Content" Value="Achternaam" />
+    </Style>
+
+    <Style x:Key="uoFirstName" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Content" Value="Voornaam" />
+    </Style>
+
+    <Style x:Key="uoIsAdmin" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Content" Value="Administrator?" />
+    </Style>
+
+    <Style x:Key="uoEMail" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Content" Value="E-mail" />
+    </Style>
+
+    <Style x:Key="uoUsername" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Content" Value="Gebruikersnaam" />
+    </Style>
+
+    <system:String x:Key="uoDeleteUser">Verwijder gebruiker</system:String>
+
 
 </ResourceDictionary>

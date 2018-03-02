@@ -1,4 +1,5 @@
-﻿using RudycommerceLibrary.BL;
+﻿using Rudycommerce.LanguageResources;
+using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -27,12 +29,29 @@ namespace Rudycommerce
         public delegate void AdminLostRights();
         public event AdminLostRights LostAdminRights;
 
-        public UserOverview()
+        string _preferredLanguage = "Nederlands";
+
+        public UserOverview() : this("Nederlands") { }
+
+        public UserOverview(string preferredLanguage)
         {
             InitializeComponent();
             BindData();
+
+            SetLanguageDictionary(preferredLanguage);
+
+            _preferredLanguage = preferredLanguage;
         }
-        
+
+        private void SetLanguageDictionary(string preferredLanguage)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+
+            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(preferredLanguage), UriKind.Relative);
+
+            this.Resources.MergedDictionaries.Add(dict);
+        }
+
         public ObservableCollection<DesktopUser> dataSourceUsers { get; set; }
 
         private void BindData()
@@ -58,20 +77,29 @@ namespace Rudycommerce
                     break;
             }
         }
-
+        
         private void btnVerifyByAdmin_Click(object sender, RoutedEventArgs e)
         {
-            var obj = ((FrameworkElement)sender).DataContext as DesktopUser;
+            var user = ((FrameworkElement)sender).DataContext as DesktopUser;
 
-            if (MessageBox.Show($"NO-ML Are you sure you want to give {obj.LastName} {obj.FirstName} access to this application?", $"Verify {obj.LastName} {obj.FirstName}", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            string messageboxContent = BL_Multilingual.UOVerifyAdminMessageBoxContent(user.LastName, user.FirstName, _preferredLanguage);
+            string messageboxTitle = BL_Multilingual.UOVerifyAdminMessageBoxTitle(user.LastName, user.FirstName, _preferredLanguage);
+
+            MessageBoxManager.Yes = BL_Multilingual.Yes(_preferredLanguage);
+            MessageBoxManager.No = BL_Multilingual.No(_preferredLanguage);
+            MessageBoxManager.Register();
+
+            if (MessageBox.Show(messageboxContent, messageboxTitle, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                obj.VerifiedByAdmin = true;
+                MessageBoxManager.Unregister();
 
-                BL_DesktopUser.Update(obj);
+                BL_DesktopUser.VerifyByAdmin(user);
                 BindData();
 
-                BL_Mailing.UserVerified(obj.LastName, obj.FirstName, obj.EMail, obj.Username, obj.PreferredLanguage);
+                BL_Mailing.UserVerified(user.LastName, user.FirstName, user.EMail, user.Username, user.PreferredLanguage);
             }
+            else
+            { MessageBoxManager.Unregister(); }
         }
 
         private void dgrdUserOverview_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
@@ -84,34 +112,56 @@ namespace Rudycommerce
 
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
-            var obj = ((FrameworkElement)sender).DataContext as DesktopUser;
+            var user = ((FrameworkElement)sender).DataContext as DesktopUser;
 
-            if (MessageBox.Show($"NO-ML Are you sure you want to delete {obj.LastName} {obj.FirstName} as a user?",
-                                $"Delete {obj.LastName} {obj.FirstName}?",
+            string messageboxContent = BL_Multilingual.UODeleteUserMessageBoxContent(user.LastName, user.FirstName, _preferredLanguage);
+            string messageboxTitle = BL_Multilingual.UODeleteUserMessageBoxTitle(user.LastName, user.FirstName, _preferredLanguage);
+
+            MessageBoxManager.Yes = BL_Multilingual.Yes(_preferredLanguage);
+            MessageBoxManager.No = BL_Multilingual.No(_preferredLanguage);
+            MessageBoxManager.Register();
+
+            if (MessageBox.Show(messageboxContent,
+                                messageboxTitle,
                                 MessageBoxButton.YesNo,
                                 MessageBoxImage.Warning) 
                 == MessageBoxResult.Yes)
             {
-                dataSourceUsers.Remove(obj);
+                MessageBoxManager.Unregister();
+
+                dataSourceUsers.Remove(user);
             }
+            else
+            { MessageBoxManager.Unregister(); }
         }
 
         private void btnMakeUserAdmin_Click(object sender, RoutedEventArgs e)
         {
-            var obj = ((FrameworkElement)sender).DataContext as DesktopUser;
+            var user = ((FrameworkElement)sender).DataContext as DesktopUser;
 
-            if (MessageBox.Show($"NO-ML Are you sure you want to make {obj.LastName} {obj.FirstName} the new administator? \r\nIf you choose YES, you will have to relog to gain access to the application.",
-                                $"New administrator: {obj.LastName} {obj.FirstName}?",
+            string messageboxContent = BL_Multilingual.UOMakeUserAdminMessageBoxContent(user.LastName, user.FirstName, _preferredLanguage);
+            string messageboxTitle = BL_Multilingual.UOMakeUserAdminMessageBoxTitle(user.LastName, user.FirstName, _preferredLanguage);
+
+            MessageBoxManager.Yes = BL_Multilingual.Yes(_preferredLanguage);
+            MessageBoxManager.No = BL_Multilingual.No(_preferredLanguage);
+            MessageBoxManager.Register();
+
+            if (MessageBox.Show(messageboxContent,
+                                messageboxTitle,
                                 MessageBoxButton.YesNo,
                                 MessageBoxImage.Warning)
                 == MessageBoxResult.Yes)
             {
-                obj.IsAdmin = true;
-                obj.VerifiedByAdmin = true;
+                user.IsAdmin = true;
+                user.VerifiedByAdmin = true;
                 BL_DesktopUser.AdminLoseHisRights();
+
+                MessageBoxManager.Unregister();
 
                 LostAdminRights();
             }
+            else
+            { MessageBoxManager.Unregister(); }
         }
     }
 }

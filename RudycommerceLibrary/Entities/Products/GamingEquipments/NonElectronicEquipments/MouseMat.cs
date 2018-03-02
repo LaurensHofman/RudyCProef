@@ -11,12 +11,12 @@ namespace RudycommerceLibrary.Entities.Products.GamingEquipments.NonElectronicEq
     public class MouseMat : NonElectronicEquipment
     {
         [Column("length")]
-        public int Length { get; set; }
+        public float Length { get; set; }
 
         [Column("depth")]
-        public int Depth { get; set; }
+        public float Depth { get; set; }
 
         [Column("width")]
-        public int Width { get; set; }
+        public float Width { get; set; }
     }
 }

@@ -6,19 +6,38 @@
         xmlns:local="clr-namespace:Rudycommerce"
         mc:Ignorable="d"
         Title="LoginWindow" Height="300" Width="300">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
-        <Label Content="{DynamicResource ResourceKey=lwTitle}" FontSize="16" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="30"/>
-        
-        
+        <Label Content="{DynamicResource ResourceKey=LoginINF}" FontSize="16" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="30"/>
+
+
         <StackPanel Margin="0,30,149.6,0" Height="84" VerticalAlignment="Top">
-            <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="30" Content="{DynamicResource ResourceKey=lwUsername}"/>
-            <Label HorizontalContentAlignment="Right" Height="30" VerticalContentAlignment="Center" Margin="0,20,0,0" Content="{DynamicResource ResourceKey=lwPassword}"/>
+            <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="30">
+                <TextBlock>
+                    <TextBlock Text="{DynamicResource ResourceKey=Username}"/>
+                    <TextBlock Text=": "/>
+                </TextBlock>
+            </Label>
+            <Label HorizontalContentAlignment="Right" Height="30" VerticalContentAlignment="Center" Margin="0,20,0,0" >
+                <TextBlock>
+                    <TextBlock Text="{DynamicResource ResourceKey=Password}"/>
+                    <TextBlock Text=": "/>
+                </TextBlock>
+            </Label>
         </StackPanel>
         <StackPanel Margin="150,30,-0.4,0" Height="84" VerticalAlignment="Top">
             <TextBox Height="20" Margin="0,5,0,0" x:Name="txtUsername"/>
             <PasswordBox Height="20" Margin="0,30,0,0" x:Name="pwdPassword"/>
         </StackPanel>
-        <Button x:Name="btnLogin" Content="{DynamicResource ResourceKey=lwLogin}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="209,137,0,0"  Click="btnLogin_Click"/>
+        <Button x:Name="btnLogin" Content="{DynamicResource ResourceKey=LoginACTION}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="209,137,0,0"  Click="btnLogin_Click"/>
 
         <WrapPanel Margin="0,200,-0.4,0" Height="40" VerticalAlignment="Top">
             <WrapPanel.Resources>
@@ -50,7 +69,7 @@
             <RadioButton x:Name="rbPreferNL" GroupName="Lang"  Content="../Resources/Icons/32_NL.png" Style="{StaticResource Flag}" Margin="10,0,10,0" Width="40" Height="40" Checked="RadioButton_Checked"/>
             <RadioButton x:Name="rbPreferEN" GroupName="Lang" Content="../Resources/Icons/32_EN.png" Style="{StaticResource Flag}" Margin="10,0,10,0" Width="40" Height="40" Checked="RadioButton_Checked"/>
         </WrapPanel>
-        <Button x:Name="btnNewUser" Margin="180,240,-0.4,0" Content="{DynamicResource ResourceKey=lwNewUser}" Height="30" Click="btnNewUser_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114"/>
+        <Button x:Name="btnNewUser" Margin="170,230,9.6,10.4" Content="{DynamicResource ResourceKey=NewUser}" Click="btnNewUser_Click"/>
         <Button x:Name="btnLazy" Click="btnLazy_Click" IsDefault="True" Content="FOR THE LAZY" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Margin="180,185,0,0"/>
     </Grid>
 </Window>

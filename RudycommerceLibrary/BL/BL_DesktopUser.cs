@@ -61,6 +61,11 @@ namespace RudycommerceLibrary.BL
             }
         }
 
+        public static bool IsUserAdmin(int currentUserID)
+        {
+            return DAL_DesktopUser.IsUserAdmin(currentUserID);
+        }
+
         public static List<DesktopUser> GetAll()
         {
             return DAL_DesktopUser.GetAll();
@@ -105,6 +110,12 @@ namespace RudycommerceLibrary.BL
             DesktopUser oldAdmin = DAL_DesktopUser.GetAdminUser();
             oldAdmin.IsAdmin = false;
             Update(oldAdmin);            
+        }
+
+        public static void VerifyByAdmin(DesktopUser user)
+        {
+            user.VerifiedByAdmin = true;
+            Update(user);
         }
     }
 }

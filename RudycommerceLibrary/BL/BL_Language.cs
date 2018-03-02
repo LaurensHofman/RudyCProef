@@ -10,7 +10,7 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_Language
     {
-        public static void Save(Language model)
+        public static void Save(SiteLanguage model)
         {
             if (model.IsNew())
             {
@@ -18,12 +18,12 @@ namespace RudycommerceLibrary.BL
             }
         }
 
-        private static void Create(Language model)
+        private static void Create(SiteLanguage model)
         {
             DAL_Language.Create(model);
         }
 
-        public static Language GetDefaultLanguage()
+        public static SiteLanguage GetDefaultLanguage()
         {
             return DAL_Language.GetDefaultLanguage();
         }

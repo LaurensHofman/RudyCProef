@@ -53,6 +53,13 @@ namespace RudycommerceLibrary.DAL
             return ctx.DesktopUsers.SingleOrDefault(du => du.UserID == currentUserID && du.DeletedAt == null).PreferredLanguage;
         }
 
+        public static bool IsUserAdmin(int currentUserID)
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.DesktopUsers.SingleOrDefault(du => du.UserID == currentUserID && du.DeletedAt == null).IsAdmin;
+        }
+
         public static List<DesktopUser> GetAll()
         {
             var ctx = AppDBContext.Instance();

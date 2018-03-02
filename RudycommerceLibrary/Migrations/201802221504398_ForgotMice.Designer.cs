@@ -7,13 +7,13 @@ namespace RudycommerceLibrary.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AdminVerifyUser : IMigrationMetadata
+    public sealed partial class ForgotMice : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AdminVerifyUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ForgotMice));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801211810430_AdminVerifyUser"; }
+            get { return "201802221504398_ForgotMice"; }
         }
         
         string IMigrationMetadata.Source

@@ -37,21 +37,18 @@ namespace RudycommerceLibrary.Entities.Products
         [Column("maximum_stock")]
         public int MaximumStock { get; set; }
 
-        //[Column("ean_barcode")]
-        //public string EANBarcode { get; set; }
-
-        //[Column("product_code")]
-        //public string ProductCode { get; set; }
-
         public override bool IsNew()
         {
             return this.ProductID <= 0;
         }
 
-        [Column("type_of_product")]
-        public string TypeOfProduct { get; set; }
+        //[Column("type_of_product")]
+        //public string TypeOfProduct { get; set; }
 
-        [Column("type_of_equipment")]
-        public string TypeOfEquipment { get; set; }
+        //[Column("type_of_equipment")]
+        //public string TypeOfEquipment { get; set; }
+
+        //public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
+
     }
 }

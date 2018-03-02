@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquipments
 {
     [Table("keyboard")]
-    public class Keyboard : ElectronicEquipment
+    public class GamingKeyboard : ElectronicEquipment, IGamingKeyboard
     {
         [Column("function_keys")]
         public int FunctionKeys { get; set; }
@@ -17,13 +17,13 @@ namespace RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquip
         public string Layout { get; set; }
 
         [Column("length")]
-        public int Length { get; set; }
+        public float Length { get; set; }
 
         [Column("depth")]
-        public int Depth { get; set; }
+        public float Depth { get; set; }
 
         [Column("width")]
-        public int Width { get; set; }
+        public float Width { get; set; }
 
         //public string BacklitKeys { get; set; }
     }
