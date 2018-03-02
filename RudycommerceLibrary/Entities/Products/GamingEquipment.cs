@@ -8,22 +8,13 @@ using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.Products
 {
-    public class GamingEquipment : BaseEntity, IGamingEquipment
+    public class GamingEquipment : GeneralProduct
     {
-        [Key]
-        [Column("product_id")]
-        public int ProductID { get; set; }
-
         [Column("weight")]
         public float Weight { get; set; }
 
         //public string OtherCharacteristics { get; set; }
 
         //public string Colour { get; set; }
-
-        public override bool IsNew()
-        {
-            return this.ProductID <= 0;
-        }
     }
 }

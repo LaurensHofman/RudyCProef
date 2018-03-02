@@ -10,10 +10,11 @@ namespace RudycommerceLibrary.BL.ProductTypes
 {
     public static class BL_Controller
     {
-        public static void Save(GamingController controllerModel)
+        public static void Save(GamingController controllerModel, int productID)
         {
             if (controllerModel.IsNew())
             {
+                controllerModel.ProductID = productID;
                 Create(controllerModel);
             }
         }

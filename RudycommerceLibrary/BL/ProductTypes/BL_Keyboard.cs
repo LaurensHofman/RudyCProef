@@ -10,10 +10,11 @@ namespace RudycommerceLibrary.BL.ProductTypes
 {
     public static class BL_Keyboard
     {
-        public static void Save(GamingKeyboard keyboardModel)
+        public static void Save(GamingKeyboard keyboardModel, int productID)
         {
             if (keyboardModel.IsNew())
             {
+                keyboardModel.ProductID = productID;
                 Create(keyboardModel);
             }
         }

@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RudycommerceLibrary.Entities.Products
+namespace RudycommerceLibrary.Entities.Products.LocalizedProducts
 {
-    [Table("localized_product")]
-    public class LocalizedProduct : BaseEntity
+    [Table("localized_gaming_keyboard")]
+    public class LocalizedGamingKeyboard : BaseEntity, ILocalizedProduct
     {
         [Column("product_id")]
         public int ProductID { get; set; }
@@ -27,5 +26,7 @@ namespace RudycommerceLibrary.Entities.Products
         {
             return this.ProductID <= 0;
         }
+
+
     }
 }

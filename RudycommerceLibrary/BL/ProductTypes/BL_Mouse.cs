@@ -10,10 +10,11 @@ namespace RudycommerceLibrary.BL.ProductTypes
 {
     public static class BL_Mouse
     {
-        public static void Save(GamingMouse mouse)
+        public static void Save(GamingMouse mouse, int productID)
         {
             if (mouse.IsNew())
             {
+                mouse.ProductID = productID;
                 Create(mouse);
             }
         }

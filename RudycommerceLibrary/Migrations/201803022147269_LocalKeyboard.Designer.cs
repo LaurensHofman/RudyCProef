@@ -7,13 +7,13 @@ namespace RudycommerceLibrary.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Equipments : IMigrationMetadata
+    public sealed partial class LocalKeyboard : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Equipments));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(LocalKeyboard));
         
         string IMigrationMetadata.Id
         {
-            get { return "201802221132011_Equipments"; }
+            get { return "201803022147269_LocalKeyboard"; }
         }
         
         string IMigrationMetadata.Source

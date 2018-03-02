@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquipments
 {
-    [Table("mouse")]
+    [Table("gaming_mouse")]
     public class GamingMouse : ElectronicEquipment
     {
         [Column("max_resolution")]

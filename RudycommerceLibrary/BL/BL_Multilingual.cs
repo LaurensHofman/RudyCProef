@@ -52,6 +52,21 @@ public static class BL_Multilingual
             }
         }
 
+        public static string[] HeadsetWearingWays(string preferredLanguage)
+        {
+            switch (preferredLanguage)
+            {
+                case "Nederlands":
+                    return DutchCode.HeadsetWearingWays;
+
+                case "English":
+                    return EnglishCode.HeadsetWearingWays;
+
+                default:
+                    return DutchCode.HeadsetWearingWays;
+            }
+        }
+
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName, string preferredLanguage)
         {
             switch (preferredLanguage)

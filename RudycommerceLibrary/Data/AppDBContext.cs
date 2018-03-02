@@ -2,6 +2,7 @@
 using RudycommerceLibrary.Entities.Products;
 using RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquipments;
 using RudycommerceLibrary.Entities.Products.GamingEquipments.NonElectronicEquipments;
+using RudycommerceLibrary.Entities.Products.LocalizedProducts;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,7 +19,6 @@ namespace RudycommerceLibrary
         public DbSet<DesktopUser> DesktopUsers { get; set; }
         public DbSet<SiteLanguage> Languages { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<LocalizedProduct> LocalizedProducts { get; set; }
 
         #region GamingEquipment
         public DbSet<GamingController> Controllers { get; set; }
@@ -27,6 +27,15 @@ namespace RudycommerceLibrary
         public DbSet<MouseMat> MouseMats { get; set; }
         public DbSet<GamingMouse> Mice { get; set; }
         #endregion GamingEquipment
+
+        #region Localized GamingEquipment
+        public DbSet<LocalizedHeadset> LocalizedHeadsets { get; set; }
+        public DbSet<LocalizedGamingController> LocalizedGamingControllers { get; set; }
+        public DbSet<LocalizedGamingKeyboard> LocalizedGamingKeyboards { get; set; }
+        //public DbSet<LocalizedGamingMouse> LocalizedGamingMice { get; set; }
+        //public DbSet<LocalizedMouseMat> LocalizedMouseMats { get; set; }
+        #endregion
+
 
         #endregion
 
@@ -53,28 +62,50 @@ namespace RudycommerceLibrary
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Product>()
-            //    .HasMany(p => p.Languages)
-            //    .WithMany(l => l.Products)
-            //    .Map(m =>
-            //    {
-            //        m.MapLeftKey("product_id");
-            //        m.MapRightKey("language_id");
-            //        m.ToTable("localized_product");
-            //    });
+            #region Localized Products
+            #region Headset
+            modelBuilder.Entity<LocalizedHeadset>()
+                .HasKey(lh => new { lh.ProductID, lh.LanguageID });
 
-            modelBuilder.Entity<LocalizedProduct>()
-               .HasKey(lp => new { lp.ProductID, lp.LanguageID });
-
-            modelBuilder.Entity<Product>()
-                        .HasMany(p => p.LocalizedProducts)
-                        .WithRequired()
-                        .HasForeignKey(lp => lp.ProductID);
+            modelBuilder.Entity<Headset>()
+                .HasMany(h => h.LocalizedHeadsets)
+                .WithRequired()
+                .HasForeignKey(lh => lh.ProductID);
 
             modelBuilder.Entity<SiteLanguage>()
-                        .HasMany(l => l.LocalizedProducts)
-                        .WithRequired()
-                        .HasForeignKey(lp => lp.LanguageID);
+                .HasMany(sl => sl.LocalizedHeadsets)
+                .WithRequired()
+                .HasForeignKey(lh => lh.LanguageID);
+            #endregion
+            #region Controller
+            modelBuilder.Entity<LocalizedGamingController>()
+                .HasKey(lgc => new { lgc.ProductID, lgc.LanguageID });
+
+            modelBuilder.Entity<GamingController>()
+                .HasMany(gc => gc.LocalizedGamingControllers)
+                .WithRequired()
+                .HasForeignKey(lgc => lgc.ProductID);
+
+            modelBuilder.Entity<SiteLanguage>()
+                .HasMany(sl => sl.LocalizedGamingControllers)
+                .WithRequired()
+                .HasForeignKey(lgc => lgc.LanguageID);
+            #endregion
+            #region Keyboard
+            modelBuilder.Entity<LocalizedGamingKeyboard>()
+                .HasKey(lgk => new { lgk.ProductID, lgk.LanguageID });
+
+            modelBuilder.Entity<GamingKeyboard>()
+                .HasMany(gk => gk.LocalizedGamingKeyboards)
+                .WithRequired()
+                .HasForeignKey(lgk => lgk.ProductID);
+
+            modelBuilder.Entity<SiteLanguage>()
+                .HasMany(sl => sl.LocalizedGamingKeyboards)
+                .WithRequired()
+                .HasForeignKey(lgk => lgk.LanguageID);
+            #endregion
+            #endregion
         }
     }
 }

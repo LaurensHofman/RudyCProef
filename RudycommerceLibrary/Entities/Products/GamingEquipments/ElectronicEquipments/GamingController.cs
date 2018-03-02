@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RudycommerceLibrary.Entities.Products.LocalizedProducts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquipments
 {
-    [Table("controller")]
+    [Table("gaming_controller")]
     public class GamingController : ElectronicEquipment
     {
-        //public string AudioInput { get; set; }
-
         //public string PostionDPad { get; set; }
+
+        public virtual ICollection<LocalizedGamingController> LocalizedGamingControllers { get; set; }
     }
 }

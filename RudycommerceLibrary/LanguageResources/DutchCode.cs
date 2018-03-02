@@ -20,11 +20,18 @@ namespace Rudycommerce.LanguageResources
         public const string HEADSET = "Koptelefoon";
         public const string MOUSE = "Muis";
 
+        public const string HEADSET_WEARING_WAY_ON_EAR = "Op de oren";
+        public const string HEADSET_WEARING_WAY_OVER_EAR = "Over de oren";
+        public const string HEADSET_WEARING_WAY_IN_EAR = "In de oren";
+
         public static string[] ProductTypes { get; set; } = new string[]
             { GAMING_EQUIPMENT, GAME };
 
         public static string[] GamingEquipmentTypes { get; set; }
             = new string[] { CONTROLLER, HEADSET, KEYBOARD, MOUSE, MOUSEMAT };
+
+        public static string[] HeadsetWearingWays { get; set; }
+            = new string[] { HEADSET_WEARING_WAY_ON_EAR, HEADSET_WEARING_WAY_OVER_EAR, HEADSET_WEARING_WAY_IN_EAR };
 
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName)
         {

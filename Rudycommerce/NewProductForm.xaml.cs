@@ -4,6 +4,7 @@ using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.Products;
 using RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquipments;
 using RudycommerceLibrary.Entities.Products.GamingEquipments.NonElectronicEquipments;
+using RudycommerceLibrary.Entities.Products.LocalizedProducts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,6 @@ namespace Rudycommerce
         string _preferredLanguage = "Nederlands";
 
         public Product ProductModel { get; set; }
-        public LocalizedProduct LocalizedProductModel { get; set; }
 
         #region Specific product types
         public MouseMat MouseMatModel { get; set; }
@@ -39,16 +39,22 @@ namespace Rudycommerce
         public GamingKeyboard KeyboardModel { get; set; }
         public Headset HeadsetModel { get; set; }
         public GamingController ControllerModel { get; set; }
+
+        public LocalizedHeadset LocalizedHeadsetModel { get; set; }
+        public LocalizedGamingController LocalizedGamingControllerModel { get; set; }
+        public LocalizedGamingKeyboard LocalizedGamingKeyboardModel { get; set; }
+        public LocalizedGamingMouse LocalizedGamingMouseModel { get; set; }
+        public LocalizedMouseMat LocalizedMouseMatModel { get; set; }
         #endregion
 
-        public NewProductForm(string selectedLanguage) : this(new Product(), new LocalizedProduct(), selectedLanguage) { }
+        public NewProductForm(string selectedLanguage) : this(new Product(), selectedLanguage) { }
 
-        public NewProductForm(Product product, LocalizedProduct localProduct, string selectedLanguage)
+        public NewProductForm(Product product, string selectedLanguage)
         {
             InitializeComponent();
 
             this.ProductModel = product;
-            this.LocalizedProductModel = localProduct;
+
             grdNewProductForm.DataContext = this;
 
             _preferredLanguage = selectedLanguage;
@@ -66,6 +72,8 @@ namespace Rudycommerce
             cmbxProductType.ItemsSource = BL_Product.GetProductTypes(selectedLanguage);
 
             cmbxKeyboardLayout.ItemsSource = Enum.GetValues(typeof(Enumerations.KeyboardLayouts));
+
+            cmbxHeadsetWearingWay.ItemsSource = BL_Headset.GetWearingWays(selectedLanguage);
         }
 
         private void SetLanguageDictionary(string selectedLanguage)
@@ -87,39 +95,38 @@ namespace Rudycommerce
             DefaultSiteLanguage = BL_Language.GetDefaultLanguage();
         }
         
-        private void SaveGeneralProduct()
+        private void SaveProductModel()
         {
             //Here comes the validation of input
 
-            SetProductModelToContent();
+            ProductModel.ProductType = BL_Product.GetProductTypes("English")[cmbxProductType.SelectedIndex];
+            ProductModel.EquipmentType = BL_Product.GetSpecificProductTypes("English", ProductModel.ProductType)[cmbxSpecificProductType.SelectedIndex];
 
             BL_Product.Save(ProductModel);
-
-            SetLocalizedProductModelToContent();
-
-            BL_LocalizedProduct.Save(LocalizedProductModel, ProductModel.ProductID);
         }
         
-        private void SetLocalizedProductModelToContent()
+        private ILocalizedProduct SetLocalizedProductModelToContent(ILocalizedProduct localizedProduct)
         {
-            LocalizedProductModel.LanguageID = DefaultSiteLanguage.LanguageID;
+            localizedProduct.LanguageID = DefaultSiteLanguage.LanguageID;
 
-            LocalizedProductModel.Name = txtName.Text;
-            LocalizedProductModel.Description = txtDescription.Text;
+            localizedProduct.Name = txtName.Text;
+            localizedProduct.Description = txtDescription.Text;
+
+            return localizedProduct;
         }
 
-        private void SetProductModelToContent()
+        private IGeneralProduct SetProductModelToContent(IGeneralProduct productModel)
         {
-            ProductModel.UnitPrice = decimal.Parse(txtPrice.Text);
-            ProductModel.InitialStock = int.Parse(txtInitialStock.Text);
-            ProductModel.IronStock = int.Parse(txtIronStock.Text);
-            ProductModel.MaximumStock = int.Parse(txtMaxStock.Text);
-            ProductModel.IsActive = cbIsActive.IsChecked.Value;
-            ProductModel.TypeOfProduct = BL_Product.GetProductTypes("English")[cmbxProductType.SelectedIndex];
-            ProductModel.TypeOfEquipment = BL_Product.GetSpecificProductTypes("English", ProductModel.TypeOfProduct)[cmbxSpecificProductType.SelectedIndex];
+            productModel.UnitPrice = decimal.Parse(txtPrice.Text);
+            productModel.InitialStock = int.Parse(txtInitialStock.Text);
+            productModel.IronStock = int.Parse(txtIronStock.Text);
+            productModel.MaximumStock = int.Parse(txtMaxStock.Text);
+            productModel.IsActive = cbIsActive.IsChecked.Value;
 
-            ProductModel.CurrentStock = ProductModel.InitialStock;
-            ProductModel.AvailableStock = ProductModel.InitialStock;
+            productModel.CurrentStock = productModel.InitialStock;
+            productModel.AvailableStock = productModel.InitialStock;
+
+            return productModel;
         }
 
         private void cmbxProductType_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -211,17 +218,18 @@ namespace Rudycommerce
         private void btnMouseMatSave_Click(object sender, RoutedEventArgs e)
         {
             //validation of mousemat input
-            
-            SaveGeneralProduct();
-
             MouseMatModel = new MouseMat();
+
+            SetProductModelToContent(MouseMatModel);
+
+            SaveProductModel();
 
             MouseMatModel.Length = float.Parse(txtMouseMatLength.Text);
             MouseMatModel.Depth = float.Parse(txtMouseMatDepth.Text);
             MouseMatModel.Width = float.Parse(txtMouseMatWidth.Text);
             MouseMatModel.Weight = float.Parse(txtMouseMatWeight.Text);
 
-            BL_MouseMat.Save(MouseMatModel);
+            BL_MouseMat.Save(MouseMatModel, ProductModel.ProductID);
 
             Console.Beep();
         }
@@ -229,10 +237,12 @@ namespace Rudycommerce
         private void btnMouseSave_Click(object sender, RoutedEventArgs e)
         {
             //validation of mouse input
-
-            SaveGeneralProduct();
-
+            
             MouseModel = new GamingMouse();
+
+            SetProductModelToContent(MouseModel);
+
+            SaveProductModel();
 
             MouseModel.Length = float.Parse(txtMouseLength.Text);
             MouseModel.Height = float.Parse(txtMouseHeight.Text);
@@ -241,7 +251,7 @@ namespace Rudycommerce
             MouseModel.MaxResolution = int.Parse(txtMouseMaxResolution.Text);
             MouseModel.ProgrammableButtons = int.Parse(txtMouseProgrammableButtons.Text);
 
-            BL_Mouse.Save(MouseModel);
+            BL_Mouse.Save(MouseModel, ProductModel.ProductID);
 
             Console.Beep();
         }
@@ -250,9 +260,11 @@ namespace Rudycommerce
         {
             //validation of mouse input
 
-            SaveGeneralProduct();
-
             KeyboardModel = new GamingKeyboard();
+
+            SetProductModelToContent(KeyboardModel);
+
+            SaveProductModel();
 
             KeyboardModel.Length = float.Parse(txtKeyboardLength.Text);
             KeyboardModel.Depth = float.Parse(txtKeyboardDepth.Text);
@@ -261,22 +273,33 @@ namespace Rudycommerce
             KeyboardModel.FunctionKeys = int.Parse(txtKeyboardFunctionKeys.Text);
             KeyboardModel.Layout = cmbxKeyboardLayout.SelectedValue.ToString();
 
-            BL_Keyboard.Save(KeyboardModel);
+            BL_Keyboard.Save(KeyboardModel, ProductModel.ProductID);
 
             Console.Beep();
         }
 
         private void btnHeadsetSave_Click(object sender, RoutedEventArgs e)
         {
-            //validation of mouse input
-
-            SaveGeneralProduct();
+            //validation of headset input
 
             HeadsetModel = new Headset();
+            LocalizedHeadsetModel = new LocalizedHeadset();
+
+            SetProductModelToContent(HeadsetModel);
+
+            SaveProductModel();
 
             HeadsetModel.Weight = float.Parse(txtHeadsetWeight.Text);
+            HeadsetModel.IntegratedMicrophone = cbHeadsetIntegratedMicrophone.IsChecked.Value;
 
-            BL_Headset.Save(HeadsetModel);
+            BL_Headset.Save(HeadsetModel, ProductModel.ProductID);
+
+
+            SetLocalizedProductModelToContent(LocalizedHeadsetModel);
+
+            LocalizedHeadsetModel.WearingWay = BL_Headset.GetWearingWays("English")[cmbxHeadsetWearingWay.SelectedIndex];
+
+            BL_Headset.LocalizedSave(LocalizedHeadsetModel, ProductModel.ProductID);
 
             Console.Beep();
         }
@@ -285,18 +308,18 @@ namespace Rudycommerce
         {
             //validation of controller input
 
-            SaveGeneralProduct();
-
             ControllerModel = new GamingController();
+
+            SetProductModelToContent(ControllerModel);
+
+            SaveProductModel();
 
             ControllerModel.Weight = float.Parse(txtControllerWeight.Text);
 
-            BL_Controller.Save(ControllerModel);
+            BL_Controller.Save(ControllerModel, ProductModel.ProductID);
 
             Console.Beep();
         }
-
-
     }
 }
 

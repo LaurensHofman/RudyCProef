@@ -19,12 +19,19 @@ namespace Rudycommerce.LanguageResources
         public const string MOUSEMAT = "Mousemat";
         public const string HEADSET = "Headset";
         public const string MOUSE = "Mouse";
-        
+
+        public const string HEADSET_WEARING_WAY_ON_EAR = "On ears";
+        public const string HEADSET_WEARING_WAY_OVER_EAR = "Over ears";
+        public const string HEADSET_WEARING_WAY_IN_EAR = "In ears";
+
         public static string[] ProductTypes { get; set; } = new string[]
             { GAMING_EQUIPMENT, GAME };
 
         public static string[] GamingEquipmentTypes { get; set; }
             = new string[] { CONTROLLER, HEADSET, KEYBOARD, MOUSE, MOUSEMAT };
+
+        public static string[] HeadsetWearingWays { get; set; }
+            = new string[] { HEADSET_WEARING_WAY_ON_EAR, HEADSET_WEARING_WAY_OVER_EAR, HEADSET_WEARING_WAY_IN_EAR };
 
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName)
         {

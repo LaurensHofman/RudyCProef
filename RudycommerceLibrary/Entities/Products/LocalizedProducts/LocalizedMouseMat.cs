@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RudycommerceLibrary.Entities.Products
+namespace RudycommerceLibrary.Entities.Products.LocalizedProducts
 {
-    class TypeOfProduct
+    public class LocalizedMouseMat
     {
     }
 }

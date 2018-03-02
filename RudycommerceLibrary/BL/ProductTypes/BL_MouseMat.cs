@@ -10,10 +10,11 @@ namespace RudycommerceLibrary.BL.ProductTypes
 {
     public static class BL_MouseMat
     {
-        public static void Save(MouseMat mouseMat)
+        public static void Save(MouseMat mouseMat, int productID)
         {
             if (mouseMat.IsNew())
             {
+                mouseMat.ProductID = productID;
                 Create(mouseMat);
             }
         }

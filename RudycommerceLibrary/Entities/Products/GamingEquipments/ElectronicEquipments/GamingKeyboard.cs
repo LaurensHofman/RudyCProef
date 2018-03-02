@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RudycommerceLibrary.Entities.Products.LocalizedProducts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquipments
 {
-    [Table("keyboard")]
-    public class GamingKeyboard : ElectronicEquipment, IGamingKeyboard
+    [Table("gaming_keyboard")]
+    public class GamingKeyboard : ElectronicEquipment
     {
         [Column("function_keys")]
         public int FunctionKeys { get; set; }
@@ -25,6 +26,6 @@ namespace RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquip
         [Column("width")]
         public float Width { get; set; }
 
-        //public string BacklitKeys { get; set; }
+        public virtual ICollection<LocalizedGamingKeyboard> LocalizedGamingKeyboards { get; set; }
     }
 }

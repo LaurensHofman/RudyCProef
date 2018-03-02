@@ -1,4 +1,5 @@
 ﻿using RudycommerceLibrary.Entities.Products;
+using RudycommerceLibrary.Entities.Products.LocalizedProducts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,7 +35,11 @@ namespace RudycommerceLibrary.Entities
             return this.LanguageID <= 0;
         }
 
-        public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
+        #region Localized Entities
+        public virtual ICollection<LocalizedHeadset> LocalizedHeadsets { get; set; }
+        public virtual ICollection<LocalizedGamingController> LocalizedGamingControllers { get; set; }
+        public virtual ICollection<LocalizedGamingKeyboard> LocalizedGamingKeyboards { get; set; }
+        #endregion
     }
 }
 

@@ -68,6 +68,8 @@
     <system:String x:Key="ProgrammableButtons">Amount of programmable buttons</system:String>
     <system:String x:Key="FunctionKeys">Amount of function keys</system:String>
     <system:String x:Key="Layout">Layout</system:String>
+    <system:String x:Key="WearingWay">Wearing way</system:String>
+    <system:String x:Key="IntegratedMicrophone">Integrated microphone</system:String>
 
     <!-- duf: DesktopUserForm.xaml  --><!--
     <system:String x:Key="aufTitle">Create admin account</system:String>

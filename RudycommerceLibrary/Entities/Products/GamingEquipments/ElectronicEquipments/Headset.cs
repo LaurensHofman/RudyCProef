@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RudycommerceLibrary.Entities.Products.LocalizedProducts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,8 +16,10 @@ namespace RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquip
 
         //[Column("volume_management")]
         //public string VolumeManagement { get; set; }
+        
+        [Column("integrated_microphone")]
+        public bool IntegratedMicrophone { get; set; }
 
-        //[Column("integrated_microphone")]
-        //public bool IntegratedMicrophone { get; set; }
+        public virtual ICollection<LocalizedHeadset> LocalizedHeadsets { get; set; }
     }
 }

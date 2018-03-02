@@ -50,7 +50,6 @@
     <Compile Include="BL\BL_DesktopUser.cs" />
     <Compile Include="BL\BL_Encryption.cs" />
     <Compile Include="BL\BL_Language.cs" />
-    <Compile Include="BL\BL_LocalizedProduct.cs" />
     <Compile Include="BL\BL_Mailing.cs" />
     <Compile Include="BL\BL_Multilingual.cs" />
     <Compile Include="BL\BL_Product.cs" />
@@ -62,7 +61,6 @@
     <Compile Include="BL\ProductTypes\BL_MouseMat.cs" />
     <Compile Include="DAL\DAL_DesktopUser.cs" />
     <Compile Include="DAL\DAL_Language.cs" />
-    <Compile Include="DAL\DAL_LocalizedProduct.cs" />
     <Compile Include="DAL\DAL_Product.cs" />
     <Compile Include="DAL\ProductTypes\DAL_Controller.cs" />
     <Compile Include="DAL\ProductTypes\DAL_Headset.cs" />
@@ -72,7 +70,14 @@
     <Compile Include="Data\AppDBContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\DesktopUsers\DesktopUser.cs" />
-    <Compile Include="Entities\Products\TypeOfProduct.cs" />
+    <Compile Include="Entities\Products\Interfaces\ILocalizedProduct.cs" />
+    <Compile Include="Entities\Products\Interfaces\IGeneralProduct.cs" />
+    <Compile Include="Entities\Products\LocalizedProducts\LocalizedGamingController.cs" />
+    <Compile Include="Entities\Products\LocalizedProducts\LocalizedGamingKeyboard.cs" />
+    <Compile Include="Entities\Products\LocalizedProducts\LocalizedGamingMouse.cs" />
+    <Compile Include="Entities\Products\LocalizedProducts\LocalizedHeadset.cs" />
+    <Compile Include="Entities\Products\LocalizedProducts\LocalizedMouseMat.cs" />
+    <Compile Include="Entities\Products\Product.cs" />
     <Compile Include="Entities\SiteLanguage.cs" />
     <Compile Include="Entities\Products\GamingEquipments\ElectronicEquipment.cs" />
     <Compile Include="Entities\Products\GamingEquipments\ElectronicEquipments\GamingController.cs" />
@@ -82,31 +87,14 @@
     <Compile Include="Entities\Products\GamingEquipments\NonElectronicEquipment.cs" />
     <Compile Include="Entities\Products\GamingEquipments\NonElectronicEquipments\MouseMat.cs" />
     <Compile Include="Entities\Products\GamingEquipment.cs" />
-    <Compile Include="Entities\Products\LocalizedProduct.cs" />
-    <Compile Include="Entities\Products\Product.cs" />
+    <Compile Include="Entities\Products\GeneralProduct.cs" />
     <Compile Include="LanguageResources\DutchCode.cs" />
     <Compile Include="LanguageResources\EnglishCode.cs" />
-    <Compile Include="Migrations\201802221132011_Equipments.cs" />
-    <Compile Include="Migrations\201802221132011_Equipments.Designer.cs">
-      <DependentUpon>201802221132011_Equipments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802221134445_Equipments1.cs" />
-    <Compile Include="Migrations\201802221134445_Equipments1.Designer.cs">
-      <DependentUpon>201802221134445_Equipments1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802221504398_ForgotMice.cs" />
-    <Compile Include="Migrations\201802221504398_ForgotMice.Designer.cs">
-      <DependentUpon>201802221504398_ForgotMice.cs</DependentUpon>
+    <Compile Include="Migrations\201803022147269_LocalKeyboard.cs" />
+    <Compile Include="Migrations\201803022147269_LocalKeyboard.Designer.cs">
+      <DependentUpon>201803022147269_LocalKeyboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\MessageBoxManager.cs" />
-    <Compile Include="Migrations\201802191512045_test.cs" />
-    <Compile Include="Migrations\201802191512045_test.Designer.cs">
-      <DependentUpon>201802191512045_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802191521364_LocaliedProduct.cs" />
-    <Compile Include="Migrations\201802191521364_LocaliedProduct.Designer.cs">
-      <DependentUpon>201802191521364_LocaliedProduct.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\SecurityExtensions.cs" />
@@ -117,20 +105,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802191512045_test.resx">
-      <DependentUpon>201802191512045_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802191521364_LocaliedProduct.resx">
-      <DependentUpon>201802191521364_LocaliedProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802221132011_Equipments.resx">
-      <DependentUpon>201802221132011_Equipments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802221134445_Equipments1.resx">
-      <DependentUpon>201802221134445_Equipments1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802221504398_ForgotMice.resx">
-      <DependentUpon>201802221504398_ForgotMice.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803022147269_LocalKeyboard.resx">
+      <DependentUpon>201803022147269_LocalKeyboard.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
