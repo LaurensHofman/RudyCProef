@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Rudycommerce.UserOverview"
+﻿<UserControl x:Class="Rudycommerce.LanguageOverview"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,49 +6,51 @@
              xmlns:local="clr-namespace:Rudycommerce"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
-
+    
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
-            <!--Datagrid headers worden niet als normale visuals gezien-->
-            
-            <Style x:Key="LastNameDG" TargetType="{x:Type DataGridColumnHeader}">
-                <Setter Property="Content" Value="{DynamicResource ResourceKey=LastName}" />
+            <Style x:Key="ISODG" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Content" Value="{DynamicResource ResourceKey=ISOCode}" />
             </Style>
 
-            <Style x:Key="FirstNameDG" TargetType="{x:Type DataGridColumnHeader}">
-                <Setter Property="Content" Value="{DynamicResource ResourceKey=FirstName}"/>
+            <Style x:Key="LocalNameDG" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Content" Value="{DynamicResource ResourceKey=LocalName}"/>
             </Style>
 
-            <Style x:Key="IsAdminDG" TargetType="{x:Type DataGridColumnHeader}">
-                <Setter Property="Content" Value="{DynamicResource ResourceKey=Administrator}" />
+            <Style x:Key="DutchNameDG" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Content" Value="{DynamicResource ResourceKey=DutchName}" />
             </Style>
 
-            <Style x:Key="EmailDG" TargetType="{x:Type DataGridColumnHeader}">
-                <Setter Property="Content" Value="{DynamicResource ResourceKey=Email}" />
+            <Style x:Key="EnglishNameDG" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Content" Value="{DynamicResource ResourceKey=EnglishName}" />
             </Style>
 
-            <Style x:Key="UsernameDG" TargetType="{x:Type DataGridColumnHeader}">
-                <Setter Property="Content" Value="{DynamicResource ResourceKey=Username}" />
+            <Style x:Key="IsActiveDG" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Content" Value="{DynamicResource ResourceKey=IsLanguageActive}" />
             </Style>
 
+            <Style x:Key="IsDefaultDG" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Content" Value="{DynamicResource ResourceKey=IsLanguageDefault}" />
+            </Style>
         </ResourceDictionary>
-       
     </UserControl.Resources>
 
     <Grid>
-        <DataGrid Name="dgrdUserOverview" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" AlternatingRowBackground="LightGray" RowEditEnding="dgrdUserOverview_RowEditEnding" AlternationCount="2">
+        <DataGrid Name="dgrdLanguageOverview" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" AlternatingRowBackground="LightGray" RowEditEnding="dgrdLanguageOverview_RowEditEnding" AlternationCount="2">
             <DataGrid.Columns>
-                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=LastNameDG}" Binding="{Binding Path=LastName}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=FirstNameDG}" Binding="{Binding Path=FirstName}"/>
-                <DataGridCheckBoxColumn HeaderStyle="{StaticResource ResourceKey=IsAdminDG}" Binding="{Binding Path=IsAdmin}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=EmailDG}" Binding="{Binding Path=EMail}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=UsernameDG}" Binding="{Binding Path=Username}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=ISODG}" Binding="{Binding Path=ISO, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=LocalNameDG}" Binding="{Binding Path=LocalName, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=DutchNameDG}" Binding="{Binding Path=DutchName, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=EnglishNameDG}" Binding="{Binding Path=EnglishName, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn HeaderStyle="{StaticResource ResourceKey=IsActiveDG}" Binding="{Binding Path=IsActive}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn HeaderStyle="{StaticResource ResourceKey=IsDefaultDG}" Binding="{Binding Path=IsDefault}" IsReadOnly="True"/>
 
-                <DataGridTemplateColumn>
+
+
+                <!--<DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnMakeUserAdmin" Content="{DynamicResource ResourceKey=MakeUserAdmin}" Click="btnMakeUserAdmin_Click">
@@ -65,7 +67,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -82,9 +84,9 @@
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                
-                <DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
+
+                <!--<DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnVerifyByAdmin" Background="Black" Foreground="Yellow" FontWeight="ExtraBold" Click="btnVerifyByAdmin_Click" Content="{DynamicResource ResourceKey=VerifyUser}">
@@ -103,8 +105,8 @@
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                
+                </DataGridTemplateColumn>-->
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

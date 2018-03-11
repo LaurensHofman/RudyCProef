@@ -94,11 +94,29 @@
     <Compile Include="Migrations\201803022147269_LocalKeyboard.Designer.cs">
       <DependentUpon>201803022147269_LocalKeyboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803111216443_UpdatedSiteLanguages.cs" />
+    <Compile Include="Migrations\201803111216443_UpdatedSiteLanguages.Designer.cs">
+      <DependentUpon>201803111216443_UpdatedSiteLanguages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803111315297_UpdatedSiteLanguages1.cs" />
+    <Compile Include="Migrations\201803111315297_UpdatedSiteLanguages1.Designer.cs">
+      <DependentUpon>201803111315297_UpdatedSiteLanguages1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803111419334_UpdatedSiteLanguages2.cs" />
+    <Compile Include="Migrations\201803111419334_UpdatedSiteLanguages2.Designer.cs">
+      <DependentUpon>201803111419334_UpdatedSiteLanguages2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803111516327_UpdatedSiteLanguages3.cs" />
+    <Compile Include="Migrations\201803111516327_UpdatedSiteLanguages3.Designer.cs">
+      <DependentUpon>201803111516327_UpdatedSiteLanguages3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\MessageBoxManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\SecurityExtensions.cs" />
     <Compile Include="Utilities\StringExtensions.cs" />
+    <Compile Include="Utilities\Validations\SiteLanguageValidation.cs" />
+    <Compile Include="Utilities\Validations\StringValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -107,6 +125,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803022147269_LocalKeyboard.resx">
       <DependentUpon>201803022147269_LocalKeyboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803111216443_UpdatedSiteLanguages.resx">
+      <DependentUpon>201803111216443_UpdatedSiteLanguages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803111315297_UpdatedSiteLanguages1.resx">
+      <DependentUpon>201803111315297_UpdatedSiteLanguages1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803111419334_UpdatedSiteLanguages2.resx">
+      <DependentUpon>201803111419334_UpdatedSiteLanguages2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803111516327_UpdatedSiteLanguages3.resx">
+      <DependentUpon>201803111516327_UpdatedSiteLanguages3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

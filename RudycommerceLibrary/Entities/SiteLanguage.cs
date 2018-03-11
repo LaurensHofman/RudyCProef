@@ -17,9 +17,17 @@ namespace RudycommerceLibrary.Entities
         [Column("language_id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LanguageID { get; set; }
+        
+        [Column("local_name")]
+        [Required]
+        [StringLength(255)]
+        public string LocalName { get; set; }
 
-        [Column("language_name")]
-        public string LanguageName { get; set; }
+        [Column("dutch_name")]
+        public string DutchName { get; set; }
+
+        [Column("english_name")]
+        public string EnglishName { get; set; }
 
         [Column("ISO")]
         public string ISO { get; set; }

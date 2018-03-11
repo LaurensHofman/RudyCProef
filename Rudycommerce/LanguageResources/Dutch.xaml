@@ -71,6 +71,10 @@
     <system:String x:Key="WearingWay">Draagwijze</system:String>
     <system:String x:Key="IntegratedMicrophone">Geïntegreerde microfoon</system:String>
 
+    <system:String x:Key="EnglishName">Engelse naam</system:String>
+    <system:String x:Key="DutchName">Nederlandse naam</system:String>
+    <system:String x:Key="LocalName">Lokale naam</system:String>
+    
     <!--Datagrid headers worden niet als normale visuals gezien-->
 
     

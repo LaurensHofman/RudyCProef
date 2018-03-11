@@ -8,6 +8,7 @@
              d:DesignHeight="500" d:DesignWidth="1200"
              Background="White">
 
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,17 +21,31 @@
         <Label x:Name="lblTitle" Content="Title placeholder" FontSize="20" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
 
         <StackPanel Margin="0,40,0,0">
-            <TextBox x:Name="txtLanguageName" VerticalAlignment="Top" Width="300" Height="30" Margin="0,30,0,0"/>
+            <TextBox x:Name="txtLocalName" VerticalAlignment="Top" Width="300" Height="30" Margin="0,30,0,0" LostFocus="txtLocalName_LostFocus"/>
+            <TextBox x:Name="txtDutchName" VerticalAlignment="Top" Width="300" Height="30" Margin="0,30,0,0"/>
+            <TextBox x:Name="txtEnglishName" VerticalAlignment="Top" Width="300" Height="30" Margin="0,30,0,0"/>
             <TextBox x:Name="txtISO" VerticalAlignment="Top" Width="300" Height="30" Margin="0,30,0,0"/>
-            <CheckBox x:Name="cbxIsActive" IsChecked="True" VerticalAlignment="Top" Width="300" Height="30" Margin="0,30,0,0"/>
-            <CheckBox x:Name="cbxIsDefault" IsChecked="False" VerticalAlignment="Top" Width="300" Height="30" Margin="0,30,0,0"/>
+            <CheckBox x:Name="cbxIsActive" IsChecked="True" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="300" Height="30" Margin="0,30,0,0"/>
+            <CheckBox x:Name="cbxIsDefault" IsChecked="False" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="300" Height="30" Margin="0,30,0,0"/>
             <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Save}" VerticalAlignment="Top" Width="100" Height="30" Margin="0,60,0,0" Click="btnSave_Click"/>
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Center" Width="200" Margin="-500,40,0,0">
-            <Label x:Name="lblLanguageName" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0">
+            <Label x:Name="lblLocalName" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0">
                 <TextBlock>
-                    <TextBlock Text="{DynamicResource ResourceKey=LanguageName}"/>
+                    <TextBlock Text="{DynamicResource ResourceKey=LocalName}"/>
+                    <TextBlock Text=": "/>
+                </TextBlock>
+            </Label>
+            <Label x:Name="lblDutchName" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0">
+                <TextBlock>
+                    <TextBlock Text="{DynamicResource ResourceKey=DutchName}"/>
+                    <TextBlock Text=": "/>
+                </TextBlock>
+            </Label>
+            <Label x:Name="lblEnglishName" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0">
+                <TextBlock>
+                    <TextBlock Text="{DynamicResource ResourceKey=EnglishName}"/>
                     <TextBlock Text=": "/>
                 </TextBlock>
             </Label>
@@ -42,6 +57,10 @@
             </Label>
             <Label x:Name="lblIsActive" Content="{DynamicResource ResourceKey=IsLanguageActive}" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0"/>
             <Label x:Name="lblIsDefault" Content="{DynamicResource ResourceKey=IsLanguageDefault}" VerticalContentAlignment="Center" Height="30" HorizontalContentAlignment="Right" VerticalAlignment="Top" Margin="0,30,0,0"/>
+            </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center" Margin="-900,40,0,0">
+            <TextBlock x:Name="txbLocalNameError" VerticalAlignment="Top" Width="300" Foreground="Red" Height="30" Margin="0,30,0,0"/>
         </StackPanel>
 
     </Grid>

@@ -68,6 +68,9 @@
     <Compile Include="AdminUserForm.xaml.cs">
       <DependentUpon>AdminUserForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LanguageOverview.xaml.cs">
+      <DependentUpon>LanguageOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -81,6 +84,10 @@
       <DependentUpon>UserOverview.xaml</DependentUpon>
     </Compile>
     <Page Include="AdminUserForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LanguageOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

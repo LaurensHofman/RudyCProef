@@ -71,6 +71,15 @@
     <system:String x:Key="WearingWay">Wearing way</system:String>
     <system:String x:Key="IntegratedMicrophone">Integrated microphone</system:String>
 
+    <system:String x:Key="EnglishName">English name</system:String>
+    <system:String x:Key="DutchName">Dutch name</system:String>
+    <system:String x:Key="LocalName">Local name</system:String>
+    
+    
+    
+    
+    
+    
     <!-- duf: DesktopUserForm.xaml  --><!--
     <system:String x:Key="aufTitle">Create admin account</system:String>
     <system:String x:Key="aufFirstName">First name:</system:String>

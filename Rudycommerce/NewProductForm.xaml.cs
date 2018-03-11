@@ -87,7 +87,7 @@ namespace Rudycommerce
 
         private void SetLabels()
         {
-            lblDefaultLanguage.Content += " " + DefaultSiteLanguage.LanguageName;
+            lblDefaultLanguage.Content += " " + BL_Multilingual.GetTranslatedDefaultLanguage(_preferredLanguage);
         }
 
         private void GetDefaultLanguage()

@@ -70,7 +70,7 @@ namespace Rudycommerce
 
         private void rbtnOverviewLanguage_Click(object sender, RoutedEventArgs e)
         {
-            //navigationControl.Content = new Test();
+            navigationControl.Content = new LanguageOverview(_preferredLanguage);
         }
 
         private void ramiManageCurrentAccount_Click(object sender, RoutedEventArgs e)

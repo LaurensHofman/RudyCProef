@@ -107,7 +107,7 @@ namespace Rudycommerce
             DataGridRow _dgRow = e.Row;
             var _changedValue = _dgRow.DataContext as DesktopUser;
 
-            BindData();
+            BL_DesktopUser.Update(_changedValue);
         }
 
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)

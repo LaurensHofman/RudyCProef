@@ -16,6 +16,22 @@ namespace RudycommerceLibrary.BL
             {
                 Create(model);
             }
+            else
+            {
+                Update(model);
+            }
+        }
+
+        public static void Delete(SiteLanguage model)
+        {
+            model.DeletedAt = DateTime.Now;
+            Update(model);
+        }
+
+        private static void Update(SiteLanguage model)
+        {
+            model.ModifiedAt = DateTime.Now;
+            DAL_Language.Update(model);
         }
 
         private static void Create(SiteLanguage model)
@@ -26,6 +42,11 @@ namespace RudycommerceLibrary.BL
         public static SiteLanguage GetDefaultLanguage()
         {
             return DAL_Language.GetDefaultLanguage();
+        }
+
+        public static List<SiteLanguage> GetAllLanguages()
+        {
+            return DAL_Language.GetAllLanguages();
         }
     }
 }

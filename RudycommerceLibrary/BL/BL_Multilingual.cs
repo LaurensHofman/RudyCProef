@@ -1,4 +1,5 @@
 ﻿using Rudycommerce.LanguageResources;
+using RudycommerceLibrary.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,6 +110,23 @@ public static class BL_Multilingual
 
                 default:
                     return DutchCode.UOVerifyAdminMessageBoxTitle(lastName, firstName);
+            }
+        }
+
+        public static string GetTranslatedDefaultLanguage(string preferredLanguage)
+        {
+            SiteLanguage defaultLanguage = BL_Language.GetDefaultLanguage();
+
+            switch (preferredLanguage)
+            {
+                case "Nederlands":
+                    return defaultLanguage.DutchName;
+
+                case "English":
+                    return defaultLanguage.EnglishName;
+
+                default:
+                    return defaultLanguage.DutchName;
             }
         }
 

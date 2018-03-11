@@ -1,7 +1,11 @@
 ﻿using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Utilities.Validations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -26,24 +30,21 @@ namespace Rudycommerce
         public SiteLanguage Model { get; private set; }
 
         public LanguageForm(string selectedLanguage) : this(new SiteLanguage(), selectedLanguage) { }
-
+        
         public LanguageForm(SiteLanguage model, string selectedLanguage)
         {
             InitializeComponent();
-            this.Model = model;
-            grdLanguageForm.DataContext = this;
 
+            this.DataContext = this;
+
+            this.Model = model;
+            
             SetLanguageDictionary(selectedLanguage);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Model.LanguageName = txtLanguageName.Text;
-            Model.ISO = txtISO.Text;
-            Model.IsActive = cbxIsActive.IsChecked.Value;
-            Model.IsDefault = cbxIsDefault.IsChecked.Value;
             
-            BL_Language.Save(Model);
         }
 
         private void SetLanguageDictionary(string selectedLanguage)
@@ -53,6 +54,11 @@ namespace Rudycommerce
             dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
 
             this.Resources.MergedDictionaries.Add(dict);
+        }
+
+        private void txtLocalName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txbLocalNameError.Text = SiteLanguageValidation.ValidateLocalName(txtLocalName.Text);
         }
     }
 }
