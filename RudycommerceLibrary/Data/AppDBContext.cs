@@ -1,8 +1,6 @@
 ﻿using RudycommerceLibrary.Entities;
-using RudycommerceLibrary.Entities.Products;
-using RudycommerceLibrary.Entities.Products.GamingEquipments.ElectronicEquipments;
-using RudycommerceLibrary.Entities.Products.GamingEquipments.NonElectronicEquipments;
-using RudycommerceLibrary.Entities.Products.LocalizedProducts;
+using RudycommerceLibrary.Entities.ProductsAndCategories;
+using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,25 +16,17 @@ namespace RudycommerceLibrary
 
         public DbSet<DesktopUser> DesktopUsers { get; set; }
         public DbSet<SiteLanguage> Languages { get; set; }
+
         public DbSet<Product> Products { get; set; }
-
-        #region GamingEquipment
-        public DbSet<GamingController> Controllers { get; set; }
-        public DbSet<Headset> Headsets { get; set; }
-        public DbSet<GamingKeyboard> Keyboards { get; set; }
-        public DbSet<MouseMat> MouseMats { get; set; }
-        public DbSet<GamingMouse> Mice { get; set; }
-        #endregion GamingEquipment
-
-        #region Localized GamingEquipment
-        public DbSet<LocalizedHeadset> LocalizedHeadsets { get; set; }
-        public DbSet<LocalizedGamingController> LocalizedGamingControllers { get; set; }
-        public DbSet<LocalizedGamingKeyboard> LocalizedGamingKeyboards { get; set; }
-        //public DbSet<LocalizedGamingMouse> LocalizedGamingMice { get; set; }
-        //public DbSet<LocalizedMouseMat> LocalizedMouseMats { get; set; }
-        #endregion
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductProperty> ProductProperties { get; set; }
 
 
+        public DbSet<LocalizedProduct> LocalizedProducts { get; set; }
+        public DbSet<LocalizedProductCategory> LocalizedProductCategories { get; set; }
+        public DbSet<LocalizedProductProperty> LocalizedProductProperties { get; set; }
+        public DbSet<Category_ProductProperties> Category_ProductProperties { get; set; }
+        public DbSet<Product_ProductProperties> product_ProductProperties { get; set; }
         #endregion
 
         private static AppDBContext _instance;
@@ -62,50 +52,87 @@ namespace RudycommerceLibrary
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            #region Localized Products
-            #region Headset
-            modelBuilder.Entity<LocalizedHeadset>()
-                .HasKey(lh => new { lh.ProductID, lh.LanguageID });
+            // Category (1) to (many) Products
+            modelBuilder.Entity<Product>()
+                .HasRequired<ProductCategory>(p => p.ProductCategory)
+                .WithMany(pc => pc.Products)
+                .HasForeignKey<int>(p => p.CategoryID);
 
-            modelBuilder.Entity<Headset>()
-                .HasMany(h => h.LocalizedHeadsets)
-                .WithRequired()
-                .HasForeignKey(lh => lh.ProductID);
+            // Category has 0/1 Parent
+            modelBuilder.Entity<ProductCategory>()
+                .HasOptional<ProductCategory>(p1 => p1.Parent)
+                .WithMany(p2 => p2.Children)
+                .HasForeignKey<int?>(m => m.ParentID);
 
-            modelBuilder.Entity<SiteLanguage>()
-                .HasMany(sl => sl.LocalizedHeadsets)
-                .WithRequired()
-                .HasForeignKey(lh => lh.LanguageID);
-            #endregion
-            #region Controller
-            modelBuilder.Entity<LocalizedGamingController>()
-                .HasKey(lgc => new { lgc.ProductID, lgc.LanguageID });
+            // Products (many) to (many) Languages
+            modelBuilder.Entity<LocalizedProduct>()
+                .HasKey(lp => new { lp.ProductID, lp.LanguageID });
 
-            modelBuilder.Entity<GamingController>()
-                .HasMany(gc => gc.LocalizedGamingControllers)
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.LocalizedProducts)
                 .WithRequired()
-                .HasForeignKey(lgc => lgc.ProductID);
+                .HasForeignKey(lp => lp.ProductID);
 
             modelBuilder.Entity<SiteLanguage>()
-                .HasMany(sl => sl.LocalizedGamingControllers)
+                .HasMany(sl => sl.LocalizedProducts)
                 .WithRequired()
-                .HasForeignKey(lgc => lgc.LanguageID);
-            #endregion
-            #region Keyboard
-            modelBuilder.Entity<LocalizedGamingKeyboard>()
-                .HasKey(lgk => new { lgk.ProductID, lgk.LanguageID });
+                .HasForeignKey(lp => lp.LanguageID);
 
-            modelBuilder.Entity<GamingKeyboard>()
-                .HasMany(gk => gk.LocalizedGamingKeyboards)
+            // Categories (many) to (many) Languages
+            modelBuilder.Entity<LocalizedProductCategory>()
+                .HasKey(lpc => new { lpc.CategoryID, lpc.LanguageID });
+
+            modelBuilder.Entity<ProductCategory>()
+                .HasMany(pc => pc.LocalizedProductCategories)
                 .WithRequired()
-                .HasForeignKey(lgk => lgk.ProductID);
+                .HasForeignKey(lpc => lpc.CategoryID);
 
             modelBuilder.Entity<SiteLanguage>()
-                .HasMany(sl => sl.LocalizedGamingKeyboards)
+                .HasMany(sl => sl.LocalizedProducts)
                 .WithRequired()
-                .HasForeignKey(lgk => lgk.LanguageID);
-            #endregion
-            #endregion
+                .HasForeignKey(lpc => lpc.LanguageID);
+
+            // Product properties (many) to (many) Languages
+            modelBuilder.Entity<LocalizedProductProperty>()
+                .HasKey(lpp => new { lpp.ProductPropertyID, lpp.LanguageID });
+
+            modelBuilder.Entity<ProductProperty>()
+                .HasMany(pp => pp.LocalizedProductProperties)
+                .WithRequired()
+                .HasForeignKey(lpp => lpp.ProductPropertyID);
+
+            modelBuilder.Entity<SiteLanguage>()
+                .HasMany(sl => sl.LocalizedProductProperties)
+                .WithRequired()
+                .HasForeignKey(lpp => lpp.LanguageID);
+
+            // Product properties (many) to (many) categories
+            modelBuilder.Entity<Category_ProductProperties>()
+                .HasKey(cpp => new { cpp.ProductPropertyID, cpp.CategoryID });
+
+            modelBuilder.Entity<ProductProperty>()
+                .HasMany(pp => pp.LocalizedProductProperties)
+                .WithRequired()
+                .HasForeignKey(cpp => cpp.ProductPropertyID);
+
+            modelBuilder.Entity<ProductCategory>()
+                .HasMany(pc => pc.Category_ProductProperties)
+                .WithRequired()
+                .HasForeignKey(cpp => cpp.CategoryID);
+
+            // Products (many) to (many) ProductProperties
+            modelBuilder.Entity<Product_ProductProperties>()
+                .HasKey(ppp => new { ppp.ProductID, ppp.ProductPropertyID });
+
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.Product_ProductProperties)
+                .WithRequired()
+                .HasForeignKey(ppp => ppp.ProductID);
+
+            modelBuilder.Entity<ProductProperty>()
+                .HasMany(pp => pp.Product_ProductProperties)
+                .WithRequired()
+                .HasForeignKey(ppp => ppp.ProductPropertyID);
         }
     }
 }

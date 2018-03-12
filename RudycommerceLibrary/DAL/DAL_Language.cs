@@ -45,10 +45,17 @@ namespace RudycommerceLibrary.DAL
             var ctx = AppDBContext.Instance();
 
             return ctx.Languages.Where(l => l.DeletedAt == null)
-                .OrderBy(l => l.IsDefault)
+                .OrderByDescending(l => l.IsDefault)
                 .ThenByDescending(l => l.IsActive)
                 .ThenBy(l => l.ISO)
                 .ToList();
+        }
+
+        public static string[] GetAllISOCodes()
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.Languages.Where(l => l.DeletedAt == null).Select(l => l.ISO).ToArray();
         }
     }
 }

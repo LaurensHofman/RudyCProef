@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rudycommerce", "Rudycommerc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RudycommerceLibrary", "RudycommerceLibrary\RudycommerceLibrary.csproj", "{AE6DBF33-7E33-4801-AA6B-DDD64DF4350F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rudycommerce.Test", "Rudycommerce.Test\Rudycommerce.Test.csproj", "{B38A99BA-6D50-46E3-9BE5-9180E4239150}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AE6DBF33-7E33-4801-AA6B-DDD64DF4350F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE6DBF33-7E33-4801-AA6B-DDD64DF4350F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE6DBF33-7E33-4801-AA6B-DDD64DF4350F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B38A99BA-6D50-46E3-9BE5-9180E4239150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B38A99BA-6D50-46E3-9BE5-9180E4239150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B38A99BA-6D50-46E3-9BE5-9180E4239150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B38A99BA-6D50-46E3-9BE5-9180E4239150}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

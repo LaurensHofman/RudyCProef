@@ -1,5 +1,6 @@
 ﻿using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Utilities.Validations;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -78,7 +79,27 @@ namespace Rudycommerce
             DataGridRow _dgRow = e.Row;
             var _changedValue = _dgRow.DataContext as SiteLanguage;
 
-            BL_Language.Save(_changedValue);
+            if (SiteLanguageValidation.ValidateISO(_changedValue.ISO) == "")
+            {
+                BL_Language.Save(_changedValue);
+            }            
+        }
+        
+        private void btnDeleteLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnToggleLanguage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMakeDefault_Click(object sender, RoutedEventArgs e)
+        {
+            var language = ((FrameworkElement)sender).DataContext as SiteLanguage;
+
+            BL_Language.MakeLanguageDefault(language);
         }
     }
 }

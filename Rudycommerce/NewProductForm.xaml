@@ -76,7 +76,7 @@
 
                 </StackPanel>
 
-                <ComboBox x:Name="cmbxProductType" Grid.Column="1" VerticalAlignment="Top" SelectedValue="Content" HorizontalAlignment="Center" Width="300" Height="30" Margin="0,90,0,0" SelectionChanged="cmbxProductType_SelectionChanged"/>
+                <ComboBox x:Name="cmbxProductType" Grid.Column="1" VerticalAlignment="Top" SelectedValue="Content" HorizontalAlignment="Center" Width="300" Height="30" Margin="0,90,0,0"/>
                 <Label x:Name="lblTypeOfProduct" Margin="0,90,450,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Center" Height="30" Grid.Column="1" Width="141">
                     <TextBlock>
                         <TextBlock Text="{DynamicResource ResourceKey=TypeOfProduct}"/>
@@ -84,189 +84,11 @@
                     </TextBlock>
                 </Label>
 
-                <ComboBox x:Name="cmbxSpecificProductType" Visibility="Collapsed" IsEnabled="False" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="300" Height="30" Margin="0,150,0,0" SelectionChanged="cmbxSpecificProductType_SelectionChanged"/>
-                <Label x:Name="lblSpecificTypeOfProduct" Visibility="Collapsed" Margin="0,150,450,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Center" Height="30" Grid.Column="1" Width="141">
-                    <TextBlock>
-                        <TextBlock Text="{DynamicResource ResourceKey=EMPTY}"/>
-                        <TextBlock Text=": "/>
-                    </TextBlock>
-                </Label>
-
-                <StackPanel x:Name="txtStackMouseMat" IsEnabled="False" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center" Margin="0,180,0,0" Width="300">
-                    <TextBox x:Name="txtMouseMatLength" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtMouseMatDepth" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtMouseMatWidth" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtMouseMatWeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <Button x:Name="btnMouseMatSave" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" Content="{DynamicResource ResourceKey=Create}" Click="btnMouseMatSave_Click"/>
-                </StackPanel>                
-                <StackPanel x:Name="lblStackMouseMat" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center" Width="200" Margin="-500,180,0,0">
-                    <Label x:Name="lblMouseMatLength" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Length}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblMouseMatDepth" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Depth}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblMouseMatWidth" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Width}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblMouseMatWeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Weight}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                </StackPanel>
-
-                <StackPanel x:Name="txtStackMouse" IsEnabled="False" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center" Margin="0,180,0,0" Width="300">
-                    <TextBox x:Name="txtMouseLength" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtMouseHeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtMouseWidth" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtMouseWeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtMouseMaxResolution" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtMouseProgrammableButtons" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <Button x:Name="btnMouseSave" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" Content="{DynamicResource ResourceKey=Create}" Click="btnMouseSave_Click"/>
-                </StackPanel>
-                <StackPanel x:Name="lblStackMouse" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center" Width="200" Margin="-500,180,0,0">
-                    <Label x:Name="lblMouseLength" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Length}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblMouseHeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Height}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblMouseWidth" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Width}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblMouseWeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Weight}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblMouseMaxResolution" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=MaxResolution}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblMouseProgrammableButtons" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=ProgrammableButtons}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                </StackPanel>
-
-                <StackPanel x:Name="txtStackKeyboard" IsEnabled="False" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center" Margin="0,180,0,0" Width="300">
-                    <TextBox x:Name="txtKeyboardLength" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtKeyboardDepth" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtKeyboardWidth" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtKeyboardWeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtKeyboardFunctionKeys" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <ComboBox x:Name="cmbxKeyboardLayout" Margin="0,30,0,0" SelectedValue="Content" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="300"/>
-                    <Button x:Name="btnKeyboardSave" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" Content="{DynamicResource ResourceKey=Create}" Click="btnKeyboardSave_Click"/>
-                </StackPanel>
-                <StackPanel x:Name="lblStackKeyboard" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center" Width="200" Margin="-500,180,0,0">
-                    <Label x:Name="lblKeyboardLength" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Length}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblKeyboardDepth" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Depth}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblKeyboardWidth" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Width}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblKeyboardWeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Weight}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblKeyboardFunctionKeys" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=FunctionKeys}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblKeyboardLayout" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Layout}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                </StackPanel>
-
-                <StackPanel x:Name="txtStackHeadset" IsEnabled="False" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center" Margin="0,180,0,0" Width="300">
-                    <TextBox x:Name="txtHeadsetWeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <ComboBox x:Name="cmbxHeadsetWearingWay" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="300" />
-                    <CheckBox x:Name="cbHeadsetIntegratedMicrophone" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" />
-                    <Button x:Name="btnHeadsetSave" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" Content="{DynamicResource ResourceKey=Create}" Click="btnHeadsetSave_Click"/>
-                </StackPanel>
-                <StackPanel x:Name="lblStackHeadset" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center" Width="200" Margin="-500,180,0,0">
-                    <Label x:Name="lblHeadsetWeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Weight}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblHeadsetWearingWay" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=WearingWay}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                    <Label x:Name="lblHeadsetIntegratedMicrophone" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=IntegratedMicrophone}"/>
-                            <TextBlock Text="? "/>
-                        </TextBlock>
-                    </Label>
-                </StackPanel>
-
-                <StackPanel x:Name="txtStackController" IsEnabled="False" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center" Margin="0,180,0,0" Width="300">
-                    <TextBox x:Name="txtControllerWeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <Button x:Name="btnControllerSave" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" Content="{DynamicResource ResourceKey=Create}" Click="btnControllerSave_Click"/>
-                </StackPanel>
-                <StackPanel x:Name="lblStackController" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center" Width="200" Margin="-500,180,0,0">
-                    <Label x:Name="lblControllerWeight" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                            <TextBlock Text="{DynamicResource ResourceKey=Weight}"/>
-                            <TextBlock Text=": "/>
-                        </TextBlock>
-                    </Label>
-                </StackPanel>
-
             </Grid>
         </ScrollViewer>
         <Grid Height="85" VerticalAlignment="Top" Background="White">
             <Label x:Name="lblTitle" Content="Placeholder (TITLE IN CODE)" FontSize="20" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
-            <Label x:Name="lblDefaultLanguage" Content="{DynamicResource ResourceKey=EMPTY}" FontSize="16" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0"/>
+            <Label x:Name="lblDefaultLanguage" Content="NO-ML Current default language:" FontSize="16" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0"/>
             <Separator BorderThickness="1" BorderBrush="DarkGray" Margin="80,75,80,0" VerticalAlignment="Top"/>
         </Grid>
     </Grid>

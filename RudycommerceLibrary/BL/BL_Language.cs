@@ -12,6 +12,11 @@ namespace RudycommerceLibrary.BL
     {
         public static void Save(SiteLanguage model)
         {
+            if (model.IsDefault == true)
+            {
+                MakeNewLanguageDefault();
+            }
+
             if (model.IsNew())
             {
                 Create(model);
@@ -20,6 +25,26 @@ namespace RudycommerceLibrary.BL
             {
                 Update(model);
             }
+        }
+
+        private static void MakeNewLanguageDefault()
+        {
+            if (IsThereAlreadyADefaultLanguage())
+            {
+                throw new CustomExceptions.AlreadyADefaultLanguage();
+            }
+        }
+
+        private static bool IsThereAlreadyADefaultLanguage()
+        {
+            return DAL_Language.GetDefaultLanguage() != null;
+        }
+
+        public static void ToggleOldDefaultLanguage()
+        {
+            SiteLanguage oldDefaultLanguage = GetDefaultLanguage();
+            oldDefaultLanguage.IsDefault = false;
+            Update(oldDefaultLanguage);
         }
 
         public static void Delete(SiteLanguage model)
@@ -47,6 +72,21 @@ namespace RudycommerceLibrary.BL
         public static List<SiteLanguage> GetAllLanguages()
         {
             return DAL_Language.GetAllLanguages();
+        }
+
+        public static string[] GetAllISOCodes()
+        {
+            return DAL_Language.GetAllISOCodes();
+        }
+
+        public static void MakeLanguageDefault(SiteLanguage language)
+        {
+            ToggleOldDefaultLanguage();
+
+            language.IsActive = true;
+            language.IsDefault = true;
+
+            Update(language);
         }
     }
 }

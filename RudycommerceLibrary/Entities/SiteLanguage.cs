@@ -1,5 +1,4 @@
-﻿using RudycommerceLibrary.Entities.Products;
-using RudycommerceLibrary.Entities.Products.LocalizedProducts;
+﻿using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,12 +23,19 @@ namespace RudycommerceLibrary.Entities
         public string LocalName { get; set; }
 
         [Column("dutch_name")]
+        [Required]
+        [StringLength(255)]
         public string DutchName { get; set; }
 
         [Column("english_name")]
+        [Required]
+        [StringLength(255)]
         public string EnglishName { get; set; }
 
         [Column("ISO")]
+        [Index(IsUnique = true)]
+        [Required]
+        [StringLength(3, MinimumLength = 3)]
         public string ISO { get; set; }
 
         [Column("is_active")]
@@ -43,11 +49,14 @@ namespace RudycommerceLibrary.Entities
             return this.LanguageID <= 0;
         }
 
-        #region Localized Entities
-        public virtual ICollection<LocalizedHeadset> LocalizedHeadsets { get; set; }
-        public virtual ICollection<LocalizedGamingController> LocalizedGamingControllers { get; set; }
-        public virtual ICollection<LocalizedGamingKeyboard> LocalizedGamingKeyboards { get; set; }
-        #endregion
+        public SiteLanguage()
+        {
+            IsActive = true;
+        }
+
+        public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
+        public virtual ICollection<LocalizedProductCategory> LocalizedProductCategories { get; set; }
+        public virtual ICollection<LocalizedProductProperty> LocalizedProductProperties { get; set; }
     }
 }
 

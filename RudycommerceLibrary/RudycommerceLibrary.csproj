@@ -52,42 +52,22 @@
     <Compile Include="BL\BL_Language.cs" />
     <Compile Include="BL\BL_Mailing.cs" />
     <Compile Include="BL\BL_Multilingual.cs" />
-    <Compile Include="BL\BL_Product.cs" />
     <Compile Include="BL\Enumerations.cs" />
-    <Compile Include="BL\ProductTypes\BL_Controller.cs" />
-    <Compile Include="BL\ProductTypes\BL_Headset.cs" />
-    <Compile Include="BL\ProductTypes\BL_Keyboard.cs" />
-    <Compile Include="BL\ProductTypes\BL_Mouse.cs" />
-    <Compile Include="BL\ProductTypes\BL_MouseMat.cs" />
+    <Compile Include="CustomExceptions\CustomExceptions.cs" />
     <Compile Include="DAL\DAL_DesktopUser.cs" />
     <Compile Include="DAL\DAL_Language.cs" />
-    <Compile Include="DAL\DAL_Product.cs" />
-    <Compile Include="DAL\ProductTypes\DAL_Controller.cs" />
-    <Compile Include="DAL\ProductTypes\DAL_Headset.cs" />
-    <Compile Include="DAL\ProductTypes\DAL_Keyboard.cs" />
-    <Compile Include="DAL\ProductTypes\DAL_Mouse.cs" />
-    <Compile Include="DAL\ProductTypes\DAL_MouseMat.cs" />
     <Compile Include="Data\AppDBContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\DesktopUsers\DesktopUser.cs" />
-    <Compile Include="Entities\Products\Interfaces\ILocalizedProduct.cs" />
-    <Compile Include="Entities\Products\Interfaces\IGeneralProduct.cs" />
-    <Compile Include="Entities\Products\LocalizedProducts\LocalizedGamingController.cs" />
-    <Compile Include="Entities\Products\LocalizedProducts\LocalizedGamingKeyboard.cs" />
-    <Compile Include="Entities\Products\LocalizedProducts\LocalizedGamingMouse.cs" />
-    <Compile Include="Entities\Products\LocalizedProducts\LocalizedHeadset.cs" />
-    <Compile Include="Entities\Products\LocalizedProducts\LocalizedMouseMat.cs" />
-    <Compile Include="Entities\Products\Product.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedProduct.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedProductCategory.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedProductProperty.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\Category_ProductProperties.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\Product_ProductProperties.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Product.cs" />
+    <Compile Include="Entities\ProductsAndCategories\ProductCategory.cs" />
+    <Compile Include="Entities\ProductsAndCategories\ProductProperty.cs" />
     <Compile Include="Entities\SiteLanguage.cs" />
-    <Compile Include="Entities\Products\GamingEquipments\ElectronicEquipment.cs" />
-    <Compile Include="Entities\Products\GamingEquipments\ElectronicEquipments\GamingController.cs" />
-    <Compile Include="Entities\Products\GamingEquipments\ElectronicEquipments\Headset.cs" />
-    <Compile Include="Entities\Products\GamingEquipments\ElectronicEquipments\GamingKeyboard.cs" />
-    <Compile Include="Entities\Products\GamingEquipments\ElectronicEquipments\GamingMouse.cs" />
-    <Compile Include="Entities\Products\GamingEquipments\NonElectronicEquipment.cs" />
-    <Compile Include="Entities\Products\GamingEquipments\NonElectronicEquipments\MouseMat.cs" />
-    <Compile Include="Entities\Products\GamingEquipment.cs" />
-    <Compile Include="Entities\Products\GeneralProduct.cs" />
     <Compile Include="LanguageResources\DutchCode.cs" />
     <Compile Include="LanguageResources\EnglishCode.cs" />
     <Compile Include="Migrations\201803022147269_LocalKeyboard.cs" />
@@ -109,6 +89,54 @@
     <Compile Include="Migrations\201803111516327_UpdatedSiteLanguages3.cs" />
     <Compile Include="Migrations\201803111516327_UpdatedSiteLanguages3.Designer.cs">
       <DependentUpon>201803111516327_UpdatedSiteLanguages3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803111615289_UpdatedSiteLanguages4.cs" />
+    <Compile Include="Migrations\201803111615289_UpdatedSiteLanguages4.Designer.cs">
+      <DependentUpon>201803111615289_UpdatedSiteLanguages4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803121819486_RestartingWithProducts.cs" />
+    <Compile Include="Migrations\201803121819486_RestartingWithProducts.Designer.cs">
+      <DependentUpon>201803121819486_RestartingWithProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803121851056_ProductsAndCategories.cs" />
+    <Compile Include="Migrations\201803121851056_ProductsAndCategories.Designer.cs">
+      <DependentUpon>201803121851056_ProductsAndCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803121855020_CategoryAndParents.cs" />
+    <Compile Include="Migrations\201803121855020_CategoryAndParents.Designer.cs">
+      <DependentUpon>201803121855020_CategoryAndParents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803121923144_CategoryAndParents1.cs" />
+    <Compile Include="Migrations\201803121923144_CategoryAndParents1.Designer.cs">
+      <DependentUpon>201803121923144_CategoryAndParents1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803121928001_LocalizedProduct.cs" />
+    <Compile Include="Migrations\201803121928001_LocalizedProduct.Designer.cs">
+      <DependentUpon>201803121928001_LocalizedProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803121932005_LocalizedProductCategory.cs" />
+    <Compile Include="Migrations\201803121932005_LocalizedProductCategory.Designer.cs">
+      <DependentUpon>201803121932005_LocalizedProductCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803121936289_AddedProductProperty.cs" />
+    <Compile Include="Migrations\201803121936289_AddedProductProperty.Designer.cs">
+      <DependentUpon>201803121936289_AddedProductProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803121937055_AddedProductProperty1.cs" />
+    <Compile Include="Migrations\201803121937055_AddedProductProperty1.Designer.cs">
+      <DependentUpon>201803121937055_AddedProductProperty1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803121949516_AddedLocalizedProductProperties.cs" />
+    <Compile Include="Migrations\201803121949516_AddedLocalizedProductProperties.Designer.cs">
+      <DependentUpon>201803121949516_AddedLocalizedProductProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803122027411_AddedCategoryProductProperties.cs" />
+    <Compile Include="Migrations\201803122027411_AddedCategoryProductProperties.Designer.cs">
+      <DependentUpon>201803122027411_AddedCategoryProductProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803122053512_addedProductProductProperties.cs" />
+    <Compile Include="Migrations\201803122053512_addedProductProductProperties.Designer.cs">
+      <DependentUpon>201803122053512_addedProductProductProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\MessageBoxManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -138,6 +166,43 @@
     <EmbeddedResource Include="Migrations\201803111516327_UpdatedSiteLanguages3.resx">
       <DependentUpon>201803111516327_UpdatedSiteLanguages3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803111615289_UpdatedSiteLanguages4.resx">
+      <DependentUpon>201803111615289_UpdatedSiteLanguages4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121819486_RestartingWithProducts.resx">
+      <DependentUpon>201803121819486_RestartingWithProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121851056_ProductsAndCategories.resx">
+      <DependentUpon>201803121851056_ProductsAndCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121855020_CategoryAndParents.resx">
+      <DependentUpon>201803121855020_CategoryAndParents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121923144_CategoryAndParents1.resx">
+      <DependentUpon>201803121923144_CategoryAndParents1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121928001_LocalizedProduct.resx">
+      <DependentUpon>201803121928001_LocalizedProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121932005_LocalizedProductCategory.resx">
+      <DependentUpon>201803121932005_LocalizedProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121936289_AddedProductProperty.resx">
+      <DependentUpon>201803121936289_AddedProductProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121937055_AddedProductProperty1.resx">
+      <DependentUpon>201803121937055_AddedProductProperty1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121949516_AddedLocalizedProductProperties.resx">
+      <DependentUpon>201803121949516_AddedLocalizedProductProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803122027411_AddedCategoryProductProperties.resx">
+      <DependentUpon>201803122027411_AddedCategoryProductProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803122053512_addedProductProductProperties.resx">
+      <DependentUpon>201803122053512_addedProductProductProperties.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
