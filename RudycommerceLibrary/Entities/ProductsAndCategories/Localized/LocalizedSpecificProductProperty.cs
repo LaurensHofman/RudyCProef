@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
 {
-    [Table("product_properties_localized")]
-    public class LocalizedProductProperty : BaseEntity
+    [Table("specific_product_properties_localized")]
+    public class LocalizedSpecificProductProperty : BaseEntity
     {
-        [Column("product_property_id")]
-        public int ProductPropertyID { get; set; }
+        [Column("specific_product_property_id")]
+        public int SpecificProductPropertyID { get; set; }
 
         [Column("language_id")]
         public int LanguageID { get; set; }
@@ -21,7 +21,7 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
 
         public override bool IsNew()
         {
-            return this.ProductPropertyID <= 0;
+            return this.SpecificProductPropertyID <= 0;
         }
     }
 }

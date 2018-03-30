@@ -1,4 +1,5 @@
-﻿using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
+﻿using RudycommerceLibrary.BL;
+using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,9 +18,6 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         [Column("category_id")]
         public int CategoryID { get; set; }
         
-        [Column("is_active")]
-        public bool IsActive { get; set; }
-
         [Column("parent_id")]
         public int? ParentID { get; set; }
 
@@ -45,6 +43,6 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         }
 
         public virtual ICollection<LocalizedProductCategory> LocalizedProductCategories { get; set; }
-        public virtual ICollection<Category_ProductProperties> Category_ProductProperties { get; set; }
+        public virtual ICollection<Category_SpecificProductProperties> Category_SpecificProductProperties { get; set; }
     }
 }

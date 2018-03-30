@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RudycommerceLibrary.BL;
+using RudycommerceLibrary.Entities;
 
 namespace Rudycommerce
 {
@@ -20,13 +21,16 @@ namespace Rudycommerce
     /// </summary>
     public partial class LoginWindow : Window
     {
-        string _preferredLanguage = "Nederlands";
+        Language _preferredLanguage;
+        private List<Language> _LanguageList;
 
         public LoginWindow()
         {
             InitializeComponent();
 
             AnyDesktopUser();
+
+            _LanguageList = BL_Language.GetDesktopLanguages();
 
             rbPreferNL.IsChecked = true;
         }
@@ -35,17 +39,17 @@ namespace Rudycommerce
         {
             if (rbPreferNL.IsChecked == true)
             {
-                _preferredLanguage = "Nederlands";
+                _preferredLanguage = _LanguageList.Single(l => l.LocalName == "Nederlands");
                 SetLanguageDictionary(_preferredLanguage);
             }
             if (rbPreferEN.IsChecked == true)
             {
-                _preferredLanguage = "English";
+                _preferredLanguage = _LanguageList.Single(l => l.LocalName == "English");
                 SetLanguageDictionary(_preferredLanguage);
             }
         }
 
-        private void SetLanguageDictionary(string selectedLanguage)
+        private void SetLanguageDictionary(Language selectedLanguage)
         {
             ResourceDictionary dict = new ResourceDictionary();
 
@@ -92,7 +96,8 @@ namespace Rudycommerce
 
         private void btnLazy_Click(object sender, RoutedEventArgs e)
         {
-            pwdPassword.Password = txtUsername.Text = "laurenshofman";
+            pwdPassword.Password = "laurens";
+            txtUsername.Text = "laurenshofman";
             btnLogin_Click(null, null);
         }
     }

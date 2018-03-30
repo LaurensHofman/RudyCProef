@@ -23,17 +23,21 @@ namespace Rudycommerce
     public partial class AdminUserForm : Window
     {
         public DesktopUser NewDesktopUser { get; set; }
+        private List<Language> _languageList { get; set; }
+
 
         public AdminUserForm()
         {
             InitializeComponent();
+
+            _languageList = BL_Language.GetDesktopLanguages();
 
             DesktopUser newDesktopUser = new DesktopUser();
             NewDesktopUser = newDesktopUser;
             rbPreferNL.IsChecked = true;
         }
 
-        private void SetLanguageDictionary(string selectedLanguage)
+        private void SetLanguageDictionary(Language selectedLanguage)
         {
             ResourceDictionary dict = new ResourceDictionary();
 
@@ -80,12 +84,12 @@ namespace Rudycommerce
         {
             if (rbPreferNL.IsChecked == true)
             {
-                NewDesktopUser.PreferredLanguage = "Nederlands";
+                NewDesktopUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "Nederlands").LanguageID;
                 SetLanguageDictionary(NewDesktopUser.PreferredLanguage);
             }
             if (rbPreferEN.IsChecked == true)
             {
-                NewDesktopUser.PreferredLanguage = "English";
+                NewDesktopUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "English").LanguageID;
                 SetLanguageDictionary(NewDesktopUser.PreferredLanguage);
             }
         }

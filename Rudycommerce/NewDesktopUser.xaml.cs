@@ -23,19 +23,24 @@ namespace Rudycommerce
     public partial class NewDesktopUser : Window
     {
         public DesktopUser NewUser { get; set; }
+        private List<Language> _languageList;
 
-        public NewDesktopUser(string preferredLanguage)
+        public NewDesktopUser(Language preferredLanguage)
         {
             InitializeComponent();
 
             NewUser = new DesktopUser();
 
+            _languageList = BL_Language.GetDesktopLanguages();
+
             SelectRadioButtonByLanguage(preferredLanguage);
+
+            
         }
 
-        private void SelectRadioButtonByLanguage(string preferredLanguage)
+        private void SelectRadioButtonByLanguage(Language preferredLanguage)
         {
-            switch (preferredLanguage)
+            switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
                     rbPreferNL.IsChecked = true;
@@ -49,7 +54,7 @@ namespace Rudycommerce
             }
         }
 
-        private void SetLanguageDictionary(string selectedLanguage)
+        private void SetLanguageDictionary(Language selectedLanguage)
         {
             ResourceDictionary dict = new ResourceDictionary();
 
@@ -62,13 +67,13 @@ namespace Rudycommerce
         {
             if (rbPreferNL.IsChecked == true)
             {
-                NewUser.PreferredLanguage = "Nederlands";
+                NewUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "Nederlands").LanguageID;
                 SetLanguageDictionary(NewUser.PreferredLanguage);
 
             }
             if (rbPreferEN.IsChecked == true)
             {
-                NewUser.PreferredLanguage = "English";
+                NewUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "English").LanguageID;
                 SetLanguageDictionary(NewUser.PreferredLanguage);
             }
         }
@@ -92,7 +97,7 @@ namespace Rudycommerce
                     BL_DesktopUser.Create(NewUser);
 
                     BL_Mailing.SendMailToAdmin(NewUser.FirstName, NewUser.LastName, NewUser.EMail, NewUser.Username);
-                    BL_Mailing.SendMailToUser(NewUser.FirstName, NewUser.LastName, NewUser.EMail, NewUser.Username, NewUser.PreferredLanguage);
+                    BL_Mailing.SendMailToUser(NewUser.FirstName, NewUser.LastName, NewUser.EMail, NewUser.Username, NewUser.PreferredLanguage.LocalName);
 
                     LoginWindow login = new LoginWindow();
                     login.Show();

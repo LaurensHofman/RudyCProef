@@ -10,7 +10,7 @@ namespace RudycommerceLibrary.DAL
 {
     public static class DAL_Language
     {
-        public static void Create(SiteLanguage model)
+        public static void Create(Language model)
         {
             var ctx = AppDBContext.Instance();
 
@@ -18,7 +18,7 @@ namespace RudycommerceLibrary.DAL
             ctx.SaveChanges();
         }
 
-        public static SiteLanguage GetDefaultLanguage()
+        public static Language GetDefaultLanguage()
         {
             var ctx = AppDBContext.Instance();
 
@@ -32,7 +32,7 @@ namespace RudycommerceLibrary.DAL
             return ctx.Languages.SingleOrDefault(l => l.LanguageID == languageID).LocalName;
         }
 
-        public static void Update(SiteLanguage model)
+        public static void Update(Language model)
         {
             var ctx = AppDBContext.Instance();
 
@@ -40,7 +40,7 @@ namespace RudycommerceLibrary.DAL
             ctx.SaveChanges();
         }
 
-        public static List<SiteLanguage> GetAllLanguages()
+        public static List<Language> GetAllLanguages()
         {
             var ctx = AppDBContext.Instance();
 
@@ -49,6 +49,20 @@ namespace RudycommerceLibrary.DAL
                 .ThenByDescending(l => l.IsActive)
                 .ThenBy(l => l.ISO)
                 .ToList();
+        }
+
+        public static List<Language> GetDesktopLanguages()
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.Languages.Where(l => l.IsDesktopLanguage == true).ToList();
+        }
+
+        public static Language GetLanguageByID(int preferredLanguageID)
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.Languages.Single(l => l.DeletedAt == null && l.LanguageID == preferredLanguageID);
         }
 
         public static string[] GetAllISOCodes()

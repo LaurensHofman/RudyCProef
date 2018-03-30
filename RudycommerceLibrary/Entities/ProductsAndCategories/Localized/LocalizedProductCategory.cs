@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
 {
     [Table("localized_product_category")]
-    public class LocalizedProductCategory
+    public class LocalizedProductCategory : BaseEntity
     {
         [Column("category_id")]
         public int CategoryID { get; set; }
@@ -18,5 +18,10 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
 
         [Column("name")]
         public string Name { get; set; }
+
+        public override bool IsNew()
+        {
+            return this.CategoryID <= 0;
+        }
     }
 }

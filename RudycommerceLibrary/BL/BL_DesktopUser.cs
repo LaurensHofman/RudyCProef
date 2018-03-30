@@ -76,7 +76,7 @@ namespace RudycommerceLibrary.BL
             return DAL_DesktopUser.GetCurrentUserByID(currentUserID);
         }
 
-        public static string UserPreferredLanguage(int currentUserID)
+        public static Language UserPreferredLanguage(int currentUserID)
         {
             return DAL_DesktopUser.GetUserPreferredLanguage(currentUserID);
         }

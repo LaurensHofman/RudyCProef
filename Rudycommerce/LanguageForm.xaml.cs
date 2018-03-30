@@ -27,11 +27,11 @@ namespace Rudycommerce
     /// </summary>
     public partial class LanguageForm : UserControl
     {
-        public SiteLanguage Model { get; private set; }
+        public Language Model { get; private set; }
 
-        public LanguageForm(string selectedLanguage) : this(new SiteLanguage(), selectedLanguage) { }
+        public LanguageForm(Language selectedLanguage) : this(new Language(), selectedLanguage) { }
 
-        public LanguageForm(SiteLanguage model, string selectedLanguage)
+        public LanguageForm(Language model, Language selectedLanguage)
         {
             InitializeComponent();
 
@@ -64,7 +64,7 @@ namespace Rudycommerce
             }
         }
 
-        private void SetLanguageDictionary(string selectedLanguage)
+        private void SetLanguageDictionary(Language selectedLanguage)
         {
             ResourceDictionary dict = new ResourceDictionary();
 

@@ -22,10 +22,12 @@ namespace Rudycommerce
     /// </summary>
     public partial class ManageAccount : UserControl
     {
-        public delegate void AccountSaved(string selectedLanguage);
+        public delegate void AccountSaved(Language selectedLanguage);
         public event AccountSaved OnAccountSave;
 
-        string _preferredLanguage;
+        private Language _preferredLanguage;
+        private List<Language> _languageList;
+        
         public DesktopUser CurrentUser { get; set; }
 
         public ManageAccount(int currentUserID)
@@ -33,14 +35,15 @@ namespace Rudycommerce
             InitializeComponent();
 
             CurrentUser = BL_DesktopUser.GetCurrentUserByID(currentUserID);
-            _preferredLanguage = CurrentUser.PreferredLanguage;
+            _preferredLanguage = BL_Language.GetLanguageByID(CurrentUser.PreferredLanguageID);
+            _languageList = BL_Language.GetDesktopLanguages();
 
             SelectRadioButtonByLanguage();
         }
 
         private void SelectRadioButtonByLanguage()
         {
-            switch (_preferredLanguage)
+            switch (_preferredLanguage.LocalName)
             {
                 case "Nederlands":
                     rbPreferNL.IsChecked = true;
@@ -54,7 +57,7 @@ namespace Rudycommerce
             }
         }
 
-        private void SetLanguageDictionary(string selectedLanguage)
+        private void SetLanguageDictionary(Language selectedLanguage)
         {
             ResourceDictionary dict = new ResourceDictionary();
 
@@ -67,20 +70,22 @@ namespace Rudycommerce
         {
             if (rbPreferNL.IsChecked == true)
             {
-                CurrentUser.PreferredLanguage = "Nederlands";
-                SetLanguageDictionary(CurrentUser.PreferredLanguage);
+                _preferredLanguage = _languageList.Single(l => l.LocalName == "Nederlands");
+                CurrentUser.PreferredLanguageID = _preferredLanguage.LanguageID;
+                SetLanguageDictionary(_preferredLanguage);
             }
             if (rbPreferEN.IsChecked == true)
             {
-                CurrentUser.PreferredLanguage = "English";
-                SetLanguageDictionary(CurrentUser.PreferredLanguage);
+                _preferredLanguage = _languageList.Single(l => l.LocalName == "English");
+                CurrentUser.PreferredLanguageID = _preferredLanguage.LanguageID;
+                SetLanguageDictionary(_preferredLanguage);
             }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             BL_DesktopUser.Update(CurrentUser);
-            OnAccountSave(CurrentUser.PreferredLanguage);
+            OnAccountSave(_preferredLanguage);
         }
     }
 }

@@ -30,6 +30,7 @@
                 </RibbonGroup>
                 <RibbonGroup Header="{DynamicResource ResourceKey=ManageProducts}">
                     <RibbonButton x:Name="rbtnAddProduct" Label="{DynamicResource ResourceKey=AddProduct}" Click="rbtnAddProduct_Click"/>
+                    <RibbonButton x:Name="rbtnAddCategory" Label="{DynamicResource ResourceKey=EMPTY}" Click="rbtnAddCategory_Click"/>
                 </RibbonGroup>
             </RibbonTab>
             <RibbonTab x:Name="rtabUsers" Visibility="Collapsed" IsEnabled="False" Header="{DynamicResource ResourceKey=Users}">

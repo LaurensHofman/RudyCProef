@@ -22,13 +22,13 @@ namespace Rudycommerce
     /// </summary>
     public partial class NewProductForm : UserControl
     {
-        public SiteLanguage DefaultSiteLanguage { get; set; }
+        public Language DefaultSiteLanguage { get; set; }
 
-        string _preferredLanguage = "Nederlands";
+        Language _preferredLanguage;
       
-        public NewProductForm(string selectedLanguage) : this(0 ,selectedLanguage) { }
+        public NewProductForm(Language selectedLanguage) : this(0 ,selectedLanguage) { }
 
-        public NewProductForm(int productID, string selectedLanguage)
+        public NewProductForm(int productID, Language selectedLanguage)
         {
             InitializeComponent();
             
@@ -44,7 +44,7 @@ namespace Rudycommerce
             SetLabels();
         }
 
-        private void SetDropdownBoxContents(string selectedLanguage)
+        private void SetDropdownBoxContents(Language selectedLanguage)
         {
             //cmbxProductType.ItemsSource = BL_Product.GetProductTypes(selectedLanguage);
 
@@ -53,7 +53,7 @@ namespace Rudycommerce
             //cmbxHeadsetWearingWay.ItemsSource = BL_Headset.GetWearingWays(selectedLanguage);
         }
 
-        private void SetLanguageDictionary(string selectedLanguage)
+        private void SetLanguageDictionary(Language selectedLanguage)
         {
             ResourceDictionary dict = new ResourceDictionary();
 

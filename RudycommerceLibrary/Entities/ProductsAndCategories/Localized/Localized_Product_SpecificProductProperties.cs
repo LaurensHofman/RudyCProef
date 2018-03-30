@@ -7,15 +7,21 @@ using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
 {
-    [Table("product__product_properties")]
-    public class Product_ProductProperties : BaseEntity
+    [Table("localized__product__specific_product_properties")]
+    public class Localized_Product_SpecificProductProperties : BaseEntity
     {
         [Column("product_id")]
         public int ProductID { get; set; }
 
-        [Column("product_property_id")]
-        public int ProductPropertyID { get; set; }
-                
+        [Column("specific_product_property_id")]
+        public int SpecificProductPropertyID { get; set; }
+
+        [Column("language_id")]
+        public int LanguageID { get; set; }
+
+        [Column("property_value")]
+        public int PropertyValue { get; set; }
+
         public override bool IsNew()
         {
             return this.ProductID <= 0;

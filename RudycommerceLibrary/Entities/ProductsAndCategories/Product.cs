@@ -29,7 +29,8 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         
         [Column("category_id")]
         public int CategoryID { get; set; }
-       
+
+        public virtual ICollection<Article> Articles { get; set; }
         public ProductCategory ProductCategory { get; set; }
 
         public override bool IsNew()
@@ -38,6 +39,7 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         }
 
         public virtual ICollection<Localized.LocalizedProduct> LocalizedProducts { get; set; }
-        public virtual ICollection<Localized.Product_ProductProperties> Product_ProductProperties { get; set; }
+        public virtual ICollection<Localized.Product_SpecificProductProperties> Product_SpecificProductProperties { get; set; }
+        public virtual ICollection<Localized.Localized_Product_SpecificProductProperties> Localized_Product_SpecificProductProperties { get; set; }
     }
 }

@@ -44,7 +44,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=LastNameDG}" Binding="{Binding Path=LastName}"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=FirstNameDG}" Binding="{Binding Path=FirstName}"/>
-                <DataGridCheckBoxColumn HeaderStyle="{StaticResource ResourceKey=IsAdminDG}" Binding="{Binding Path=IsAdmin}"/>
+                <DataGridCheckBoxColumn HeaderStyle="{StaticResource ResourceKey=IsAdminDG}" IsReadOnly="True" Binding="{Binding Path=IsAdmin}"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=EmailDG}" Binding="{Binding Path=EMail}"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=UsernameDG}" Binding="{Binding Path=Username}"/>
 

@@ -23,9 +23,9 @@ namespace RudycommerceLibrary.BL
 
 public static class BL_Multilingual
     {
-        public static string ChooseLanguageDictionary(string selectedLanguage)
+        public static string ChooseLanguageDictionary(Language selectedLanguage)
         {
-            switch (selectedLanguage)
+            switch (selectedLanguage.LocalName)
             {
                 case "Nederlands":
                     return "..\\LanguageResources\\Dutch.xaml";
@@ -113,11 +113,11 @@ public static class BL_Multilingual
             }
         }
 
-        public static string GetTranslatedDefaultLanguage(string preferredLanguage)
+        public static string GetTranslatedDefaultLanguage(Language preferredLanguage)
         {
-            SiteLanguage defaultLanguage = BL_Language.GetDefaultLanguage();
+            Language defaultLanguage = BL_Language.GetDefaultLanguage();
 
-            switch (preferredLanguage)
+            switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
                     return defaultLanguage.DutchName;

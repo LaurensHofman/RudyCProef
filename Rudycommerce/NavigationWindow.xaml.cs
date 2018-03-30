@@ -1,4 +1,5 @@
 ﻿using RudycommerceLibrary.BL;
+using RudycommerceLibrary.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Rudycommerce
     public partial class NavigationWindow : RibbonWindow
     {
         int _currentUserID = 0;
-        string _preferredLanguage = "Nederlands";
+        Language _preferredLanguage;
 
         public NavigationWindow(int currentUserID)
         {
@@ -49,7 +50,7 @@ namespace Rudycommerce
             SetLanguageDictionary(_preferredLanguage);
         }
         
-        private void SetLanguageDictionary(string selectedLanguage)
+        private void SetLanguageDictionary(Language selectedLanguage)
         {
             ResourceDictionary dict = new ResourceDictionary();
 
@@ -81,7 +82,7 @@ namespace Rudycommerce
             navigationControl.Content = _settings;
         }
 
-        private void ApplySettings(string selectedLanguage)
+        private void ApplySettings(Language selectedLanguage)
         {
             _preferredLanguage = selectedLanguage;
             SetLanguageDictionary(selectedLanguage);
@@ -102,6 +103,11 @@ namespace Rudycommerce
             relogWindow.Show();
 
             this.Close();
+        }
+
+        private void rbtnAddCategory_Click(object sender, RoutedEventArgs e)
+        {
+            navigationControl.Content = new CategoryForm(_preferredLanguage);
         }
     }
 }

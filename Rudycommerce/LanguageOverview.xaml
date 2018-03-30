@@ -66,6 +66,9 @@
                                             <DataTrigger Binding="{Binding Path=IsDefault}" Value="True">
                                                 <Setter Property="Visibility" Value="Collapsed"></Setter>
                                             </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsDesktopLanguage}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                            </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
@@ -77,7 +80,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnMakeDefault" Background="Black" Foreground="Yellow" FontWeight="ExtraBold" Click="btnMakeDefault_Click" Content="{DynamicResource ResourceKey=VerifyUser}">
+                            <Button x:Name="btnMakeDefault" Background="Black" Foreground="Yellow" FontWeight="ExtraBold" Click="btnMakeDefault_Click" Content="{DynamicResource ResourceKey=EMPTY}">
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
                                         <Style.Triggers>

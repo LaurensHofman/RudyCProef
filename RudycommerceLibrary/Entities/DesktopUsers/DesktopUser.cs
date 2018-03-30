@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RudycommerceLibrary.BL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,8 +32,8 @@ namespace RudycommerceLibrary.Entities
         [Column("email")]
         public string EMail { get; set; }
 
-        [Column("pref_language")]
-        public string PreferredLanguage { get; set; }
+        [Column("preferred_language_id")]
+        public int PreferredLanguageID { get; set; }
 
         [Column("username")]
         public string Username { get; set; }
@@ -43,6 +44,16 @@ namespace RudycommerceLibrary.Entities
         [Column("salt")]
         public string Salt { get; set; }
 
+        public Language Language { get; set; }
+
+        public Language PreferredLanguage
+        {
+            get
+            {
+                return BL_Language.GetLanguageByID(this.PreferredLanguageID);
+            }
+        }
+        
         public override bool IsNew()
         {
             return UserID <= 0;

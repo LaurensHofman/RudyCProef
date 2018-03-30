@@ -17,7 +17,7 @@ namespace RudycommerceLibrary.BL
             string subject;
             StringBuilder message;
 
-            switch (Admin.PreferredLanguage)
+            switch (Admin.PreferredLanguage.LocalName)
             {
                 case "Nederlands":
                     subject = $"{firstname} {lastname} heeft een account aangemaakt";

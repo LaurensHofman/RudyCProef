@@ -10,7 +10,7 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_Language
     {
-        public static void Save(SiteLanguage model)
+        public static void Save(Language model)
         {
             if (model.IsDefault == true)
             {
@@ -42,34 +42,44 @@ namespace RudycommerceLibrary.BL
 
         public static void ToggleOldDefaultLanguage()
         {
-            SiteLanguage oldDefaultLanguage = GetDefaultLanguage();
+            Language oldDefaultLanguage = GetDefaultLanguage();
             oldDefaultLanguage.IsDefault = false;
             Update(oldDefaultLanguage);
         }
 
-        public static void Delete(SiteLanguage model)
+        public static List<Language> GetDesktopLanguages()
+        {
+            return DAL_Language.GetDesktopLanguages();
+        }
+
+        public static Language GetLanguageByID(int preferredLanguageID)
+        {
+            return DAL_Language.GetLanguageByID(preferredLanguageID);
+        }
+
+        public static void Delete(Language model)
         {
             model.DeletedAt = DateTime.Now;
             Update(model);
         }
 
-        private static void Update(SiteLanguage model)
+        private static void Update(Language model)
         {
             model.ModifiedAt = DateTime.Now;
             DAL_Language.Update(model);
         }
 
-        private static void Create(SiteLanguage model)
+        private static void Create(Language model)
         {
             DAL_Language.Create(model);
         }
 
-        public static SiteLanguage GetDefaultLanguage()
+        public static Language GetDefaultLanguage()
         {
             return DAL_Language.GetDefaultLanguage();
         }
 
-        public static List<SiteLanguage> GetAllLanguages()
+        public static List<Language> GetAllLanguages()
         {
             return DAL_Language.GetAllLanguages();
         }
@@ -79,7 +89,7 @@ namespace RudycommerceLibrary.BL
             return DAL_Language.GetAllISOCodes();
         }
 
-        public static void MakeLanguageDefault(SiteLanguage language)
+        public static void MakeLanguageDefault(Language language)
         {
             ToggleOldDefaultLanguage();
 

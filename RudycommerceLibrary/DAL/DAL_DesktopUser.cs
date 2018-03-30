@@ -46,7 +46,9 @@ namespace RudycommerceLibrary.DAL
             return ctx.DesktopUsers.SingleOrDefault(du => du.Username.ToLower() == username.ToLower() && du.DeletedAt == null).UserID;
         }
 
-        public static string GetUserPreferredLanguage(int currentUserID)
+        
+
+        public static Language GetUserPreferredLanguage(int currentUserID)
         {
             var ctx = AppDBContext.Instance();
 

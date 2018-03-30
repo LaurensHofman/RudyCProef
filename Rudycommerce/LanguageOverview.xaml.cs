@@ -25,11 +25,9 @@ namespace Rudycommerce
     /// </summary>
     public partial class LanguageOverview : UserControl
     {
-        private string _preferredLanguage = "Nederlands";
-
-        public LanguageOverview() : this("Nederlands") { }
-
-        public LanguageOverview(string preferredLanguage)
+        private Language _preferredLanguage;
+        
+        public LanguageOverview(Language preferredLanguage)
         {
             InitializeComponent();
             BindData();
@@ -39,7 +37,7 @@ namespace Rudycommerce
             _preferredLanguage = preferredLanguage;
         }
 
-        private void SetLanguageDictionary(string preferredLanguage)
+        private void SetLanguageDictionary(Language preferredLanguage)
         {
             ResourceDictionary dict = new ResourceDictionary();
 
@@ -48,11 +46,11 @@ namespace Rudycommerce
             this.Resources.MergedDictionaries.Add(dict);
         }
 
-        public ObservableCollection<SiteLanguage> dataSourceLanguages { get; set; }
+        public ObservableCollection<Language> dataSourceLanguages { get; set; }
 
         private void BindData()
         {
-            dataSourceLanguages = new ObservableCollection<SiteLanguage>(BL_Language.GetAllLanguages());
+            dataSourceLanguages = new ObservableCollection<Language>(BL_Language.GetAllLanguages());
             dataSourceLanguages.CollectionChanged += DataSourceChanged;
             dgrdLanguageOverview.ItemsSource = dataSourceLanguages;
             dgrdLanguageOverview.DataContext = dataSourceLanguages;
@@ -63,12 +61,12 @@ namespace Rudycommerce
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    foreach (SiteLanguage l in e.NewItems)
+                    foreach (Language l in e.NewItems)
                         BL_Language.Save(l);
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (SiteLanguage l in e.OldItems)
+                    foreach (Language l in e.OldItems)
                         BL_Language.Delete(l);
                     break;
             }
@@ -77,7 +75,7 @@ namespace Rudycommerce
         private void dgrdLanguageOverview_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             DataGridRow _dgRow = e.Row;
-            var _changedValue = _dgRow.DataContext as SiteLanguage;
+            var _changedValue = _dgRow.DataContext as Language;
 
             if (SiteLanguageValidation.ValidateISO(_changedValue.ISO) == "")
             {
@@ -97,7 +95,7 @@ namespace Rudycommerce
 
         private void btnMakeDefault_Click(object sender, RoutedEventArgs e)
         {
-            var language = ((FrameworkElement)sender).DataContext as SiteLanguage;
+            var language = ((FrameworkElement)sender).DataContext as Language;
 
             BL_Language.MakeLanguageDefault(language);
         }
