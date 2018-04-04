@@ -53,11 +53,13 @@
     <Compile Include="BL\BL_Mailing.cs" />
     <Compile Include="BL\BL_Multilingual.cs" />
     <Compile Include="BL\BL_ProductCategory.cs" />
+    <Compile Include="BL\BL_SpecificProductProperty.cs" />
     <Compile Include="BL\Enumerations.cs" />
     <Compile Include="CustomExceptions\CustomExceptions.cs" />
     <Compile Include="DAL\DAL_DesktopUser.cs" />
     <Compile Include="DAL\DAL_Language.cs" />
     <Compile Include="DAL\DAL_ProductCategory.cs" />
+    <Compile Include="DAL\DAL_SpecificProductProperty.cs" />
     <Compile Include="Data\AppDBContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\DesktopUsers\DesktopUser.cs" />
@@ -78,7 +80,15 @@
     <Compile Include="Migrations\201803301747560_StartOnAsus.Designer.cs">
       <DependentUpon>201803301747560_StartOnAsus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804041506146_SpecProdPropIsML.cs" />
+    <Compile Include="Migrations\201804041506146_SpecProdPropIsML.Designer.cs">
+      <DependentUpon>201804041506146_SpecProdPropIsML.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryItem.cs" />
+    <Compile Include="Models\LanguageAndCategoryItem.cs" />
+    <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
+    <Compile Include="Models\LocalizedLanguageItem.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Utilities\MessageBoxManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +104,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803301747560_StartOnAsus.resx">
       <DependentUpon>201803301747560_StartOnAsus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804041506146_SpecProdPropIsML.resx">
+      <DependentUpon>201804041506146_SpecProdPropIsML.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

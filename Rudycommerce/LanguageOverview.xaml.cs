@@ -1,4 +1,5 @@
-﻿using RudycommerceLibrary.BL;
+﻿using RudycommerceLibrary;
+using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Utilities.Validations;
 using System;
@@ -24,17 +25,13 @@ namespace Rudycommerce
     /// Interaction logic for LanguageOverview.xaml
     /// </summary>
     public partial class LanguageOverview : UserControl
-    {
-        private Language _preferredLanguage;
-        
-        public LanguageOverview(Language preferredLanguage)
+    {        
+        public LanguageOverview()
         {
             InitializeComponent();
             BindData();
-
-            SetLanguageDictionary(preferredLanguage);
-
-            _preferredLanguage = preferredLanguage;
+            
+            SetLanguageDictionary(Settings.UserLanguage);
         }
 
         private void SetLanguageDictionary(Language preferredLanguage)
@@ -98,6 +95,8 @@ namespace Rudycommerce
             var language = ((FrameworkElement)sender).DataContext as Language;
 
             BL_Language.MakeLanguageDefault(language);
+
+            BindData();
         }
     }
 }

@@ -23,22 +23,18 @@ namespace Rudycommerce
     public partial class NewProductForm : UserControl
     {
         public Language DefaultSiteLanguage { get; set; }
-
-        Language _preferredLanguage;
       
-        public NewProductForm(Language selectedLanguage) : this(0 ,selectedLanguage) { }
+        public NewProductForm() : this(0) { }
 
-        public NewProductForm(int productID, Language selectedLanguage)
+        public NewProductForm(int productID)
         {
             InitializeComponent();
             
             grdNewProductForm.DataContext = this;
 
-            _preferredLanguage = selectedLanguage;
+            SetLanguageDictionary(RudycommerceLibrary.Settings.UserLanguage);
 
-            SetLanguageDictionary(selectedLanguage);
-
-            SetDropdownBoxContents(selectedLanguage);
+            SetDropdownBoxContents(RudycommerceLibrary.Settings.UserLanguage);
 
             GetDefaultLanguage();
             SetLabels();
@@ -64,7 +60,7 @@ namespace Rudycommerce
 
         private void SetLabels()
         {
-            lblDefaultLanguage.Content += " " + BL_Multilingual.GetTranslatedDefaultLanguage(_preferredLanguage);
+            lblDefaultLanguage.Content += " " + BL_Multilingual.GetTranslatedDefaultLanguage(RudycommerceLibrary.Settings.UserLanguage);
         }
 
         private void GetDefaultLanguage()

@@ -74,7 +74,9 @@
     <system:String x:Key="EnglishName">Engelse naam</system:String>
     <system:String x:Key="DutchName">Nederlandse naam</system:String>
     <system:String x:Key="LocalName">Lokale naam</system:String>
-    
+
+    <system:String x:Key="Manage">Beheer</system:String>
+    <system:String x:Key="NewCategory">Nieuwe categorie</system:String>
     <!--Datagrid headers worden niet als normale visuals gezien-->
 
     

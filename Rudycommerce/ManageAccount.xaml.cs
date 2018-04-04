@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RudycommerceLibrary;
 using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
 
@@ -27,15 +28,12 @@ namespace Rudycommerce
 
         private Language _preferredLanguage;
         private List<Language> _languageList;
-        
-        public DesktopUser CurrentUser { get; set; }
 
-        public ManageAccount(int currentUserID)
+        public ManageAccount()
         {
             InitializeComponent();
 
-            CurrentUser = BL_DesktopUser.GetCurrentUserByID(currentUserID);
-            _preferredLanguage = BL_Language.GetLanguageByID(CurrentUser.PreferredLanguageID);
+            _preferredLanguage = BL_Language.GetLanguageByID(Settings.CurrentUser.UserID);
             _languageList = BL_Language.GetDesktopLanguages();
 
             SelectRadioButtonByLanguage();
@@ -71,20 +69,20 @@ namespace Rudycommerce
             if (rbPreferNL.IsChecked == true)
             {
                 _preferredLanguage = _languageList.Single(l => l.LocalName == "Nederlands");
-                CurrentUser.PreferredLanguageID = _preferredLanguage.LanguageID;
+                Settings.CurrentUser.PreferredLanguageID = _preferredLanguage.LanguageID;
                 SetLanguageDictionary(_preferredLanguage);
             }
             if (rbPreferEN.IsChecked == true)
             {
                 _preferredLanguage = _languageList.Single(l => l.LocalName == "English");
-                CurrentUser.PreferredLanguageID = _preferredLanguage.LanguageID;
+                Settings.CurrentUser.PreferredLanguageID = _preferredLanguage.LanguageID;
                 SetLanguageDictionary(_preferredLanguage);
             }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            BL_DesktopUser.Update(CurrentUser);
+            BL_DesktopUser.Update(Settings.CurrentUser);
             OnAccountSave(_preferredLanguage);
         }
     }

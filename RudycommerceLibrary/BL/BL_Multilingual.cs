@@ -53,6 +53,57 @@ public static class BL_Multilingual
             }
         }
 
+        public static List<Models.LocalizedLanguageItem> GetLocalizedListOfLanguages(Language selectedLanguage)
+        {
+            List<Language> languages = BL_Language.GetAllLanguages();
+
+            List<Models.LocalizedLanguageItem> returnListLanguages = new List<Models.LocalizedLanguageItem>();
+
+            switch (selectedLanguage.LocalName)
+            {
+                case "Nederlands":
+
+                    languages = languages.OrderByDescending(l => l.IsDefault)
+                        .ThenByDescending(l => l.IsDesktopLanguage)
+                        .ThenBy(l => l.DutchName)
+                        .ToList();
+
+                    foreach (Language language in languages)
+                    {
+                        returnListLanguages.Add(new Models.LocalizedLanguageItem { ID = language.LanguageID, Name = language.DutchName });
+                    }
+                    break;
+
+                case "English":
+
+                    languages = languages.OrderByDescending(l => l.IsDefault)
+                        .ThenByDescending(l => l.IsDesktopLanguage)
+                        .ThenBy(l => l.EnglishName)
+                        .ToList();
+
+                    foreach (Language language in languages)
+                    {
+                        returnListLanguages.Add(new Models.LocalizedLanguageItem { ID = language.LanguageID, Name = language.EnglishName });
+                    }
+                    break;
+
+                default:
+
+                    languages = languages.OrderByDescending(l => l.IsDefault)
+                        .ThenByDescending(l => l.IsDesktopLanguage)
+                        .ThenBy(l => l.DutchName)
+                        .ToList();
+
+                    foreach (Language language in languages)
+                    {
+                        returnListLanguages.Add(new Models.LocalizedLanguageItem { ID = language.LanguageID, Name = language.DutchName });
+                    }
+                    break;
+            }
+
+            return returnListLanguages;
+        }
+
         public static string[] HeadsetWearingWays(string preferredLanguage)
         {
             switch (preferredLanguage)

@@ -55,7 +55,7 @@ namespace RudycommerceLibrary.BL
         public static Language GetLanguageByID(int preferredLanguageID)
         {
             return DAL_Language.GetLanguageByID(preferredLanguageID);
-        }
+        }        
 
         public static void Delete(Language model)
         {

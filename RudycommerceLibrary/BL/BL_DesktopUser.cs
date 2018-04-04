@@ -18,7 +18,7 @@ namespace RudycommerceLibrary.BL
             }
             catch (Exception)
             {
-                throw;
+                 throw;
             }
         }
 

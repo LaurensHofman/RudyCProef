@@ -23,20 +23,21 @@
                     <RibbonApplicationMenuItem x:Name="ramiManageCurrentAccount" Header="{DynamicResource ResourceKey=ManageAccount}" Click="ramiManageCurrentAccount_Click"/>
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
-            <RibbonTab Header="{DynamicResource ResourceKey=EMPTY}">
+            <RibbonTab Header="{DynamicResource ResourceKey=Manage}">
                 <RibbonGroup Header="{DynamicResource ResourceKey=ManageLanguages}">
                     <RibbonButton x:Name="rbtnAddLanguage" Label="{DynamicResource ResourceKey=AddLanguage}" Click="rbtnAddLanguage_Click"/>
                     <RibbonButton x:Name="rbtnOverviewLanguage" Label="{DynamicResource ResourceKey=LanguageOverview}" Click="rbtnOverviewLanguage_Click"/>
                 </RibbonGroup>
                 <RibbonGroup Header="{DynamicResource ResourceKey=ManageProducts}">
                     <RibbonButton x:Name="rbtnAddProduct" Label="{DynamicResource ResourceKey=AddProduct}" Click="rbtnAddProduct_Click"/>
-                    <RibbonButton x:Name="rbtnAddCategory" Label="{DynamicResource ResourceKey=EMPTY}" Click="rbtnAddCategory_Click"/>
+                    <RibbonButton x:Name="rbtnAddCategory" Label="{DynamicResource ResourceKey=NewCategory}" Click="rbtnAddCategory_Click"/>
+                    <RibbonButton x:Name="rbtnAddSpecificProductProperty" Label="{DynamicResource ResourceKey=EMPTY}" Click="rbtnAddSpecificProductProperty_Click"/>
                 </RibbonGroup>
             </RibbonTab>
             <RibbonTab x:Name="rtabUsers" Visibility="Collapsed" IsEnabled="False" Header="{DynamicResource ResourceKey=Users}">
                 <RibbonGroup Header="{DynamicResource ResourceKey=ManageUsers}">
                     <RibbonButton x:Name="rbtnUserOverview" Label="{DynamicResource ResourceKey=UserOverview}" Click="rbtnUserOverview_Click"/>
-                </RibbonGroup>
+                </RibbonGroup> 
             </RibbonTab>
         </Ribbon>
         

@@ -8,12 +8,12 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Rudycommerce")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Rudycommerce")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Rudycommerce")]
 [assembly: AssemblyProduct("Rudycommerce")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright Laurens Hofman ©  2018")]
+[assembly: AssemblyTrademark("LaurensHofman")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible

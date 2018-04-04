@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,14 +14,19 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_ProductCategory
     {
+        /// <summary>
+        /// returns a list of all categories
+        /// </summary>
+        /// <param name="selectedLanguage"></param>
+        /// <returns></returns>
         public static List<CategoryItem> GetPotentialParents(Language selectedLanguage)
         {
             var parentList = new List<CategoryItem>();
-
-            parentList.Add(new CategoryItem() { CategoryID = null, Name = "NO-ML No parent"});
             
+            // gets all categories
             List<ProductCategory> _overview = DAL_ProductCategory.GetAll();
-                        
+            
+
             foreach (var _item in _overview)
             {
                 var categoryItem = _item;
@@ -28,11 +34,11 @@ namespace RudycommerceLibrary.BL
                 int categoryID = _item.CategoryID;
                 string name = "";
 
+                bool parentsLeft = false;
 
-                bool continueDoWhile = false;
                 do
                 {
-                    continueDoWhile = false;
+                    parentsLeft = false;
 
                     name = ($"{GetLocalizedProductCategory(categoryItem.CategoryID, selectedLanguage).Name}") + " " + name;
 
@@ -40,10 +46,10 @@ namespace RudycommerceLibrary.BL
                     {
                         categoryItem = GetParentCategory(categoryItem.ParentID);
                         name = "- " + name;
-                        continueDoWhile = true;
+                        parentsLeft = true;
                     }
 
-                } while (continueDoWhile);
+                } while (parentsLeft);
 
                 parentList.Add(new CategoryItem()
                 {
@@ -51,6 +57,11 @@ namespace RudycommerceLibrary.BL
                     Name = name
                 });
             }
+
+            parentList.OrderBy(ppc => ppc.Name).ToList();
+
+            // adds an 'empty' parent (at the start of the list)~§, with no categoryID, for when there is no parent
+            parentList.Insert(0, new CategoryItem() { CategoryID = null, Name = "NO-ML No parent" });
 
             return parentList;
         }
@@ -60,31 +71,42 @@ namespace RudycommerceLibrary.BL
             return DAL_ProductCategory.GetParentCategory(parentID);
         }
 
-        public static void Save(ProductCategory productCategoryModel, LocalizedProductCategory localizedProductCategoryModel)
+        public static void Save(ProductCategory productCategoryModel, List<LanguageAndCategoryItem> languageAndCategoryList)
         {
             if (productCategoryModel.IsNew())
             {
-                Create(productCategoryModel, localizedProductCategoryModel);
-            }
-            else
-            {
-                Update(productCategoryModel, localizedProductCategoryModel);
+                Create(productCategoryModel, languageAndCategoryList);
             }
         }
+
+
+
+
+        //public static void Save(ProductCategory productCategoryModel, LocalizedProductCategory localizedProductCategoryModel)
+        //{
+        //    if (productCategoryModel.IsNew())
+        //    {
+        //        Create(productCategoryModel, localizedProductCategoryModel);
+        //    }
+        //    else
+        //    {
+        //        Update(productCategoryModel, localizedProductCategoryModel);
+        //    }
+        //}
 
         public static LocalizedProductCategory GetLocalizedProductCategory(int categoryID, Language language)
         {
             return DAL_ProductCategory.GetLocalizedProductCategory(categoryID, language);
         }
 
-        private static void Update(ProductCategory productCategoryModel, LocalizedProductCategory localizedProductCategoryModel)
+        private static void Update(ProductCategory productCategoryModel, List<LanguageAndCategoryItem> languageAndCategoryList)
         {
             throw new NotImplementedException();
         }
 
-        private static void Create(ProductCategory productCategoryModel, LocalizedProductCategory localizedProductCategoryModel)
+        private static void Create(ProductCategory productCategoryModel, List<LanguageAndCategoryItem> languageAndCategoryList)
         {
-            DAL_ProductCategory.Create(productCategoryModel, localizedProductCategoryModel);
+            DAL_ProductCategory.Create(productCategoryModel, languageAndCategoryList);
         }
     }
 }

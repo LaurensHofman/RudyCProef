@@ -16,21 +16,46 @@
     </UserControl.Resources>
 
     <Grid x:Name="grdCategoryForm">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="126*"/>
+            <RowDefinition Height="323*"/>
+        </Grid.RowDefinitions>
         <Label x:Name="lblCategoryFormTitle" FontWeight = "Bold" FontSize="16" Content ="{DynamicResource ResourceKey=EMPTY}" Margin="10,10,10,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="38" VerticalAlignment="Top"/>
-        <Label x:Name="lblNameDefaultLanguage" Content="NO-ML Name in default language (NO-ML AND NOT CODED 'ENGLISH'):" Margin="10,53,240,223"/>
-        <Label x:Name="lblParent" Content="NO-ML Parent:" Margin="10,213,240,63"/>
+        <!--<Label x:Name="lblNameDefaultLanguage" Content="NO-ML Name in default language (NO-ML AND NOT CODED 'ENGLISH'):" Margin="10,53,240,222.6" Grid.RowSpan="2"/>-->
+        <Label x:Name="lblParent" Content="NO-ML Parent:" Margin="10,9.7,240,139.6" Grid.Row="1"/>
 
+        <!--<TextBox x:Name="txtNameDefaultLanguage" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="10,82,0,0" TextWrapping="Wrap" Text="{Binding Path=LocalizedProductCategoryModel.Name}" VerticalAlignment="Top" Width="280"/>-->
 
-
-        <TextBox x:Name="txtNameDefaultLanguage" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="10,82,0,0" TextWrapping="Wrap" Text="{Binding Path=LocalizedProductCategoryModel.Name}" VerticalAlignment="Top" Width="280"/>
-
-        <ComboBox x:Name="cmbxParent" Margin="10,260,154.857,0" VerticalAlignment="Top" Height="30"
+        <ComboBox x:Name="cmbxParent" Margin="10,43.7,405,0" VerticalAlignment="Top" Height="30"
                   ItemsSource="{Binding Path=PotentialParents}"
                   DisplayMemberPath="Name"
                   SelectedValuePath="CategoryID"
-                  SelectedValue="{Binding Path=ProductCategoryModel.ParentID}" FontSize="16"/>
+                  SelectedValue="{Binding Path=ProductCategoryModel.ParentID}" FontSize="16" Grid.Row="1"/>
 
-        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Height="19" Margin="238,350,0,0" VerticalAlignment="Top" Width="62" IsDefault="True" Click="btnSubmit_Click" />
+        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Height="19" Margin="593,294.6,0,0" VerticalAlignment="Top" Width="62" IsDefault="True" Click="btnSubmit_Click" Grid.Row="1" />
 
+        <StackPanel Margin="10,9.6,0,-1.4" Grid.Row="1">
+            <DataGrid Name="dgLocalizedCategories" Margin="10,105.6,0,0" AutoGenerateColumns="False" CanUserAddRows="False" Height="147"
+                  CanUserSortColumns="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="406" Grid.Row="1">
+                <DataGrid.Columns>
+
+                    <!--<DataGridTemplateColumn Header="NO-ML Language" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox x:Name="cmbxDgLanguages" DisplayMemberPath="Name" Loaded="cmbxDgLanguages_Loaded"
+                                          SelectedValuePath="LanguageID" SelectedValue="{Binding Path=LanguageID}">
+
+                                </ComboBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+
+
+                    <DataGridTextColumn Binding="{Binding Path=LanguageName}" Header="NO-ML Lang Name" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Path=CategoryName}" Header="NO-ML Name" Width="*"/>
+                </DataGrid.Columns> 
+            </DataGrid>
+            <!--<Button x:Name="btnAddDataGridRow" Margin="10,0,0,0" Width="40" HorizontalAlignment="Left" Click="btnAddDataGridRow_Click">+</Button>-->
+        </StackPanel>
     </Grid>
 </UserControl>

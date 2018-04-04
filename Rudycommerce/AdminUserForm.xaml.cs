@@ -84,6 +84,11 @@ namespace Rudycommerce
         {
             if (rbPreferNL.IsChecked == true)
             {
+                //
+                //
+                // The 2 languages have to be added here already - ADD TRYCATCH
+                //
+                //
                 NewDesktopUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "Nederlands").LanguageID;
                 SetLanguageDictionary(NewDesktopUser.PreferredLanguage);
             }

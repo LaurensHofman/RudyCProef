@@ -1,4 +1,5 @@
-﻿using RudycommerceLibrary.BL;
+﻿using RudycommerceLibrary;
+using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Utilities.Validations;
 using System;
@@ -29,17 +30,17 @@ namespace Rudycommerce
     {
         public Language Model { get; private set; }
 
-        public LanguageForm(Language selectedLanguage) : this(new Language(), selectedLanguage) { }
+        public LanguageForm() : this(new Language()) { }
 
-        public LanguageForm(Language model, Language selectedLanguage)
+        public LanguageForm(Language model)
         {
             InitializeComponent();
 
             this.DataContext = this;
 
             this.Model = model;
-
-            SetLanguageDictionary(selectedLanguage);
+            
+            SetLanguageDictionary(Settings.UserLanguage);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

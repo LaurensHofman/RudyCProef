@@ -1,4 +1,5 @@
-﻿using RudycommerceLibrary.BL;
+﻿using RudycommerceLibrary;
+using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,31 +24,28 @@ namespace Rudycommerce
     /// </summary>
     public partial class NavigationWindow : RibbonWindow
     {
-        int _currentUserID = 0;
-        Language _preferredLanguage;
-
         public NavigationWindow(int currentUserID)
         {
             InitializeComponent();
-            _currentUserID = currentUserID;
+            Settings.SetDesktopUser(currentUserID);
 
-            SetLanguage(currentUserID);
-            EnableUserTab(currentUserID);
+            SetLanguage();
+            EnableUserTab();
         }
 
-        private void EnableUserTab(int currentUserID)
+        private void EnableUserTab()
         {
-            if (BL_DesktopUser.IsUserAdmin(currentUserID))
+            if (Settings.CurrentUser.IsAdmin == true)
             {
                 rtabUsers.IsEnabled = true;
                 rtabUsers.Visibility = Visibility.Visible;
             }
         }
 
-        private void SetLanguage(int currentUserID)
+        private void SetLanguage()
         {
-            _preferredLanguage = BL_DesktopUser.UserPreferredLanguage(currentUserID);
-            SetLanguageDictionary(_preferredLanguage);
+            Settings.UserLanguage = BL_DesktopUser.UserPreferredLanguage(Settings.CurrentUser.UserID);
+            SetLanguageDictionary(RudycommerceLibrary.Settings.UserLanguage);
         }
         
         private void SetLanguageDictionary(Language selectedLanguage)
@@ -61,22 +59,22 @@ namespace Rudycommerce
         
         private void rbtnAddLanguage_Click(object sender, RoutedEventArgs e)
         {
-            navigationControl.Content = new LanguageForm(_preferredLanguage);
+            navigationControl.Content = new LanguageForm();
         }
 
         private void rbtnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            navigationControl.Content = new NewProductForm(_preferredLanguage);
+            navigationControl.Content = new NewProductForm();
         }
 
         private void rbtnOverviewLanguage_Click(object sender, RoutedEventArgs e)
         {
-            navigationControl.Content = new LanguageOverview(_preferredLanguage);
+            navigationControl.Content = new LanguageOverview();
         }
 
         private void ramiManageCurrentAccount_Click(object sender, RoutedEventArgs e)
         {
-            var _settings = new ManageAccount(_currentUserID);
+            var _settings = new ManageAccount();
             _settings.OnAccountSave += ApplySettings;
 
             navigationControl.Content = _settings;
@@ -84,14 +82,15 @@ namespace Rudycommerce
 
         private void ApplySettings(Language selectedLanguage)
         {
-            _preferredLanguage = selectedLanguage;
-            SetLanguageDictionary(selectedLanguage);
+            Settings.UserLanguage = selectedLanguage;
+            
+            SetLanguageDictionary(RudycommerceLibrary.Settings.UserLanguage);
             navigationControl.Content = null;
         }
 
         private void rbtnUserOverview_Click(object sender, RoutedEventArgs e)
         {
-            UserOverview _userOverview = new UserOverview(_preferredLanguage);
+            UserOverview _userOverview = new UserOverview();
             _userOverview.LostAdminRights += LogOut;
 
             navigationControl.Content = _userOverview;
@@ -107,7 +106,12 @@ namespace Rudycommerce
 
         private void rbtnAddCategory_Click(object sender, RoutedEventArgs e)
         {
-            navigationControl.Content = new CategoryForm(_preferredLanguage);
+            navigationControl.Content = new CategoryForm();
+        }
+
+        private void rbtnAddSpecificProductProperty_Click(object sender, RoutedEventArgs e)
+        {
+            navigationControl.Content = new SpecificProductPropertyForm();
         }
     }
 }
