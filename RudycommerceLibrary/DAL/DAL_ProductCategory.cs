@@ -7,20 +7,20 @@ using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
+using RudycommerceLibrary.Models;
 
 namespace RudycommerceLibrary.DAL
 {
     public static class DAL_ProductCategory
     {
-        public static void Create(ProductCategory productCategoryModel, List<Models.LanguageAndCategoryItem> languageAndCategoryList)
+        public static void Create(ProductCategory productCategoryModel, List<Models.LanguageAndCategoryItem> languageAndCategoryList, List<PropertyAndCategoryItem> propertyAndCategoriesList)
         {
             var ctx = AppDBContext.Instance();
 
             ctx.ProductCategories.Add(productCategoryModel);
+            
 
-            // Language And Category Item/List houdt gewoon wat extra informatie in, dat ik makkelijker kon binden met m'n datagrid
-            // (eigenlijk zoals een view in mssql, zodat de taalnaam ook te zien was in de datagrid)
-            foreach (Models.LanguageAndCategoryItem item in languageAndCategoryList)
+            foreach (LanguageAndCategoryItem item in languageAndCategoryList)
             {
                 LocalizedProductCategory localCategory = new LocalizedProductCategory();
 
@@ -29,6 +29,17 @@ namespace RudycommerceLibrary.DAL
                 localCategory.Name = item.CategoryName;
 
                 ctx.LocalizedProductCategories.Add(localCategory);
+            }
+
+            foreach (PropertyAndCategoryItem item in propertyAndCategoriesList)
+            {
+                Category_SpecificProductProperties categoryProperties = new Category_SpecificProductProperties();
+
+                categoryProperties.CategoryID = productCategoryModel.CategoryID;
+                categoryProperties.SpecificProductPropertyID = item.PropertyID;
+                categoryProperties.IsRequired = item.IsRequired;
+
+                ctx.Category_SpecificProductProperties.Add(categoryProperties);
             }
 
             ctx.SaveChanges();

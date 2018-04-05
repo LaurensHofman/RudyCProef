@@ -28,6 +28,7 @@ namespace RudycommerceLibrary
         public DbSet<Category_SpecificProductProperties> Category_SpecificProductProperties { get; set; }
         public DbSet<Product_SpecificProductProperties> Product_SpecificProductProperties { get; set; }
         public DbSet<Localized_Product_SpecificProductProperties> Localized_Product_SpecificProductProperties { get; set; }
+         
         #endregion
 
         private static AppDBContext _instance;

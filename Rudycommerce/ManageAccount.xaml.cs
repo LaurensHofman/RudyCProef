@@ -33,7 +33,7 @@ namespace Rudycommerce
         {
             InitializeComponent();
 
-            _preferredLanguage = BL_Language.GetLanguageByID(Settings.CurrentUser.UserID);
+            _preferredLanguage = BL_Language.GetLanguageByID(Settings.UserLanguage.LanguageID);
             _languageList = BL_Language.GetDesktopLanguages();
 
             SelectRadioButtonByLanguage();

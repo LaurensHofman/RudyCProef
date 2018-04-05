@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Models;
 
@@ -21,6 +22,11 @@ namespace RudycommerceLibrary.BL
         private static void Create(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList)
         {
             DAL.DAL_SpecificProductProperty.Create(specificProductPropertyModel, languageAndSpecificPropertyList);
+        }
+
+        public static List<PropertyAndName> GetListWithNames(Language userLanguage)
+        {
+            return DAL.DAL_SpecificProductProperty.GetListWithNames(userLanguage);
         }
     }
 }

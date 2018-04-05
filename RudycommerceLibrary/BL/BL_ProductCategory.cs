@@ -71,11 +71,11 @@ namespace RudycommerceLibrary.BL
             return DAL_ProductCategory.GetParentCategory(parentID);
         }
 
-        public static void Save(ProductCategory productCategoryModel, List<LanguageAndCategoryItem> languageAndCategoryList)
+        public static void Save(ProductCategory productCategoryModel, List<LanguageAndCategoryItem> languageAndCategoryList, List<PropertyAndCategoryItem> propertyAndCategoriesList)
         {
             if (productCategoryModel.IsNew())
             {
-                Create(productCategoryModel, languageAndCategoryList);
+                Create(productCategoryModel, languageAndCategoryList, propertyAndCategoriesList);
             }
         }
 
@@ -104,9 +104,9 @@ namespace RudycommerceLibrary.BL
             throw new NotImplementedException();
         }
 
-        private static void Create(ProductCategory productCategoryModel, List<LanguageAndCategoryItem> languageAndCategoryList)
+        private static void Create(ProductCategory productCategoryModel, List<LanguageAndCategoryItem> languageAndCategoryList, List<PropertyAndCategoryItem> propertyAndCategoriesList)
         {
-            DAL_ProductCategory.Create(productCategoryModel, languageAndCategoryList);
+            DAL_ProductCategory.Create(productCategoryModel, languageAndCategoryList, propertyAndCategoriesList);
         }
     }
 }

@@ -34,6 +34,10 @@ namespace Rudycommerce
         public List<LocalizedLanguageItem> LanguageList { get; set; }
         public ObservableCollection<LanguageAndCategoryItem> LanguageAndCategoryList { get; set; }
 
+
+        public ObservableCollection<PropertyAndCategoryItem> PropertyAndCategoryList { get; set; }
+
+
         public CategoryForm()
         {
             InitializeComponent();
@@ -72,22 +76,52 @@ namespace Rudycommerce
                 new LanguageAndCategoryItem() { LanguageID = li.ID, LanguageName = li.Name, CategoryName = null });
             }
 
+
+            PropertyAndCategoryList = new ObservableCollection<PropertyAndCategoryItem>();
+
+
             grdCategoryForm.DataContext = this;
 
-            SetDataGridItemsToModelList();            
+            SetDataGridItemsToModelList();
+
+
+            SelectSpecificProductProperty _selectPropertyUC = new SelectSpecificProductProperty();
+            _selectPropertyUC.OnSelectionProperty += AddSelectedProperty;
+
+            ucSpecificProductPropertySelect.Content = _selectPropertyUC; 
+        }
+
+        private void AddSelectedProperty(PropertyAndName propertyAndName)
+        {
+            PropertyAndCategoryList.Add(
+                new PropertyAndCategoryItem
+                {
+                    PropertyID = propertyAndName.PropertyID,
+                    PropertyName = propertyAndName.PropertyName,
+                    IsRequired = true
+                }); 
         }
 
         private void SetDataGridItemsToModelList()
         {
             dgLocalizedCategories.ItemsSource = LanguageAndCategoryList;
             dgLocalizedCategories.DataContext = LanguageAndCategoryList;
+
+            dgCategory_SpecificProductProperty.ItemsSource = PropertyAndCategoryList;
+            dgCategory_SpecificProductProperty.DataContext = PropertyAndCategoryList;
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            BL_ProductCategory.Save(ProductCategoryModel, LanguageAndCategoryList.ToList());
+            BL_ProductCategory.Save(ProductCategoryModel, LanguageAndCategoryList.ToList(), PropertyAndCategoryList.ToList());
             Console.Beep();
         }
+
+
+
+
+
+
 
         //private void btnAddDataGridRow_Click(object sender, RoutedEventArgs e)
         //{

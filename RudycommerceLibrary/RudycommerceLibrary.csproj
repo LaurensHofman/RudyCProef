@@ -84,10 +84,16 @@
     <Compile Include="Migrations\201804041506146_SpecProdPropIsML.Designer.cs">
       <DependentUpon>201804041506146_SpecProdPropIsML.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804051355024_category_properties_is_required.cs" />
+    <Compile Include="Migrations\201804051355024_category_properties_is_required.Designer.cs">
+      <DependentUpon>201804051355024_category_properties_is_required.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryItem.cs" />
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
     <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
     <Compile Include="Models\LocalizedLanguageItem.cs" />
+    <Compile Include="Models\PropertyAndCategoryItem.cs" />
+    <Compile Include="Models\PropertyAndName.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utilities\MessageBoxManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804041506146_SpecProdPropIsML.resx">
       <DependentUpon>201804041506146_SpecProdPropIsML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804051355024_category_properties_is_required.resx">
+      <DependentUpon>201804051355024_category_properties_is_required.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
