@@ -71,5 +71,6 @@
         </WrapPanel>
         <Button x:Name="btnNewUser" Margin="170,230,9.6,10.4" Content="{DynamicResource ResourceKey=NewUser}" Click="btnNewUser_Click"/>
         <Button x:Name="btnLazy" Click="btnLazy_Click" IsDefault="True" Content="FOR THE LAZY" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Margin="180,185,0,0"/>
+        <Image Margin="0,119,149.6,75.4" Source="Resources/Icons/32_EN.png" MouseEnter="Image_MouseEnter"></Image>
     </Grid>
 </Window>

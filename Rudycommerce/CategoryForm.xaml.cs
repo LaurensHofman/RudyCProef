@@ -117,12 +117,6 @@ namespace Rudycommerce
             Console.Beep();
         }
 
-
-
-
-
-
-
         //private void btnAddDataGridRow_Click(object sender, RoutedEventArgs e)
         //{
         //    bool allowNewDataGridRow = true;

@@ -48,7 +48,7 @@
                 </DataGridTemplateColumn>-->
 
 
-                <DataGridTextColumn Binding="{Binding Path=LanguageName}" Header="NO-ML Lang Name" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=LanguageName}" IsReadOnly="True" Header="NO-ML Lang Name" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Path=CategoryName}" Header="NO-ML Name" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

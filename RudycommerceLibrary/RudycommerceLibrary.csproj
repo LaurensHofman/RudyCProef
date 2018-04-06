@@ -88,6 +88,14 @@
     <Compile Include="Migrations\201804051355024_category_properties_is_required.Designer.cs">
       <DependentUpon>201804051355024_category_properties_is_required.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804060909431_IsBoolProdProp.cs" />
+    <Compile Include="Migrations\201804060909431_IsBoolProdProp.Designer.cs">
+      <DependentUpon>201804060909431_IsBoolProdProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804060924076_NonMultiLingualValueProdProdProp.cs" />
+    <Compile Include="Migrations\201804060924076_NonMultiLingualValueProdProdProp.Designer.cs">
+      <DependentUpon>201804060924076_NonMultiLingualValueProdProdProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryItem.cs" />
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
     <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
@@ -116,6 +124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804051355024_category_properties_is_required.resx">
       <DependentUpon>201804051355024_category_properties_is_required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804060909431_IsBoolProdProp.resx">
+      <DependentUpon>201804060909431_IsBoolProdProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804060924076_NonMultiLingualValueProdProdProp.resx">
+      <DependentUpon>201804060924076_NonMultiLingualValueProdProdProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

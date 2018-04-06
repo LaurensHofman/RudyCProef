@@ -19,6 +19,9 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         [Column("is_multilingual")]
         public bool IsMultilingual { get; set; }
 
+        [Column("is_bool")]
+        public bool IsBool { get; set; }
+
         public override bool IsNew()
         {
             return this.SpecificProductPropertyID <= 0;

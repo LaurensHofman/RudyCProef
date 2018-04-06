@@ -100,5 +100,10 @@ namespace Rudycommerce
             txtUsername.Text = "laurenshofman";
             btnLogin_Click(null, null);
         }
+
+        private void Image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnLazy_Click(null, null);
+        }
     }
 }

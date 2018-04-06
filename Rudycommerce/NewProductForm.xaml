@@ -32,8 +32,8 @@
                     <TextBox x:Name="txtIronStock" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
                     <TextBox x:Name="txtMaxStock" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
                     <CheckBox x:Name="cbIsActive" Margin="0,30,0,0" IsChecked="True" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Width="50"/>
-                    <!--<Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Create}" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Height="30" Margin="0,30" Click="btnSave_Click"/>-->
                 </StackPanel>
+                    <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Create}" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Height="30" Margin="0,30000"/>
 
                 <StackPanel Grid.Column="0" HorizontalAlignment="Center" Width="200" Margin="-500,60,0,0">
                     <Label x:Name="lblName" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
