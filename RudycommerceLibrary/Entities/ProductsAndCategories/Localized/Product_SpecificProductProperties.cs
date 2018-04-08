@@ -17,7 +17,7 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
         public int SpecificProductPropertyID { get; set; }
                 
         [Column("non_multilingual_value")]
-        public string NonMultiLingualValue { get; set; }
+        public string NonMultilingualValue { get; set; }
 
         public override bool IsNew()
         {

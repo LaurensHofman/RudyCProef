@@ -117,6 +117,11 @@ namespace Rudycommerce
             Console.Beep();
         }
 
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Visibility = Visibility.Collapsed;
+        }
+
         //private void btnAddDataGridRow_Click(object sender, RoutedEventArgs e)
         //{
         //    bool allowNewDataGridRow = true;
@@ -127,7 +132,7 @@ namespace Rudycommerce
         //        //TODO Add validation messages
 
         //        List<int> testListLanguageIDUnique = new List<int>();
-                
+
         //        foreach (LocalizedProductCategory lpc in LocalizedProductCategoryList)
         //        {
         //            if (lpc.Name == null)
@@ -144,7 +149,7 @@ namespace Rudycommerce
         //                }
         //            }
         //            // checks whether the -Select one- option has been chosen once
-                    
+
         //            testListLanguageIDUnique.Add(lpc.LanguageID);
         //        }
 
@@ -174,9 +179,9 @@ namespace Rudycommerce
         //private void cmbxDgLanguages_Loaded(object sender, RoutedEventArgs e)
         //{
         //    ComboBox cmb = (ComboBox)sender;
-            
+
         //    cmb.ItemsSource = LanguageList;
-            
+
         //    if (_rowCounter == 0)
         //    {
         //        cmb.IsEnabled = false;

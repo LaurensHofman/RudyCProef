@@ -45,18 +45,32 @@ namespace RudycommerceLibrary.DAL
             foreach (var property in propertyList)
             {
                 returnList.Add(new PropertyAndName() { PropertyID = property.SpecificProductPropertyID
-                                                    , PropertyName = GetPropertyName(property.SpecificProductPropertyID, userLanguage) });
+                                                    , PropertyName = GetPropertyLookupName(property.SpecificProductPropertyID, userLanguage) });
             }
 
             return returnList;
         }
 
-        private static string GetPropertyName(int specificProductPropertyID, Language userLanguage)
+        public static List<Category_SpecificProductProperties> GetProductPropertiesForCategory(int categoryID)
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.Category_SpecificProductProperties.Where(cspp => cspp.CategoryID == categoryID && cspp.DeletedAt == null).ToList();
+        }
+
+        public static string GetPropertyLookupName(int specificProductPropertyID, Language userLanguage)
         {
             var ctx = AppDBContext.Instance();
 
             return ctx.LocalizedSpecificProductProperties.SingleOrDefault(sProp => sProp.SpecificProductPropertyID == specificProductPropertyID &&
                                                                         sProp.LanguageID == userLanguage.LanguageID).LookupName;
+        }
+        
+        public static SpecificProductProperty GetProductPropertyByID(int specificProductPropertyID)
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.SpecificProductProperties.SingleOrDefault(spp => spp.SpecificProductPropertyID == specificProductPropertyID && spp.DeletedAt == null);
         }
     }
 }

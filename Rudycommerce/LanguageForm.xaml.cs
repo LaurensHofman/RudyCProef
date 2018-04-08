@@ -122,5 +122,10 @@ namespace Rudycommerce
             txbIsActiveError.Text = SiteLanguageValidation.ValidateDefaultActive(cbxIsActive.IsChecked.Value, cbxIsDefault.IsChecked.Value);
         }
         #endregion
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Visibility = Visibility.Collapsed;
+        }
     }
 }

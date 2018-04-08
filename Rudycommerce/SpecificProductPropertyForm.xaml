@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Rudycommerce"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#FF5C5555">
     <Grid x:Name="grdSpecificProductPropertyForm">
         <CheckBox x:Name="cbIsMultilingual" Content="ML" IsChecked="{Binding Path=SpecificProductPropertyModel.IsMultilingual}" Margin="0,0,786,436.6"/>
         <CheckBox x:Name="cbIsBool" Content="Bool" IsChecked="{Binding Path=SpecificProductPropertyModel.IsBool}" Margin="0,50,786,436.6"/>
@@ -31,6 +31,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Height="19" Margin="593,294.6,0,0" VerticalAlignment="Top" Width="62" IsDefault="True" Click="btnSubmit_Click"/>
-
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="btnCancel_Click"/>
     </Grid>
 </UserControl>

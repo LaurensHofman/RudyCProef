@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:Rudycommerce"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1200"
-             Background="White">
+             Background="#FF5C5555">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -16,80 +17,60 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
-        <ScrollViewer>
-            <Grid x:Name="grdNewProductForm">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Grid.Column="0" Margin="0,60,0,0" HorizontalAlignment="Center">
-                    <TextBox x:Name="txtName" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="300" />
-                    <TextBox x:Name="txtDescription" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="120" Width="300" TextWrapping="Wrap" AcceptsReturn="True"/>
-                    <TextBox x:Name="txtPrice" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtInitialStock" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtIronStock" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <TextBox x:Name="txtMaxStock" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="50" />
-                    <CheckBox x:Name="cbIsActive" Margin="0,30,0,0" IsChecked="True" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Width="50"/>
-                </StackPanel>
-                    <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Create}" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Height="30" Margin="0,30000"/>
-
-                <StackPanel Grid.Column="0" HorizontalAlignment="Center" Width="200" Margin="-500,60,0,0">
-                    <Label x:Name="lblName" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                        <TextBlock Text="{DynamicResource ResourceKey=ProductName}"/>
-                        <TextBlock Text=": "/>
-                    </TextBlock>
-                    </Label>
-                    <Label x:Name="lblDescription" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="120">
-                        <TextBlock>
-                        <TextBlock Text="{DynamicResource ResourceKey=Description}"/>
-                        <TextBlock Text=": "/>
-                    </TextBlock>
-                    </Label>
-                    <Label x:Name="lblPrice" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                        <TextBlock Text="{DynamicResource ResourceKey=UnitPrice}"/>
-                        <TextBlock Text=": "/>
-                    </TextBlock>
-                    </Label>
-                    <Label x:Name="lblInitialStock" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                        <TextBlock Text="{DynamicResource ResourceKey=InitialStock}"/>
-                        <TextBlock Text=": "/>
-                    </TextBlock>
-                    </Label>
-                    <Label x:Name="lblIronStock" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                        <TextBlock Text="{DynamicResource ResourceKey=IronStock}"/>
-                        <TextBlock Text=": "/>
-                    </TextBlock>
-                    </Label>
-                    <Label x:Name="lblMaxStock" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30">
-                        <TextBlock>
-                        <TextBlock Text="{DynamicResource ResourceKey=MaxStock}"/>
-                        <TextBlock Text=": "/>
-                    </TextBlock>
-                    </Label>
-                    <Label x:Name="lblIsActive" Content="{DynamicResource ResourceKey=IsProductActive}" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Height="30"/>
-
-                </StackPanel>
-
-                <ComboBox x:Name="cmbxProductType" Grid.Column="1" VerticalAlignment="Top" SelectedValue="Content" HorizontalAlignment="Center" Width="300" Height="30" Margin="0,90,0,0"/>
-                <Label x:Name="lblTypeOfProduct" Margin="0,90,450,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Center" Height="30" Grid.Column="1" Width="141">
-                    <TextBlock>
-                        <TextBlock Text="{DynamicResource ResourceKey=TypeOfProduct}"/>
-                        <TextBlock Text=": "/>
-                    </TextBlock>
-                </Label>
-
-            </Grid>
-        </ScrollViewer>
-        <Grid Height="85" VerticalAlignment="Top" Background="White">
-            <Label x:Name="lblTitle" Content="Placeholder (TITLE IN CODE)" FontSize="20" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
-            <Label x:Name="lblDefaultLanguage" Content="NO-ML Current default language:" FontSize="16" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0"/>
-            <Separator BorderThickness="1" BorderBrush="DarkGray" Margin="80,75,80,0" VerticalAlignment="Top"/>
-        </Grid>
+    <Grid x:Name="grdNewProductForm" Margin="0,20,0,0">
+        <Controls:MetroAnimatedSingleRowTabControl x:Name="AnimatedTabControl" HorizontalAlignment="Stretch">
+            <TabItem x:Name="tabItemGeneral" Header="NO-ML General" Controls:ControlsHelper.HeaderFontSize="22" 
+                     VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0">
+                <Grid x:Name="grdGeneral" VerticalAlignment="Top">
+                    <StackPanel>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <StackPanel>
+                                <Label HorizontalAlignment="Right" Margin="0,30,0,0">NO-ML Select category:</Label>
+                                <Label HorizontalAlignment="Right" Margin="0,30,0,0">NO-ML Initial stock:</Label>
+                                <Label HorizontalAlignment="Right" Margin="0,30,0,0">NO-ML Unit price (€):</Label>
+                                <Label HorizontalAlignment="Right" Margin="0,30,0,0">NO-ML Is product active?:</Label>
+                            </StackPanel>
+                            <StackPanel>
+                                <ComboBox x:Name="cmbxCategories" Margin="0,30,0,0" Width="200"
+                                            ItemsSource="{Binding Path=CategoryItemList}"
+                                            DisplayMemberPath="Name"
+                                            SelectedValuePath="CategoryID"
+                                            SelectedValue="{Binding Path=ProductModel.CategoryID}" SelectionChanged="cmbxCategories_SelectionChanged"/>
+                                <TextBox Text="{Binding Path=ProductModel.InitialStock}" HorizontalAlignment="Left" Margin="0,30,0,0" Width="50"/>
+                                <TextBox Text="{Binding Path=ProductModel.UnitPrice}" HorizontalAlignment="Left" Margin="0,30,0,0" Width="50"/>
+                                <CheckBox IsChecked="{Binding Path=ProductModel.IsActive}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,30,0,0" Height="30" Width="50"/>
+                            </StackPanel>
+                        </WrapPanel>
+                        <WrapPanel Margin="0,100,0,0" HorizontalAlignment="Center">
+                            <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
+                            <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
+                            <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
+                            <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
+                        </WrapPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabItemMultilingualProperties" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,0,-20,0" 
+                     Header="NO-ML Multilingual properties" Controls:ControlsHelper.HeaderFontSize="22">
+                <Grid x:Name="grdMultilingualProperties" VerticalAlignment="Top"  Margin="0,20,0,0">
+                    <Controls:MetroAnimatedSingleRowTabControl x:Name="TabControlLanguages" HorizontalAlignment="Center">
+                        <!-- content will be created in c# code -->
+                    </Controls:MetroAnimatedSingleRowTabControl>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabItemNonMultilingualProperties" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="40,0,-40,0"
+                     Header="NO-ML Generic language properties" Controls:ControlsHelper.HeaderFontSize="22">
+                <Grid x:Name="grdNonMultilingualProperties" VerticalAlignment="Top" Margin="0,20,0,0" HorizontalAlignment="Center">
+                    <WrapPanel HorizontalAlignment="Center">
+                        <StackPanel x:Name="NonMLStackLeftLabels"></StackPanel>
+                        <StackPanel x:Name="NonMLStackRightInput"></StackPanel>
+                    </WrapPanel>                    
+                </Grid>
+            </TabItem>
+        </Controls:MetroAnimatedSingleRowTabControl>
+        <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button x:Name="btnSubmit" Click="btnSubmit_Click">NO-ML Save</Button>
+            <Button x:Name="btnCancel" Click="btnCancel_Click">NO-ML Cancel</Button>
+        </WrapPanel>
     </Grid>
 </UserControl>

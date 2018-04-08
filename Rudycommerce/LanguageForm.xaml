@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Rudycommerce"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1200"
-             Background="White">
+             Background="#FF5C5555">
 
 
     <UserControl.Resources>
@@ -67,6 +67,7 @@
             <TextBlock x:Name="txbIsActiveError" VerticalAlignment="Top" Width="300" Foreground="Red" Height="30" Margin="0,30,0,0"/>
             <TextBlock x:Name="txbIsDefaultError" VerticalAlignment="Top" Width="300" Foreground="Red" Height="30" Margin="0,30,0,0"/>
         </StackPanel>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="btnCancel_Click"/>
 
     </Grid>
 </UserControl>

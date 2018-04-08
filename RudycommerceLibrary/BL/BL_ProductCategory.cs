@@ -66,6 +66,24 @@ namespace RudycommerceLibrary.BL
             return parentList;
         }
 
+        public static List<CategoryItem> GetCategoryNameWithID(Language userLanguage)
+        {
+            List<ProductCategory> categoryList = DAL_ProductCategory.GetAll();
+
+            List<CategoryItem> categoryItemList = new List<CategoryItem>();
+
+            foreach (ProductCategory category in categoryList)
+            {
+                categoryItemList.Add(new CategoryItem
+                {
+                    CategoryID = category.CategoryID,
+                    Name = GetLocalizedProductCategory(category.CategoryID, userLanguage).Name
+                });
+            }
+
+            return categoryItemList;
+        }
+
         private static ProductCategory GetParentCategory(int? parentID)
         {
             return DAL_ProductCategory.GetParentCategory(parentID);

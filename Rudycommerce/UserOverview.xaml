@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Rudycommerce"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="900">
+             d:DesignHeight="600" d:DesignWidth="900" Background="#FF5C5555">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -17,30 +17,39 @@
             
             <Style x:Key="LastNameDG" TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="Content" Value="{DynamicResource ResourceKey=LastName}" />
+                <Setter Property="Background" Value="#FF5C5555"/>
             </Style>
 
             <Style x:Key="FirstNameDG" TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="Content" Value="{DynamicResource ResourceKey=FirstName}"/>
+                <Setter Property="Background" Value="#FF5C5555"/>
             </Style>
 
             <Style x:Key="IsAdminDG" TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="Content" Value="{DynamicResource ResourceKey=Administrator}" />
+                <Setter Property="Background" Value="#FF5C5555"/>
             </Style>
 
             <Style x:Key="EmailDG" TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="Content" Value="{DynamicResource ResourceKey=Email}" />
+                <Setter Property="Background" Value="#FF5C5555"/>
             </Style>
 
             <Style x:Key="UsernameDG" TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="Content" Value="{DynamicResource ResourceKey=Username}" />
+                <Setter Property="Background" Value="#FF5C5555"/>
             </Style>
 
+            <Style x:Key="ButtonHeader" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Background" Value="#FF5C5555"/>
+            </Style>
+            
         </ResourceDictionary>
        
     </UserControl.Resources>
 
     <Grid>
-        <DataGrid Name="dgrdUserOverview" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" AlternatingRowBackground="LightGray" RowEditEnding="dgrdUserOverview_RowEditEnding" AlternationCount="2">
+        <DataGrid Name="dgrdUserOverview" Margin="0,0,0,30" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" AlternatingRowBackground="LightGray" RowEditEnding="dgrdUserOverview_RowEditEnding" AlternationCount="2">
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=LastNameDG}" Binding="{Binding Path=LastName}"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=FirstNameDG}" Binding="{Binding Path=FirstName}"/>
@@ -48,7 +57,7 @@
                 <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=EmailDG}" Binding="{Binding Path=EMail}"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource ResourceKey=UsernameDG}" Binding="{Binding Path=Username}"/>
 
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn HeaderStyle="{StaticResource ResourceKey=ButtonHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnMakeUserAdmin" Content="{DynamicResource ResourceKey=MakeUserAdmin}" Click="btnMakeUserAdmin_Click">
@@ -65,8 +74,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
-                <DataGridTemplateColumn>
+
+                <DataGridTemplateColumn HeaderStyle="{StaticResource ResourceKey=ButtonHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnDeleteUser" Content="{DynamicResource ResourceKey=DeleteUser}" Click="btnDeleteUser_Click">
@@ -83,8 +92,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
-                <DataGridTemplateColumn>
+
+                <DataGridTemplateColumn HeaderStyle="{StaticResource ResourceKey=ButtonHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnVerifyByAdmin" Background="Black" Foreground="Yellow" FontWeight="ExtraBold" Click="btnVerifyByAdmin_Click" Content="{DynamicResource ResourceKey=VerifyUser}">
@@ -107,5 +116,6 @@
                 
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="btnCancel_Click"/>
     </Grid>
 </UserControl>

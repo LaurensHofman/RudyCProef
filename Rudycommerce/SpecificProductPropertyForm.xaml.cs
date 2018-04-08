@@ -80,5 +80,10 @@ namespace Rudycommerce
             BL_SpecificProductProperty.Save(SpecificProductPropertyModel, LanguageAndSpecificPropertyList.ToList());
             Console.Beep();
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Visibility = Visibility.Collapsed;
+        }
     }
 }

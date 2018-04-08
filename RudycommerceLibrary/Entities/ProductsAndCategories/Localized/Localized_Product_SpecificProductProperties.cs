@@ -20,7 +20,7 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
         public int LanguageID { get; set; }
 
         [Column("property_value")]
-        public int PropertyValue { get; set; }
+        public string PropertyValue { get; set; }
 
         public override bool IsNew()
         {

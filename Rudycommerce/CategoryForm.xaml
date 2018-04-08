@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Rudycommerce"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#FF5C5555">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -30,7 +30,7 @@
                   SelectedValue="{Binding Path=ProductCategoryModel.ParentID}" FontSize="16" Grid.Row="1" HorizontalAlignment="Left" Width="385"/>
 
         <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Height="19" Margin="157,295,0,0" VerticalAlignment="Top" Width="62" IsDefault="True" Click="btnSubmit_Click" />
-
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="btnCancel_Click"/>
 
         <DataGrid Name="dgLocalizedCategories" Margin="10,105.6,0,0" AutoGenerateColumns="False" CanUserAddRows="False" Height="147"
                 CanUserSortColumns="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="371" Grid.Row="1">

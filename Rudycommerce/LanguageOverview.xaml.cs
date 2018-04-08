@@ -98,5 +98,10 @@ namespace Rudycommerce
 
             BindData();
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Visibility = Visibility.Collapsed;
+        }
     }
 }

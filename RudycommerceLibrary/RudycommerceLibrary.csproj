@@ -96,10 +96,15 @@
     <Compile Include="Migrations\201804060924076_NonMultiLingualValueProdProdProp.Designer.cs">
       <DependentUpon>201804060924076_NonMultiLingualValueProdProdProp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804071555042_loc_prod_specprodprop_valueChangedToString.cs" />
+    <Compile Include="Migrations\201804071555042_loc_prod_specprodprop_valueChangedToString.Designer.cs">
+      <DependentUpon>201804071555042_loc_prod_specprodprop_valueChangedToString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryItem.cs" />
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
     <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
     <Compile Include="Models\LocalizedLanguageItem.cs" />
+    <Compile Include="Models\NecessaryProductProperties.cs" />
     <Compile Include="Models\PropertyAndCategoryItem.cs" />
     <Compile Include="Models\PropertyAndName.cs" />
     <Compile Include="Settings.cs" />
@@ -130,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804060924076_NonMultiLingualValueProdProdProp.resx">
       <DependentUpon>201804060924076_NonMultiLingualValueProdProdProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804071555042_loc_prod_specprodprop_valueChangedToString.resx">
+      <DependentUpon>201804071555042_loc_prod_specprodprop_valueChangedToString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
