@@ -58,19 +58,7 @@
     <system:String x:Key="DeleteUser">Delete user</system:String>
     <system:String x:Key="MakeUserAdmin">Make user admin</system:String>
     <system:String x:Key="VerifyUser">Verify user</system:String>
-
-    <system:String x:Key="Length">Length (cm)</system:String>
-    <system:String x:Key="Height">Height (cm)</system:String>
-    <system:String x:Key="Width">Width (cm)</system:String>
-    <system:String x:Key="Depth">Depth (cm)</system:String>
-    <system:String x:Key="Weight">Weight (kg)</system:String>
-    <system:String x:Key="MaxResolution">Maximum resolution (dpi)</system:String>
-    <system:String x:Key="ProgrammableButtons">Amount of programmable buttons</system:String>
-    <system:String x:Key="FunctionKeys">Amount of function keys</system:String>
-    <system:String x:Key="Layout">Layout</system:String>
-    <system:String x:Key="WearingWay">Wearing way</system:String>
-    <system:String x:Key="IntegratedMicrophone">Integrated microphone</system:String>
-
+    
     <system:String x:Key="EnglishName">English name</system:String>
     <system:String x:Key="DutchName">Dutch name</system:String>
     <system:String x:Key="LocalName">Local name</system:String>

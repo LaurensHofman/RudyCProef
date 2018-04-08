@@ -54,13 +54,7 @@ namespace Rudycommerce
             SetCategoryComboBoxContent();
         }
 
-        private void SetCategoryComboBoxContent()
-        {
-            CategoryItemList = BL_ProductCategory.GetCategoryNameWithID(Settings.UserLanguage);
-
-            //cmbxCategories.DataContext = CategoryItemList;
-            //cmbxCategories.ItemsSource = CategoryItemList;
-        }
+        #region Generate tab content
 
         private void CreateTabsForEachLanguage()
         {
@@ -69,21 +63,23 @@ namespace Rudycommerce
 
             LocalizedLanguageList = BL_Multilingual.GetLocalizedListOfLanguages(Settings.UserLanguage);
 
+            int tabMarginMultiplier = 1;
             foreach (LocalizedLanguageItem langItem in LocalizedLanguageList)
             {
-                CreateLocalizedTab(langItem);
+                CreateLocalizedTab(langItem, tabMarginMultiplier);
+                tabMarginMultiplier += 1;
             }
         }
 
-        private void CreateLocalizedTab(LocalizedLanguageItem langItem)
+        private void CreateLocalizedTab(LocalizedLanguageItem langItem, int tabMarginMultiplier)
         {
-            MetroTabItem tabItem = CreateMetroTabItem(langItem);
+            MetroTabItem tabItem = CreateMetroTabItem(langItem, tabMarginMultiplier);
             Grid tabGrid = new Grid();
 
             WrapPanel wrapForStacks = new WrapPanel();
 
             StackPanel stackPanelLeft = CreateLeftStackPanelForLabels(langItem);
-            StackPanel stackPanelRight = CreateRightStackPanelForInput(langItem);            
+            StackPanel stackPanelRight = CreateRightStackPanelForInput(langItem);
 
             wrapForStacks.Children.Add(stackPanelLeft);
             wrapForStacks.Children.Add(stackPanelRight);
@@ -92,7 +88,7 @@ namespace Rudycommerce
 
             tabItem.Content = tabGrid;
 
-            TabControlLanguages.Items.Add(tabItem);            
+            TabControlLanguages.Items.Add(tabItem);
         }
 
         private StackPanel CreateRightStackPanelForInput(LocalizedLanguageItem langItem)
@@ -140,7 +136,7 @@ namespace Rudycommerce
                     SpecificProductPropertyID = necessaryProperty.PropertyID,
                     LanguageID = langItem.ID
                 };
-                
+
                 TextBox customTextbox = new TextBox
                 {
                     Height = 30,
@@ -185,7 +181,7 @@ namespace Rudycommerce
             {
                 Label customLabel = new Label
                 {
-                    Content = necessaryProperty.LookupName + ":",
+                    Content = necessaryProperty.LookupName + (necessaryProperty.IsRequired ? "* " : "") + ":",
                     Margin = new Thickness { Top = 20 },
                     HorizontalContentAlignment = HorizontalAlignment.Right
                 };
@@ -195,13 +191,13 @@ namespace Rudycommerce
             return stackLeft;
         }
 
-        private MetroTabItem CreateMetroTabItem(LocalizedLanguageItem langItem)
+        private MetroTabItem CreateMetroTabItem(LocalizedLanguageItem langItem, int tabMarginMultiplier)
         {
             MetroTabItem metroTab = new MetroTabItem
             {
                 Header = langItem.Name,
                 Name = $"tab{langItem.ID}",
-                Margin = new Thickness { Left = 20, Right = -20 }
+                Margin = new Thickness { Left = 20 * tabMarginMultiplier, Right = -20 * tabMarginMultiplier }
             };
 
             //https://stackoverflow.com/questions/23377194/overwrite-mahapps-metro-style-for-me-header-tabitem
@@ -217,37 +213,7 @@ namespace Rudycommerce
 
             return metroTab;
         }
-
-        private void SetLanguageDictionary(Language selectedLanguage)
-        {
-            ResourceDictionary dict = new ResourceDictionary();
-
-            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
-
-            this.Resources.MergedDictionaries.Add(dict);
-        }
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            Visibility = Visibility.Collapsed;
-        }
-
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmbxCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            NecessaryProductPropertiesList = BL_SpecificProductProperty
-                .GetNecessaryProductProperties(Settings.UserLanguage , int.Parse(cmbxCategories.SelectedValue.ToString()));
-
-            LocalizedProductList.Clear();
-
-            CreateTabsForEachLanguage();
-            FillNonMultilingualInputTab();
-        }
-
+        
         private void FillNonMultilingualInputTab()
         {
             NonMLStackLeftLabels.Children.Clear();
@@ -296,13 +262,13 @@ namespace Rudycommerce
                     NonMLStackRightInput.Children.Add(customCheckbox);
                     Product_ProductPropertiesList.Add(productProperty);
                 }
-                
+
                 #endregion
 
                 #region Label
                 Label customLabel = new Label
                 {
-                    Content = necessaryProperty.LookupName + ":",
+                    Content = necessaryProperty.LookupName + (necessaryProperty.IsRequired ? " * " : "") + ":",
                     Height = 30,
                     Margin = new Thickness { Top = 20 },
                     HorizontalContentAlignment = HorizontalAlignment.Right
@@ -312,6 +278,47 @@ namespace Rudycommerce
                 #endregion
             }
         }
+
+        #endregion
+        
+        private void SetCategoryComboBoxContent()
+        {
+            CategoryItemList = BL_ProductCategory.GetCategoryNameWithID(Settings.UserLanguage);
+
+            //cmbxCategories.DataContext = CategoryItemList;
+            //cmbxCategories.ItemsSource = CategoryItemList;
+        }        
+
+        private void SetLanguageDictionary(Language selectedLanguage)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+
+            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
+
+            this.Resources.MergedDictionaries.Add(dict);
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Visibility = Visibility.Collapsed;
+        }
+
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            BL_Product.Create(ProductModel, LocalizedProductList, Product_ProductPropertiesList, LocalizedValuesProduct_SpecificProductProperties);
+            Console.Beep();
+        }
+
+        private void cmbxCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            NecessaryProductPropertiesList = BL_SpecificProductProperty
+                .GetNecessaryProductProperties(Settings.UserLanguage , int.Parse(cmbxCategories.SelectedValue.ToString()));
+
+            LocalizedProductList.Clear();
+
+            CreateTabsForEachLanguage();
+            FillNonMultilingualInputTab();
+        }        
     }
 }
 

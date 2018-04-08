@@ -6,7 +6,7 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:Rudycommerce"
         mc:Ignorable="d"
-        Title="NavigationWindow" WindowState="Maximized">
+        Title="{DynamicResource ResourceKey=NavigationWindowTitle}" WindowState="Maximized">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -16,55 +16,65 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
-        <Controls:MetroAnimatedSingleRowTabControl x:Name="AnimatedTabControl" HorizontalAlignment="Stretch" >
-            <TabItem x:Name="tabItemProducts" Header="NO-ML Manage products" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0">
+    <Grid Background="Beige">
+        <Controls:MetroAnimatedSingleRowTabControl x:Name="AnimatedTabControl" Background="Beige" Foreground="Black" HorizontalAlignment="Stretch" >
+            <TabItem x:Name="tabItemProducts" Header="{DynamicResource ResourceKey=ManageProducts}" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0">
                 <Grid x:Name="grdProducts" Background="Beige" VerticalAlignment="Top">
-                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-                        <Controls:Tile x:Name="tabTileAddProduct" Width="150" Height="150" Title="NO-ML Add product" Click="tabTileAddProduct_Click">
-                           NO-ML Add product
-                        </Controls:Tile>
-                        <Controls:Tile x:Name="tabTileAddCategory" Width="150" Height="150" Title="NO-ML Add category" Click="tabTileAddCategory_Click">
-                           NO-ML Add category
-                        </Controls:Tile>
-                        <Controls:Tile x:Name="tabTileAddProductProperty" Width="150" Height="150" Title="NO-ML Add property" Click="tabTileAddProductProperty_Click">
-                           NO-ML Add category
-                        </Controls:Tile>
-                    </WrapPanel>
-                    <ContentControl x:Name="userControlProducts" />
-                </Grid>
-            </TabItem>
-            <TabItem x:Name="tabItemLanguages" Header="NO-ML Manage Languages" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,0,-20,0">
-                <Grid x:Name="grdLanguages" Background="Beige" VerticalAlignment="Top">
-                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-                        <Controls:Tile x:Name="tabTileAddLanguage" Width="150" Height="150" Title="NO-ML Add language" Click="tabTileAddLanguage_Click">
-                           NO-ML Add language
-                        </Controls:Tile>
-                        <Controls:Tile x:Name="tabTileLanguageOverview" Width="150" Height="150" Title="NO-ML Language overview" Click="tabTileLanguageOverview_Click">
-                            NO-ML Language overview
-                        </Controls:Tile>
-                    </WrapPanel>
-                    <ContentControl x:Name="userControlLanguages" />
-                </Grid>
-            </TabItem>
-            <TabItem x:Name="tabItemUsers"  IsEnabled="False" Visibility="Collapsed" Header="NO-ML Users" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,0,-40,0">
-                    <Grid x:Name="grdUsers" Background="Beige" VerticalAlignment="Top">
-                        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-                            <Controls:Tile x:Name="tabTileUserOverview" Width="150" Height="150" Title="NO-ML User overview" Click="tabTileUserOverview_Click">
-                                NO-ML User overview
-                            </Controls:Tile>
+                    <Separator VerticalAlignment="Top" Margin="50,0,50,0"></Separator>
+                    <StackPanel HorizontalAlignment="Stretch" Margin="0,20,0,0" VerticalAlignment="Top">
+                        <WrapPanel Margin="0,0,0,80" HorizontalAlignment="Center">
+                            <Controls:Tile x:Name="tabTileAddProduct" Width="150" Height="150" Title="{DynamicResource ResourceKey=AddProduct}" 
+                                       Click="tabTileAddProduct_Click" Content="//TODO InsertImage" Margin="40,0,40,0"/>
                         </WrapPanel>
-                    <ContentControl x:Name="userControlUsers" />
+                        <Separator Opacity="0.10" Margin="50,-40,50,40"/>
+                        <WrapPanel Margin="0,0,0,80" HorizontalAlignment="Center">
+                            <Controls:Tile x:Name="tabTileAddCategory" Width="150" Height="150" Title="{DynamicResource ResourceKey=AddCategory}" 
+                                       Click="tabTileAddCategory_Click" Content="//TODO InsertImage" Margin="40,0,40,0"/>
+                        </WrapPanel>
+                        <Separator Opacity="0.10" Margin="50,-40,50,40"/>
+                        <WrapPanel Margin="0,0,0,80" HorizontalAlignment="Center">
+                            <Controls:Tile x:Name="tabTileAddProductProperty" Width="150" Height="150" Title="{DynamicResource ResourceKey=AddProductProperty}" 
+                                       Click="tabTileAddProductProperty_Click" Content="//TODO InsertImage" Margin="40,0,40,0"/>
+                        </WrapPanel>        
+                    </StackPanel>
+                    <ContentControl x:Name="userControlProducts" Margin="0,20,0,0" />
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabItemLanguages" Header="{DynamicResource ResourceKey=ManageLanguages}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,0,-20,0">
+                <Grid x:Name="grdLanguages" Background="Beige" VerticalAlignment="Top">
+                    <Separator VerticalAlignment="Top" Margin="50,0,50,0"></Separator>
+                    <StackPanel HorizontalAlignment="Stretch" Margin="0,20,0,0" VerticalAlignment="Top">
+                        <WrapPanel Margin="0,0,0,80" HorizontalAlignment="Center">
+                            <Controls:Tile x:Name="tabTileAddLanguage" Width="150" Height="150" Title="{DynamicResource ResourceKey=AddLanguage}" 
+                                       Click="tabTileAddLanguage_Click" Content="//TODO InsertImage" Margin="40,0,40,0"/>
+                            <Controls:Tile x:Name="tabTileLanguageOverview" Width="150" Height="150" Title="{DynamicResource ResourceKey=LanguageOverview}" 
+                                       Click="tabTileLanguageOverview_Click" Content="//TODO InsertImage" Margin="40,0,40,0"/>
+                        </WrapPanel>
+                    </StackPanel>
+                    <ContentControl x:Name="userControlLanguages" Margin="0,20,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabItemUsers"  IsEnabled="False" Visibility="Collapsed" Header="{DynamicResource ResourceKey=ManageUsers}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,0,-40,0">
+                <Grid x:Name="grdUsers" Background="Beige" VerticalAlignment="Top">
+                    <Separator VerticalAlignment="Top" Margin="50,0,50,0"></Separator>
+                    <StackPanel HorizontalAlignment="Stretch" Margin="0,20,0,0" VerticalAlignment="Top">
+                        <WrapPanel Margin="0,0,0,80" HorizontalAlignment="Center">
+                            <Controls:Tile x:Name="tabTileUserOverview" Width="150" Height="150" Title="{DynamicResource ResourceKey=UserOverview}" 
+                                       Click="tabTileUserOverview_Click" Content="//TODO InsertImage" Margin="40,0,40,0"/>
+                        </WrapPanel>
+                    </StackPanel>
+                    <ContentControl x:Name="userControlUsers" Margin="0,20,0,0" />
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItemSettings" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="60,0,-60,0">
                 <TabItem.Header>
-                    <Button x:Name="btnSettings" Click="btnSettings_Click">
-                        <Image Source="/Resources/Icons/32_NL.png" Height="20" Width="20"/>
+                    <Button x:Name="btnSettings" Click="btnSettings_Click" Background="Beige" BorderThickness="0">
+                        <Image Source="/Resources/Icons/32_CogwheelSettings.png" Height="20" Width="20"/>
                     </Button>
                 </TabItem.Header>
                 <Grid x:Name="grdSettings" Background="Beige" VerticalAlignment="Top">
-                    <ContentControl x:Name="userControlSettings" />
+                    <Separator VerticalAlignment="Top" Margin="50,0,50,0"></Separator>
+                    <ContentControl x:Name="userControlSettings" Margin="0,20,0,0" />
                 </Grid>
             </TabItem>
         </Controls:MetroAnimatedSingleRowTabControl>

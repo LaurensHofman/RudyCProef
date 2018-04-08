@@ -59,17 +59,6 @@
     <system:String x:Key="MakeUserAdmin">Maak gebruiker beheerder</system:String>
     <system:String x:Key="VerifyUser">Verifieer gebruiker</system:String>
 
-    <system:String x:Key="Length">Lengte (cm)</system:String>
-    <system:String x:Key="Height">Hoogte (cm)</system:String>
-    <system:String x:Key="Width">Breedte (cm)</system:String>
-    <system:String x:Key="Depth">Diepte (cm)</system:String>
-    <system:String x:Key="Weight">Gewicht (kg)</system:String>
-    <system:String x:Key="MaxResolution">Maximum resolutie (dpi)</system:String>
-    <system:String x:Key="ProgrammableButtons">Aantal programmeerbare knoppen</system:String>
-    <system:String x:Key="FunctionKeys">Aantal functietoetsen</system:String>
-    <system:String x:Key="Layout">Indeling</system:String>
-    <system:String x:Key="WearingWay">Draagwijze</system:String>
-    <system:String x:Key="IntegratedMicrophone">Geïntegreerde microfoon</system:String>
 
     <system:String x:Key="EnglishName">Engelse naam</system:String>
     <system:String x:Key="DutchName">Nederlandse naam</system:String>
@@ -77,6 +66,32 @@
 
     <system:String x:Key="Manage">Beheer</system:String>
     <system:String x:Key="NewCategory">Nieuwe categorie</system:String>
+    
+    <!--20180408 HERE-->
+    <system:String x:Key="NavigationWindowTitle">Rudycommerce</system:String>
+    <system:String x:Key="AddCategory">Categorie toevoegen</system:String>
+    <system:String x:Key="AddProductProperty">Specifieke product-eigenschappen toevoegen</system:String>
+    
+    
+    
+    <!--<system:String x:Key="NavgationWindowTitle">Rudycommerce</system:String>
+    <system:String x:Key="NavigtionWindowTitle">Rudycommerce</system:String>
+    <system:String x:Key="NavigaionWindowTitle">Rudycommerce</system:String>
+    <system:String x:Key="NavigatonWindowTitle">Rudycommerce</system:String>
+    <system:String x:Key="NavigatinWindowTitle">Rudycommerce</system:String>
+    <system:String x:Key="NavigatioWindowTitle">Rudycommerce</system:String>
+    <system:String x:Key="NavigationindowTitle">Rudycommerce</system:String>
+    <system:String x:Key="NavigationWndowTitle">Rudycommerce</system:String>
+    <system:String x:Key="NavigationWidowTitle">Rudycommerce</system:String>
+    <system:String x:Key="NavigationWinowTitle">Rudycommerce</system:String>
+    <system:String x:Key="NavigationWindwTitle">Rudycommerce</system:String>
+    <system:String x:Key="NavigationWindoTitle">Rudycommerce</system:String>-->
+    
+    
+    
+    
+    
+    
     <!--Datagrid headers worden niet als normale visuals gezien-->
 
     

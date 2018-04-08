@@ -211,5 +211,8 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\32_EN.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\32_CogwheelSettings.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

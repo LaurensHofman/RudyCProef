@@ -54,6 +54,11 @@
                      Header="NO-ML Multilingual properties" Controls:ControlsHelper.HeaderFontSize="22">
                 <Grid x:Name="grdMultilingualProperties" VerticalAlignment="Top"  Margin="0,20,0,0">
                     <Controls:MetroAnimatedSingleRowTabControl x:Name="TabControlLanguages" HorizontalAlignment="Center">
+                        <Controls:MetroAnimatedSingleRowTabControl.Resources>
+                            <Style TargetType="{x:Type TabPanel}">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </Controls:MetroAnimatedSingleRowTabControl.Resources>
                         <!-- content will be created in c# code -->
                     </Controls:MetroAnimatedSingleRowTabControl>
                 </Grid>
