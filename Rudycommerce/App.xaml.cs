@@ -14,6 +14,6 @@ namespace Rudycommerce
     /// </summary>
     public partial class App : Application
     {
-        AppDBContext ctx = AppDBContext.Instance(System.Configuration.ConfigurationManager.ConnectionStrings["AppDbCS"].ConnectionString);
+        AppDBContext ctx = AppDBContext.Instance(ConfigurationManager.ConnectionStrings["AppDbCS"].ConnectionString);
     }
 }

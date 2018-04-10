@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using RudycommerceLibrary;
+using RudycommerceLibrary.Entities;
 
 namespace Rudycommerce
 {
@@ -27,18 +28,22 @@ namespace Rudycommerce
         public delegate void SelectProperty(PropertyAndName propertyAndName);
         public event SelectProperty OnSelectionProperty;
 
-        ObservableCollection<PropertyAndName> PropertyAndNamesList { get; set; }
-
+        
         public SelectSpecificProductProperty()
         {
             InitializeComponent();
 
-            grdSelectSpecificProductProperty.DataContext = this;
+            
+            SetLanguageDictionary(Settings.UserLanguage);
+        }
 
-            PropertyAndNamesList = new ObservableCollection<PropertyAndName>(BL_SpecificProductProperty.GetListWithNames(Settings.UserLanguage));
+        private void SetLanguageDictionary(Language selectedLanguage)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
 
-            dgSelectProperty.ItemsSource = PropertyAndNamesList;
-            dgSelectProperty.DataContext = PropertyAndNamesList;
+            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
+
+            this.Resources.MergedDictionaries.Add(dict);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

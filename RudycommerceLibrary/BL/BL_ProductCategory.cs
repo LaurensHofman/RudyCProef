@@ -14,57 +14,52 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_ProductCategory
     {
-        /// <summary>
-        /// returns a list of all categories
-        /// </summary>
-        /// <param name="selectedLanguage"></param>
-        /// <returns></returns>
-        public static List<CategoryItem> GetPotentialParents(Language selectedLanguage)
-        {
-            var parentList = new List<CategoryItem>();
+        //public static List<CategoryItem> GetPotentialParents(Language selectedLanguage)
+        //{
+        //    var parentList = new List<CategoryItem>();
             
-            // gets all categories
-            List<ProductCategory> _overview = DAL_ProductCategory.GetAll();
+        //    // gets all categories
+        //    List<ProductCategory> _overview = DAL_ProductCategory.GetAll();
             
 
-            foreach (var _item in _overview)
-            {
-                var categoryItem = _item;
+        //    foreach (var _item in _overview)
+        //    {
+        //        var categoryItem = _item;
 
-                int categoryID = _item.CategoryID;
-                string name = "";
+        //        int categoryID = _item.CategoryID;
+        //        string name = "";
 
-                bool parentsLeft = false;
+        //        bool parentsLeft = false;
 
-                do
-                {
-                    parentsLeft = false;
+        //        do
+        //        {
+        //            parentsLeft = false;
 
-                    name = ($"{GetLocalizedProductCategory(categoryItem.CategoryID, selectedLanguage).Name}") + " " + name;
+        //            name = ($"{GetLocalizedProductCategory(categoryItem.CategoryID, selectedLanguage).Name}") + " " + name;
 
-                    if (categoryItem.ParentID != null)
-                    {
-                        categoryItem = GetParentCategory(categoryItem.ParentID);
-                        name = "- " + name;
-                        parentsLeft = true;
-                    }
+        //            if (categoryItem.ParentID != null)
+        //            {
+        //                categoryItem = GetParentCategory(categoryItem.ParentID);
+        //                name = "- " + name;
+        //                parentsLeft = true;
+        //            }
 
-                } while (parentsLeft);
+        //        } while (parentsLeft);
 
-                parentList.Add(new CategoryItem()
-                {
-                    CategoryID = categoryID,
-                    Name = name
-                });
-            }
+        //        parentList.Add(new CategoryItem()
+        //        {
+        //            CategoryID = categoryID,
+        //            Name = name
+        //        });
+        //    }
 
-            parentList.OrderBy(ppc => ppc.Name).ToList();
+        //    parentList.OrderBy(ppc => ppc.Name).ToList();
 
-            // adds an 'empty' parent (at the start of the list)~§, with no categoryID, for when there is no parent
-            parentList.Insert(0, new CategoryItem() { CategoryID = null, Name = "NO-ML No parent" });
+        //    // adds an 'empty' parent (at the start of the list)~§, with no categoryID, for when there is no parent
+        //    parentList.Insert(0, new CategoryItem() { CategoryID = null, Name = "NO-ML No parent" });
 
-            return parentList;
-        }
+        //    return parentList;
+        //}
 
         public static List<CategoryItem> GetCategoryNameWithID(Language userLanguage)
         {

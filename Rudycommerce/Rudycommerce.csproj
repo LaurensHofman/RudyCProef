@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>64_ControllerWhite.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
@@ -226,6 +229,18 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\32_EyeClose.png" />
     <Resource Include="Resources\Icons\32_EyeOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\64_GarbageCan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\64_GarbageCanWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\64_Controller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="64_ControllerWhite.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

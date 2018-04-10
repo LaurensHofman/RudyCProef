@@ -104,6 +104,11 @@ namespace Rudycommerce
 
             SetLanguageDictionary(RudycommerceLibrary.Settings.UserLanguage);
             userControlSettings.Content = null;
+            userControlLanguages.Content = null;
+            userControlProducts.Content = null;
+            userControlUsers.Content = null;
+
+            tabTileAddProduct_Click(null, null);
         }
 
         private void AnimatedTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)

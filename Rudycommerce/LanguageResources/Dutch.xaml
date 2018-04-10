@@ -81,124 +81,20 @@
     <system:String x:Key="MultilingualSpecificProperties">Taalgevoelige specifieke eigenschappen</system:String>
     <system:String x:Key="NonMultilingualSpecificProperties">Niet-taalgevoelige specifieke eigenschappen</system:String>
     <system:String x:Key="SelectCategory">Kies een categorie</system:String>
-    <system:String x:Key="NavigationWindwTitle">Rudycommerce</system:String>
-    <system:String x:Key="NavigationWindoTitle">Rudycommerce</system:String>
-    
-    
-    
-    
-    
-    
-    <!--Datagrid headers worden niet als normale visuals gezien-->
+    <system:String x:Key="NewCategoryName">Naam van de nieuwe categorie</system:String>
+    <system:String x:Key="ListOfSpecificProductProperties">Lijst van vereiste specifieke producteigenschappen</system:String>
+    <system:String x:Key="IsRequired">Is vereist?</system:String>
+    <system:String x:Key="PossibleProductProperties">Mogelijke producteigenschappen</system:String>
+    <system:String x:Key="AddedProductPropertiesToCategory">Producteigenschappen, horende bij de categorie</system:String>
+    <system:String x:Key="AddSpecificProductPropertiesToCategory">Specifieke producteigenschappen toevoegen aan de categorie</system:String>
+    <system:String x:Key="ListOfpecificProductProperties">Lijst van vereiste specifieke producteigenschappen</system:String>
+    <system:String x:Key="ListOfSpecificProdctProperties">Lijst van vereiste specifieke producteigenschappen</system:String>
+    <system:String x:Key="ListfSpecificProdutProperties">Lijst van vereiste specifieke producteigenschappen</system:String>
+    <system:String x:Key="ListfSpecificProductPoperties">Lijst van vereiste specifieke producteigenschappen</system:String>
+    <system:String x:Key="ListOfSpecificProductPoerties">Lijst van vereiste specifieke producteigenschappen</system:String>
+    <system:String x:Key="ListOfSpecificProductPoperties">Lijst van vereiste specifieke producteigenschappen</system:String>
 
-    
 
-
-
-    <!-- duf: DesktopUserForm.xaml  -->
-    <!--
-    <system:String x:Key="aufTitle">Maak beheerders account aan</system:String>
-    <system:String x:Key="aufFirstName">Voornaam:</system:String>
-    <system:String x:Key="aufLastName">Achternaam</system:String>
-    <system:String x:Key="aufUsername">Gebruikersnaam:</system:String>
-    <system:String x:Key="aufEmail">E-mail adres:</system:String>
-    <system:String x:Key="aufPassword">Wachtwoord:</system:String>
-    <system:String x:Key="aufPrefLang">Voorkeurstaal:</system:String>
-    <system:String x:Key="aufSave">Sla op</system:String>
-    
-    -->
-    <!-- lw: LoginWindow.xaml -->
-    <!--
-    <system:String x:Key="lwTitle">Inloggen</system:String>
-    <system:String x:Key="lwUsername">Gebruikersnaam:</system:String>
-    <system:String x:Key="lwPassword">Wachtwoord:</system:String>
-    <system:String x:Key="lwLogin">Inloggen</system:String>
-    <system:String x:Key="lwNewUser">Nieuwe gebruiker</system:String>
-
-    -->
-    <!-- ndu: NewDesktopUser.xaml  -->
-    <!--
-    <system:String x:Key="nduTitle">Maak nieuwe account aan</system:String>
-    <system:String x:Key="nduFirstName">Voornaam:</system:String>
-    <system:String x:Key="nduLastName">Achternaam:</system:String>
-    <system:String x:Key="nduUsername">Gebruikersnaam:</system:String>
-    <system:String x:Key="nduEmail">E-mail adres:</system:String>
-    <system:String x:Key="nduPassword">Wachtwoord:</system:String>
-    <system:String x:Key="nduPrefLang">Voorkeurstaal:</system:String>
-    <system:String x:Key="nduSave">Sla op</system:String>
-
-    -->
-    <!-- ma: ManageAccount.xaml  -->
-    <!--
-    <system:String x:Key="maPrefLang">Voorkeurstaal</system:String>
-    <system:String x:Key="maSave">Sla op</system:String>
-
-    -->
-    <!-- lf: LanguageForm.xaml  -->
-    <!--
-    <system:String x:Key="lfSave">Opslaan</system:String>
-    <system:String x:Key="lfLanguageName">Naam van de taal: </system:String>
-    <system:String x:Key="lfLanguageActive">Is taal actief?: </system:String>
-    <system:String x:Key="lfLanguageDefault">Standaard taal?: </system:String>
-
-    -->
-    <!-- navi: NavigationWindow.xaml -->
-    <!--
-    <system:String x:Key="naviPlaceholder">Plaatshouder</system:String>
-    
-    <system:String x:Key="naviManageLanguages">Beheer talen</system:String>
-    <system:String x:Key="naviAddLanguage">Voeg nieuwe taal toe</system:String>
-    <system:String x:Key="naviLanguageOverview">Overzicht talen</system:String>
-
-    <system:String x:Key="naviManageProducts">Beheer producten</system:String>
-    <system:String x:Key="naviAddProduct">Voeg nieuw product toe</system:String>
-
-    <system:String x:Key="naviUsers">Gebruikers</system:String>
-    <system:String x:Key="naviManageUsers">Beheer gebruikers</system:String>
-    
-    <system:String x:Key="naviManageAccount">Beheer account</system:String>
-    
-    -->
-    <!-- npf: NewProductForm.xaml -->
-    <!--
-    <system:String x:Key="npfCreate">Maak product aan</system:String>
-    <system:String x:Key="npfName">Product naam: </system:String>
-    <system:String x:Key="npfDescription">Productbeschrijving: </system:String>
-    <system:String x:Key="npfUnitPrice">Eenheidsprijs (€): </system:String>
-    <system:String x:Key="npfInitialStock">Initiële voorraad: </system:String>
-    <system:String x:Key="npfIronStock">IJzeren voorraad: </system:String>
-    <system:String x:Key="npfMaxStock">Maximum voorraad: </system:String>
-    <system:String x:Key="npfIsActive">Is product actief?: </system:String>
-    <system:String x:Key="npfTypeOfProduct">Soort product: </system:String>
-
-    <system:String x:Key="npfTitle">Nieuw product aanmaken</system:String>
-    <system:String x:Key="npfCurrentDefaultLanguage">Huidige standaard taal voor de site: </system:String>
-
-    -->
-     <!--uo: UserOverview.xaml-->  
-     <!--Datagrid headers worden niet als normale visuals gezien-->
-
-    <Style x:Key="uoLastName" TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Content" Value="Achternaam" />
-    </Style>
-
-    <Style x:Key="uoFirstName" TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Content" Value="Voornaam" />
-    </Style>
-
-    <Style x:Key="uoIsAdmin" TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Content" Value="Administrator?" />
-    </Style>
-
-    <Style x:Key="uoEMail" TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Content" Value="E-mail" />
-    </Style>
-
-    <Style x:Key="uoUsername" TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Content" Value="Gebruikersnaam" />
-    </Style>
-
-    <system:String x:Key="uoDeleteUser">Verwijder gebruiker</system:String>
-
+  
 
 </ResourceDictionary>
