@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -74,11 +76,14 @@ namespace Rudycommerce
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            // TODO Validations
+
             if (BL_DesktopUser.Authenticate(txtUsername.Text, pwdPassword.Password))
             {
                 int CurrentUserID = BL_DesktopUser.GetUserID(txtUsername.Text);
                 NavigationWindow naviWindow = new NavigationWindow(CurrentUserID);
                 naviWindow.Show();
+                newWindow = true;
                 this.Close();
             }
             else
@@ -86,19 +91,100 @@ namespace Rudycommerce
                 MessageBox.Show("OOPS");
             }
         }
-        
+
+        private void btnShowHidePwd_Click(object sender, RoutedEventArgs e)
+        {
+            btnShowHidePwd.Content =
+                (txtPasswordVisible.Visibility == Visibility.Collapsed) ?
+                FindResource("Hide") : FindResource("Show");
+
+            ToggleShowPassword();
+        }
+
+        private void ToggleShowPassword()
+        {
+            if (txtPasswordVisible.Visibility == Visibility.Collapsed)
+            {
+                txtPasswordVisible.Visibility = Visibility.Visible;
+                pwdPassword.Visibility = Visibility.Collapsed;
+                txtPasswordVisible.Focus();
+            }
+            else
+            {
+                pwdPassword.Visibility = Visibility.Visible;
+                txtPasswordVisible.Visibility = Visibility.Collapsed;
+                pwdPassword.Focus();
+            }
+        }
+
+        private bool newWindow = false;
+
         private void btnNewUser_Click(object sender, RoutedEventArgs e)
         {
             NewDesktopUser NewDesktopUser = new NewDesktopUser(_preferredLanguage);
             NewDesktopUser.Show();
+            newWindow = true;
             this.Close();
         }
 
         private void btnLazy_Click(object sender, RoutedEventArgs e)
         {
-            pwdPassword.Password = "laurens";
             txtUsername.Text = "laurenshofman";
+            pwdPassword.Password = "laurens";
             btnLogin_Click(null, null);
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (newWindow)
+            {
+                e.Cancel = false;
+            }
+            else
+            {
+                string messageboxContent = BL_Multilingual.ExitMessageBoxContent(_preferredLanguage);
+                string messageboxTitle = BL_Multilingual.ExitMessageBoxTitle(_preferredLanguage);
+
+                MessageBoxManager.Yes = BL_Multilingual.Yes(_preferredLanguage);
+                MessageBoxManager.No = BL_Multilingual.No(_preferredLanguage);
+                MessageBoxManager.Register();
+
+                if (MessageBox.Show(messageboxContent, messageboxTitle, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    MessageBoxManager.Unregister();
+
+                    e.Cancel = false;
+                }
+                else
+                {
+                    MessageBoxManager.Unregister();
+                    e.Cancel = true;
+                }  
+            }
+        }
+
+        private void txtPasswordVisible_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            pwdPassword.Password = txtPasswordVisible.Text;
+
+            int start = txtPasswordVisible.Text.Length;
+            int length = 0;
+            txtPasswordVisible.Select(start, length);
+        }
+
+        private void pwdPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtPasswordVisible.Text = pwdPassword.Password;
+
+            int start = pwdPassword.Password.Length;
+            int length = 0;
+            pwdPassword.GetType().GetMethod("Select", BindingFlags.Instance | BindingFlags.NonPublic)
+                    .Invoke(pwdPassword, new object[] { start, length });
         }
     }
 }

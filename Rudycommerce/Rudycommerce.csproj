@@ -74,42 +74,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AdminUserForm.xaml.cs">
+    <Compile Include="WindowsAndUserControls\Login\AdminUserForm.xaml.cs">
       <DependentUpon>AdminUserForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CategoryForm.xaml.cs">
+    <Compile Include="WindowsAndUserControls\Products\CategoryForm.xaml.cs">
       <DependentUpon>CategoryForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LanguageOverview.xaml.cs">
+    <Compile Include="WindowsAndUserControls\Languages\LanguageOverview.xaml.cs">
       <DependentUpon>LanguageOverview.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginWindow.xaml.cs">
+    <Compile Include="WindowsAndUserControls\Login\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ManageAccount.xaml.cs">
+    <Compile Include="WindowsAndUserControls\UsersAndAccounts\ManageAccount.xaml.cs">
       <DependentUpon>ManageAccount.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewDesktopUser.xaml.cs">
+    <Compile Include="WindowsAndUserControls\Login\NewDesktopUser.xaml.cs">
       <DependentUpon>NewDesktopUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SelectSpecificProductProperty.xaml.cs">
+    <Compile Include="WindowsAndUserControls\Products\SelectSpecificProductProperty.xaml.cs">
       <DependentUpon>SelectSpecificProductProperty.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SpecificProductPropertyForm.xaml.cs">
+    <Compile Include="WindowsAndUserControls\Products\SpecificProductPropertyForm.xaml.cs">
       <DependentUpon>SpecificProductPropertyForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserOverview.xaml.cs">
+    <Compile Include="WindowsAndUserControls\UsersAndAccounts\UserOverview.xaml.cs">
       <DependentUpon>UserOverview.xaml</DependentUpon>
     </Compile>
-    <Page Include="AdminUserForm.xaml">
+    <Page Include="WindowsAndUserControls\Login\AdminUserForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CategoryForm.xaml">
+    <Page Include="WindowsAndUserControls\Products\CategoryForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LanguageOverview.xaml">
+    <Page Include="WindowsAndUserControls\Languages\LanguageOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,7 +117,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LanguageForm.xaml">
+    <Page Include="WindowsAndUserControls\Languages\LanguageForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,15 +125,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginWindow.xaml">
+    <Page Include="WindowsAndUserControls\Login\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ManageAccount.xaml">
+    <Page Include="WindowsAndUserControls\UsersAndAccounts\ManageAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NavigationWindow.xaml">
+    <Page Include="WindowsAndUserControls\NavigationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -141,36 +141,36 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LanguageForm.xaml.cs">
+    <Compile Include="WindowsAndUserControls\Languages\LanguageForm.xaml.cs">
       <DependentUpon>LanguageForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NavigationWindow.xaml.cs">
+    <Compile Include="WindowsAndUserControls\NavigationWindow.xaml.cs">
       <DependentUpon>NavigationWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NewDesktopUser.xaml">
+    <Page Include="WindowsAndUserControls\Login\NewDesktopUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewProductForm.xaml">
+    <Page Include="WindowsAndUserControls\Products\NewProductForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SelectSpecificProductProperty.xaml">
+    <Page Include="WindowsAndUserControls\Products\SelectSpecificProductProperty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SpecificProductPropertyForm.xaml">
+    <Page Include="WindowsAndUserControls\Products\SpecificProductPropertyForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserOverview.xaml">
+    <Page Include="WindowsAndUserControls\UsersAndAccounts\UserOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NewProductForm.xaml.cs">
+    <Compile Include="WindowsAndUserControls\Products\NewProductForm.xaml.cs">
       <DependentUpon>NewProductForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -213,6 +213,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\32_CogwheelSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\256_List.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\256_Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\LoginScreenRudycommerce.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\32_EyeClose.png" />
+    <Resource Include="Resources\Icons\32_EyeOpen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

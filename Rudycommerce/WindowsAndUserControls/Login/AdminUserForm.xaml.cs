@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Utilities;
+using System.Reflection;
 
 namespace Rudycommerce
 {
@@ -24,7 +25,6 @@ namespace Rudycommerce
     {
         public DesktopUser NewDesktopUser { get; set; }
         private List<Language> _languageList { get; set; }
-
 
         public AdminUserForm()
         {
@@ -48,6 +48,8 @@ namespace Rudycommerce
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            //TODO ModelBinding & Validations
+
             NewDesktopUser.FirstName = txtFirstName.Text;
             NewDesktopUser.LastName = txtLastName.Text;
             NewDesktopUser.EMail = txtEmail.Text;
@@ -86,7 +88,7 @@ namespace Rudycommerce
             {
                 //
                 //
-                // The 2 languages have to be added here already - ADD TRYCATCH
+                // The 2 languages need to exist already - ADD TRYCATCH
                 //
                 //
                 NewDesktopUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "Nederlands").LanguageID;
@@ -98,5 +100,50 @@ namespace Rudycommerce
                 SetLanguageDictionary(NewDesktopUser.PreferredLanguage);
             }
         }
+
+        private void pwdPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtPasswordVisible.Text = pwdPassword.Password;
+
+            int start = pwdPassword.Password.Length;
+            int length = 0;
+            pwdPassword.GetType().GetMethod("Select", BindingFlags.Instance | BindingFlags.NonPublic)
+                    .Invoke(pwdPassword, new object[] { start, length });
+        }
+
+        private void txtPasswordVisible_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            pwdPassword.Password = txtPasswordVisible.Text;
+
+            int start = txtPasswordVisible.Text.Length;
+            int length = 0;
+            txtPasswordVisible.Select(start, length);
+        }
+
+        private void btnShowHidePwd_Click(object sender, RoutedEventArgs e)
+        {
+            btnShowHidePwd.Content =
+                (txtPasswordVisible.Visibility == Visibility.Collapsed) ?
+                FindResource("Hide") : FindResource("Show");
+
+            ToggleShowPassword();
+        }
+
+        private void ToggleShowPassword()
+        {
+            if (txtPasswordVisible.Visibility == Visibility.Collapsed)
+            {
+                txtPasswordVisible.Visibility = Visibility.Visible;
+                pwdPassword.Visibility = Visibility.Collapsed;
+                txtPasswordVisible.Focus();
+            }
+            else
+            {
+                pwdPassword.Visibility = Visibility.Visible;
+                txtPasswordVisible.Visibility = Visibility.Collapsed;
+                pwdPassword.Focus();
+            }
+        }
+
     }
 }

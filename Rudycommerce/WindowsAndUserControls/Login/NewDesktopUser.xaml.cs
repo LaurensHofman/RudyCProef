@@ -4,6 +4,7 @@ using RudycommerceLibrary.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -80,6 +81,8 @@ namespace Rudycommerce
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            //TODO Add ModelBinding & validation
+
             NewUser.FirstName = txtFirstName.Text;
             NewUser.LastName = txtLastName.Text;
             NewUser.EMail = txtEmail.Text;
@@ -97,7 +100,7 @@ namespace Rudycommerce
                     BL_DesktopUser.Create(NewUser);
 
                     BL_Mailing.SendMailToAdmin(NewUser.FirstName, NewUser.LastName, NewUser.EMail, NewUser.Username);
-                    BL_Mailing.SendMailToUser(NewUser.FirstName, NewUser.LastName, NewUser.EMail, NewUser.Username, NewUser.PreferredLanguage.LocalName);
+                    BL_Mailing.SendMailToUser(NewUser.FirstName, NewUser.LastName, NewUser.EMail, NewUser.Username, NewUser.PreferredLanguage);
 
                     LoginWindow login = new LoginWindow();
                     login.Show();
@@ -114,6 +117,58 @@ namespace Rudycommerce
 
                 throw;
             }
+        }
+
+
+        private void pwdPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtPasswordVisible.Text = pwdPassword.Password;
+
+            int start = pwdPassword.Password.Length;
+            int length = 0;
+            pwdPassword.GetType().GetMethod("Select", BindingFlags.Instance | BindingFlags.NonPublic)
+                    .Invoke(pwdPassword, new object[] { start, length });
+        }
+
+        private void txtPasswordVisible_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            pwdPassword.Password = txtPasswordVisible.Text;
+
+            int start = txtPasswordVisible.Text.Length;
+            int length = 0;
+            txtPasswordVisible.Select(start, length);
+        }
+
+        private void btnShowHidePwd_Click(object sender, RoutedEventArgs e)
+        {
+            btnShowHidePwd.Content =
+                (txtPasswordVisible.Visibility == Visibility.Collapsed) ?
+                FindResource("Hide") : FindResource("Show");
+
+            ToggleShowPassword();
+        }
+
+        private void ToggleShowPassword()
+        {
+            if (txtPasswordVisible.Visibility == Visibility.Collapsed)
+            {
+                txtPasswordVisible.Visibility = Visibility.Visible;
+                pwdPassword.Visibility = Visibility.Collapsed;
+                txtPasswordVisible.Focus();
+            }
+            else
+            {
+                pwdPassword.Visibility = Visibility.Visible;
+                txtPasswordVisible.Visibility = Visibility.Collapsed;
+                pwdPassword.Focus();
+            }
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
         }
     }
 }

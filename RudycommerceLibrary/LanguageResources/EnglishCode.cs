@@ -10,29 +10,9 @@ namespace Rudycommerce.LanguageResources
     {
         public const string YES = "Yes";
         public const string NO = "No";
-
-        public const string GAME = "Game";
-        public const string GAMING_EQUIPMENT = "Gaming equipment";
-
-        public const string KEYBOARD = "Keyboard";
-        public const string CONTROLLER = "Controller";
-        public const string MOUSEMAT = "Mousemat";
-        public const string HEADSET = "Headset";
-        public const string MOUSE = "Mouse";
-
-        public const string HEADSET_WEARING_WAY_ON_EAR = "On ears";
-        public const string HEADSET_WEARING_WAY_OVER_EAR = "Over ears";
-        public const string HEADSET_WEARING_WAY_IN_EAR = "In ears";
-
-        public static string[] ProductTypes { get; set; } = new string[]
-            { GAMING_EQUIPMENT, GAME };
-
-        public static string[] GamingEquipmentTypes { get; set; }
-            = new string[] { CONTROLLER, HEADSET, KEYBOARD, MOUSE, MOUSEMAT };
-
-        public static string[] HeadsetWearingWays { get; set; }
-            = new string[] { HEADSET_WEARING_WAY_ON_EAR, HEADSET_WEARING_WAY_OVER_EAR, HEADSET_WEARING_WAY_IN_EAR };
-
+        public const string NAME = "Name";
+        public const string DESCRIPTION = "Description";
+        
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName)
         {
             return $"Are you sure you want to give {lastName} {firstName} access to the application?";
@@ -62,6 +42,16 @@ namespace Rudycommerce.LanguageResources
         public static string UOMakeUserAdminMessageBoxTitle(string lastName, string firstName)
         {
             return $"New administrator: {lastName} {firstName}?";
+        }
+
+        public static string ExitMessageBoxContent()
+        {
+            return "Are you sure you want to close the application?";
+        }
+
+        public static string ExitMessageBoxTitle()
+        {
+            return "Close application";
         }
     }
 }

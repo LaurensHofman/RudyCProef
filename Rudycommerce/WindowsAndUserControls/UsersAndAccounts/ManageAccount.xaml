@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Rudycommerce.ManageAccount"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Rudycommerce"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Background="Beige">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel>
+            <Label FontSize="24" Content="{DynamicResource ResourceKey=ManageAccount}" Margin="0,0,0,40" HorizontalContentAlignment="Center" Foreground="Black"></Label>
+
+            <WrapPanel HorizontalAlignment="Center">
+                <StackPanel>
+                    <Label FontSize="18" Foreground="Black" Margin="0,0,0,40" HorizontalContentAlignment="Right">
+                        <TextBlock>
+                            <TextBlock Text="{DynamicResource ResourceKey=PreferredLanguage}"/>
+                            <TextBlock Text=": "/>
+                        </TextBlock>
+                    </Label>
+                </StackPanel>
+                <StackPanel>
+                    <WrapPanel Margin="0,0,0,40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <WrapPanel.Resources>
+                            <Style x:Key="Flag" TargetType="RadioButton">
+                                <Style.Triggers>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter Property="Opacity" Value="0.5"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="BorderBrush" Value="Black"/>
+                                        <Setter Property="BorderThickness" Value="3"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="RadioButton">
+                                            <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        Background="Transparent"
+                                        CornerRadius="20">
+                                                <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </WrapPanel.Resources>
+                        <RadioButton x:Name="rbPreferNL" GroupName="Lang"  Content="/Resources/Icons/32_NL.png" Style="{StaticResource Flag}" Margin="10,0,10,0" Width="40" Height="40" Checked="RadioButton_Checked"/>
+                        <RadioButton x:Name="rbPreferEN" GroupName="Lang" Content="/Resources/Icons/32_EN.png" Style="{StaticResource Flag}" Margin="10,0,10,0" Width="40" Height="40" Checked="RadioButton_Checked"/>
+                    </WrapPanel>
+                </StackPanel>
+            </WrapPanel>
+            <WrapPanel Margin="0,40,0,0" HorizontalAlignment="Right">
+                <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Save}" Click="btnSave_Click" Height="30" Width="100" Margin="20,0,20,0"/>
+                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Height="30" Margin="20,0,20,0" Width="100" Click="btnCancel_Click"/>
+            </WrapPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

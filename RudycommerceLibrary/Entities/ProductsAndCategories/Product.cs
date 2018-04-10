@@ -16,22 +16,27 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         public int ProductID { get; set; }
 
         [Column("unit_price")]
-        public decimal UnitPrice { get; set; }
+        public decimal? UnitPrice { get; set; }
 
         [Column("is_active")]
         public bool IsActive { get; set; }
 
         [Column("intial_stock")]
-        public int InitialStock { get; set; }
+        public int? InitialStock { get; set; }
 
         [Column("current_stock")]
-        public int CurrentStock { get; set; }
+        public int? CurrentStock { get; set; }
         
         [Column("category_id")]
         public int CategoryID { get; set; }
 
         public virtual ICollection<Article> Articles { get; set; }
         public ProductCategory ProductCategory { get; set; }
+
+        public Product()
+        {
+            this.IsActive = true;
+        }
 
         public override bool IsNew()
         {

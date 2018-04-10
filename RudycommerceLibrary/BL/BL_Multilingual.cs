@@ -37,22 +37,7 @@ public static class BL_Multilingual
                     return "..\\LanguageResources\\Dutch.xaml";
             }
         }
-
-        public static string[] ProductTypes(string preferredLanguage)
-        {
-            switch (preferredLanguage)
-            {
-                case "Nederlands":
-                    return DutchCode.ProductTypes;
-
-                case "English":
-                    return EnglishCode.ProductTypes;
-
-                default:
-                    return DutchCode.ProductTypes;
-            }
-        }
-
+        
         public static List<Models.LocalizedLanguageItem> GetLocalizedListOfLanguages(Language selectedLanguage)
         {
             List<Language> languages = BL_Language.GetAllLanguages();
@@ -103,25 +88,40 @@ public static class BL_Multilingual
 
             return returnListLanguages;
         }
-
-        public static string[] HeadsetWearingWays(string preferredLanguage)
+        
+        public static string ExitMessageBoxContent(Language preferredLanguage)
         {
-            switch (preferredLanguage)
+            switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
-                    return DutchCode.HeadsetWearingWays;
+                    return DutchCode.ExitMessageBoxContent();
 
                 case "English":
-                    return EnglishCode.HeadsetWearingWays;
+                    return EnglishCode.ExitMessageBoxContent();
 
                 default:
-                    return DutchCode.HeadsetWearingWays;
+                    return DutchCode.ExitMessageBoxContent();
             }
         }
 
-        public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName, string preferredLanguage)
+        public static string ExitMessageBoxTitle(Language preferredLanguage)
         {
-            switch (preferredLanguage)
+            switch (preferredLanguage.LocalName)
+            {
+                case "Nederlands":
+                    return DutchCode.ExitMessageBoxTitle();
+
+                case "English":
+                    return EnglishCode.ExitMessageBoxTitle();
+
+                default:
+                    return DutchCode.ExitMessageBoxTitle();
+            }
+        }
+
+        public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName, Language preferredLanguage)
+        {
+            switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
                     return DutchCode.UOVerifyAdminMessageBoxContent(lastName, firstName);
@@ -133,25 +133,10 @@ public static class BL_Multilingual
                     return DutchCode.UOVerifyAdminMessageBoxContent(lastName, firstName);
             }
         }
-
-        public static string[] SpecificTypesGamingEquipment(string preferredLanguage)
-        {
-            switch (preferredLanguage)
-            {
-                case "Nederlands":
-                    return DutchCode.GamingEquipmentTypes;
-
-                case "English":
-                    return EnglishCode.GamingEquipmentTypes;
-
-                default:
-                    return DutchCode.GamingEquipmentTypes;
-            }
-        }
         
-        public static string UOVerifyAdminMessageBoxTitle(string lastName, string firstName, string preferredLanguage)
+        public static string UOVerifyAdminMessageBoxTitle(string lastName, string firstName, Language preferredLanguage)
         {
-            switch (preferredLanguage)
+            switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
                     return DutchCode.UOVerifyAdminMessageBoxTitle(lastName, firstName);
@@ -181,9 +166,9 @@ public static class BL_Multilingual
             }
         }
 
-        public static string Yes(string preferredLanguage)
+        public static string Yes(Language preferredLanguage)
         {
-            switch (preferredLanguage)
+            switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
                     return DutchCode.YES;
@@ -196,9 +181,39 @@ public static class BL_Multilingual
             }
         }
 
-        public static string No(string preferredLanguage)
+        public static string Name(Language userLanguage)
         {
-            switch (preferredLanguage)
+            switch (userLanguage.LocalName)
+            {
+                case "Nederlands":
+                    return DutchCode.NAME;
+
+                case "English":
+                    return EnglishCode.NAME;
+
+                default:
+                    return DutchCode.NAME;
+            }
+        }
+
+        public static string Description(Language userLanguage)
+        {
+            switch (userLanguage.LocalName)
+            {
+                case "Nederlands":
+                    return DutchCode.DESCRIPTION;
+
+                case "English":
+                    return EnglishCode.DESCRIPTION;
+
+                default:
+                    return DutchCode.DESCRIPTION;
+            }
+        }
+
+        public static string No(Language preferredLanguage)
+        {
+            switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
                     return DutchCode.NO;
@@ -211,9 +226,9 @@ public static class BL_Multilingual
             }
         }
 
-        public static string UODeleteUserMessageBoxContent(string lastName, string firstName, string preferredLanguage)
+        public static string UODeleteUserMessageBoxContent(string lastName, string firstName, Language preferredLanguage)
         {
-            switch (preferredLanguage)
+            switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
                     return DutchCode.UODeleteUserMessageBoxContent(lastName, firstName);
@@ -226,9 +241,9 @@ public static class BL_Multilingual
             }
         }
 
-        public static string UODeleteUserMessageBoxTitle(string lastName, string firstName, string preferredLanguage)
+        public static string UODeleteUserMessageBoxTitle(string lastName, string firstName, Language preferredLanguage)
         {
-            switch (preferredLanguage)
+            switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
                     return DutchCode.UODeleteUserMessageBoxTitle(lastName, firstName);
@@ -241,9 +256,9 @@ public static class BL_Multilingual
             }
         }
 
-        public static string UOMakeUserAdminMessageBoxContent(string lastName, string firstName, string preferredLanguage)
+        public static string UOMakeUserAdminMessageBoxContent(string lastName, string firstName, Language preferredLanguage)
         {
-            switch (preferredLanguage)
+            switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
                     return DutchCode.UOMakeUserAdminMessageBoxContent(lastName, firstName);
@@ -256,9 +271,9 @@ public static class BL_Multilingual
             }
         }
 
-        public static string UOMakeUserAdminMessageBoxTitle(string lastName, string firstName, string preferredLanguage)
+        public static string UOMakeUserAdminMessageBoxTitle(string lastName, string firstName, Language preferredLanguage)
         {
-            switch (preferredLanguage)
+            switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
                     return DutchCode.UOMakeUserAdminMessageBoxTitle(lastName, firstName);

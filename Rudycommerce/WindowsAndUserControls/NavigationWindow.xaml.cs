@@ -98,23 +98,48 @@ namespace Rudycommerce
 
             this.Close();
         }
-        
-        private void btnSettings_Click(object sender, RoutedEventArgs e)
-        {
-            tabItemSettings.IsSelected = true;
-
-            var _settings = new ManageAccount();
-            _settings.OnAccountSave += ApplySettings;
-
-            userControlSettings.Content = _settings;
-        }
-
         private void ApplySettings(Language selectedLanguage)
         {
             Settings.UserLanguage = selectedLanguage;
 
             SetLanguageDictionary(RudycommerceLibrary.Settings.UserLanguage);
             userControlSettings.Content = null;
+        }
+
+        private void AnimatedTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (tabItemSettings.IsSelected)
+            {
+                var _settings = new ManageAccount();
+                _settings.OnAccountSave += ApplySettings;
+
+                userControlSettings.Content = _settings;
+            }
+
+            Thickness notSelected = new Thickness { Bottom = 0, Top = 0, Left = 1, Right = 1 };
+            Thickness Selected = new Thickness { Bottom = 2, Top = 2, Left = 2, Right = 2 };
+
+            tabItemProducts.BorderThickness = notSelected;
+            tabItemLanguages.BorderThickness = notSelected;
+            tabItemSettings.BorderThickness = notSelected;
+            tabItemUsers.BorderThickness = notSelected;
+
+            if (tabItemProducts.IsSelected)
+            {
+                tabItemProducts.BorderThickness = Selected;
+            }
+            if (tabItemLanguages.IsSelected)
+            {
+                tabItemLanguages.BorderThickness = Selected;
+            }
+            if (tabItemSettings.IsSelected)
+            {
+                tabItemSettings.BorderThickness = Selected;
+            }
+            if (tabItemUsers.IsSelected)
+            {
+                tabItemUsers.BorderThickness = Selected;
+            }
         }
     }
 }

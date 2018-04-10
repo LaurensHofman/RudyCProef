@@ -10,28 +10,8 @@ namespace Rudycommerce.LanguageResources
     {
         public const string YES = "Ja";
         public const string NO = "Nee";
-
-        public const string GAME = "Game";
-        public const string GAMING_EQUIPMENT = "Gaming uitrusting";
-
-        public const string KEYBOARD = "Toetsenbord";
-        public const string CONTROLLER = "Spel controller";
-        public const string MOUSEMAT = "Muismat";
-        public const string HEADSET = "Koptelefoon";
-        public const string MOUSE = "Muis";
-
-        public const string HEADSET_WEARING_WAY_ON_EAR = "Op de oren";
-        public const string HEADSET_WEARING_WAY_OVER_EAR = "Over de oren";
-        public const string HEADSET_WEARING_WAY_IN_EAR = "In de oren";
-
-        public static string[] ProductTypes { get; set; } = new string[]
-            { GAMING_EQUIPMENT, GAME };
-
-        public static string[] GamingEquipmentTypes { get; set; }
-            = new string[] { CONTROLLER, HEADSET, KEYBOARD, MOUSE, MOUSEMAT };
-
-        public static string[] HeadsetWearingWays { get; set; }
-            = new string[] { HEADSET_WEARING_WAY_ON_EAR, HEADSET_WEARING_WAY_OVER_EAR, HEADSET_WEARING_WAY_IN_EAR };
+        public const string NAME = "Naam";
+        public const string DESCRIPTION = "Beschrijving";
 
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName)
         {
@@ -62,6 +42,16 @@ namespace Rudycommerce.LanguageResources
         public static string UOMakeUserAdminMessageBoxTitle(string lastName, string firstName)
         {
             return $"Nieuwe beheerder: {lastName} {firstName}?";
+        }
+
+        public static string ExitMessageBoxContent()
+        {
+            return "Bent u zeker dat u de applicatie wil sluiten?";
+        }
+
+        public static string ExitMessageBoxTitle()
+        {
+            return "Applicatie sluiten";
         }
     }
 }

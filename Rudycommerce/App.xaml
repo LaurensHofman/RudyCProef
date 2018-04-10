@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Rudycommerce"
-             StartupUri="LoginWindow.xaml">
+             StartupUri="/WindowsAndUserControls/Login/LoginWindow.xaml"
+             xmlns:mapp="clr-namespace:MahApps.Metro.Controls">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

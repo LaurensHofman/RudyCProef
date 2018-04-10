@@ -31,14 +31,14 @@
 
     <system:String x:Key="NewUser">Nieuwe gebruiker</system:String>
 
-    <system:String x:Key="ManageAccount">Beheer account</system:String>
-    <system:String x:Key="ManageLanguages">Beheer talen</system:String>
-    <system:String x:Key="AddLanguage">Voeg taal toe</system:String>
+    <system:String x:Key="ManageAccount">Accountbeheer</system:String>
+    <system:String x:Key="ManageLanguages">Taalbeheer</system:String>
+    <system:String x:Key="AddLanguage">Taal toevoegen</system:String>
     <system:String x:Key="LanguageOverview">Overzicht talen</system:String>
-    <system:String x:Key="ManageProducts">Beheer producten</system:String>
-    <system:String x:Key="AddProduct">Voeg product toe</system:String>
+    <system:String x:Key="ManageProducts">Productbeheer</system:String>
+    <system:String x:Key="AddProduct">Product toevoegen</system:String>
     <system:String x:Key="Users">Gebruikers</system:String>
-    <system:String x:Key="ManageUsers">Beheer gebruikers</system:String>
+    <system:String x:Key="ManageUsers">Gebruikers beheren</system:String>
     <system:String x:Key="UserOverview">Overzicht gebruikers</system:String>
 
     <system:String x:Key="NewDesktopUser">Nieuwe gebruiker</system:String>
@@ -70,22 +70,19 @@
     <!--20180408 HERE-->
     <system:String x:Key="NavigationWindowTitle">Rudycommerce</system:String>
     <system:String x:Key="AddCategory">Categorie toevoegen</system:String>
-    <system:String x:Key="AddProductProperty">Specifieke product-eigenschappen toevoegen</system:String>
-    
-    
-    
-    <!--<system:String x:Key="NavgationWindowTitle">Rudycommerce</system:String>
-    <system:String x:Key="NavigtionWindowTitle">Rudycommerce</system:String>
-    <system:String x:Key="NavigaionWindowTitle">Rudycommerce</system:String>
-    <system:String x:Key="NavigatonWindowTitle">Rudycommerce</system:String>
-    <system:String x:Key="NavigatinWindowTitle">Rudycommerce</system:String>
-    <system:String x:Key="NavigatioWindowTitle">Rudycommerce</system:String>
-    <system:String x:Key="NavigationindowTitle">Rudycommerce</system:String>
-    <system:String x:Key="NavigationWndowTitle">Rudycommerce</system:String>
-    <system:String x:Key="NavigationWidowTitle">Rudycommerce</system:String>
-    <system:String x:Key="NavigationWinowTitle">Rudycommerce</system:String>
+    <system:String x:Key="AddProductProperty">Specifieke product-eigenschappen toevoegen</system:String>    
+    <system:String x:Key="Cancel">Annuleren</system:String>    
+    <system:String x:Key="ProductsAndCategories">Producten en categorieën</system:String>
+    <system:String x:Key="Products">Producten</system:String>
+    <system:String x:Key="Categories">Categorieën</system:String>
+    <system:String x:Key="SpecificProductProperties">Specifieke producteigenschappen</system:String>
+    <system:String x:Key="Languages">Talen</system:String>
+    <system:String x:Key="General">Algemeen</system:String>
+    <system:String x:Key="MultilingualSpecificProperties">Taalgevoelige specifieke eigenschappen</system:String>
+    <system:String x:Key="NonMultilingualSpecificProperties">Niet-taalgevoelige specifieke eigenschappen</system:String>
+    <system:String x:Key="SelectCategory">Kies een categorie</system:String>
     <system:String x:Key="NavigationWindwTitle">Rudycommerce</system:String>
-    <system:String x:Key="NavigationWindoTitle">Rudycommerce</system:String>-->
+    <system:String x:Key="NavigationWindoTitle">Rudycommerce</system:String>
     
     
     

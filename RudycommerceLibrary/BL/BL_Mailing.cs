@@ -85,12 +85,12 @@ namespace RudycommerceLibrary.BL
             }
         }
 
-        public static void UserVerified(string lastname, string firstname, string email, string username, string language)
+        public static void UserVerified(string lastname, string firstname, string email, string username, Language language)
         {
             string subject;
             StringBuilder message;
 
-            switch (language)
+            switch (language.LocalName)
             {
                 case "Nederlands":
                     subject = $"Uw account bij Rudycommerce is geverifieerd";
@@ -155,12 +155,12 @@ namespace RudycommerceLibrary.BL
             }
         }
 
-        public static void SendMailToUser(string firstname, string lastname, string email, string username, string language)
+        public static void SendMailToUser(string firstname, string lastname, string email, string username, Language language)
         {
             string subject;
             StringBuilder message;
 
-            switch (language)
+            switch (language.LocalName)
             {
                 case "Nederlands":
                     subject = $"Account aangemaakt bij Rudycommerce";

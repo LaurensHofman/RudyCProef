@@ -102,6 +102,10 @@
     <Compile Include="Migrations\201804071555042_loc_prod_specprodprop_valueChangedToString.Designer.cs">
       <DependentUpon>201804071555042_loc_prod_specprodprop_valueChangedToString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804101251181_NullableProperties_product.cs" />
+    <Compile Include="Migrations\201804101251181_NullableProperties_product.Designer.cs">
+      <DependentUpon>201804101251181_NullableProperties_product.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryItem.cs" />
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
     <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
@@ -140,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804071555042_loc_prod_specprodprop_valueChangedToString.resx">
       <DependentUpon>201804071555042_loc_prod_specprodprop_valueChangedToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804101251181_NullableProperties_product.resx">
+      <DependentUpon>201804101251181_NullableProperties_product.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
