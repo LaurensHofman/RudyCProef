@@ -20,6 +20,23 @@
             <StackPanel>
                 <Label x:Name="lblCategoryFormTitle" HorizontalContentAlignment="Center" FontSize="20" Height="50" Foreground="Black" Content ="{DynamicResource ResourceKey=NewCategory}" />
 
+                <WrapPanel Margin="0,30,0,0" HorizontalAlignment="Center">
+                    <Label x:Name="lblParent" HorizontalContentAlignment="Right" HorizontalAlignment="Center" FontSize="18" Height="40" Foreground="Black">
+                        <WrapPanel>
+                            <TextBlock Text="{DynamicResource ResourceKey=ParentCategory}"/>
+                            <TextBlock Text=" : "/>
+                        </WrapPanel>
+                    </Label>
+                <ComboBox x:Name="cmbxParent" VerticalAlignment="Top" Height="30"
+                  ItemsSource="{Binding Path=PotentialParents}"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="CategoryID"
+                  SelectedValue="{Binding Path=ProductCategoryModel.ParentID}" FontSize="16" HorizontalAlignment="Left" Width="600"/>
+
+                </WrapPanel>
+
+
+
                 <DataGrid Name="dgLocalizedCategories" FontSize="16" Margin="0,30,0,0" AutoGenerateColumns="False" HorizontalAlignment="Center" Width="600" RowHeight="30"
                       CanUserAddRows="False" CanUserSortColumns="False" AlternatingRowBackground="Gray">
                     <DataGrid.Columns>
@@ -46,7 +63,7 @@
                             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{DynamicResource ResourceKey=AddSpecificProductPropertiesToCategory}" FontSize="18" Height="60" Foreground="Black"/>
 
                             <DataGrid x:Name="dgSelectProperty" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="16" HorizontalAlignment="Center" RowHeight="30"
-                            CanUserSortColumns="False" Margin="50,20,50,0" MaxHeight="300" AlternatingRowBackground="Gray">
+                            CanUserSortColumns="False" Margin="50,20,50,0" MaxHeight="500" AlternatingRowBackground="Gray">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding PropertyName}" Width="*">
                                         <DataGridTextColumn.Header>
@@ -67,9 +84,9 @@
 
                         </StackPanel>
                         <StackPanel Grid.Column="1">
-                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{DynamicResource ResourceKey=ListOfSpecificProductProperties}" FontSize="18" Height="60" Foreground="Black"/>
+                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{DynamicResource ResourceKey=CategorySpecificProductProperties}" FontSize="18" Height="60" Foreground="Black"/>
                             <DataGrid x:Name="dgCategory_SpecificProductProperty" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="16" HorizontalAlignment="Center" RowHeight="30"
-                            CanUserSortColumns="False" Margin="50,20,50,0" MaxHeight="300" AlternatingRowBackground="Gray">
+                            CanUserSortColumns="False" Margin="50,20,50,0" MaxHeight="500" AlternatingRowBackground="Gray">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding PropertyName}" Width="*" MaxWidth="500">
                                         <DataGridTextColumn.Header>
@@ -98,20 +115,14 @@
                     </Grid>
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Width="120" FontSize="16" Margin="20,20,20,0"  Click="btnSubmit_Click" />
-                    <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Right" Width="120" FontSize="16" Margin="20,20,20,0" Click="btnCancel_Click"/>
+                    <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" HorizontalAlignment="Right" Width="120" FontSize="16" Margin="20,20,20,0" Click="btnCancel_Click"/>
+                    <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" HorizontalAlignment="Left" Width="120" FontSize="16" Margin="20,20,20,0"  Click="btnSubmit_Click" />
                 </WrapPanel>
             </StackPanel>
 
 
 
-            <!--<Label x:Name="lblParent" Content="NO-ML Parent:" Margin="10,9.7,240,139.6" Grid.Row="1"/>-->
-
-            <!--<ComboBox x:Name="cmbxParent" Margin="10,43.6,0,0" VerticalAlignment="Top" Height="30"
-                  ItemsSource="{Binding Path=PotentialParents}"
-                  DisplayMemberPath="Name"
-                  SelectedValuePath="CategoryID"
-                  SelectedValue="{Binding Path=ProductCategoryModel.ParentID}" FontSize="16" Grid.Row="1" HorizontalAlignment="Left" Width="385"/>-->
+            
 
 
         </ScrollViewer>

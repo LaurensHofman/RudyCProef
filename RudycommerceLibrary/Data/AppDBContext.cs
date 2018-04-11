@@ -60,12 +60,12 @@ namespace RudycommerceLibrary
                 .WithMany(pc => pc.Products)
                 .HasForeignKey<int>(p => p.CategoryID);
             #endregion
-            //#region Category has 0/1 Parent
-            //modelBuilder.Entity<ProductCategory>()
-            //    .HasOptional<ProductCategory>(p1 => p1.Parent)
-            //    .WithMany(p2 => p2.Children)
-            //    .HasForeignKey<int?>(m => m.ParentID);
-            //#endregion
+            #region Category has 0/1 Parent
+            modelBuilder.Entity<ProductCategory>()
+                .HasOptional<ProductCategory>(p1 => p1.Parent)
+                .WithMany(p2 => p2.Children)
+                .HasForeignKey<int?>(m => m.ParentID);
+            #endregion
             #region Products (many) to (many) Languages
             modelBuilder.Entity<LocalizedProduct>()
                 .HasKey(lp => new { lp.ProductID, lp.LanguageID });

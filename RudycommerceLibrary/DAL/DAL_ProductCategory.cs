@@ -68,6 +68,13 @@ namespace RudycommerceLibrary.DAL
             return returnLocalizedCategory;
         }
 
+        public static ProductCategory GetProductCategory(int categoryID)
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.ProductCategories.SingleOrDefault(pc => pc.CategoryID == categoryID && pc.DeletedAt == null);
+        }
+
         public static ProductCategory GetParentCategory(int? parentID)
         {
             var ctx = AppDBContext.Instance();

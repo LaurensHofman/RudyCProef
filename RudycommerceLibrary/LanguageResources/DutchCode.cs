@@ -12,6 +12,7 @@ namespace Rudycommerce.LanguageResources
         public const string NO = "Nee";
         public const string NAME = "Naam";
         public const string DESCRIPTION = "Beschrijving";
+        public const string NO_PARENT = "Geen bovenliggende categorie";
 
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName)
         {

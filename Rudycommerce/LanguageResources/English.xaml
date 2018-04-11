@@ -66,6 +66,26 @@
     <system:String x:Key="Manage">Manage</system:String>
     <system:String x:Key="NewCategory">New category</system:String>
 
+    <system:String x:Key="NavigationWindowTitle">Rudycommerce</system:String>
+    <system:String x:Key="AddCategory">Add category</system:String>
+    <system:String x:Key="AddProductProperty">Add specific product properties</system:String>
+    <system:String x:Key="Cancel">Cancel</system:String>
+    <system:String x:Key="ProductsAndCategories">Products and categories</system:String>
+    <system:String x:Key="Products">Products</system:String>
+    <system:String x:Key="Categories">Categories</system:String>
+    <system:String x:Key="SpecificProductProperties">Specific product properties</system:String>
+    <system:String x:Key="Languages">Languages</system:String>
+    <system:String x:Key="General">General</system:String>
+    <system:String x:Key="MultilingualSpecificProperties">Language-sensitive specific properties</system:String>
+    <system:String x:Key="NonMultilingualSpecificProperties">Non-language-sensitive specific properties</system:String>
+    <system:String x:Key="SelectCategory">Select a category</system:String>
+    <system:String x:Key="NewCategoryName">New category name</system:String>
+    <system:String x:Key="CategorySpecificProductProperties">Specific product properties belonging to the category</system:String>
+    <system:String x:Key="IsRequired">Is required?</system:String>
+    <system:String x:Key="PossibleProductProperties">Possible product properties</system:String>
+    <system:String x:Key="AddedProductPropertiesToCategory">Product properties belonging to category</system:String>
+    <system:String x:Key="AddSpecificProductPropertiesToCategory">Add specific product properties to the category</system:String>
+
 
 
 

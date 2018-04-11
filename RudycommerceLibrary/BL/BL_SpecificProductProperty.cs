@@ -33,25 +33,38 @@ namespace RudycommerceLibrary.BL
         public static List<NecessaryProductProperties> GetNecessaryProductProperties(Language lookupNameLanguage, int categoryID)
         {
             List<NecessaryProductProperties> necessaryProductProperties = new List<NecessaryProductProperties>();
+            ProductCategory category = new ProductCategory();
+            int nextCategoryID = categoryID;
 
-            List<Category_SpecificProductProperties> category_requiredPropertiesList = BL_SpecificProductProperty.GetProductPropertiesForCategory(categoryID);
-
-            foreach (Category_SpecificProductProperties categoryProperties in category_requiredPropertiesList)
+            do
             {
-                SpecificProductProperty productProperty = GetProductPropertyByID(categoryProperties.SpecificProductPropertyID);
+                categoryID = nextCategoryID;
 
-                necessaryProductProperties.Add(
-                    new NecessaryProductProperties
-                    {
-                        PropertyID = categoryProperties.SpecificProductPropertyID,
-                        IsRequired = categoryProperties.IsRequired,
-                        IsMultilingual = productProperty.IsMultilingual,
-                        IsBool = productProperty.IsBool,
-                        LookupName = GetPropertyLookupName(lookupNameLanguage, productProperty.SpecificProductPropertyID)
-                    });
-            }
+                List<Category_SpecificProductProperties> category_requiredPropertiesList = BL_SpecificProductProperty.GetProductPropertiesForCategory(categoryID);
+                category = BL_ProductCategory.GetProductCategory(categoryID);
 
-            return necessaryProductProperties;
+                foreach (Category_SpecificProductProperties categoryProperties in category_requiredPropertiesList)
+                {
+                    SpecificProductProperty productProperty = GetProductPropertyByID(categoryProperties.SpecificProductPropertyID);
+
+                    necessaryProductProperties.Add(
+                        new NecessaryProductProperties
+                        {
+                            PropertyID = categoryProperties.SpecificProductPropertyID,
+                            IsRequired = categoryProperties.IsRequired,
+                            IsMultilingual = productProperty.IsMultilingual,
+                            IsBool = productProperty.IsBool,
+                            LookupName = GetPropertyLookupName(lookupNameLanguage, productProperty.SpecificProductPropertyID)
+                        });
+                }
+
+                if (category.ParentID != null)
+                {
+                    nextCategoryID = category.ParentID.Value;
+                }
+            } while (category.ParentID != null);
+
+            return necessaryProductProperties.Distinct(new Utilities.DistinctItemComparerProperties()).ToList() ;
         }
 
         public static string GetPropertyLookupName(Language lookupNameLanguage, int specificProductPropertyID)

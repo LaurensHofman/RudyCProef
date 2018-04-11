@@ -17,23 +17,23 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("category_id")]
         public int CategoryID { get; set; }
-        
-        //[Column("parent_id")]
-        //public int? ParentID { get; set; }
+
+        [Column("parent_id")]
+        public int? ParentID { get; set; }
 
 
         //Zie: Children Vertonen NOTES
         //Uitleg staat ook in boek bij Arrays (denkik)
 
 
-        //[ForeignKey("ParentID")]
-        //public virtual ProductCategory Parent { get; set; }
-        //public virtual ICollection<ProductCategory> Children { get; set; }
+        [ForeignKey("ParentID")]
+        public virtual ProductCategory Parent { get; set; }
+        public virtual ICollection<ProductCategory> Children { get; set; }
         public virtual ICollection<Product> Products { get; set; }
 
         public ProductCategory()
         {
-            //Children = new List<ProductCategory>();
+            Children = new List<ProductCategory>();
             Products = new List<Product>();
         }
 

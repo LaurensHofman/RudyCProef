@@ -79,8 +79,8 @@ namespace Rudycommerce
             string messageboxContent = BL_Multilingual.UOVerifyAdminMessageBoxContent(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
             string messageboxTitle = BL_Multilingual.UOVerifyAdminMessageBoxTitle(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
 
-            MessageBoxManager.Yes = BL_Multilingual.Yes(RudycommerceLibrary.Settings.UserLanguage);
-            MessageBoxManager.No = BL_Multilingual.No(RudycommerceLibrary.Settings.UserLanguage);
+            MessageBoxManager.Yes = BL_Multilingual.YES(RudycommerceLibrary.Settings.UserLanguage);
+            MessageBoxManager.No = BL_Multilingual.NO(RudycommerceLibrary.Settings.UserLanguage);
             MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent, messageboxTitle, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -112,8 +112,8 @@ namespace Rudycommerce
             string messageboxContent = BL_Multilingual.UODeleteUserMessageBoxContent(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
             string messageboxTitle = BL_Multilingual.UODeleteUserMessageBoxTitle(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
 
-            MessageBoxManager.Yes = BL_Multilingual.Yes(RudycommerceLibrary.Settings.UserLanguage);
-            MessageBoxManager.No = BL_Multilingual.No(RudycommerceLibrary.Settings.UserLanguage);
+            MessageBoxManager.Yes = BL_Multilingual.YES(RudycommerceLibrary.Settings.UserLanguage);
+            MessageBoxManager.No = BL_Multilingual.NO(RudycommerceLibrary.Settings.UserLanguage);
             MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent,
@@ -137,8 +137,8 @@ namespace Rudycommerce
             string messageboxContent = BL_Multilingual.UOMakeUserAdminMessageBoxContent(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
             string messageboxTitle = BL_Multilingual.UOMakeUserAdminMessageBoxTitle(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
 
-            MessageBoxManager.Yes = BL_Multilingual.Yes(RudycommerceLibrary.Settings.UserLanguage);
-            MessageBoxManager.No = BL_Multilingual.No(RudycommerceLibrary.Settings.UserLanguage);
+            MessageBoxManager.Yes = BL_Multilingual.YES(RudycommerceLibrary.Settings.UserLanguage);
+            MessageBoxManager.No = BL_Multilingual.NO(RudycommerceLibrary.Settings.UserLanguage);
             MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent,

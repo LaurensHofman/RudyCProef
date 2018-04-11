@@ -88,7 +88,22 @@ public static class BL_Multilingual
 
             return returnListLanguages;
         }
-        
+
+        public static string NO_PARENT(Language userLanguage)
+        {
+            switch (userLanguage.LocalName)
+            {
+                case "Nederlands":
+                    return DutchCode.NO_PARENT;
+
+                case "English":
+                    return EnglishCode.NO_PARENT;
+
+                default:
+                    return DutchCode.NO_PARENT;
+            }
+        }
+
         public static string ExitMessageBoxContent(Language preferredLanguage)
         {
             switch (preferredLanguage.LocalName)
@@ -166,7 +181,7 @@ public static class BL_Multilingual
             }
         }
 
-        public static string Yes(Language preferredLanguage)
+        public static string YES(Language preferredLanguage)
         {
             switch (preferredLanguage.LocalName)
             {
@@ -181,7 +196,7 @@ public static class BL_Multilingual
             }
         }
 
-        public static string Name(Language userLanguage)
+        public static string NAME(Language userLanguage)
         {
             switch (userLanguage.LocalName)
             {
@@ -196,7 +211,7 @@ public static class BL_Multilingual
             }
         }
 
-        public static string Description(Language userLanguage)
+        public static string DESCRIPTION(Language userLanguage)
         {
             switch (userLanguage.LocalName)
             {
@@ -211,7 +226,7 @@ public static class BL_Multilingual
             }
         }
 
-        public static string No(Language preferredLanguage)
+        public static string NO(Language preferredLanguage)
         {
             switch (preferredLanguage.LocalName)
             {

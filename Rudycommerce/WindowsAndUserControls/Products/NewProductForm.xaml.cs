@@ -163,7 +163,7 @@ namespace Rudycommerce
             StackPanel stackLeft = new StackPanel();
             Label labelName = new Label
             {
-                Content = BL_Multilingual.Name(Settings.UserLanguage) + " * : ",
+                Content = BL_Multilingual.NAME(Settings.UserLanguage) + " * : ",
                 Height = 30,
                 Foreground = Brushes.Black,
                 FontSize = 18,
@@ -173,7 +173,7 @@ namespace Rudycommerce
             };
             Label labelDescription = new Label
             {
-                Content = BL_Multilingual.Description(Settings.UserLanguage) + " * : ",
+                Content = BL_Multilingual.DESCRIPTION(Settings.UserLanguage) + " * : ",
                 Height = 30,
                 Foreground = Brushes.Black,
                 FontSize = 18,
@@ -327,8 +327,9 @@ namespace Rudycommerce
         #endregion
 
         private void SetCategoryComboBoxContent()
-        {
-            CategoryItemList = BL_ProductCategory.GetCategoryNameWithID(Settings.UserLanguage);
+        { 
+        //    CategoryItemList = BL_ProductCategory.GetCategoryNameWithID(Settings.UserLanguage);
+            CategoryItemList = BL_ProductCategory.GetCategoryListWithParent(Settings.UserLanguage);
 
             //cmbxCategories.DataContext = CategoryItemList;
             //cmbxCategories.ItemsSource = CategoryItemList;

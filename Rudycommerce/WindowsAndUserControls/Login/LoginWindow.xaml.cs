@@ -150,8 +150,8 @@ namespace Rudycommerce
                 string messageboxContent = BL_Multilingual.ExitMessageBoxContent(_preferredLanguage);
                 string messageboxTitle = BL_Multilingual.ExitMessageBoxTitle(_preferredLanguage);
 
-                MessageBoxManager.Yes = BL_Multilingual.Yes(_preferredLanguage);
-                MessageBoxManager.No = BL_Multilingual.No(_preferredLanguage);
+                MessageBoxManager.Yes = BL_Multilingual.YES(_preferredLanguage);
+                MessageBoxManager.No = BL_Multilingual.NO(_preferredLanguage);
                 MessageBoxManager.Register();
 
                 if (MessageBox.Show(messageboxContent, messageboxTitle, MessageBoxButton.YesNo) == MessageBoxResult.Yes)

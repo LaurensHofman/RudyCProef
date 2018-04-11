@@ -82,12 +82,16 @@
     <system:String x:Key="NonMultilingualSpecificProperties">Niet-taalgevoelige specifieke eigenschappen</system:String>
     <system:String x:Key="SelectCategory">Kies een categorie</system:String>
     <system:String x:Key="NewCategoryName">Naam van de nieuwe categorie</system:String>
-    <system:String x:Key="ListOfSpecificProductProperties">Lijst van vereiste specifieke producteigenschappen</system:String>
+    <system:String x:Key="CategorySpecificProductProperties">Specifieke producteigenschappen horende bij de categorie</system:String>
     <system:String x:Key="IsRequired">Is vereist?</system:String>
     <system:String x:Key="PossibleProductProperties">Mogelijke producteigenschappen</system:String>
     <system:String x:Key="AddedProductPropertiesToCategory">Producteigenschappen, horende bij de categorie</system:String>
     <system:String x:Key="AddSpecificProductPropertiesToCategory">Specifieke producteigenschappen toevoegen aan de categorie</system:String>
-    <system:String x:Key="ListOfpecificProductProperties">Lijst van vereiste specifieke producteigenschappen</system:String>
+    
+    
+    <!-- 20180411 HERE -->
+
+    <system:String x:Key="ParentCategory">Bovenliggende categorie</system:String>
     <system:String x:Key="ListOfSpecificProdctProperties">Lijst van vereiste specifieke producteigenschappen</system:String>
     <system:String x:Key="ListfSpecificProdutProperties">Lijst van vereiste specifieke producteigenschappen</system:String>
     <system:String x:Key="ListfSpecificProductPoperties">Lijst van vereiste specifieke producteigenschappen</system:String>

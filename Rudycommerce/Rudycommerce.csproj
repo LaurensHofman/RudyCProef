@@ -95,9 +95,6 @@
     <Compile Include="WindowsAndUserControls\Login\NewDesktopUser.xaml.cs">
       <DependentUpon>NewDesktopUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowsAndUserControls\Products\SelectSpecificProductProperty.xaml.cs">
-      <DependentUpon>SelectSpecificProductProperty.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WindowsAndUserControls\Products\SpecificProductPropertyForm.xaml.cs">
       <DependentUpon>SpecificProductPropertyForm.xaml</DependentUpon>
     </Compile>
@@ -156,10 +153,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowsAndUserControls\Products\NewProductForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WindowsAndUserControls\Products\SelectSpecificProductProperty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -12,7 +12,8 @@ namespace Rudycommerce.LanguageResources
         public const string NO = "No";
         public const string NAME = "Name";
         public const string DESCRIPTION = "Description";
-        
+        public const string NO_PARENT = "No parent";
+
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName)
         {
             return $"Are you sure you want to give {lastName} {firstName} access to the application?";
