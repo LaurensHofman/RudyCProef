@@ -11,111 +11,118 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="Controls:MetroAnimatedSingleRowTabControl" BasedOn="{StaticResource {x:Type Controls:MetroAnimatedSingleRowTabControl}}">
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
+
+            <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Background" Value="Beige"/>
+                <Setter Property="Controls:ControlsHelper.HeaderFontWeight" Value="SemiBold"/>
+                <Setter Property="Padding" Value="25,0,25,0"/>
+                <Setter Property="Height" Value="39"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="BorderThickness" Value="1,0,1,0"/>
+            </Style>
+
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid x:Name="grdNewProductForm" Margin="0,10,0,0">
-        <Controls:MetroAnimatedSingleRowTabControl x:Name="AnimatedTabControl" HorizontalAlignment="Stretch" SelectionChanged="AnimatedTabControl_SelectionChanged">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid x:Name="grdNewProductForm" Style="{StaticResource ResourceKey=UserControlGrid}">
 
-            <Controls:MetroAnimatedSingleRowTabControl.Resources>
+            <Controls:MetroAnimatedSingleRowTabControl x:Name="AnimatedTabControl" SelectionChanged="AnimatedTabControl_SelectionChanged">
 
-                <Style TargetType="{x:Type TabPanel}">
-                
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Controls:MetroAnimatedSingleRowTabControl.Resources>
 
-                </Style>
+                    <Style TargetType="{x:Type TabPanel}">
 
-            </Controls:MetroAnimatedSingleRowTabControl.Resources>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
 
-            <TabItem x:Name="tabItemGeneral" Header="{DynamicResource ResourceKey=General}" Controls:ControlsHelper.HeaderFontSize="22" Background="Beige"
-                     VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="Black" Padding="25,0,25,0" BorderThickness="1,0,1,0">
-                <!--<TabItem.Style>
-                    <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="BorderThickness" Value="2,2,2,2"/>
-                            </Trigger>
-                        </Style.Triggers>
                     </Style>
-                </TabItem.Style>-->
-                <Grid x:Name="grdGeneral" VerticalAlignment="Top">
-                    <StackPanel>
-                        <WrapPanel HorizontalAlignment="Center">
-                            <StackPanel>
-                                <Label Foreground="Black" FontSize="18" Height="30" HorizontalAlignment="Right" Margin="0,20,0,0" Padding="0,-5,0,-5">
-                                    <WrapPanel>
-                                        <TextBlock Text="{DynamicResource ResourceKey=SelectCategory}"/>
-                                        <TextBlock Text=" : "/>                                        
-                                    </WrapPanel>
-                                </Label>
-                                <Label Foreground="Black" FontSize="18" Height="30" HorizontalAlignment="Right" Margin="0,20,0,0" Padding="0,-5,0,-5">
-                                    <WrapPanel>
-                                        <TextBlock Text="{DynamicResource ResourceKey=InitialStock}"/>
-                                        <TextBlock Text=" : "/>
-                                    </WrapPanel>
-                                </Label>
-                                <Label Foreground="Black" FontSize="18" Height="30" HorizontalAlignment="Right" Margin="0,20,0,0" Padding="0,-5,0,-5">
-                                    <WrapPanel>
-                                        <TextBlock Text="{DynamicResource ResourceKey=UnitPrice}"/>
-                                        <TextBlock Text=" : "/>
-                                    </WrapPanel>
-                                </Label>
-                                <Label Foreground="Black" FontSize="18" Height="30" HorizontalAlignment="Right" Margin="0,20,0,0" Padding="0,-5,0,-5">
-                                    <WrapPanel>
-                                        <TextBlock Text="{DynamicResource ResourceKey=IsProductActive}"/>
-                                        <TextBlock Text=" : "/>
-                                    </WrapPanel>
-                                </Label>
-                            </StackPanel>
-                            <StackPanel>
-                                <ComboBox x:Name="cmbxCategories" Margin="0,20,0,0" Width="400" Height="30" Padding="0,5,0,5" 
+
+                </Controls:MetroAnimatedSingleRowTabControl.Resources>
+
+                <TabItem x:Name="tabItemGeneral" Header="{DynamicResource ResourceKey=General}" Controls:ControlsHelper.HeaderFontSize="22">
+                    <Grid x:Name="grdGeneral" Style="{StaticResource ResourceKey=GridBelowTabItem}">
+                        <StackPanel>
+                            <WrapPanel HorizontalAlignment="Center">
+                                <StackPanel>
+                                    <Label Style="{StaticResource ResourceKey=FormLabel}">
+                                        <WrapPanel>
+                                            <TextBlock Text="{DynamicResource ResourceKey=SelectCategory}"/>
+                                            <TextBlock Text=" : "/>
+                                        </WrapPanel>
+                                    </Label>
+                                    <Label Style="{StaticResource ResourceKey=FormLabel}">
+                                        <WrapPanel>
+                                            <TextBlock Text="{DynamicResource ResourceKey=InitialStock}"/>
+                                            <TextBlock Text=" : "/>
+                                        </WrapPanel>
+                                    </Label>
+                                    <Label Style="{StaticResource ResourceKey=FormLabel}">
+                                        <WrapPanel>
+                                            <TextBlock Text="{DynamicResource ResourceKey=UnitPrice}"/>
+                                            <TextBlock Text=" : "/>
+                                        </WrapPanel>
+                                    </Label>
+                                    <Label Style="{StaticResource ResourceKey=FormLabel}">
+                                        <WrapPanel>
+                                            <TextBlock Text="{DynamicResource ResourceKey=IsProductActive}"/>
+                                            <TextBlock Text=" : "/>
+                                        </WrapPanel>
+                                    </Label>
+                                </StackPanel>
+                                <StackPanel>
+                                    <ComboBox x:Name="cmbxCategories" Style="{StaticResource ResourceKey=FormInputComboBox}" Width="400" Padding="0,5,0,5" 
                                             ItemsSource="{Binding Path=CategoryItemList}"
                                             DisplayMemberPath="Name"
                                             SelectedValuePath="CategoryID"
                                             SelectedValue="{Binding Path=ProductModel.CategoryID}" SelectionChanged="cmbxCategories_SelectionChanged"/>
-                                <TextBox Text="{Binding Path=ProductModel.InitialStock}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,20,0,0"  Height="30"  Width="50"/>
-                                <TextBox Text="{Binding Path=ProductModel.UnitPrice}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,20,0,0" Height="30"  Width="50"/>
-                                <CheckBox IsChecked="{Binding Path=ProductModel.IsActive}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,20,0,0" Height="30" Width="50"/>
-                            </StackPanel>
-                        </WrapPanel>
-                        <WrapPanel Margin="0,100,0,0" HorizontalAlignment="Center">
-                            <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
-                            <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
-                            <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
-                            <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
-                        </WrapPanel>
-                    </StackPanel>
-                </Grid>
-            </TabItem>
-            <TabItem x:Name="tabItemMultilingualProperties" Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="25,0,25,0" Background="Beige" BorderThickness="1,0,1,0"
+                                    <TextBox Text="{Binding Path=ProductModel.InitialStock}" Style="{StaticResource ResourceKey=FormInputTextBox}" Width="50"/>
+                                    <TextBox Text="{Binding Path=ProductModel.UnitPrice}" Style="{StaticResource ResourceKey=FormInputTextBox}" Width="50"/>
+                                    <CheckBox IsChecked="{Binding Path=ProductModel.IsActive}" Style="{StaticResource ResourceKey=FormInputCheckBox}" Width="50"/>
+                                </StackPanel>
+                                <TextBlock>Here</TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,100,0,0" HorizontalAlignment="Center">
+                                <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
+                                <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
+                                <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
+                                <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="tabItemMultilingualProperties" Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="25,0,25,0" Background="Beige" BorderThickness="1,0,1,0"
                      Header="{DynamicResource ResourceKey=MultilingualSpecificProperties}" Controls:ControlsHelper.HeaderFontSize="22">
-                <Grid x:Name="grdMultilingualProperties" VerticalAlignment="Top"  Margin="0,20,0,0">
-                    <Controls:MetroAnimatedSingleRowTabControl x:Name="TabControlLanguages" HorizontalAlignment="Center">
-                        <Controls:MetroAnimatedSingleRowTabControl.Resources>
-                            <Style TargetType="{x:Type TabPanel}">
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                            </Style>
-                        </Controls:MetroAnimatedSingleRowTabControl.Resources>
-                        <!-- content will be created in c# code -->
-                    </Controls:MetroAnimatedSingleRowTabControl>
-                </Grid>
-            </TabItem>
-            <TabItem x:Name="tabItemNonMultilingualProperties" Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Center" Padding="25,0,25,0" Background="Beige" BorderThickness="1,0,1,0"
+                    <Grid x:Name="grdMultilingualProperties" VerticalAlignment="Top"  Margin="0,20,0,0">
+                        <Controls:MetroAnimatedSingleRowTabControl x:Name="TabControlLanguages" HorizontalAlignment="Center">
+                            <Controls:MetroAnimatedSingleRowTabControl.Resources>
+                                <Style TargetType="{x:Type TabPanel}">
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </Controls:MetroAnimatedSingleRowTabControl.Resources>
+                            <!-- content will be created in c# code -->
+                        </Controls:MetroAnimatedSingleRowTabControl>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="tabItemNonMultilingualProperties" Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Center" Padding="25,0,25,0" Background="Beige" BorderThickness="1,0,1,0"
                      Header="{DynamicResource ResourceKey=NonMultilingualSpecificProperties}" Controls:ControlsHelper.HeaderFontSize="22">
-                <Grid x:Name="grdNonMultilingualProperties" VerticalAlignment="Top" Margin="0,20,0,0" HorizontalAlignment="Center">
-                    <WrapPanel HorizontalAlignment="Center">
-                        <StackPanel x:Name="NonMLStackLeftLabels"></StackPanel>
-                        <StackPanel x:Name="NonMLStackRightInput"></StackPanel>
-                    </WrapPanel>                    
-                </Grid>
-            </TabItem>
-        </Controls:MetroAnimatedSingleRowTabControl>
-        <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Width="120" FontSize="16" Click="btnCancel_Click" Margin="20,0,20,0"/>
-            <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Width="120" FontSize="16" Click="btnSubmit_Click" Margin="20,0,20,0" />
-        </WrapPanel>
-    </Grid>
+                    <Grid x:Name="grdNonMultilingualProperties" VerticalAlignment="Top" Margin="0,20,0,0" HorizontalAlignment="Center">
+                        <WrapPanel HorizontalAlignment="Center">
+                            <StackPanel x:Name="NonMLStackLeftLabels"></StackPanel>
+                            <StackPanel x:Name="NonMLStackRightInput"></StackPanel>
+                        </WrapPanel>
+                    </Grid>
+                </TabItem>
+            </Controls:MetroAnimatedSingleRowTabControl>
+            <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Width="120" FontSize="16" Click="btnCancel_Click" Margin="20"/>
+                <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Width="120" FontSize="16" Click="btnSubmit_Click" Margin="20" />
+            </WrapPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

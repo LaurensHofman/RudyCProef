@@ -346,7 +346,7 @@ namespace Rudycommerce
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            Visibility = Visibility.Collapsed;
+            this.Visibility = Visibility.Collapsed;
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)

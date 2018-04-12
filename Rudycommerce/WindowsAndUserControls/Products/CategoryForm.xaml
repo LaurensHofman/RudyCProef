@@ -114,9 +114,9 @@
                         </StackPanel>
                     </Grid>
                 </WrapPanel>
-                <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" HorizontalAlignment="Right" Width="120" FontSize="16" Margin="20,20,20,0" Click="btnCancel_Click"/>
-                    <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" HorizontalAlignment="Left" Width="120" FontSize="16" Margin="20,20,20,0"  Click="btnSubmit_Click" />
+                <WrapPanel HorizontalAlignment="Right">
+                    <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" HorizontalAlignment="Right" Width="120" FontSize="16" Margin="20" Click="btnCancel_Click"/>
+                    <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" HorizontalAlignment="Left" Width="120" FontSize="16" Margin="20"  Click="btnSubmit_Click" />
                 </WrapPanel>
             </StackPanel>
 

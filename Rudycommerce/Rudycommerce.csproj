@@ -101,6 +101,10 @@
     <Compile Include="WindowsAndUserControls\UsersAndAccounts\UserOverview.xaml.cs">
       <DependentUpon>UserOverview.xaml</DependentUpon>
     </Compile>
+    <Page Include="Styles\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowsAndUserControls\Login\AdminUserForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

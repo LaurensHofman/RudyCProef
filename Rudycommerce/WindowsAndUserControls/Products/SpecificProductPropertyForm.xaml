@@ -6,42 +6,82 @@
              xmlns:local="clr-namespace:Rudycommerce"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="Beige">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid x:Name="grdSpecificProductPropertyForm">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <WrapPanel>
-                <StackPanel></StackPanel>
-                <StackPanel></StackPanel>
+
+            <Label x:Name="lblTitle" HorizontalContentAlignment="Center" FontSize="20" Height="50" Foreground="Black" Content ="{DynamicResource ResourceKey=NewSpecificProductProperty}" />
+
+
+            <DataGrid Name="dgLocalizedSpecificProperties" Margin="20" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="16" RowHeight="30"
+                  CanUserSortColumns="False" HorizontalAlignment="Center" MaxWidth="500">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=LanguageName}" IsReadOnly="True" Width="*">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{DynamicResource ResourceKey=LanguageName}" Typography.Capitals="SmallCaps"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Path=PropertyName}" Width="*">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{DynamicResource ResourceKey=PropertyName}" Typography.Capitals="SmallCaps"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            
+            <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Center">
+                <StackPanel>
+                    <Label x:Name="lblIsMultilingual" Content="{DynamicResource ResourceKey=IsPropertyMultilingual}" Margin="0,20,0,20"
+                           HorizontalContentAlignment="Right" HorizontalAlignment="Center" FontSize="18" Height="40" Foreground="Black"/>
+                    <Label x:Name="lblIsBool" Content="{DynamicResource ResourceKey=IsPropertyBool}" Margin="0,20,0,20"
+                           HorizontalContentAlignment="Right" HorizontalAlignment="Center" FontSize="18" Height="40" Foreground="Black">
+                        <Label.Style>
+                            <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=SpecificProductPropertyModel.IsMultilingual}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Setter Property="IsEnabled" Value="True"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                </StackPanel>
+                <StackPanel>
+                    <CheckBox x:Name="cbIsMultilingual" IsChecked="{Binding Path=SpecificProductPropertyModel.IsMultilingual}" 
+                              Height="40" Margin="0,20,0,20"/>
+                    <CheckBox x:Name="cbIsBool" IsChecked="{Binding Path=SpecificProductPropertyModel.IsBool}" 
+                              Height="40"  Margin="0,20,0,20">
+                        <CheckBox.Style>
+                            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=SpecificProductPropertyModel.IsMultilingual}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Setter Property="IsEnabled" Value="True"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </CheckBox.Style>
+                    </CheckBox>
+                </StackPanel>
             </WrapPanel>
-            <WrapPanel></WrapPanel>
+            
+            
+            <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Right">                
+                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" FontSize="16" Margin="20" Width="120" Click="btnCancel_Click"/>
+                <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" FontSize="16" Margin="20" Width="120" Click="btnSubmit_Click"/>
+            </WrapPanel>
         </StackPanel>
-
-
-
-
-        <CheckBox x:Name="cbIsMultilingual" Content="ML" IsChecked="{Binding Path=SpecificProductPropertyModel.IsMultilingual}" Margin="0,0,786,436.6"/>
-        <CheckBox x:Name="cbIsBool" Content="Bool" IsChecked="{Binding Path=SpecificProductPropertyModel.IsBool}" Margin="0,50,786,436.6"/>
-
-        <DataGrid Name="dgLocalizedSpecificProperties" Margin="10,105.6,0,0" AutoGenerateColumns="False" CanUserAddRows="False" Height="147"
-                  CanUserSortColumns="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="406">
-            <DataGrid.Columns>
-
-                <!--<DataGridTemplateColumn Header="NO-ML Language" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <ComboBox x:Name="cmbxDgLanguages" DisplayMemberPath="Name" Loaded="cmbxDgLanguages_Loaded"
-                                          SelectedValuePath="LanguageID" SelectedValue="{Binding Path=LanguageID}">
-
-                                </ComboBox>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>-->
-
-
-                <DataGridTextColumn Binding="{Binding Path=LanguageName}" IsReadOnly="True" Header="NO-ML Lang Name" Width="*"/>
-                <DataGridTextColumn Binding="{Binding Path=PropertyName}" Header="NO-ML Property Name" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Height="19" Margin="593,294.6,0,0" VerticalAlignment="Top" Width="62" IsDefault="True" Click="btnSubmit_Click"/>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="btnCancel_Click"/>
+        </ScrollViewer>
     </Grid>
 </UserControl>

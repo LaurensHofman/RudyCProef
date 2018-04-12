@@ -27,6 +27,11 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
             return this.SpecificProductPropertyID <= 0;
         }
 
+        public SpecificProductProperty()
+        {
+            IsMultilingual = true;
+        }
+
         public virtual ICollection<LocalizedSpecificProductProperty> LocalizedSpecificProductProperties { get; set; }
         public virtual ICollection<Category_SpecificProductProperties> Category_SpecificProductProperties { get; set; }
         public virtual ICollection<Product_SpecificProductProperties> Product_SpecificProductProperties { get; set; }

@@ -50,7 +50,7 @@ namespace RudycommerceLibrary
 
         }
 
-        public AppDBContext(string connectionString) : base(connectionString) { }
+        private AppDBContext(string connectionString) : base(connectionString) { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -20,7 +20,7 @@
     <system:String x:Key="PreferredLanguage">Voorkeurstaal</system:String>
     <system:String x:Key="CreateAdminAccount">Beheerdersaccount aanmaken</system:String>
 
-    <system:String x:Key="LanguageName">Naam</system:String>
+    <system:String x:Key="LanguageName">Taalnaam</system:String>
     <system:String x:Key="ISOCode">ISO-code</system:String>
     <system:String x:Key="IsLanguageActive">Is taal actief?</system:String>
     <system:String x:Key="IsLanguageDefault">Is deze de standaardtaal?</system:String>
@@ -86,16 +86,17 @@
     <system:String x:Key="IsRequired">Is vereist?</system:String>
     <system:String x:Key="PossibleProductProperties">Mogelijke producteigenschappen</system:String>
     <system:String x:Key="AddedProductPropertiesToCategory">Producteigenschappen, horende bij de categorie</system:String>
-    <system:String x:Key="AddSpecificProductPropertiesToCategory">Specifieke producteigenschappen toevoegen aan de categorie</system:String>
+    <system:String x:Key="AddSpecificProductPropertiesToCategory">Lijst van specifieke producteigenschappen</system:String>
     
     
     <!-- 20180411 HERE -->
 
     <system:String x:Key="ParentCategory">Bovenliggende categorie</system:String>
-    <system:String x:Key="ListOfSpecificProdctProperties">Lijst van vereiste specifieke producteigenschappen</system:String>
-    <system:String x:Key="ListfSpecificProdutProperties">Lijst van vereiste specifieke producteigenschappen</system:String>
-    <system:String x:Key="ListfSpecificProductPoperties">Lijst van vereiste specifieke producteigenschappen</system:String>
-    <system:String x:Key="ListOfSpecificProductPoerties">Lijst van vereiste specifieke producteigenschappen</system:String>
+    <system:String x:Key="IsPropertyMultilingual">Is de inhoud van de producteigenschap taalgevoelig?</system:String>
+    <system:String x:Key="IsPropertyBool">Is de inhoud van de producteigenschap "Ja" of "Nee"?</system:String>
+    <system:String x:Key="NewSpecificProductProperty">Nieuwe specifieke producteigenschap</system:String>    
+    <system:String x:Key="PropertyName">Naam van de eigenschap</system:String>
+    
     <system:String x:Key="ListOfSpecificProductPoperties">Lijst van vereiste specifieke producteigenschappen</system:String>
 
 
