@@ -16,6 +16,8 @@ namespace RudycommerceLibrary.Models
 
         public bool IsRequired { get; set; }
 
+        public int CategoryID { get; set; }
+
         public int PropertyID { get; set; }
     }
 }

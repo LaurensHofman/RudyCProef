@@ -32,23 +32,25 @@ namespace RudycommerceLibrary.DAL
             ctx.SaveChanges();
         }
 
-        public static List<PropertyAndName> GetListWithNames(Language userLanguage)
+        public static List<LocalizedSpecificProductProperty> GetLocalizedSpecificProductProperties(Language userLanguage)
         {
             var ctx = AppDBContext.Instance();
 
-            List<SpecificProductProperty> propertyList = new List<SpecificProductProperty>();
+            return ctx.LocalizedSpecificProductProperties.Where(lspp => lspp.LanguageID == userLanguage.LanguageID && lspp.DeletedAt == null).ToList();
 
-            List<PropertyAndName> returnList = new List<PropertyAndName>();
+            //List<SpecificProductProperty> propertyList = new List<SpecificProductProperty>();
 
-            propertyList = ctx.SpecificProductProperties.Where(prop => prop.DeletedAt == null).ToList();
+            //List<PropertyAndNameView> returnList = new List<PropertyAndNameView>();
 
-            foreach (var property in propertyList)
-            {
-                returnList.Add(new PropertyAndName() { PropertyID = property.SpecificProductPropertyID
-                                                    , PropertyName = GetPropertyLookupName(property.SpecificProductPropertyID, userLanguage) });
-            }
+            //propertyList = ctx.SpecificProductProperties.Where(prop => prop.DeletedAt == null).ToList();
 
-            return returnList;
+            //foreach (var property in propertyList)
+            //{
+            //    returnList.Add(new PropertyAndNameView() { PropertyID = property.SpecificProductPropertyID
+            //                                        , PropertyName = GetPropertyLookupName(property.SpecificProductPropertyID, userLanguage) });
+            //}
+
+            //return returnList;
         }
 
         public static List<Category_SpecificProductProperties> GetProductPropertiesForCategory(int categoryID)

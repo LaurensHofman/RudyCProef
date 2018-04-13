@@ -9,9 +9,32 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="SmallDataGrid" TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+                <Setter Property="Margin" Value="20"/>
+                <Setter Property="AutoGenerateColumns" Value="False"/>
+                <Setter Property="CanUserAddRows" Value="False"/>
+                <Setter Property="CanUserDeleteRows" Value="False"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="RowHeight" Value="30"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="AlternatingRowBackground" Value="Gray"/>
+            </Style>
+
+            <Style x:Key="FormInputCheckBox" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="10,20,0,0"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Padding" Value="0,-5,0,-5"/>
+            </Style>
+
+            <Style x:Key="FormSubmitCancelButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -19,11 +42,11 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
 
-            <Label x:Name="lblTitle" HorizontalContentAlignment="Center" FontSize="20" Height="50" Foreground="Black" Content ="{DynamicResource ResourceKey=NewSpecificProductProperty}" />
+            <Label x:Name="lblTitle" Style="{StaticResource ResourceKey=FormLabel}" HorizontalAlignment="Center" FontSize="20" Content ="{DynamicResource ResourceKey=NewSpecificProductProperty}" />
 
 
-            <DataGrid Name="dgLocalizedSpecificProperties" Margin="20" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="16" RowHeight="30"
-                  CanUserSortColumns="False" HorizontalAlignment="Center" MaxWidth="500">
+            <DataGrid Name="dgLocalizedSpecificProperties" Style="{StaticResource ResourceKey=SmallDataGrid}"
+                  CanUserSortColumns="False" MaxWidth="500">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Path=LanguageName}" IsReadOnly="True" Width="*">
                         <DataGridTextColumn.Header>
@@ -41,12 +64,12 @@
             
             <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Center">
                 <StackPanel>
-                    <Label x:Name="lblIsMultilingual" Content="{DynamicResource ResourceKey=IsPropertyMultilingual}" Margin="0,20,0,20"
-                           HorizontalContentAlignment="Right" HorizontalAlignment="Center" FontSize="18" Height="40" Foreground="Black"/>
-                    <Label x:Name="lblIsBool" Content="{DynamicResource ResourceKey=IsPropertyBool}" Margin="0,20,0,20"
-                           HorizontalContentAlignment="Right" HorizontalAlignment="Center" FontSize="18" Height="40" Foreground="Black">
-                        <Label.Style>
-                            <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                    <Label x:Name="lblIsMultilingual" Content="{DynamicResource ResourceKey=IsPropertyMultilingual}" Style="{StaticResource ResourceKey=FormLabel}"
+                           HorizontalAlignment="Center"/>
+                    <Label x:Name="lblIsBool" Content="{DynamicResource ResourceKey=IsPropertyBool}"
+                           HorizontalContentAlignment="Right">
+                            <Label.Style>
+                                <Style TargetType="Label" BasedOn="{StaticResource ResourceKey=FormLabel}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Path=SpecificProductPropertyModel.IsMultilingual}" Value="True">
                                         <Setter Property="Visibility" Value="Collapsed"/>
@@ -59,11 +82,10 @@
                 </StackPanel>
                 <StackPanel>
                     <CheckBox x:Name="cbIsMultilingual" IsChecked="{Binding Path=SpecificProductPropertyModel.IsMultilingual}" 
-                              Height="40" Margin="0,20,0,20"/>
-                    <CheckBox x:Name="cbIsBool" IsChecked="{Binding Path=SpecificProductPropertyModel.IsBool}" 
-                              Height="40"  Margin="0,20,0,20">
+                              Style="{StaticResource ResourceKey=FormInputCheckBox}"/>
+                    <CheckBox x:Name="cbIsBool" IsChecked="{Binding Path=SpecificProductPropertyModel.IsBool}">
                         <CheckBox.Style>
-                            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                            <Style TargetType="CheckBox" BasedOn="{StaticResource FormInputCheckBox}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Path=SpecificProductPropertyModel.IsMultilingual}" Value="True">
                                         <Setter Property="Visibility" Value="Collapsed"/>
@@ -78,8 +100,8 @@
             
             
             <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Right">                
-                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" FontSize="16" Margin="20" Width="120" Click="btnCancel_Click"/>
-                <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" FontSize="16" Margin="20" Width="120" Click="btnSubmit_Click"/>
+                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnCancel_Click"/>
+                    <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnSubmit_Click"/>
             </WrapPanel>
         </StackPanel>
         </ScrollViewer>

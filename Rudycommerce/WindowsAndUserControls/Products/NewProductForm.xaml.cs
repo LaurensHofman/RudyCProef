@@ -72,9 +72,9 @@ namespace Rudycommerce
         private void CreateLocalizedTab(LocalizedLanguageItem langItem)
         {
             MetroTabItem tabItem = CreateMetroTabItem(langItem);
-            Grid tabGrid = new Grid();
+            Grid tabGrid = new Grid { Style = Application.Current.Resources["GridBelowTabItem"] as Style };
 
-            WrapPanel wrapForStacks = new WrapPanel();
+            WrapPanel wrapForStacks = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Center };
 
             StackPanel stackPanelLeft = CreateLeftStackPanelForLabels(langItem);
             StackPanel stackPanelRight = CreateRightStackPanelForInput(langItem);

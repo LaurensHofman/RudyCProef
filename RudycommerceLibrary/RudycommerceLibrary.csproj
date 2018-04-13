@@ -120,7 +120,6 @@
     <Compile Include="Models\LocalizedLanguageItem.cs" />
     <Compile Include="Models\NecessaryProductProperties.cs" />
     <Compile Include="Models\PropertyAndCategoryItem.cs" />
-    <Compile Include="Models\PropertyAndName.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utilities\DistinctItemComparerProperties.cs" />
     <Compile Include="Utilities\MessageBoxManager.cs" />

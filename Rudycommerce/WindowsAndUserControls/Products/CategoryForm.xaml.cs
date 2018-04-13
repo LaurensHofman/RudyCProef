@@ -36,7 +36,7 @@ namespace Rudycommerce
         public ObservableCollection<LanguageAndCategoryItem> LanguageAndCategoryList { get; set; }
 
         public ObservableCollection<PropertyAndCategoryItem> PropertyAndCategoryList { get; set; }
-        public ObservableCollection<PropertyAndName> PropertyAndNamesList { get; set; }
+        public ObservableCollection<LocalizedSpecificProductProperty> LocalizedSpecificProductPropertyList { get; set; }
 
 
         public CategoryForm()
@@ -56,24 +56,24 @@ namespace Rudycommerce
 
         private void SetSelectPropertyDataGridContent()
         {
-            PropertyAndNamesList = new ObservableCollection<PropertyAndName>(BL_SpecificProductProperty.GetListWithNames(Settings.UserLanguage).OrderBy(prop => prop.PropertyName));
+            LocalizedSpecificProductPropertyList = new ObservableCollection<LocalizedSpecificProductProperty>(BL_SpecificProductProperty.GetLocalizedSpecificProductProperties(Settings.UserLanguage).OrderBy(prop => prop.LookupName));
 
             BindPropertySelectionData();
         }
 
         private void BindPropertySelectionData()
         {
-            dgSelectProperty.ItemsSource = PropertyAndNamesList.OrderBy(prop => prop.PropertyName);
-            dgSelectProperty.DataContext = PropertyAndNamesList;
+            dgSelectProperty.ItemsSource = LocalizedSpecificProductPropertyList.OrderBy(prop => prop.LookupName);
+            dgSelectProperty.DataContext = LocalizedSpecificProductPropertyList;
         }
 
-        private void AddSelectedProperty(PropertyAndName propertyAndName)
+        private void AddSelectedProperty(LocalizedSpecificProductProperty propertyAndName)
         {
             PropertyAndCategoryList.Add(
                 new PropertyAndCategoryItem
                 {
-                    PropertyID = propertyAndName.PropertyID,
-                    PropertyName = propertyAndName.PropertyName,
+                    PropertyID = propertyAndName.SpecificProductPropertyID,
+                    PropertyName = propertyAndName.LookupName,
                     IsRequired = true
                 });
 
@@ -82,14 +82,14 @@ namespace Rudycommerce
 
         private void AddProperty_Click(object sender, RoutedEventArgs e)
         {
-            PropertyAndName prop = ((FrameworkElement)sender).DataContext as PropertyAndName;
+            LocalizedSpecificProductProperty prop = ((FrameworkElement)sender).DataContext as LocalizedSpecificProductProperty;
             AddSelectedProperty(prop);
             RemoveSelectedPropertyFromList(prop);
         }
 
-        private void RemoveSelectedPropertyFromList(PropertyAndName prop)
+        private void RemoveSelectedPropertyFromList(LocalizedSpecificProductProperty prop)
         {
-            PropertyAndNamesList.Remove(prop);
+            LocalizedSpecificProductPropertyList.Remove(prop);
             BindPropertySelectionData();
         }
         #endregion
@@ -105,11 +105,11 @@ namespace Rudycommerce
         
         private void AddPropertyBackToSelectionList(PropertyAndCategoryItem prop)
         {
-            PropertyAndNamesList.Add(
-                new PropertyAndName
+            LocalizedSpecificProductPropertyList.Add(
+                new LocalizedSpecificProductProperty
                 {
-                    PropertyID = prop.PropertyID,
-                    PropertyName = prop.PropertyName
+                    SpecificProductPropertyID = prop.PropertyID,
+                    LookupName = prop.PropertyName
                 });
 
             BindPropertySelectionData();

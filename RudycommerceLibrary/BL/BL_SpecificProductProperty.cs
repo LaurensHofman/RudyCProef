@@ -25,9 +25,9 @@ namespace RudycommerceLibrary.BL
             DAL.DAL_SpecificProductProperty.Create(specificProductPropertyModel, languageAndSpecificPropertyList);
         }
 
-        public static List<PropertyAndName> GetListWithNames(Language userLanguage)
+        public static List<LocalizedSpecificProductProperty> GetLocalizedSpecificProductProperties(Language userLanguage)
         {
-            return DAL.DAL_SpecificProductProperty.GetListWithNames(userLanguage);
+            return DAL.DAL_SpecificProductProperty.GetLocalizedSpecificProductProperties(userLanguage);
         }
 
         public static List<NecessaryProductProperties> GetNecessaryProductProperties(Language lookupNameLanguage, int categoryID)

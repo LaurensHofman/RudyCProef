@@ -9,9 +9,37 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="SmallDataGrid" TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+                <Setter Property="Margin" Value="20"/>
+                <Setter Property="AutoGenerateColumns" Value="False"/>
+                <Setter Property="CanUserAddRows" Value="False"/>
+                <Setter Property="CanUserDeleteRows" Value="False"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="RowHeight" Value="30"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="AlternatingRowBackground" Value="Gray"/>
+            </Style>
+
+            <Style x:Key="FormInputCheckBox" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="10,20,0,0"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Padding" Value="0,-5,0,-5"/>
+            </Style>
+
+            <Style x:Key="FormSubmitCancelButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+
+            <Style x:Key="FormInputComboBox" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="0,20,0,0"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -20,38 +48,44 @@
             <StackPanel>
                 <Label x:Name="lblCategoryFormTitle" HorizontalContentAlignment="Center" FontSize="20" Height="50" Foreground="Black" Content ="{DynamicResource ResourceKey=NewCategory}" />
 
-                <WrapPanel Margin="0,30,0,0" HorizontalAlignment="Center">
-                    <Label x:Name="lblParent" HorizontalContentAlignment="Right" HorizontalAlignment="Center" FontSize="18" Height="40" Foreground="Black">
+                <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Center">
+                    <StackPanel>
+                    <Label x:Name="lblParent" Style="{StaticResource ResourceKey=FormLabel}">
                         <WrapPanel>
                             <TextBlock Text="{DynamicResource ResourceKey=ParentCategory}"/>
                             <TextBlock Text=" : "/>
                         </WrapPanel>
-                    </Label>
-                <ComboBox x:Name="cmbxParent" VerticalAlignment="Top" Height="30"
-                  ItemsSource="{Binding Path=PotentialParents}"
-                  DisplayMemberPath="Name"
-                  SelectedValuePath="CategoryID"
-                  SelectedValue="{Binding Path=ProductCategoryModel.ParentID}" FontSize="16" HorizontalAlignment="Left" Width="600"/>
+                        </Label>
+                    </StackPanel>
+                    <StackPanel>
+                        <ComboBox x:Name="cmbxParent" Style="{StaticResource ResourceKey=FormInputComboBox}"
+                              ItemsSource="{Binding Path=PotentialParents}"
+                              DisplayMemberPath="Name"
+                              SelectedValuePath="CategoryID"
+                              SelectedValue="{Binding Path=ProductCategoryModel.ParentID}" FontSize="16" HorizontalAlignment="Left" Width="600"/>   
 
+
+                        <DataGrid Name="dgLocalizedCategories" Style="{StaticResource ResourceKey=SmallDataGrid}" Margin="0,40,0,20">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=LanguageName}" IsReadOnly="True" Width="200">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="{DynamicResource ResourceKey=LanguageName}" Typography.Capitals="SmallCaps"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Path=CategoryName}" Width="400">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="{DynamicResource ResourceKey=NewCategoryName}" Typography.Capitals="SmallCaps"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </StackPanel>
                 </WrapPanel>
 
 
 
-                <DataGrid Name="dgLocalizedCategories" FontSize="16" Margin="0,30,0,0" AutoGenerateColumns="False" HorizontalAlignment="Center" Width="600" RowHeight="30"
-                      CanUserAddRows="False" CanUserSortColumns="False" AlternatingRowBackground="Gray">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=LanguageName}" IsReadOnly="True" Width="200">
-                            <DataGridTextColumn.Header>
-                                <TextBlock Text="{DynamicResource ResourceKey=LanguageName}" Typography.Capitals="SmallCaps"/>
-                            </DataGridTextColumn.Header>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding Path=CategoryName}" Width="400">
-                            <DataGridTextColumn.Header>
-                                <TextBlock Text="{DynamicResource ResourceKey=NewCategoryName}" Typography.Capitals="SmallCaps"/>
-                            </DataGridTextColumn.Header>
-                        </DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+
 
                 <WrapPanel Margin="0,60,0,0">
                     <Grid>
@@ -62,10 +96,9 @@
                         <StackPanel Grid.Column="0">
                             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{DynamicResource ResourceKey=AddSpecificProductPropertiesToCategory}" FontSize="18" Height="60" Foreground="Black"/>
 
-                            <DataGrid x:Name="dgSelectProperty" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="16" HorizontalAlignment="Center" RowHeight="30"
-                            CanUserSortColumns="False" Margin="50,20,50,0" MaxHeight="500" AlternatingRowBackground="Gray">
+                            <DataGrid x:Name="dgSelectProperty" Style="{StaticResource ResourceKey=SmallDataGrid}" MaxHeight="500" Margin="50,20,50,0">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding PropertyName}" Width="*">
+                                    <DataGridTextColumn Binding="{Binding LookupName}" Width="*">
                                         <DataGridTextColumn.Header>
                                             <TextBlock Text="{DynamicResource ResourceKey=PossibleProductProperties}" Typography.Capitals="SmallCaps"/>
                                         </DataGridTextColumn.Header>
@@ -85,15 +118,14 @@
                         </StackPanel>
                         <StackPanel Grid.Column="1">
                             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{DynamicResource ResourceKey=CategorySpecificProductProperties}" FontSize="18" Height="60" Foreground="Black"/>
-                            <DataGrid x:Name="dgCategory_SpecificProductProperty" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="16" HorizontalAlignment="Center" RowHeight="30"
-                            CanUserSortColumns="False" Margin="50,20,50,0" MaxHeight="500" AlternatingRowBackground="Gray">
+                            <DataGrid x:Name="dgCategory_SpecificProductProperty" Style="{StaticResource ResourceKey=SmallDataGrid}" MaxHeight="500" Margin="50,20,50,0">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding PropertyName}" Width="*" MaxWidth="500">
                                         <DataGridTextColumn.Header>
                                             <TextBlock Text="{DynamicResource ResourceKey=AddedProductPropertiesToCategory}" Typography.Capitals="SmallCaps"/>
                                         </DataGridTextColumn.Header>
                                     </DataGridTextColumn>
-                                    
+
                                     <DataGridCheckBoxColumn Binding="{Binding IsRequired}">
                                         <DataGridCheckBoxColumn.Header>
                                             <TextBlock Text="{DynamicResource ResourceKey=IsRequired}" Typography.Capitals="SmallCaps"/>
@@ -122,7 +154,7 @@
 
 
 
-            
+
 
 
         </ScrollViewer>

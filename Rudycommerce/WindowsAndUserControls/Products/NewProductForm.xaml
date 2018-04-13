@@ -11,7 +11,10 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
-
+  
+            
+            <!-- Some styles aren't working when used in the styles page-->
+            
             <Style TargetType="Controls:MetroAnimatedSingleRowTabControl" BasedOn="{StaticResource {x:Type Controls:MetroAnimatedSingleRowTabControl}}">
                 <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -25,6 +28,26 @@
                 <Setter Property="Height" Value="39"/>
                 <Setter Property="BorderBrush" Value="Black"/>
                 <Setter Property="BorderThickness" Value="1,0,1,0"/>
+            </Style>
+
+            <Style x:Key="FormSubmitCancelButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+
+            <Style x:Key="FormInputComboBox" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="0,20,0,0"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+
+            <Style x:Key="FormInputCheckBox" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="0,20,0,0"/>
+                <Setter Property="Height" Value="30"/>
             </Style>
 
         </ResourceDictionary>
@@ -85,8 +108,8 @@
                                     <TextBox Text="{Binding Path=ProductModel.UnitPrice}" Style="{StaticResource ResourceKey=FormInputTextBox}" Width="50"/>
                                     <CheckBox IsChecked="{Binding Path=ProductModel.IsActive}" Style="{StaticResource ResourceKey=FormInputCheckBox}" Width="50"/>
                                 </StackPanel>
-                                <TextBlock>Here</TextBlock>
                             </WrapPanel>
+                            <!-- Images yet to be implemented -->
                             <WrapPanel Margin="0,100,0,0" HorizontalAlignment="Center">
                                 <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
                                 <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0"></Image>
@@ -96,22 +119,24 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem x:Name="tabItemMultilingualProperties" Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="25,0,25,0" Background="Beige" BorderThickness="1,0,1,0"
-                     Header="{DynamicResource ResourceKey=MultilingualSpecificProperties}" Controls:ControlsHelper.HeaderFontSize="22">
-                    <Grid x:Name="grdMultilingualProperties" VerticalAlignment="Top"  Margin="0,20,0,0">
-                        <Controls:MetroAnimatedSingleRowTabControl x:Name="TabControlLanguages" HorizontalAlignment="Center">
+                <TabItem x:Name="tabItemMultilingualProperties" Visibility="Collapsed" Header="{DynamicResource ResourceKey=MultilingualSpecificProperties}" 
+                         Controls:ControlsHelper.HeaderFontSize="22">
+                    <Grid x:Name="grdMultilingualProperties" Style="{StaticResource ResourceKey=GridBelowTabItem}">
+                        <Controls:MetroAnimatedSingleRowTabControl x:Name="TabControlLanguages" Margin="0,20,0,0">
                             <Controls:MetroAnimatedSingleRowTabControl.Resources>
                                 <Style TargetType="{x:Type TabPanel}">
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
                                 </Style>
                             </Controls:MetroAnimatedSingleRowTabControl.Resources>
+                            
                             <!-- content will be created in c# code -->
+                            
                         </Controls:MetroAnimatedSingleRowTabControl>
                     </Grid>
                 </TabItem>
-                <TabItem x:Name="tabItemNonMultilingualProperties" Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Center" Padding="25,0,25,0" Background="Beige" BorderThickness="1,0,1,0"
+                <TabItem x:Name="tabItemNonMultilingualProperties" Visibility="Collapsed"
                      Header="{DynamicResource ResourceKey=NonMultilingualSpecificProperties}" Controls:ControlsHelper.HeaderFontSize="22">
-                    <Grid x:Name="grdNonMultilingualProperties" VerticalAlignment="Top" Margin="0,20,0,0" HorizontalAlignment="Center">
+                    <Grid x:Name="grdNonMultilingualProperties" Style="{StaticResource ResourceKey=GridBelowTabItem}">
                         <WrapPanel HorizontalAlignment="Center">
                             <StackPanel x:Name="NonMLStackLeftLabels"></StackPanel>
                             <StackPanel x:Name="NonMLStackRightInput"></StackPanel>
@@ -120,8 +145,8 @@
                 </TabItem>
             </Controls:MetroAnimatedSingleRowTabControl>
             <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Width="120" FontSize="16" Click="btnCancel_Click" Margin="20"/>
-                <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Width="120" FontSize="16" Click="btnSubmit_Click" Margin="20" />
+                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnCancel_Click"/>
+                <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnSubmit_Click"/>
             </WrapPanel>
         </Grid>
     </ScrollViewer>
