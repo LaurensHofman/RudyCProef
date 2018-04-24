@@ -7,6 +7,7 @@ using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
 using RudycommerceLibrary.Models;
+using RudycommerceLibrary.View;
 
 namespace RudycommerceLibrary.DAL
 {
@@ -53,6 +54,21 @@ namespace RudycommerceLibrary.DAL
             //return returnList;
         }
 
+        public static List<SpecificProductPropertyOverViewItem> GetPropertyOverview(Language userLanguage)
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.vSpecificProductPropertyOverview.Where(p => p.LanguageID == userLanguage.LanguageID).ToList() ;
+        }
+
+        public static List<NecessaryProductPropertyViewItem> GetNecessaryProductProperties(Language lookupNameLanguage, int? categoryID)
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.vNecessaryProductPropertiesView.Where(npp => npp.LanguageID == lookupNameLanguage.LanguageID
+                                && npp.CategoryID == categoryID).ToList() ;
+        }
+
         public static List<Category_SpecificProductProperties> GetProductPropertiesForCategory(int categoryID)
         {
             var ctx = AppDBContext.Instance();
@@ -74,5 +90,13 @@ namespace RudycommerceLibrary.DAL
 
             return ctx.SpecificProductProperties.SingleOrDefault(spp => spp.SpecificProductPropertyID == specificProductPropertyID && spp.DeletedAt == null);
         }
+
+        //public static void TestView()
+        //{
+        //    var ctx = AppDBContext.Instance();
+
+        //    var test = ctx.TestViews.Where(x => x.IsBool == true).ToList();
+        //    test.OrderBy(x => x.LookupName);
+        //}
     }
 }

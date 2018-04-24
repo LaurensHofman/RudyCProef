@@ -96,10 +96,27 @@
     <system:String x:Key="IsPropertyBool">Is de inhoud van de producteigenschap "Ja" of "Nee"?</system:String>
     <system:String x:Key="NewSpecificProductProperty">Nieuwe specifieke producteigenschap</system:String>    
     <system:String x:Key="PropertyName">Naam van de eigenschap</system:String>
+
+    <system:String x:Key="IsPropertyBoolShort">Ja/Nee-waarde</system:String>
+    <system:String x:Key="IsPropertyMultilingualShort">Taalgevoelige inhoud</system:String>
+
+    <system:String x:Key="PropertyOverview">Overzicht product eigenschappen</system:String>
+
+
+    <system:String x:Key="CategoryName">Categorie naam</system:String>
+    <system:String x:Key="FilledInLanguagesCount">Aantal ingevulde talen</system:String>
+
+    <system:String x:Key="ProductOverview">Overzicht producten</system:String>
+    <system:String x:Key="CurrentStock">Huidige voorraad</system:String>
     
-    <system:String x:Key="ListOfSpecificProductPoperties">Lijst van vereiste specifieke producteigenschappen</system:String>
+    <!-- 20180420 -->
+    <system:String x:Key="Modify">Wijzig</system:String>
+    <system:String x:Key="FilledInLanguaesCount">Aantal ingevulde talen</system:String>
+    <system:String x:Key="FilledInLangagesCount">Aantal ingevulde talen</system:String>
+    <system:String x:Key="FilledInLaguagesCount">Aantal ingevulde talen</system:String>
+    <system:String x:Key="FilledInanguagesCount">Aantal ingevulde talen</system:String>
+    <system:String x:Key="FillednLanguagesCount">Aantal ingevulde talen</system:String>
+    <system:String x:Key="FilldInLanguagesCount">Aantal ingevulde talen</system:String>
 
-
-  
 
 </ResourceDictionary>

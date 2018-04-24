@@ -77,6 +77,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Validations\GenericDecimalValidation.cs" />
+    <Compile Include="Validations\GenericIntegerValidation.cs" />
+    <Compile Include="Validations\GenericStringValidation.cs" />
     <Compile Include="WindowsAndUserControls\Login\AdminUserForm.xaml.cs">
       <DependentUpon>AdminUserForm.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,15 @@
     </Compile>
     <Compile Include="WindowsAndUserControls\Login\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsAndUserControls\Products\CategoryOverview.xaml.cs">
+      <DependentUpon>CategoryOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsAndUserControls\Products\ProductOverview.xaml.cs">
+      <DependentUpon>ProductOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsAndUserControls\Products\SpecificProductPropertyOverview.xaml.cs">
+      <DependentUpon>SpecificProductPropertyOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsAndUserControls\UsersAndAccounts\ManageAccount.xaml.cs">
       <DependentUpon>ManageAccount.xaml</DependentUpon>
@@ -130,6 +142,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowsAndUserControls\Login\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsAndUserControls\Products\CategoryOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsAndUserControls\Products\ProductOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsAndUserControls\Products\SpecificProductPropertyOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

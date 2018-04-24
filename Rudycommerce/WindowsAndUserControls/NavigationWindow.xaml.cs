@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using Rudycommerce.WindowsAndUserControls.Products;
 using RudycommerceLibrary;
 using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
@@ -91,6 +92,11 @@ namespace Rudycommerce
             userControlUsers.Content = _userOverview;
         }
 
+        private void tabTilePropertyOverview_Click(object sender, RoutedEventArgs e)
+        {
+            userControlProducts.Content = new SpecificProductPropertyOverview();
+        }
+
         private void LogOut()
         {
             LoginWindow relogWindow = new LoginWindow();
@@ -145,6 +151,11 @@ namespace Rudycommerce
             {
                 tabItemUsers.BorderThickness = Selected;
             }
+        }
+
+        private void tabTileProductOverview_Click(object sender, RoutedEventArgs e)
+        {
+            userControlProducts.Content = new ProductOverview();
         }
     }
 }

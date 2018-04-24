@@ -22,6 +22,13 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         [Column("is_bool")]
         public bool IsBool { get; set; }
 
+        [Column("is_enumeration")]
+        public bool IsEnumeration { get; set; }
+
+        [Column("is_number")]
+        public bool IsNumber { get; set; }
+
+
         public override bool IsNew()
         {
             return this.SpecificProductPropertyID <= 0;
@@ -35,6 +42,6 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         public virtual ICollection<LocalizedSpecificProductProperty> LocalizedSpecificProductProperties { get; set; }
         public virtual ICollection<Category_SpecificProductProperties> Category_SpecificProductProperties { get; set; }
         public virtual ICollection<Product_SpecificProductProperties> Product_SpecificProductProperties { get; set; }
-        public virtual ICollection<Localized_Product_SpecificProductProperties> Localized_Product_SpecificProductProperties { get; set; }
+        public virtual ICollection<Values_Product_SpecificProductProperties> Localized_Product_SpecificProductProperties { get; set; }
     }
 }

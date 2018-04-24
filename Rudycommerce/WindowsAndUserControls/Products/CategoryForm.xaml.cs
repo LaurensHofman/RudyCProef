@@ -28,7 +28,7 @@ namespace Rudycommerce
     /// </summary>
     public partial class CategoryForm : UserControl
     {
-        public List<CategoryItem> PotentialParents { get; set; }
+        //public List<CategoryItem> PotentialParents { get; set; }
 
         public ProductCategory ProductCategoryModel { get; set; }
 
@@ -140,7 +140,7 @@ namespace Rudycommerce
         private void InitializeModelsAndContents()
         {
             ProductCategoryModel = new ProductCategory();
-            PotentialParents = BL_ProductCategory.GetPotentialParents(RudycommerceLibrary.Settings.UserLanguage);
+            //PotentialParents = BL_ProductCategory.GetPotentialParents(RudycommerceLibrary.Settings.UserLanguage);
 
 
             // gets active languages

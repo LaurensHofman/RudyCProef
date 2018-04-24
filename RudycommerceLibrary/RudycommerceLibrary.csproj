@@ -37,6 +37,7 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -70,7 +71,7 @@
     <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedProductCategory.cs" />
     <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedSpecificProductProperty.cs" />
     <Compile Include="Entities\ProductsAndCategories\Localized\Category_SpecificProductProperties.cs" />
-    <Compile Include="Entities\ProductsAndCategories\Localized\Localized_Product_SpecificProductProperties.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\Values_Product_SpecificProductProperties.cs" />
     <Compile Include="Entities\ProductsAndCategories\Localized\Product_SpecificProductProperties.cs" />
     <Compile Include="Entities\ProductsAndCategories\Product.cs" />
     <Compile Include="Entities\ProductsAndCategories\ProductCategory.cs" />
@@ -114,11 +115,48 @@
     <Compile Include="Migrations\201804111425219_CategoryParent.Designer.cs">
       <DependentUpon>201804111425219_CategoryParent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804131550296_testView.cs" />
+    <Compile Include="Migrations\201804131550296_testView.Designer.cs">
+      <DependentUpon>201804131550296_testView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804131605370_vPropertyWithName.cs" />
+    <Compile Include="Migrations\201804131605370_vPropertyWithName.Designer.cs">
+      <DependentUpon>201804131605370_vPropertyWithName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804131618334_testVieww.cs" />
+    <Compile Include="Migrations\201804131618334_testVieww.Designer.cs">
+      <DependentUpon>201804131618334_testVieww.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804131648047_NecesPropsView.cs" />
+    <Compile Include="Migrations\201804131648047_NecesPropsView.Designer.cs">
+      <DependentUpon>201804131648047_NecesPropsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804131708320_NecesPropsView1.cs" />
+    <Compile Include="Migrations\201804131708320_NecesPropsView1.Designer.cs">
+      <DependentUpon>201804131708320_NecesPropsView1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804140904001_vPropertyOverview.cs" />
+    <Compile Include="Migrations\201804140904001_vPropertyOverview.Designer.cs">
+      <DependentUpon>201804140904001_vPropertyOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804161429339_productoverview.cs" />
+    <Compile Include="Migrations\201804161429339_productoverview.Designer.cs">
+      <DependentUpon>201804161429339_productoverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804200749474_removingTempParentCat.cs" />
+    <Compile Include="Migrations\201804200749474_removingTempParentCat.Designer.cs">
+      <DependentUpon>201804200749474_removingTempParentCat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804200803221_addedLanguageIDtoProductOverview.cs" />
+    <Compile Include="Migrations\201804200803221_addedLanguageIDtoProductOverview.Designer.cs">
+      <DependentUpon>201804200803221_addedLanguageIDtoProductOverview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryItem.cs" />
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
     <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
     <Compile Include="Models\LocalizedLanguageItem.cs" />
-    <Compile Include="Models\NecessaryProductProperties.cs" />
+    <Compile Include="Utilities\Validations\ProductValidations.cs" />
+    <Compile Include="View\NecessaryProductPropertyViewItem.cs" />
     <Compile Include="Models\PropertyAndCategoryItem.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utilities\DistinctItemComparerProperties.cs" />
@@ -129,6 +167,8 @@
     <Compile Include="Utilities\StringExtensions.cs" />
     <Compile Include="Utilities\Validations\SiteLanguageValidation.cs" />
     <Compile Include="Utilities\Validations\StringValidation.cs" />
+    <Compile Include="View\ProductOverViewItem.cs" />
+    <Compile Include="View\SpecificProductPropertyOverViewItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -162,6 +202,37 @@
     <EmbeddedResource Include="Migrations\201804111425219_CategoryParent.resx">
       <DependentUpon>201804111425219_CategoryParent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804131550296_testView.resx">
+      <DependentUpon>201804131550296_testView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804131605370_vPropertyWithName.resx">
+      <DependentUpon>201804131605370_vPropertyWithName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804131618334_testVieww.resx">
+      <DependentUpon>201804131618334_testVieww.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804131648047_NecesPropsView.resx">
+      <DependentUpon>201804131648047_NecesPropsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804131708320_NecesPropsView1.resx">
+      <DependentUpon>201804131708320_NecesPropsView1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804140904001_vPropertyOverview.resx">
+      <DependentUpon>201804140904001_vPropertyOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804161429339_productoverview.resx">
+      <DependentUpon>201804161429339_productoverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804200749474_removingTempParentCat.resx">
+      <DependentUpon>201804200749474_removingTempParentCat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804200803221_addedLanguageIDtoProductOverview.resx">
+      <DependentUpon>201804200803221_addedLanguageIDtoProductOverview.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

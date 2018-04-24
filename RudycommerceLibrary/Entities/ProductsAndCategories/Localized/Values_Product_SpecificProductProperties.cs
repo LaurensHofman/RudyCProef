@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
 {
-    [Table("localized__product__specific_product_properties")]
-    public class Localized_Product_SpecificProductProperties : BaseEntity
+    [Table("values__product__specific_product_properties")]
+    public class Values_Product_SpecificProductProperties : BaseEntity
     {
         [Column("product_id")]
         public int ProductID { get; set; }
@@ -18,9 +18,18 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
 
         [Column("language_id")]
         public int LanguageID { get; set; }
-
-        [Column("property_value")]
+        
+        [Column("string_value")]
         public string PropertyValue { get; set; }
+
+        [Column("boolean_value")]
+        public bool BooleanValue { get; set; }
+
+        [Column("number_value")]
+        public float NumberValue { get; set; }
+
+        [Column("enumeration_value_id")]
+        public int EnumerationValueID { get; set; }
 
         public override bool IsNew()
         {

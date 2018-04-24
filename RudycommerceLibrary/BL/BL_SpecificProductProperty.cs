@@ -7,6 +7,7 @@ using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
 using RudycommerceLibrary.Models;
+using RudycommerceLibrary.View;
 
 namespace RudycommerceLibrary.BL
 {
@@ -30,41 +31,36 @@ namespace RudycommerceLibrary.BL
             return DAL.DAL_SpecificProductProperty.GetLocalizedSpecificProductProperties(userLanguage);
         }
 
-        public static List<NecessaryProductProperties> GetNecessaryProductProperties(Language lookupNameLanguage, int categoryID)
+        public static List<SpecificProductPropertyOverViewItem> GetPropertyOverview(Language userLanguage)
         {
-            List<NecessaryProductProperties> necessaryProductProperties = new List<NecessaryProductProperties>();
-            ProductCategory category = new ProductCategory();
-            int nextCategoryID = categoryID;
+            return DAL.DAL_SpecificProductProperty.GetPropertyOverview(userLanguage);
+        }
 
-            do
-            {
-                categoryID = nextCategoryID;
+        public static List<NecessaryProductPropertyViewItem> GetNecessaryProductProperties(Language lookupNameLanguage, int categoryID)
+        {
+            return DAL.DAL_SpecificProductProperty.GetNecessaryProductProperties(lookupNameLanguage, categoryID);
 
-                List<Category_SpecificProductProperties> category_requiredPropertiesList = BL_SpecificProductProperty.GetProductPropertiesForCategory(categoryID);
-                category = BL_ProductCategory.GetProductCategory(categoryID);
+            //List<NecessaryProductPropertyViewItem> necessaryProductProperties = new List<NecessaryProductPropertyViewItem>();
+            //int? nextCategoryID = categoryID;
+            //bool anyParents = false;
 
-                foreach (Category_SpecificProductProperties categoryProperties in category_requiredPropertiesList)
-                {
-                    SpecificProductProperty productProperty = GetProductPropertyByID(categoryProperties.SpecificProductPropertyID);
+            //do
+            //{
+            //    anyParents = false;
 
-                    necessaryProductProperties.Add(
-                        new NecessaryProductProperties
-                        {
-                            PropertyID = categoryProperties.SpecificProductPropertyID,
-                            IsRequired = categoryProperties.IsRequired,
-                            IsMultilingual = productProperty.IsMultilingual,
-                            IsBool = productProperty.IsBool,
-                            LookupName = GetPropertyLookupName(lookupNameLanguage, productProperty.SpecificProductPropertyID)
-                        });
-                }
+            //    necessaryProductProperties.AddRange(DAL.DAL_SpecificProductProperty.GetNecessaryProductProperties(lookupNameLanguage, nextCategoryID));
+                
 
-                if (category.ParentID != null)
-                {
-                    nextCategoryID = category.ParentID.Value;
-                }
-            } while (category.ParentID != null);
+            //    if (  necessaryProductProperties.Any(npp => npp.CategoryID == nextCategoryID && npp.CategoryParentID != null))
+            //    {
+            //        nextCategoryID =
+            //            necessaryProductProperties.Find(npp => npp.CategoryID == nextCategoryID && npp.CategoryParentID != null).CategoryParentID;
+            //        anyParents = true;
+            //    }
 
-            return necessaryProductProperties.Distinct(new Utilities.DistinctItemComparerProperties()).ToList() ;
+            //} while (anyParents);
+
+            //return necessaryProductProperties.Distinct(new Utilities.DistinctItemComparerProperties()).ToList();
         }
 
         public static string GetPropertyLookupName(Language lookupNameLanguage, int specificProductPropertyID)

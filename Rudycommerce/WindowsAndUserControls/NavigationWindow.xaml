@@ -10,6 +10,10 @@
 
     <Window.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
             <Style TargetType="Controls:MetroAnimatedSingleRowTabControl" BasedOn="{StaticResource {x:Type Controls:MetroAnimatedSingleRowTabControl}}">
                 <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -55,6 +59,9 @@
                                     <Controls:Tile x:Name="tabTileAddProduct" Title="{DynamicResource ResourceKey=AddProduct}" Click="tabTileAddProduct_Click">
                                         <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ImageInTile}"/>
                                     </Controls:Tile>
+                                    <Controls:Tile x:Name="tabTileProductOverview" Title="{DynamicResource ResourceKey=ProductOverview}" Click="tabTileProductOverview_Click">
+                                        <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ImageInTile}"/>
+                                    </Controls:Tile>
                                 </WrapPanel>
 
                                 <Separator Style="{StaticResource ResourceKey=SeperatorTileRegion}"/>
@@ -70,6 +77,9 @@
                                 <WrapPanel Style="{StaticResource ResourceKey=NaviWrapTileRegion}">
                                     <Controls:Tile x:Name="tabTileAddProductProperty" Title="{DynamicResource ResourceKey=AddProductProperty}" Click="tabTileAddProductProperty_Click">
                                         <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
+                                    </Controls:Tile>
+                                    <Controls:Tile x:Name="tabTilePropertyOverview" Title="{DynamicResource ResourceKey=PropertyOverview}" Click="tabTilePropertyOverview_Click">
+                                        <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
                                     </Controls:Tile>
                                 </WrapPanel>
                             </StackPanel>

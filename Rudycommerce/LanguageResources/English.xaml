@@ -86,7 +86,23 @@
     <system:String x:Key="AddedProductPropertiesToCategory">Product properties belonging to category</system:String>
     <system:String x:Key="AddSpecificProductPropertiesToCategory">Add specific product properties to the category</system:String>
 
+    <system:String x:Key="ParentCategory">Parent category</system:String>
+    <system:String x:Key="IsPropertyMultilingual">Is the content of the property language-sensitive?</system:String>
+    <system:String x:Key="IsPropertyBool">Is the content of the property "Yes" or "No"?</system:String>
+    <system:String x:Key="NewSpecificProductProperty">New specific product property</system:String>
+    <system:String x:Key="PropertyName">Property name</system:String>
 
+    <system:String x:Key="IsPropertyBoolShort">Yes/No-value</system:String>
+    <system:String x:Key="IsPropertyMultilingualShort">Language-sensitive content</system:String>
+
+    <system:String x:Key="PropertyOverview">Product properties overview</system:String>
+
+
+    <system:String x:Key="CategoryName">Category name</system:String>
+    <system:String x:Key="FilledInLanguagesCount">Count of filled in languages</system:String>
+
+    <system:String x:Key="ProductOverview">Product overview</system:String>
+    <system:String x:Key="CurrentStock">Current stock</system:String>
 
 
     <!-- duf: DesktopUserForm.xaml  --><!--

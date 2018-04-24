@@ -1,10 +1,13 @@
 ﻿using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
+using RudycommerceLibrary.Models;
+using RudycommerceLibrary.View;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,8 +30,14 @@ namespace RudycommerceLibrary
         public DbSet<LocalizedSpecificProductProperty> LocalizedSpecificProductProperties { get; set; }
         public DbSet<Category_SpecificProductProperties> Category_SpecificProductProperties { get; set; }
         public DbSet<Product_SpecificProductProperties> Product_SpecificProductProperties { get; set; }
-        public DbSet<Localized_Product_SpecificProductProperties> Localized_Product_SpecificProductProperties { get; set; }
-         
+        public DbSet<Values_Product_SpecificProductProperties> Localized_Product_SpecificProductProperties { get; set; }
+
+        #endregion
+
+        #region Views
+        public DbSet<NecessaryProductPropertyViewItem> vNecessaryProductPropertiesView { get; set; }
+        public DbSet<SpecificProductPropertyOverViewItem> vSpecificProductPropertyOverview { get; set; }
+        public DbSet<ProductOverViewItem> vProductOverview { get; set; }
         #endregion
 
         private static AppDBContext _instance;
@@ -60,12 +69,12 @@ namespace RudycommerceLibrary
                 .WithMany(pc => pc.Products)
                 .HasForeignKey<int>(p => p.CategoryID);
             #endregion
-            #region Category has 0/1 Parent
-            modelBuilder.Entity<ProductCategory>()
-                .HasOptional<ProductCategory>(p1 => p1.Parent)
-                .WithMany(p2 => p2.Children)
-                .HasForeignKey<int?>(m => m.ParentID);
-            #endregion
+            //#region Category has 0/1 Parent
+            //modelBuilder.Entity<ProductCategory>()
+            //    .HasOptional<ProductCategory>(p1 => p1.Parent)
+            //    .WithMany(p2 => p2.Children)
+            //    .HasForeignKey<int?>(m => m.ParentID);
+            //#endregion
             #region Products (many) to (many) Languages
             modelBuilder.Entity<LocalizedProduct>()
                 .HasKey(lp => new { lp.ProductID, lp.LanguageID });
@@ -137,7 +146,7 @@ namespace RudycommerceLibrary
                 .HasForeignKey(ppp => ppp.SpecificProductPropertyID);
             #endregion
             #region Product specific productproperties (many) to (many) Languages
-            modelBuilder.Entity<Localized_Product_SpecificProductProperties>()
+            modelBuilder.Entity<Values_Product_SpecificProductProperties>()
                 .HasKey(lppp => new { lppp.ProductID, lppp.SpecificProductPropertyID, lppp.LanguageID });
 
             modelBuilder.Entity<Product>()
@@ -167,6 +176,7 @@ namespace RudycommerceLibrary
                 .WithMany(l => l.DesktopUsers)
                 .HasForeignKey<int>(du => du.PreferredLanguageID);
             #endregion
+            
         }
     }
 }
