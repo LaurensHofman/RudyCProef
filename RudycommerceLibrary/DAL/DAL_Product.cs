@@ -12,11 +12,14 @@ namespace RudycommerceLibrary.DAL
 {
     public static class DAL_Product
     {
-        public static void Create(Product productModel, List<LocalizedProduct> localizedProductList, List<Product_SpecificProductProperties> product_ProductPropertiesList, List<Values_Product_SpecificProductProperties> localizedValuesProduct_SpecificProductProperties)
+        public static void Create(Product productModel, List<LocalizedProduct> localizedProductList, /*List<Product_SpecificProductProperties> product_ProductPropertiesList,*/ 
+            List<Values_Product_SpecificProductProperties> localizedValuesProduct_SpecificProductProperties)
         {
             var ctx = AppDBContext.Instance();
 
             ctx.Products.Add(productModel);
+
+            ctx.SaveChanges();
 
             foreach (LocalizedProduct localProduct in localizedProductList)
             {
@@ -24,11 +27,13 @@ namespace RudycommerceLibrary.DAL
                 ctx.LocalizedProducts.Add(localProduct);
             }
 
-            foreach (Product_SpecificProductProperties p_prop in product_ProductPropertiesList)
-            {
-                p_prop.ProductID = productModel.ProductID;
-                ctx.Product_SpecificProductProperties.Add(p_prop);
-            }
+            ctx.SaveChanges();
+
+            //foreach (Product_SpecificProductProperties p_prop in product_ProductPropertiesList)
+            //{
+            //    p_prop.ProductID = productModel.ProductID;
+            //    ctx.Product_SpecificProductProperties.Add(p_prop);
+            //}
 
             foreach (Values_Product_SpecificProductProperties loc_p_prop in localizedValuesProduct_SpecificProductProperties)
             {

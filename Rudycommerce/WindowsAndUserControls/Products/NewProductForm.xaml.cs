@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -36,16 +37,14 @@ namespace Rudycommerce
         public List<LocalizedProduct> LocalizedProductList { get; set; }
 
         public List<Product_SpecificProductProperties> Product_ProductPropertiesList { get; set; }
-        //public List<Product_SpecificProductProperties> Product_ProductPropertiesListFromDB { get; set; }
 
         public List<Values_Product_SpecificProductProperties> LocalizedValuesProduct_SpecificProductProperties { get; set; }
-        //public List<Localized_Product_SpecificProductProperties> LocalizedValuesProduct_SpecificProductPropertiesFromDB { get; set; }
 
 
 
 
         public List<LocalizedLanguageItem> LocalizedLanguageList { get; set; }
-        
+
         //bool firstSelectionChangedWhenUpdating = false;
 
         //public NewProductForm(int productID)
@@ -64,12 +63,12 @@ namespace Rudycommerce
         //    LocalizedValuesProduct_SpecificProductProperties = new List<Localized_Product_SpecificProductProperties>();
         //    LocalizedValuesProduct_SpecificProductPropertiesFromDB = BL_Product.GetLocalizedPropertiesFromProduct(productID);
 
-             
+
 
 
 
         //    firstSelectionChangedWhenUpdating = true;
-            
+
         //    SetCategoryComboBoxContent();
         //}
 
@@ -112,7 +111,7 @@ namespace Rudycommerce
             WrapPanel wrapForStacks = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Center };
 
             StackPanel stackPanelLeft = CreateLeftStackPanelForLabelsNewProduct(langItem);
-            StackPanel stackPanelRight = CreateRightStackPanelForInputNewProduct(langItem) ;
+            StackPanel stackPanelRight = CreateRightStackPanelForInputNewProduct(langItem);
 
             wrapForStacks.Children.Add(stackPanelLeft);
             wrapForStacks.Children.Add(stackPanelRight);
@@ -163,13 +162,22 @@ namespace Rudycommerce
             stackRight.Children.Add(txtName);
             stackRight.Children.Add(txtDescription);
 
-            foreach (NecessaryProductPropertyViewItem necessaryProperty in NecessaryProductPropertiesList.Where(np => np.IsMultilingual == true))
+            foreach (NecessaryProductPropertyViewItem necessaryProperty in
+                NecessaryProductPropertiesList.Where(np => np.IsMultilingual == true && np.IsEnumeration == false)
+                .OrderByDescending(np => np.IsRequired))
             {
+                //Product_SpecificProductProperties productProp = new Product_SpecificProductProperties()
+                //{
+                //    SpecificProductPropertyID = necessaryProperty.PropertyID
+                //};
+
                 Values_Product_SpecificProductProperties valueProperty = new Values_Product_SpecificProductProperties()
                 {
                     SpecificProductPropertyID = necessaryProperty.PropertyID,
                     LanguageID = langItem.ID
                 };
+
+                // Make textbox
 
                 TextBox customTextbox = new TextBox
                 {
@@ -178,14 +186,16 @@ namespace Rudycommerce
                     VerticalContentAlignment = VerticalAlignment.Center,
                     Margin = new Thickness { Top = 20 }
                 };
-                Binding customTextboxBinding = new Binding("PropertyValue")
+                Binding customTextboxBinding = new Binding("Value")
                 {
                     Source = valueProperty
                 };
                 customTextbox.SetBinding(TextBox.TextProperty, customTextboxBinding);
 
                 stackRight.Children.Add(customTextbox);
+
                 LocalizedValuesProduct_SpecificProductProperties.Add(valueProperty);
+                //Product_ProductPropertiesList.Add(productProp);
             }
 
             LocalizedProductList.Add(localProduct);
@@ -220,7 +230,8 @@ namespace Rudycommerce
             stackLeft.Children.Add(labelName);
             stackLeft.Children.Add(labelDescription);
 
-            foreach (NecessaryProductPropertyViewItem necessaryProperty in NecessaryProductPropertiesList.Where(np => np.IsMultilingual == true).OrderByDescending(np => np.IsRequired))
+            foreach (NecessaryProductPropertyViewItem necessaryProperty in
+                NecessaryProductPropertiesList.Where(np => np.IsMultilingual == true && np.IsEnumeration == false).OrderByDescending(np => np.IsRequired))
             {
                 Label customLabel = new Label
                 {
@@ -295,50 +306,101 @@ namespace Rudycommerce
             NonMLStackRightInput.Children.Clear();
             Product_ProductPropertiesList.Clear();
 
-            foreach (NecessaryProductPropertyViewItem necessaryProperty in NecessaryProductPropertiesList.Where(np => np.IsMultilingual == false).OrderByDescending(np => np.IsRequired))
+            foreach (NecessaryProductPropertyViewItem necessaryProperty in 
+                NecessaryProductPropertiesList.Where(np => np.IsMultilingual == false || np.IsEnumeration == true)
+                .OrderByDescending(np => np.IsRequired))
             {
-                #region Textbox/Checkbox
-                Product_SpecificProductProperties productProperty = new Product_SpecificProductProperties()
-                {
-                    SpecificProductPropertyID = necessaryProperty.PropertyID
-                };
+                #region Textbox/Checkbox/Combobox
 
-                //TODO If statement to choose between textbox or checkbox
-                if (necessaryProperty.IsBool == false)
+                if (necessaryProperty.IsEnumeration == false)
                 {
-                    TextBox customTextbox = new TextBox
+                    //Product_SpecificProductProperties productProperty = new Product_SpecificProductProperties()
+                    //{
+                    //    SpecificProductPropertyID = necessaryProperty.PropertyID
+                    //};
+
+                    Values_Product_SpecificProductProperties localValue = new Values_Product_SpecificProductProperties()
+                    {
+                        SpecificProductPropertyID = necessaryProperty.PropertyID,
+                        LanguageID = null
+                    };
+
+                    //TODO If statement to choose between textbox or checkbox
+                    if (necessaryProperty.IsBool == false)
+                    {
+                        TextBox customTextbox = new TextBox
+                        {
+                            Height = 30,
+                            Width = 300,
+                            VerticalContentAlignment = VerticalAlignment.Center,
+                            Margin = new Thickness { Top = 20 }
+                        };
+                        Binding customTextboxBinding = new Binding("Value")
+                        {
+                            Source = localValue
+                        };
+                        customTextbox.SetBinding(TextBox.TextProperty, customTextboxBinding);
+
+                        NonMLStackRightInput.Children.Add(customTextbox);
+                        //Product_ProductPropertiesList.Add(productProperty);
+                        LocalizedValuesProduct_SpecificProductProperties.Add(localValue);
+                    }
+                    else
+                    {
+                        CheckBox customCheckbox = new CheckBox
+                        {
+                            Height = 30,
+                            Margin = new Thickness { Top = 20 },
+                            VerticalContentAlignment = VerticalAlignment.Center
+                        };
+                        Binding customCheckboxBinding = new Binding("Value")
+                        {
+                            Source = localValue
+                        };
+                        customCheckbox.SetBinding(CheckBox.IsCheckedProperty, customCheckboxBinding);
+
+                        NonMLStackRightInput.Children.Add(customCheckbox);
+                        //Product_ProductPropertiesList.Add(productProperty);
+                        LocalizedValuesProduct_SpecificProductProperties.Add(localValue);
+                    }
+                }
+                else
+                {
+                    // Make combobox
+
+                    Values_Product_SpecificProductProperties valueProperty = new Values_Product_SpecificProductProperties()
+                    {
+                        SpecificProductPropertyID = necessaryProperty.PropertyID,
+                        LanguageID = null
+                    };
+
+                    ComboBox customComboBox = new ComboBox
                     {
                         Height = 30,
                         Width = 300,
                         VerticalContentAlignment = VerticalAlignment.Center,
-                        Margin = new Thickness { Top = 20 }
-                    };
-                    Binding customTextboxBinding = new Binding("NonMultilingualValue")
-                    {
-                        Source = productProperty
-                    };
-                    customTextbox.SetBinding(TextBox.TextProperty, customTextboxBinding);
-
-                    NonMLStackRightInput.Children.Add(customTextbox);
-                    Product_ProductPropertiesList.Add(productProperty);
-                }
-                else
-                {
-                    CheckBox customCheckbox = new CheckBox
-                    {
-                        Height = 30,
                         Margin = new Thickness { Top = 20 },
-                        VerticalContentAlignment = VerticalAlignment.Center
+                        DisplayMemberPath = "Value",
+                        SelectedValuePath = "EnumerationID"
                     };
-                    Binding customCheckboxBinding = new Binding("NonMultilingualValue")
-                    {
-                        Source = productProperty
-                    };
-                    customCheckbox.SetBinding(CheckBox.IsCheckedProperty, customCheckboxBinding);
 
-                    NonMLStackRightInput.Children.Add(customCheckbox);
-                    Product_ProductPropertiesList.Add(productProperty);
+                    customComboBox.SetBinding(ItemsControl.ItemsSourceProperty,
+                        new Binding
+                        {
+                            Source = BL_SpecificProductProperty.
+                            GetPropertyEnumerations(Settings.UserLanguage, valueProperty.SpecificProductPropertyID)
+                        });
+
+                    customComboBox.SetBinding(
+                       Selector.SelectedValueProperty,
+                       new Binding("EnumerationValueID") { Source = valueProperty });
+
+                    NonMLStackRightInput.Children.Add(customComboBox);
+
+                    LocalizedValuesProduct_SpecificProductProperties.Add(valueProperty);
                 }
+
+                
 
                 #endregion
 
@@ -394,38 +456,38 @@ namespace Rudycommerce
 
         private void cmbxCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-                //if (updatingExistingProduct)
-                //{
-                //    if (MessageBox.Show("NO-ML You are going to lose all content of all currently filled in properties","NO-ML OH NO!", MessageBoxButton.YesNo)
-                //        == MessageBoxResult.Yes)
-                //    {
-                //        tabItemMultilingualProperties.Visibility = Visibility.Visible;
-                //        tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
 
-                //        NecessaryProductPropertiesList = BL_SpecificProductProperty
-                //            .GetNecessaryProductProperties(Settings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
+            //if (updatingExistingProduct)
+            //{
+            //    if (MessageBox.Show("NO-ML You are going to lose all content of all currently filled in properties","NO-ML OH NO!", MessageBoxButton.YesNo)
+            //        == MessageBoxResult.Yes)
+            //    {
+            //        tabItemMultilingualProperties.Visibility = Visibility.Visible;
+            //        tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
 
-                //        LocalizedProductList.Clear();
+            //        NecessaryProductPropertiesList = BL_SpecificProductProperty
+            //            .GetNecessaryProductProperties(Settings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
 
-                //        CreateTabsForEachLanguage();
-                //        FillNonMultilingualInputTab();
-                //    }
-                //}
-                //else
-                //{
-                    tabItemMultilingualProperties.Visibility = Visibility.Visible;
-                    tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
+            //        LocalizedProductList.Clear();
 
-                    NecessaryProductPropertiesList = BL_SpecificProductProperty
-                        .GetNecessaryProductProperties(Settings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
+            //        CreateTabsForEachLanguage();
+            //        FillNonMultilingualInputTab();
+            //    }
+            //}
+            //else
+            //{
+            tabItemMultilingualProperties.Visibility = Visibility.Visible;
+            tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
 
-                    LocalizedProductList.Clear();
+            NecessaryProductPropertiesList = BL_SpecificProductProperty
+                .GetNecessaryProductProperties(Settings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
 
-                    CreateTabsForEachLanguage();
-                    FillNonMultilingualInputTab();
-                //}                
-            
+            LocalizedProductList.Clear();
+
+            CreateTabsForEachLanguage();
+            FillNonMultilingualInputTab();
+            //}                
+
         }
 
         private void AnimatedTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)

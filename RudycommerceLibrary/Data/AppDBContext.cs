@@ -38,6 +38,7 @@ namespace RudycommerceLibrary
         #endregion
 
         #region Views
+        public DbSet<LocalizedEnumerationViewItem> vLocalizedEnumerationView { get; set; }
         public DbSet<NecessaryProductPropertyViewItem> vNecessaryProductPropertiesView { get; set; }
         public DbSet<SpecificProductPropertyOverViewItem> vSpecificProductPropertyOverview { get; set; }
         public DbSet<ProductOverViewItem> vProductOverview { get; set; }

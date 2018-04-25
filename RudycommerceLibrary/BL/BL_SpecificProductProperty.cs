@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -103,6 +104,11 @@ namespace RudycommerceLibrary.BL
         private static List<Category_SpecificProductProperties> GetProductPropertiesForCategory(int categoryID)
         {
             return DAL.DAL_SpecificProductProperty.GetProductPropertiesForCategory(categoryID);
+        }
+
+        public static IEnumerable GetPropertyEnumerations(Language userLanguage, int specificProductPropertyID)
+        {
+            return DAL.DAL_SpecificProductProperty.GetPropertyEnumerations(userLanguage, specificProductPropertyID);
         }
     }
 }

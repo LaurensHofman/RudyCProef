@@ -101,11 +101,20 @@
     <Compile Include="Migrations\201804251318030_testListEnums2.Designer.cs">
       <DependentUpon>201804251318030_testListEnums2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804251740594_necessaryProductProperties_AddedIsEnum.cs" />
+    <Compile Include="Migrations\201804251740594_necessaryProductProperties_AddedIsEnum.Designer.cs">
+      <DependentUpon>201804251740594_necessaryProductProperties_AddedIsEnum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804251757357_vEnums.cs" />
+    <Compile Include="Migrations\201804251757357_vEnums.Designer.cs">
+      <DependentUpon>201804251757357_vEnums.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryItem.cs" />
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
     <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
     <Compile Include="Models\LocalizedLanguageItem.cs" />
     <Compile Include="Utilities\Validations\ProductValidations.cs" />
+    <Compile Include="View\LocalizedEnumerationViewItem.cs" />
     <Compile Include="View\NecessaryProductPropertyViewItem.cs" />
     <Compile Include="Models\PropertyAndCategoryItem.cs" />
     <Compile Include="Settings.cs" />
@@ -142,6 +151,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804251318030_testListEnums2.resx">
       <DependentUpon>201804251318030_testListEnums2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804251740594_necessaryProductProperties_AddedIsEnum.resx">
+      <DependentUpon>201804251740594_necessaryProductProperties_AddedIsEnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804251757357_vEnums.resx">
+      <DependentUpon>201804251757357_vEnums.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -27,6 +27,9 @@ namespace RudycommerceLibrary.View
         [Column("is_multilingual")]
         public bool IsMultilingual { get; set; }
 
+        [Column("is_enumeration")]
+        public bool IsEnumeration { get; set; }
+
         [Column("is_required")]
         public bool IsRequired { get; set; }
 

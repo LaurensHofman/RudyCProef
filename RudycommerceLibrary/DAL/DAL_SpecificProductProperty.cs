@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -119,6 +120,16 @@ namespace RudycommerceLibrary.DAL
             var ctx = AppDBContext.Instance();
 
             return ctx.Category_SpecificProductProperties.Where(cspp => cspp.CategoryID == categoryID && cspp.DeletedAt == null).ToList();
+        }
+
+        public static IEnumerable GetPropertyEnumerations(Language userLanguage, int specificProductPropertyID)
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.vLocalizedEnumerationView
+                .Where(enums => enums.LanguageID == userLanguage.LanguageID
+                    && enums.PropertyID == specificProductPropertyID)
+                    .ToList();
         }
 
         public static string GetPropertyLookupName(int specificProductPropertyID, Language userLanguage)

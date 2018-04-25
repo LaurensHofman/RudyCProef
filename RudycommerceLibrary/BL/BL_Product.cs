@@ -15,7 +15,32 @@ namespace RudycommerceLibrary.BL
         public static void Create(Product productModel, List<LocalizedProduct> localizedProductList, List<Product_SpecificProductProperties> product_ProductPropertiesList, List<Values_Product_SpecificProductProperties> localizedValuesProduct_SpecificProductProperties)
         {
             productModel.CurrentStock = productModel.InitialStock;
-            DAL.DAL_Product.Create(productModel, localizedProductList, product_ProductPropertiesList, localizedValuesProduct_SpecificProductProperties);
+
+            List<Language> LanguageList = BL_Language.GetAllLanguages();
+
+            List<Values_Product_SpecificProductProperties> tempList = new List<Values_Product_SpecificProductProperties>();
+
+            foreach (var item in localizedValuesProduct_SpecificProductProperties
+                                    .Where(x => x.LanguageID == null))
+            {
+                foreach (Language lang in LanguageList)
+                {
+                    tempList.Add(
+                        new Values_Product_SpecificProductProperties
+                        {
+                            LanguageID = lang.LanguageID,
+                            SpecificProductPropertyID = item.SpecificProductPropertyID,
+                            Value = item.Value,
+                            EnumerationValueID = item.EnumerationValueID
+                        });
+                }                
+            }
+
+            localizedValuesProduct_SpecificProductProperties.RemoveAll(x => x.LanguageID == null);
+
+            localizedValuesProduct_SpecificProductProperties.AddRange(tempList);
+
+            DAL.DAL_Product.Create(productModel, localizedProductList, localizedValuesProduct_SpecificProductProperties);
         }
 
         public static List<ProductOverViewItem> GetProductOverview(Language userLanguage)
