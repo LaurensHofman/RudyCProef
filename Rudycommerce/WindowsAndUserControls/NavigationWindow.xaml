@@ -59,7 +59,7 @@
                                     <Controls:Tile x:Name="tabTileAddProduct" Title="{DynamicResource ResourceKey=AddProduct}" Click="tabTileAddProduct_Click">
                                         <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ImageInTile}"/>
                                     </Controls:Tile>
-                                    <Controls:Tile x:Name="tabTileProductOverview" Title="{DynamicResource ResourceKey=ProductOverview}" Click="tabTileProductOverview_Click">
+                                    <Controls:Tile x:Name="tabTileProductOverview" IsEnabled="False" Title="{DynamicResource ResourceKey=ProductOverview}" Click="tabTileProductOverview_Click">
                                         <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ImageInTile}"/>
                                     </Controls:Tile>
                                 </WrapPanel>
@@ -78,7 +78,7 @@
                                     <Controls:Tile x:Name="tabTileAddProductProperty" Title="{DynamicResource ResourceKey=AddProductProperty}" Click="tabTileAddProductProperty_Click">
                                         <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
                                     </Controls:Tile>
-                                    <Controls:Tile x:Name="tabTilePropertyOverview" Title="{DynamicResource ResourceKey=PropertyOverview}" Click="tabTilePropertyOverview_Click">
+                                    <Controls:Tile x:Name="tabTilePropertyOverview" IsEnabled="False" Title="{DynamicResource ResourceKey=PropertyOverview}" Click="tabTilePropertyOverview_Click">
                                         <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
                                     </Controls:Tile>
                                 </WrapPanel>

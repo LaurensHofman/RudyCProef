@@ -13,17 +13,44 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_SpecificProductProperty
     {
-        public static void Save(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList)
+        public static void Save(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList
+            , List<PropertyEnumerations> propertyEnumerations)
         {
             if (specificProductPropertyModel.IsNew())
             {
-                Create(specificProductPropertyModel, languageAndSpecificPropertyList);
+                Create(specificProductPropertyModel, languageAndSpecificPropertyList, propertyEnumerations);
             }
         }
 
-        private static void Create(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList)
+        private static void Create(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList
+            , List<PropertyEnumerations> propertyEnumerations)
         {
-            DAL.DAL_SpecificProductProperty.Create(specificProductPropertyModel, languageAndSpecificPropertyList);
+            if (specificProductPropertyModel.IsEnumeration == false)
+            {
+                DAL.DAL_SpecificProductProperty.CreateNonEnumProperty(specificProductPropertyModel, languageAndSpecificPropertyList);
+            }
+            else
+            {
+                if (specificProductPropertyModel.IsMultilingual == true)
+                {
+                    DAL.DAL_SpecificProductProperty.CreateEnumProperty(specificProductPropertyModel, languageAndSpecificPropertyList, propertyEnumerations);
+                }
+                else
+                {
+                    var languageList = DAL.DAL_Language.GetAllLanguages();
+
+                    foreach (var item in propertyEnumerations)
+                    {
+                        foreach (var values in item.ValuesList)
+                        {
+                            values.Value = item.TemporaryNonMLValue;
+                        }
+                    }
+
+                    DAL.DAL_SpecificProductProperty.CreateEnumProperty(specificProductPropertyModel, languageAndSpecificPropertyList, propertyEnumerations);
+                }
+            }
+             
         }
 
         public static List<LocalizedSpecificProductProperty> GetLocalizedSpecificProductProperties(Language userLanguage)

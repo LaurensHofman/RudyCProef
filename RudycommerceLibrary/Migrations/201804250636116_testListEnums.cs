@@ -3,16 +3,14 @@ namespace RudycommerceLibrary.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class testVieww : DbMigration
+    public partial class testListEnums : DbMigration
     {
         public override void Up()
         {
-            
         }
         
         public override void Down()
         {
-            
         }
     }
 }

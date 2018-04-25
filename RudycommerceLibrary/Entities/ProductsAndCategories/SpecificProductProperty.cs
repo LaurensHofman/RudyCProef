@@ -24,10 +24,9 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
 
         [Column("is_enumeration")]
         public bool IsEnumeration { get; set; }
+        
 
-        [Column("is_number")]
-        public bool IsNumber { get; set; }
-
+        public virtual ICollection<PropertyEnumerations> Enumerations { get; set; }
 
         public override bool IsNew()
         {
@@ -37,6 +36,7 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         public SpecificProductProperty()
         {
             IsMultilingual = true;
+            Enumerations = new List<PropertyEnumerations>();
         }
 
         public virtual ICollection<LocalizedSpecificProductProperty> LocalizedSpecificProductProperties { get; set; }

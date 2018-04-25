@@ -13,6 +13,7 @@ namespace Rudycommerce.LanguageResources
         public const string NAME = "Name";
         public const string DESCRIPTION = "Description";
         public const string NO_PARENT = "No parent";
+        public const string POTENTIAL_VALUES = "Potential values";
 
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName)
         {
@@ -54,5 +55,6 @@ namespace Rudycommerce.LanguageResources
         {
             return "Close application";
         }
+        
     }
 }

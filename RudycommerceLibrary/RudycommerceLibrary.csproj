@@ -69,87 +69,37 @@
     <Compile Include="Entities\ProductsAndCategories\Article.cs" />
     <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedProduct.cs" />
     <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedProductCategory.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedPropertyEnumerationValues.cs" />
     <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedSpecificProductProperty.cs" />
     <Compile Include="Entities\ProductsAndCategories\Localized\Category_SpecificProductProperties.cs" />
     <Compile Include="Entities\ProductsAndCategories\Localized\Values_Product_SpecificProductProperties.cs" />
     <Compile Include="Entities\ProductsAndCategories\Localized\Product_SpecificProductProperties.cs" />
+    <Compile Include="Entities\ProductsAndCategories\PropertyEnumerations.cs" />
     <Compile Include="Entities\ProductsAndCategories\Product.cs" />
     <Compile Include="Entities\ProductsAndCategories\ProductCategory.cs" />
     <Compile Include="Entities\ProductsAndCategories\SpecificProductProperty.cs" />
     <Compile Include="Entities\Language.cs" />
     <Compile Include="LanguageResources\DutchCode.cs" />
     <Compile Include="LanguageResources\EnglishCode.cs" />
-    <Compile Include="Migrations\201803301747560_StartOnAsus.cs" />
-    <Compile Include="Migrations\201803301747560_StartOnAsus.Designer.cs">
-      <DependentUpon>201803301747560_StartOnAsus.cs</DependentUpon>
+    <Compile Include="Migrations\201804241856268_EnumLocsRestart.cs" />
+    <Compile Include="Migrations\201804241856268_EnumLocsRestart.Designer.cs">
+      <DependentUpon>201804241856268_EnumLocsRestart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804041506146_SpecProdPropIsML.cs" />
-    <Compile Include="Migrations\201804041506146_SpecProdPropIsML.Designer.cs">
-      <DependentUpon>201804041506146_SpecProdPropIsML.cs</DependentUpon>
+    <Compile Include="Migrations\201804242025174_EnumLocsretry.cs" />
+    <Compile Include="Migrations\201804242025174_EnumLocsretry.Designer.cs">
+      <DependentUpon>201804242025174_EnumLocsretry.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804051355024_category_properties_is_required.cs" />
-    <Compile Include="Migrations\201804051355024_category_properties_is_required.Designer.cs">
-      <DependentUpon>201804051355024_category_properties_is_required.cs</DependentUpon>
+    <Compile Include="Migrations\201804250636116_testListEnums.cs" />
+    <Compile Include="Migrations\201804250636116_testListEnums.Designer.cs">
+      <DependentUpon>201804250636116_testListEnums.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804060909431_IsBoolProdProp.cs" />
-    <Compile Include="Migrations\201804060909431_IsBoolProdProp.Designer.cs">
-      <DependentUpon>201804060909431_IsBoolProdProp.cs</DependentUpon>
+    <Compile Include="Migrations\201804251315548_testListEnums1.cs" />
+    <Compile Include="Migrations\201804251315548_testListEnums1.Designer.cs">
+      <DependentUpon>201804251315548_testListEnums1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804060924076_NonMultiLingualValueProdProdProp.cs" />
-    <Compile Include="Migrations\201804060924076_NonMultiLingualValueProdProdProp.Designer.cs">
-      <DependentUpon>201804060924076_NonMultiLingualValueProdProdProp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804071555042_loc_prod_specprodprop_valueChangedToString.cs" />
-    <Compile Include="Migrations\201804071555042_loc_prod_specprodprop_valueChangedToString.Designer.cs">
-      <DependentUpon>201804071555042_loc_prod_specprodprop_valueChangedToString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804101251181_NullableProperties_product.cs" />
-    <Compile Include="Migrations\201804101251181_NullableProperties_product.Designer.cs">
-      <DependentUpon>201804101251181_NullableProperties_product.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804101457407_RIPParents.cs" />
-    <Compile Include="Migrations\201804101457407_RIPParents.Designer.cs">
-      <DependentUpon>201804101457407_RIPParents.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804111425219_CategoryParent.cs" />
-    <Compile Include="Migrations\201804111425219_CategoryParent.Designer.cs">
-      <DependentUpon>201804111425219_CategoryParent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804131550296_testView.cs" />
-    <Compile Include="Migrations\201804131550296_testView.Designer.cs">
-      <DependentUpon>201804131550296_testView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804131605370_vPropertyWithName.cs" />
-    <Compile Include="Migrations\201804131605370_vPropertyWithName.Designer.cs">
-      <DependentUpon>201804131605370_vPropertyWithName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804131618334_testVieww.cs" />
-    <Compile Include="Migrations\201804131618334_testVieww.Designer.cs">
-      <DependentUpon>201804131618334_testVieww.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804131648047_NecesPropsView.cs" />
-    <Compile Include="Migrations\201804131648047_NecesPropsView.Designer.cs">
-      <DependentUpon>201804131648047_NecesPropsView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804131708320_NecesPropsView1.cs" />
-    <Compile Include="Migrations\201804131708320_NecesPropsView1.Designer.cs">
-      <DependentUpon>201804131708320_NecesPropsView1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804140904001_vPropertyOverview.cs" />
-    <Compile Include="Migrations\201804140904001_vPropertyOverview.Designer.cs">
-      <DependentUpon>201804140904001_vPropertyOverview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804161429339_productoverview.cs" />
-    <Compile Include="Migrations\201804161429339_productoverview.Designer.cs">
-      <DependentUpon>201804161429339_productoverview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804200749474_removingTempParentCat.cs" />
-    <Compile Include="Migrations\201804200749474_removingTempParentCat.Designer.cs">
-      <DependentUpon>201804200749474_removingTempParentCat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804200803221_addedLanguageIDtoProductOverview.cs" />
-    <Compile Include="Migrations\201804200803221_addedLanguageIDtoProductOverview.Designer.cs">
-      <DependentUpon>201804200803221_addedLanguageIDtoProductOverview.cs</DependentUpon>
+    <Compile Include="Migrations\201804251318030_testListEnums2.cs" />
+    <Compile Include="Migrations\201804251318030_testListEnums2.Designer.cs">
+      <DependentUpon>201804251318030_testListEnums2.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryItem.cs" />
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
@@ -175,64 +125,24 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803301747560_StartOnAsus.resx">
-      <DependentUpon>201803301747560_StartOnAsus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804041506146_SpecProdPropIsML.resx">
-      <DependentUpon>201804041506146_SpecProdPropIsML.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804051355024_category_properties_is_required.resx">
-      <DependentUpon>201804051355024_category_properties_is_required.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804060909431_IsBoolProdProp.resx">
-      <DependentUpon>201804060909431_IsBoolProdProp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804060924076_NonMultiLingualValueProdProdProp.resx">
-      <DependentUpon>201804060924076_NonMultiLingualValueProdProdProp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804071555042_loc_prod_specprodprop_valueChangedToString.resx">
-      <DependentUpon>201804071555042_loc_prod_specprodprop_valueChangedToString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804101251181_NullableProperties_product.resx">
-      <DependentUpon>201804101251181_NullableProperties_product.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804101457407_RIPParents.resx">
-      <DependentUpon>201804101457407_RIPParents.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804111425219_CategoryParent.resx">
-      <DependentUpon>201804111425219_CategoryParent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804131550296_testView.resx">
-      <DependentUpon>201804131550296_testView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804131605370_vPropertyWithName.resx">
-      <DependentUpon>201804131605370_vPropertyWithName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804131618334_testVieww.resx">
-      <DependentUpon>201804131618334_testVieww.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804131648047_NecesPropsView.resx">
-      <DependentUpon>201804131648047_NecesPropsView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804131708320_NecesPropsView1.resx">
-      <DependentUpon>201804131708320_NecesPropsView1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804140904001_vPropertyOverview.resx">
-      <DependentUpon>201804140904001_vPropertyOverview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804161429339_productoverview.resx">
-      <DependentUpon>201804161429339_productoverview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804200749474_removingTempParentCat.resx">
-      <DependentUpon>201804200749474_removingTempParentCat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804200803221_addedLanguageIDtoProductOverview.resx">
-      <DependentUpon>201804200803221_addedLanguageIDtoProductOverview.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804241856268_EnumLocsRestart.resx">
+      <DependentUpon>201804241856268_EnumLocsRestart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804242025174_EnumLocsretry.resx">
+      <DependentUpon>201804242025174_EnumLocsretry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804250636116_testListEnums.resx">
+      <DependentUpon>201804250636116_testListEnums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804251315548_testListEnums1.resx">
+      <DependentUpon>201804251315548_testListEnums1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804251318030_testListEnums2.resx">
+      <DependentUpon>201804251318030_testListEnums2.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

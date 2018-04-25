@@ -32,6 +32,9 @@ namespace RudycommerceLibrary
         public DbSet<Product_SpecificProductProperties> Product_SpecificProductProperties { get; set; }
         public DbSet<Values_Product_SpecificProductProperties> Localized_Product_SpecificProductProperties { get; set; }
 
+        public DbSet<PropertyEnumerations> PropertyEnumerations { get; set; }
+        public DbSet<LocalizedPropertyEnumerationValues> LocalizedEnumValues { get; set; }
+
         #endregion
 
         #region Views
@@ -69,12 +72,36 @@ namespace RudycommerceLibrary
                 .WithMany(pc => pc.Products)
                 .HasForeignKey<int>(p => p.CategoryID);
             #endregion
-            //#region Category has 0/1 Parent
-            //modelBuilder.Entity<ProductCategory>()
-            //    .HasOptional<ProductCategory>(p1 => p1.Parent)
-            //    .WithMany(p2 => p2.Children)
-            //    .HasForeignKey<int?>(m => m.ParentID);
-            //#endregion
+
+            #region SpecificProductProperty (1) to (many) Enumeration Values
+            modelBuilder.Entity<PropertyEnumerations>()
+                .HasRequired<SpecificProductProperty>(enums => enums.Property)
+                .WithMany(spp => spp.Enumerations)
+                .HasForeignKey<int>(enums => enums.PropertyID);
+            #endregion
+
+            #region PossibleEnumerationValues (1) to (many) Values_Product_Properties
+            modelBuilder.Entity<Values_Product_SpecificProductProperties>()
+                .HasOptional<PropertyEnumerations>(values => values.EnumerationValue)
+                .WithMany(enums => enums.Product_PropertyValues)
+                .HasForeignKey<int?>(values => values.EnumerationValueID);
+            #endregion
+
+            #region PropertyEnumerations (many) to (many) Languages
+            modelBuilder.Entity<LocalizedPropertyEnumerationValues>()
+                .HasKey(enumv => new { enumv.EnumerationID, enumv.LanguageID });
+
+            modelBuilder.Entity<PropertyEnumerations>()
+                .HasMany(pe => pe.LocalizedEnumerationValues)
+                .WithRequired()
+                .HasForeignKey(enumv => enumv.EnumerationID);
+
+            modelBuilder.Entity<Language>()
+                .HasMany(l => l.LocalizedEnumerationValues)
+                .WithRequired()
+                .HasForeignKey(enumv => enumv.LanguageID);
+            #endregion
+
             #region Products (many) to (many) Languages
             modelBuilder.Entity<LocalizedProduct>()
                 .HasKey(lp => new { lp.ProductID, lp.LanguageID });
@@ -180,3 +207,9 @@ namespace RudycommerceLibrary
         }
     }
 }
+//#region Category has 0/1 Parent
+//modelBuilder.Entity<ProductCategory>()
+//    .HasOptional<ProductCategory>(p1 => p1.Parent)
+//    .WithMany(p2 => p2.Children)
+//    .HasForeignKey<int?>(m => m.ParentID);
+//#endregion

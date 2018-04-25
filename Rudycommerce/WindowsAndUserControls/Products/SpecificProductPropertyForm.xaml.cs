@@ -1,4 +1,5 @@
-﻿using RudycommerceLibrary.BL;
+﻿using RudycommerceLibrary;
+using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
@@ -28,6 +29,8 @@ namespace Rudycommerce
     {
         public SpecificProductProperty SpecificProductPropertyModel { get; set; }
         public ObservableCollection<LanguageAndSpecificPropertyItem> LanguageAndSpecificPropertyList { get; set; }
+
+        
 
         public List<LocalizedLanguageItem> LanguageList { get; set; }
 
@@ -77,13 +80,116 @@ namespace Rudycommerce
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            BL_SpecificProductProperty.Save(SpecificProductPropertyModel, LanguageAndSpecificPropertyList.ToList());
+            BL_SpecificProductProperty.Save(SpecificProductPropertyModel, LanguageAndSpecificPropertyList.ToList(), EnumerationList.ToList());
             Console.Beep();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             Visibility = Visibility.Collapsed;
+        }
+
+        private void MLChecked(object sender, RoutedEventArgs e)
+        {
+            if (SpecificProductPropertyModel.IsMultilingual == true)
+            {
+                GenerateMultilingualDataGridColumns();
+            }
+            else
+            {
+                Generate1DataGridColumn();
+            }
+        }
+
+        private void Generate1DataGridColumn()
+        {
+            EnumerationList = new ObservableCollection<PropertyEnumerations>();
+
+            dgEnumeration.ItemsSource = EnumerationList;
+            dgEnumeration.DataContext = EnumerationList;
+
+            dgEnumeration.Columns.Clear();
+
+            TextBlock header = new TextBlock()
+            {
+                Text = BL_Multilingual.POTENTIAL_VALUES(Settings.UserLanguage)
+            };
+
+            string Bindinglocation = "TemporaryNonMLValue";
+            Binding valuesBinding = new Binding(Bindinglocation);
+
+            DataGridTextColumn dgCol = new DataGridTextColumn
+            {
+                Header = header,
+                Binding = valuesBinding,
+                Width =  new DataGridLength(1.0, DataGridLengthUnitType.Star)
+            };
+
+            dgEnumeration.Columns.Add(dgCol);
+
+            AddEnumRow(null, null);
+        }
+
+        public ObservableCollection<PropertyEnumerations> EnumerationList { get; set; }
+
+        private void GenerateMultilingualDataGridColumns()
+        {
+            EnumerationList = new ObservableCollection<PropertyEnumerations>();
+
+            dgEnumeration.ItemsSource = EnumerationList;
+            dgEnumeration.DataContext = EnumerationList;
+
+            dgEnumeration.Columns.Clear();
+
+            foreach (var lang in LanguageList)
+            {
+                TextBlock header = new TextBlock
+                {
+                    Text = lang.Name
+                };
+                header.Typography.Capitals = FontCapitals.SmallCaps;
+
+                int index = LanguageList.IndexOf(lang);
+                string Bindinglocation = $"ValuesList[{index}].Value";
+                Binding valuesBinding = new Binding(Bindinglocation);
+                
+
+                DataGridTextColumn dgCol
+                    = new DataGridTextColumn
+                    {
+                        Header = header,
+                        Binding = valuesBinding,
+                        Width = new DataGridLength(1.0, DataGridLengthUnitType.Star)
+                    };
+                dgEnumeration.Columns.Add(dgCol);
+            }
+
+            AddEnumRow(null, null);
+        }
+
+        private void AddEnumRow(object sender, RoutedEventArgs e)
+        {
+            PropertyEnumerations newEnum = new PropertyEnumerations();
+
+            foreach (var lang in LanguageList)
+            {
+                newEnum.ValuesList.Add(
+                    new LocalizedPropertyEnumerationValues
+                    {
+                        LanguageID = lang.ID
+                    });
+            }
+
+            EnumerationList.Add(newEnum);
+
+            dgEnumeration.ItemsSource = EnumerationList;
+            dgEnumeration.DataContext = EnumerationList;
+        }
+
+        private void EnumChecked(object sender, RoutedEventArgs e)
+        {
+            dgEnumeration.Visibility = SpecificProductPropertyModel.IsEnumeration ? Visibility.Visible : Visibility.Collapsed;
+            btnAdd.Visibility = SpecificProductPropertyModel.IsEnumeration ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

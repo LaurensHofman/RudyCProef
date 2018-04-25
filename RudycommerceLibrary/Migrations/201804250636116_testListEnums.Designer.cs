@@ -7,13 +7,13 @@ namespace RudycommerceLibrary.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class NecesPropsView : IMigrationMetadata
+    public sealed partial class testListEnums : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NecesPropsView));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(testListEnums));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804131648047_NecesPropsView"; }
+            get { return "201804250636116_testListEnums"; }
         }
         
         string IMigrationMetadata.Source

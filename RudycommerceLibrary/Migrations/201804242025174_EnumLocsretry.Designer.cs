@@ -7,13 +7,13 @@ namespace RudycommerceLibrary.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class SpecProdPropIsML : IMigrationMetadata
+    public sealed partial class EnumLocsretry : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SpecProdPropIsML));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(EnumLocsretry));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804041506146_SpecProdPropIsML"; }
+            get { return "201804242025174_EnumLocsretry"; }
         }
         
         string IMigrationMetadata.Source

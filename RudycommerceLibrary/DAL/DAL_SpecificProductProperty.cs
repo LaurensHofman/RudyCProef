@@ -13,21 +13,65 @@ namespace RudycommerceLibrary.DAL
 {
     public static class DAL_SpecificProductProperty
     {
-        public static void Create(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList)
+        public static void CreateNonEnumProperty(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList)
         {
             var ctx = AppDBContext.Instance();
 
             ctx.SpecificProductProperties.Add(specificProductPropertyModel);
 
+            ctx.SaveChanges();
+
             foreach (Models.LanguageAndSpecificPropertyItem item in languageAndSpecificPropertyList)
             {
-                LocalizedSpecificProductProperty localProductProperty = new LocalizedSpecificProductProperty();
-
-                localProductProperty.SpecificProductPropertyID = specificProductPropertyModel.SpecificProductPropertyID;
-                localProductProperty.LanguageID = item.LanguageID;
-                localProductProperty.LookupName = item.PropertyName;
+                LocalizedSpecificProductProperty localProductProperty = new LocalizedSpecificProductProperty
+                {
+                    SpecificProductPropertyID = specificProductPropertyModel.SpecificProductPropertyID,
+                    LanguageID = item.LanguageID,
+                    LookupName = item.PropertyName
+                };
 
                 ctx.LocalizedSpecificProductProperties.Add(localProductProperty);
+            }
+
+            ctx.SaveChanges();
+        }
+
+        public static void CreateEnumProperty(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList, List<PropertyEnumerations> propertyEnumerations)
+        {
+            var ctx = AppDBContext.Instance();
+
+            ctx.SpecificProductProperties.Add(specificProductPropertyModel);
+
+            ctx.SaveChanges();
+
+            foreach (Models.LanguageAndSpecificPropertyItem item in languageAndSpecificPropertyList)
+            {
+                LocalizedSpecificProductProperty localProductProperty = new LocalizedSpecificProductProperty
+                {
+                    SpecificProductPropertyID = specificProductPropertyModel.SpecificProductPropertyID,
+                    LanguageID = item.LanguageID,
+                    LookupName = item.PropertyName
+                };
+
+                ctx.LocalizedSpecificProductProperties.Add(localProductProperty);
+            }
+
+            ctx.SaveChanges();
+
+            foreach (PropertyEnumerations enums in propertyEnumerations)
+            {
+                enums.PropertyID = specificProductPropertyModel.SpecificProductPropertyID;
+
+                ctx.PropertyEnumerations.Add(enums);
+
+                ctx.SaveChanges();
+
+                foreach (var item in enums.ValuesList)
+                {
+                    item.EnumerationID = enums.EnumerationValueID;
+
+                    ctx.LocalizedEnumValues.Add(item);
+                }
             }
 
             ctx.SaveChanges();
@@ -53,6 +97,7 @@ namespace RudycommerceLibrary.DAL
 
             //return returnList;
         }
+
 
         public static List<SpecificProductPropertyOverViewItem> GetPropertyOverview(Language userLanguage)
         {

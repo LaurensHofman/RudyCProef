@@ -68,6 +68,7 @@ namespace Rudycommerce
             }
             else
             {
+                newWindow = true;
                 AdminUserForm NewDesktopUser = new AdminUserForm();
                 NewDesktopUser.Show();
                 this.Close();
@@ -129,7 +130,7 @@ namespace Rudycommerce
 
         private void btnLazy_Click(object sender, RoutedEventArgs e)
         {
-            txtUsername.Text = "laurenshofman";
+            txtUsername.Text = "laurens";
             pwdPassword.Password = "laurens";
             btnLogin_Click(null, null);
         }

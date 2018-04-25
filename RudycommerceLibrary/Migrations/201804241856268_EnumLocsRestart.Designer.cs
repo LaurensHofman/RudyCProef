@@ -7,13 +7,13 @@ namespace RudycommerceLibrary.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class NonMultiLingualValueProdProdProp : IMigrationMetadata
+    public sealed partial class EnumLocsRestart : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NonMultiLingualValueProdProdProp));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(EnumLocsRestart));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804060924076_NonMultiLingualValueProdProdProp"; }
+            get { return "201804241856268_EnumLocsRestart"; }
         }
         
         string IMigrationMetadata.Source

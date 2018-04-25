@@ -19,21 +19,17 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
         [Column("language_id")]
         public int LanguageID { get; set; }
         
-        [Column("string_value")]
-        public string PropertyValue { get; set; }
-
-        [Column("boolean_value")]
-        public bool BooleanValue { get; set; }
-
-        [Column("number_value")]
-        public float NumberValue { get; set; }
+        [Column("input_value")]
+        public string Value { get; set; }
 
         [Column("enumeration_value_id")]
-        public int EnumerationValueID { get; set; }
+        public int? EnumerationValueID { get; set; }
 
         public override bool IsNew()
         {
             return this.ProductID <= 0;
         }
+
+        public PropertyEnumerations EnumerationValue { get; set; }
     }
 }

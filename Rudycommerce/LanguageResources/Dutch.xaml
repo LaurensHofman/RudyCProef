@@ -111,7 +111,7 @@
     
     <!-- 20180420 -->
     <system:String x:Key="Modify">Wijzig</system:String>
-    <system:String x:Key="FilledInLanguaesCount">Aantal ingevulde talen</system:String>
+    <system:String x:Key="IsEnumeration">Heeft de eigenschap een vaste lijst van waardes?</system:String>
     <system:String x:Key="FilledInLangagesCount">Aantal ingevulde talen</system:String>
     <system:String x:Key="FilledInLaguagesCount">Aantal ingevulde talen</system:String>
     <system:String x:Key="FilledInanguagesCount">Aantal ingevulde talen</system:String>

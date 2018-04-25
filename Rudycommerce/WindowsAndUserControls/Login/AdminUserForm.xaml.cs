@@ -88,7 +88,7 @@ namespace Rudycommerce
             {
                 //
                 //
-                // The 2 languages need to exist already - ADD TRYCATCH
+                // TODO The 2 languages need to exist already - ADD TRYCATCH
                 //
                 //
                 NewDesktopUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "Nederlands").LanguageID;

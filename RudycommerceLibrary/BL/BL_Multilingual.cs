@@ -119,6 +119,21 @@ public static class BL_Multilingual
             }
         }
 
+        public static string POTENTIAL_VALUES(Language userLanguage)
+        {
+            switch (userLanguage.LocalName)
+            {
+                case "Nederlands":
+                    return DutchCode.POTENTIAL_VALUES;
+
+                case "English":
+                    return EnglishCode.POTENTIAL_VALUES;
+
+                default:
+                    return DutchCode.POTENTIAL_VALUES;
+            }
+        }
+
         public static string ExitMessageBoxTitle(Language preferredLanguage)
         {
             switch (preferredLanguage.LocalName)
