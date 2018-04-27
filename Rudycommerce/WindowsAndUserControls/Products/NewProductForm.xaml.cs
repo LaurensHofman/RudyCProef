@@ -29,6 +29,8 @@ namespace Rudycommerce
     /// </summary>
     public partial class NewProductForm : UserControl
     {
+        Image image_to_drag;
+
         public List<CategoryItem> CategoryItemList { get; set; }
 
         public List<NecessaryProductPropertyViewItem> NecessaryProductPropertiesList { get; set; }
@@ -39,9 +41,6 @@ namespace Rudycommerce
         public List<Product_SpecificProductProperties> Product_ProductPropertiesList { get; set; }
 
         public List<Values_Product_SpecificProductProperties> LocalizedValuesProduct_SpecificProductProperties { get; set; }
-
-
-
 
         public List<LocalizedLanguageItem> LocalizedLanguageList { get; set; }
 
@@ -81,22 +80,80 @@ namespace Rudycommerce
             LocalizedValuesProduct_SpecificProductProperties = new List<Values_Product_SpecificProductProperties>();
             Product_ProductPropertiesList = new List<Product_SpecificProductProperties>();
 
+            ImageList = new List<ProductImage>();
+
             grdNewProductForm.DataContext = this;
 
             SetLanguageDictionary(RudycommerceLibrary.Settings.UserLanguage);
 
             SetCategoryComboBoxContent();
         }
+        private void SetLanguageDictionary(Language selectedLanguage)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+
+            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
+
+            this.Resources.MergedDictionaries.Add(dict);
+        }
+
+        private void SetCategoryComboBoxContent()
+        {
+            CategoryItemList = BL_ProductCategory.GetCategoryNameWithID(Settings.UserLanguage);
+
+
+            //CategoryItemList = BL_ProductCategory.GetLocalizedProductCategory(Settings.UserLanguage);
+
+            //cmbxCategories.DataContext = CategoryItemList;
+            //cmbxCategories.ItemsSource = CategoryItemList;
+        }
+
+        private void cmbxCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            //if (updatingExistingProduct)
+            //{
+            //    if (MessageBox.Show("NO-ML You are going to lose all content of all currently filled in properties","NO-ML OH NO!", MessageBoxButton.YesNo)
+            //        == MessageBoxResult.Yes)
+            //    {
+            //        tabItemMultilingualProperties.Visibility = Visibility.Visible;
+            //        tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
+
+            //        NecessaryProductPropertiesList = BL_SpecificProductProperty
+            //            .GetNecessaryProductProperties(Settings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
+
+            //        LocalizedProductList.Clear();
+
+            //        CreateTabsForEachLanguage();
+            //        FillNonMultilingualInputTab();
+            //    }
+            //}
+            //else
+            //{
+            tabItemMultilingualProperties.Visibility = Visibility.Visible;
+            tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
+
+            NecessaryProductPropertiesList = BL_SpecificProductProperty
+                .GetNecessaryProductProperties(Settings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
+
+            LocalizedProductList.Clear();
+
+            CreateMultilingualTabsForEachLanguage();
+            FillNonMultilingualInputTab();
+            //}                
+
+        }
 
         #region Generate tab content for new Product
 
-        private void CreateTabsForEachLanguage()
+        private void CreateMultilingualTabsForEachLanguage()
         {
             TabControlLanguages.Items.Clear();
             LocalizedValuesProduct_SpecificProductProperties.Clear();
 
             LocalizedLanguageList = BL_Multilingual.GetLocalizedListOfLanguages(Settings.UserLanguage);
 
+            // Creates tab for each language
             foreach (LocalizedLanguageItem langItem in LocalizedLanguageList)
             {
                 CreateLocalizedTab(langItem);
@@ -125,10 +182,13 @@ namespace Rudycommerce
 
         private StackPanel CreateRightStackPanelForInputNewProduct(LocalizedLanguageItem langItem)
         {
+            // Creates localized product, which contains the name and description
             LocalizedProduct localProduct = new LocalizedProduct()
             {
                 LanguageID = langItem.ID
             };
+
+            #region Creates textboxes for name and description
 
             StackPanel stackRight = new StackPanel();
 
@@ -162,6 +222,9 @@ namespace Rudycommerce
             stackRight.Children.Add(txtName);
             stackRight.Children.Add(txtDescription);
 
+            #endregion
+
+            // Creates a textbox for each multilingual property (which isn't an enumeration)
             foreach (NecessaryProductPropertyViewItem necessaryProperty in
                 NecessaryProductPropertiesList.Where(np => np.IsMultilingual == true && np.IsEnumeration == false)
                 .OrderByDescending(np => np.IsRequired))
@@ -300,6 +363,8 @@ namespace Rudycommerce
             return metroTab;
         }
 
+        #region NonMultilingualInput
+
         private void FillNonMultilingualInputTab()
         {
             NonMLStackLeftLabels.Children.Clear();
@@ -324,22 +389,10 @@ namespace Rudycommerce
                         SpecificProductPropertyID = necessaryProperty.PropertyID,
                         LanguageID = null
                     };
-
-                    //TODO If statement to choose between textbox or checkbox
+                    
                     if (necessaryProperty.IsBool == false)
                     {
-                        TextBox customTextbox = new TextBox
-                        {
-                            Height = 30,
-                            Width = 300,
-                            VerticalContentAlignment = VerticalAlignment.Center,
-                            Margin = new Thickness { Top = 20 }
-                        };
-                        Binding customTextboxBinding = new Binding("Value")
-                        {
-                            Source = localValue
-                        };
-                        customTextbox.SetBinding(TextBox.TextProperty, customTextboxBinding);
+                        TextBox customTextbox = createNonMultilingualTextBox(localValue);
 
                         NonMLStackRightInput.Children.Add(customTextbox);
                         //Product_ProductPropertiesList.Add(productProperty);
@@ -347,17 +400,7 @@ namespace Rudycommerce
                     }
                     else
                     {
-                        CheckBox customCheckbox = new CheckBox
-                        {
-                            Height = 30,
-                            Margin = new Thickness { Top = 20 },
-                            VerticalContentAlignment = VerticalAlignment.Center
-                        };
-                        Binding customCheckboxBinding = new Binding("Value")
-                        {
-                            Source = localValue
-                        };
-                        customCheckbox.SetBinding(CheckBox.IsCheckedProperty, customCheckboxBinding);
+                        CheckBox customCheckbox = CreateNonMultilingualCheckBox(localValue);
 
                         NonMLStackRightInput.Children.Add(customCheckbox);
                         //Product_ProductPropertiesList.Add(productProperty);
@@ -366,41 +409,18 @@ namespace Rudycommerce
                 }
                 else
                 {
-                    // Make combobox
-
                     Values_Product_SpecificProductProperties valueProperty = new Values_Product_SpecificProductProperties()
                     {
                         SpecificProductPropertyID = necessaryProperty.PropertyID,
                         LanguageID = null
                     };
 
-                    ComboBox customComboBox = new ComboBox
-                    {
-                        Height = 30,
-                        Width = 300,
-                        VerticalContentAlignment = VerticalAlignment.Center,
-                        Margin = new Thickness { Top = 20 },
-                        DisplayMemberPath = "Value",
-                        SelectedValuePath = "EnumerationID"
-                    };
-
-                    customComboBox.SetBinding(ItemsControl.ItemsSourceProperty,
-                        new Binding
-                        {
-                            Source = BL_SpecificProductProperty.
-                            GetPropertyEnumerations(Settings.UserLanguage, valueProperty.SpecificProductPropertyID)
-                        });
-
-                    customComboBox.SetBinding(
-                       Selector.SelectedValueProperty,
-                       new Binding("EnumerationValueID") { Source = valueProperty });
+                    ComboBox customComboBox = CreateNonMultilingualComboBox(valueProperty);
 
                     NonMLStackRightInput.Children.Add(customComboBox);
 
                     LocalizedValuesProduct_SpecificProductProperties.Add(valueProperty);
-                }
-
-                
+                }                             
 
                 #endregion
 
@@ -421,27 +441,70 @@ namespace Rudycommerce
             }
         }
 
+        private ComboBox CreateNonMultilingualComboBox(Values_Product_SpecificProductProperties valueProperty)
+        {
+            ComboBox returnComboBox = new ComboBox
+            {
+                Height = 30,
+                Width = 300,
+                VerticalContentAlignment = VerticalAlignment.Center,
+                Margin = new Thickness { Top = 20 },
+                DisplayMemberPath = "Value",
+                SelectedValuePath = "EnumerationID"
+            };
+
+            returnComboBox.SetBinding(ItemsControl.ItemsSourceProperty,
+                new Binding
+                {
+                    Source = BL_SpecificProductProperty.
+                    GetPropertyEnumerations(Settings.UserLanguage, valueProperty.SpecificProductPropertyID)
+                });
+
+            returnComboBox.SetBinding(
+               Selector.SelectedValueProperty,
+               new Binding("EnumerationValueID") { Source = valueProperty });
+
+            return returnComboBox;
+        }
+
+        private CheckBox CreateNonMultilingualCheckBox(Values_Product_SpecificProductProperties localValue)
+        {
+            CheckBox returnCheckBox = new CheckBox
+            {
+                Height = 30,
+                Margin = new Thickness { Top = 20 },
+                VerticalContentAlignment = VerticalAlignment.Center
+            };
+            Binding customCheckboxBinding = new Binding("Value")
+            {
+                Source = localValue
+            };
+            returnCheckBox.SetBinding(CheckBox.IsCheckedProperty, customCheckboxBinding);
+
+            return returnCheckBox;
+        }
+
+        private TextBox createNonMultilingualTextBox(Values_Product_SpecificProductProperties localValue)
+        {
+            TextBox returnTextBox = new TextBox
+            {
+                Height = 30,
+                Width = 300,
+                VerticalContentAlignment = VerticalAlignment.Center,
+                Margin = new Thickness { Top = 20 }
+            };
+            Binding customTextboxBinding = new Binding("Value")
+            {
+                Source = localValue
+            };
+            returnTextBox.SetBinding(TextBox.TextProperty, customTextboxBinding);
+
+            return returnTextBox;
+        }
+
         #endregion
 
-        private void SetCategoryComboBoxContent()
-        {
-            CategoryItemList = BL_ProductCategory.GetCategoryNameWithID(Settings.UserLanguage);
-
-
-            //CategoryItemList = BL_ProductCategory.GetLocalizedProductCategory(Settings.UserLanguage);
-
-            //cmbxCategories.DataContext = CategoryItemList;
-            //cmbxCategories.ItemsSource = CategoryItemList;
-        }
-
-        private void SetLanguageDictionary(Language selectedLanguage)
-        {
-            ResourceDictionary dict = new ResourceDictionary();
-
-            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
-
-            this.Resources.MergedDictionaries.Add(dict);
-        }
+        #endregion
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -450,44 +513,9 @@ namespace Rudycommerce
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            BL_Product.Create(ProductModel, LocalizedProductList, Product_ProductPropertiesList, LocalizedValuesProduct_SpecificProductProperties);
+            BL_Product.Create(ProductModel, LocalizedProductList, Product_ProductPropertiesList, 
+                LocalizedValuesProduct_SpecificProductProperties, ImageList);
             Console.Beep();
-        }
-
-        private void cmbxCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            //if (updatingExistingProduct)
-            //{
-            //    if (MessageBox.Show("NO-ML You are going to lose all content of all currently filled in properties","NO-ML OH NO!", MessageBoxButton.YesNo)
-            //        == MessageBoxResult.Yes)
-            //    {
-            //        tabItemMultilingualProperties.Visibility = Visibility.Visible;
-            //        tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
-
-            //        NecessaryProductPropertiesList = BL_SpecificProductProperty
-            //            .GetNecessaryProductProperties(Settings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
-
-            //        LocalizedProductList.Clear();
-
-            //        CreateTabsForEachLanguage();
-            //        FillNonMultilingualInputTab();
-            //    }
-            //}
-            //else
-            //{
-            tabItemMultilingualProperties.Visibility = Visibility.Visible;
-            tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
-
-            NecessaryProductPropertiesList = BL_SpecificProductProperty
-                .GetNecessaryProductProperties(Settings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
-
-            LocalizedProductList.Clear();
-
-            CreateTabsForEachLanguage();
-            FillNonMultilingualInputTab();
-            //}                
-
         }
 
         private void AnimatedTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -513,21 +541,90 @@ namespace Rudycommerce
             }
         }
 
+        #region Generating and moving images
+
+        public List<ProductImage> ImageList { get; set; }
+        private int _imgCounter = 0;
+        private const int _imgDefaultWidth = 120;
+        private const int _imgDefaultHeight = 120;
+        private const int _firstImageWidth = 250;
+        private const int _firstImageHeight = 250;
+
+
+        private void addImage(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog();
+            
+            fileDialog.Filter = "Image File (*.jpg; *.png)| *.jpg; *.png";
+            
+            Nullable<bool> result = fileDialog.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = fileDialog.FileName;
+
+                Image img = new Image
+                {
+                    Source = new BitmapImage(new Uri(filename)),
+                    Width = _imgCounter != 0 ? _imgDefaultWidth : _firstImageWidth  ,
+                    Height = _imgCounter != 0 ? _imgDefaultHeight : _firstImageHeight,
+                    Margin = new Thickness(20, 0, 20, 0),
+                    AllowDrop = true,
+                    VerticalAlignment = VerticalAlignment.Stretch
+                };
+                img.DragEnter += Image_DragEnter;
+                img.MouseLeftButtonDown += Image_MouseLeftButtonDown;
+
+
+                ProductImage imgItem = new ProductImage
+                {
+                    fileLocation = filename,
+                    Order = _imgCounter
+                };
+
+                ImageList.Add(imgItem);
+                
+                imgPnl.Children.Add(img);
+
+                _imgCounter += 1;
+            }            
+        }
+
         private void Image_DragEnter(object sender, DragEventArgs e)
         {
             Image img = (Image)e.Source;
-            int where_to_drop = pnl.Children.IndexOf(img);
-            pnl.Children.Remove(image_to_drag);
-            pnl.Children.Insert(where_to_drop, image_to_drag);
+            int where_to_drop = imgPnl.Children.IndexOf(img);
+            int initial_location = imgPnl.Children.IndexOf(image_to_drag);
+
+            imgPnl.Children.Remove(image_to_drag);       
+            imgPnl.Children.Insert(where_to_drop, image_to_drag);
+
+            foreach (var item in imgPnl.Children)
+            {
+                Image image = item as Image;
+                
+                image.Height = imgPnl.Children.IndexOf(image) != 0 ? _imgDefaultHeight : _firstImageHeight ;
+                image.Width = imgPnl.Children.IndexOf(image) != 0 ? _imgDefaultWidth : _firstImageWidth;
+            }
+
+            ProductImage temporary = ImageList.Single(x => x.Order == initial_location);
+            ProductImage temporary2 = ImageList.Single(x => x.Order == where_to_drop);
+
+            temporary.Order = where_to_drop;
+            temporary2.Order = initial_location;
+            
+            
+
+            ImageList = ImageList.OrderBy(x => x.Order).ToList() ;            
         }
 
-        Image image_to_drag;
-
-        private void Image_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             image_to_drag = (Image)e.Source;
             DragDrop.DoDragDrop(image_to_drag, image_to_drag, DragDropEffects.Move);
         }
+
+        #endregion
     }
 }
 

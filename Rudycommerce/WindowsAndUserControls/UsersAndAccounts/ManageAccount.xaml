@@ -11,13 +11,14 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
+                <ResourceDictionary Source="/Styles/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
         <StackPanel>
-            <Label FontSize="24" Content="{DynamicResource ResourceKey=ManageAccount}" Margin="0,0,0,40" HorizontalContentAlignment="Center" Foreground="Black"></Label>
+            <Label Style="{StaticResource ResourceKey=TitleLabel}" Content="{DynamicResource ResourceKey=ManageAccount}"/>
 
             <WrapPanel HorizontalAlignment="Center">
                 <StackPanel>
@@ -62,8 +63,8 @@
                 </StackPanel>
             </WrapPanel>
             <WrapPanel Margin="0,40,0,0" HorizontalAlignment="Right">
-                <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Save}" Click="btnSave_Click" Height="30" Width="100" Margin="20,0,20,0"/>
-                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Height="30" Margin="20,0,20,0" Width="100" Click="btnCancel_Click"/>
+                <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Save}" Click="btnSave_Click" Style="{StaticResource ResourceKey=FormSubmitCancelButton}"/>
+                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnCancel_Click"/>
             </WrapPanel>
 
         </StackPanel>

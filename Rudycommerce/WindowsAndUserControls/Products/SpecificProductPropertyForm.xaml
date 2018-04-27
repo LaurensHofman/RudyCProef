@@ -81,7 +81,18 @@
                                 </Style>
                             </Label.Style>
                         </Label>
-                        <Label x:Name="lblIsEnum" Content="{DynamicResource ResourceKey=IsEnumeration}" Style="{StaticResource ResourceKey=FormLabel}" HorizontalAlignment="Right"/>
+                        <Label x:Name="lblIsEnum" Content="{DynamicResource ResourceKey=IsEnumeration}" HorizontalAlignment="Right">
+                            <Label.Style>
+                                <Style TargetType="Label" BasedOn="{StaticResource ResourceKey=FormLabel}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=SpecificProductPropertyModel.IsBool}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                        </Label>
                     </StackPanel>
                     <StackPanel>
                         <CheckBox x:Name="cbIsMultilingual" IsChecked="{Binding Path=SpecificProductPropertyModel.IsMultilingual}" 
@@ -98,8 +109,19 @@
                                 </Style>
                             </CheckBox.Style>
                         </CheckBox>
-                        <CheckBox x:Name="cbIsEnum" IsChecked="{Binding Path=SpecificProductPropertyModel.IsEnumeration}" Style="{StaticResource ResourceKey=FormInputCheckBox}"
-                                  Checked="EnumChecked" Unchecked="EnumChecked"/>
+                        <CheckBox x:Name="cbIsEnum" IsChecked="{Binding Path=SpecificProductPropertyModel.IsEnumeration}"
+                                  Checked="EnumChecked" Unchecked="EnumChecked">
+                            <CheckBox.Style>
+                                <Style TargetType="CheckBox" BasedOn="{StaticResource FormInputCheckBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=SpecificProductPropertyModel.IsBool}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </CheckBox.Style>
+                        </CheckBox>
                     </StackPanel>
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center">

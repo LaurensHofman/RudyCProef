@@ -6,10 +6,11 @@ using System.Security.Permissions;
 
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, UnmanagedCode = true)]
 namespace System.Windows.Forms
-{
-
-    // SOURCE: https://www.codeproject.com/Articles/18399/Localizing-System-MessageBox
-
+{    
+    /// <summary>
+    /// Allows to customize the messagebox, like changing the content of the buttons.
+    /// SOURCE: https://www.codeproject.com/Articles/18399/Localizing-System-MessageBox
+    /// </summary>
     public class MessageBoxManager
     {
         private delegate IntPtr HookProc(int nCode, IntPtr wParam, IntPtr lParam);

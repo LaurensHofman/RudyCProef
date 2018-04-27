@@ -12,7 +12,10 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_Product
     {
-        public static void Create(Product productModel, List<LocalizedProduct> localizedProductList, List<Product_SpecificProductProperties> product_ProductPropertiesList, List<Values_Product_SpecificProductProperties> localizedValuesProduct_SpecificProductProperties)
+        public static void Create(Product productModel, List<LocalizedProduct> localizedProductList, 
+            List<Product_SpecificProductProperties> product_ProductPropertiesList, 
+            List<Values_Product_SpecificProductProperties> localizedValuesProduct_SpecificProductProperties,
+            List<ProductImage> productImages)
         {
             productModel.CurrentStock = productModel.InitialStock;
 
@@ -40,7 +43,8 @@ namespace RudycommerceLibrary.BL
 
             localizedValuesProduct_SpecificProductProperties.AddRange(tempList);
 
-            DAL.DAL_Product.Create(productModel, localizedProductList, localizedValuesProduct_SpecificProductProperties);
+            DAL.DAL_Product.Create(productModel, localizedProductList, 
+                localizedValuesProduct_SpecificProductProperties, productImages);
         }
 
         public static List<ProductOverViewItem> GetProductOverview(Language userLanguage)

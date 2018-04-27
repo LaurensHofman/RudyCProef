@@ -25,6 +25,8 @@ namespace RudycommerceLibrary
         public DbSet<SpecificProductProperty> SpecificProductProperties { get; set; }
         public DbSet<Article> Articles { get; set; }
 
+        public DbSet<ProductImage> ProductImages { get; set; }
+
         public DbSet<LocalizedProduct> LocalizedProducts { get; set; }
         public DbSet<LocalizedProductCategory> LocalizedProductCategories { get; set; }
         public DbSet<LocalizedSpecificProductProperty> LocalizedSpecificProductProperties { get; set; }
@@ -72,6 +74,13 @@ namespace RudycommerceLibrary
                 .HasRequired<ProductCategory>(p => p.ProductCategory)
                 .WithMany(pc => pc.Products)
                 .HasForeignKey<int>(p => p.CategoryID);
+            #endregion
+
+            #region Product (1) to (many) Images
+            modelBuilder.Entity<ProductImage>()
+                .HasRequired<Product>(img => img.Product)
+                .WithMany(p => p.Images)
+                .HasForeignKey<int>(img => img.ProductID);
             #endregion
 
             #region SpecificProductProperty (1) to (many) Enumeration Values

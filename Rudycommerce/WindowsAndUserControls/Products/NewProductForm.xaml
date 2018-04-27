@@ -65,7 +65,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid x:Name="grdNewProductForm" Style="{StaticResource ResourceKey=UserControlGrid}">
             <StackPanel>
-                <Label Style="{DynamicResource ResourceKey=FormLabel}" Margin="0,10,0,30" FontSize="24" Height="40" Content="{DynamicResource ResourceKey=AddProduct}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                <Label Style="{StaticResource ResourceKey=TitleLabel}" Content="{DynamicResource ResourceKey=AddProduct}"/>
 
                 <Controls:MetroAnimatedSingleRowTabControl x:Name="AnimatedTabControl" SelectionChanged="AnimatedTabControl_SelectionChanged">
 
@@ -144,12 +144,19 @@
                                         <CheckBox IsChecked="{Binding Path=ProductModel.IsActive}" Style="{StaticResource ResourceKey=FormInputCheckBox}" Margin="0,20,0,0" Width="50"/>
                                     </StackPanel>
                                 </WrapPanel>
-                                <!-- Images yet to be implemented -->
-                                <WrapPanel Margin="0,100,0,0" HorizontalAlignment="Center" x:Name="pnl">
-                                    <Image Source="/Resources/Icons/256_Add.png" Width="150" Height="150" Margin="20,0,20,0" AllowDrop="True" DragEnter="Image_DragEnter" MouseRightButtonDown="Image_MouseRightButtonDown"></Image>
-                                    <Image Source="/Resources/Icons/32_NL.png" Width="150" Height="150" Margin="20,0,20,0" AllowDrop="True" DragEnter="Image_DragEnter" MouseRightButtonDown="Image_MouseRightButtonDown"></Image>
-                                    <Image Source="/Resources/Icons/32_EN.png" Width="150" Height="150" Margin="20,0,20,0" AllowDrop="True" DragEnter="Image_DragEnter" MouseRightButtonDown="Image_MouseRightButtonDown"></Image>
-                                    <Image Source="/Resources/Icons/32_EyeClose.png" Width="150" Height="150" Margin="20,0,20,0" AllowDrop="True" DragEnter="Image_DragEnter" MouseRightButtonDown="Image_MouseRightButtonDown"></Image>
+
+                                <WrapPanel HorizontalAlignment="Center" Margin="0,50,0,0">
+                                    <WrapPanel.Background>
+                                        <SolidColorBrush Color="Black" Opacity="0.05"/>
+                                    </WrapPanel.Background>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                        <WrapPanel x:Name="imgPnl">
+                                            <!--<Border x:Name="borderImage" BorderBrush="Black" BorderThickness="2">
+                                        
+                                        </Border>-->
+                                        </WrapPanel>
+                                    </ScrollViewer>
+                                    <Button Width="100" Height="100" Margin="20,0,20,0" FontSize="50" BorderThickness="1" BorderBrush="Black" Foreground="Black" Background="LightBlue" VerticalAlignment="Center" Click="addImage">+</Button>
                                 </WrapPanel>
                             </StackPanel>
                         </Grid>
@@ -173,17 +180,21 @@
                      Header="{DynamicResource ResourceKey=NonMultilingualSpecificProperties}" Controls:ControlsHelper.HeaderFontSize="22">
                         <Grid x:Name="grdNonMultilingualProperties" Style="{StaticResource ResourceKey=GridBelowTabItem}">
                             <WrapPanel HorizontalAlignment="Center">
-                                <StackPanel x:Name="NonMLStackLeftLabels"></StackPanel>
-                                <StackPanel x:Name="NonMLStackRightInput"></StackPanel>
+                                <StackPanel x:Name="NonMLStackLeftLabels">
+                                    <!-- content in c# -->
+                                </StackPanel>
+                                <StackPanel x:Name="NonMLStackRightInput">
+                                    <!-- content in c# -->
+                                </StackPanel>
                             </WrapPanel>
                         </Grid>
                     </TabItem>
                 </Controls:MetroAnimatedSingleRowTabControl>
+                <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnCancel_Click"/>
+                    <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnSubmit_Click"/>
+                </WrapPanel>
             </StackPanel>
-            <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnCancel_Click"/>
-                <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnSubmit_Click"/>
-            </WrapPanel>
         </Grid>
     </ScrollViewer>
 </UserControl>

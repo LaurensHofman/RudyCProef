@@ -30,6 +30,7 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         [Column("category_id")]
         public int CategoryID { get; set; }
 
+        public virtual ICollection<ProductImage> Images { get; set; }
         public virtual ICollection<Article> Articles { get; set; }
         public ProductCategory ProductCategory { get; set; }
 

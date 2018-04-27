@@ -13,7 +13,8 @@ namespace RudycommerceLibrary.DAL
     public static class DAL_Product
     {
         public static void Create(Product productModel, List<LocalizedProduct> localizedProductList, /*List<Product_SpecificProductProperties> product_ProductPropertiesList,*/ 
-            List<Values_Product_SpecificProductProperties> localizedValuesProduct_SpecificProductProperties)
+            List<Values_Product_SpecificProductProperties> localizedValuesProduct_SpecificProductProperties,
+            List<ProductImage> productImages)
         {
             var ctx = AppDBContext.Instance();
 
@@ -39,6 +40,13 @@ namespace RudycommerceLibrary.DAL
             {
                 loc_p_prop.ProductID = productModel.ProductID;
                 ctx.Localized_Product_SpecificProductProperties.Add(loc_p_prop);
+            }
+
+            foreach (ProductImage img in productImages)
+            {
+                img.ProductID = productModel.ProductID;
+                img.ImageURL = DAL_ProductImages.uploadImage(img);
+                ctx.ProductImages.Add(img);
             }
 
             ctx.SaveChanges();
