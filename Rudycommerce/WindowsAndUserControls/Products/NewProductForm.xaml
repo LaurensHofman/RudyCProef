@@ -116,14 +116,14 @@
                                             SelectedValuePath="CategoryID"
                                             SelectedValue="{Binding Path=ProductModel.CategoryID}" SelectionChanged="cmbxCategories_SelectionChanged"/>
 
-                                        <TextBox x:Name="textboxname" Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70"
+                                        <TextBox Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70"
                                              Validation.ErrorTemplate="{StaticResource ResourceKey=validationTemplate}">
                                             <TextBox.Text>
                                                 <Binding Path="ProductModel.InitialStock" 
                                                      UpdateSourceTrigger="LostFocus">
 
                                                     <Binding.ValidationRules>
-                                                        <validations:GenericIntegerValidation/>
+                                                        <validations:InitialStockValidation/>
                                                     </Binding.ValidationRules>
                                                 </Binding>
                                             </TextBox.Text>

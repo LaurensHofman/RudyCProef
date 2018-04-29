@@ -80,6 +80,7 @@
     <Compile Include="Validations\GenericDecimalValidation.cs" />
     <Compile Include="Validations\GenericIntegerValidation.cs" />
     <Compile Include="Validations\GenericStringValidation.cs" />
+    <Compile Include="Validations\InitialStockValidation.cs" />
     <Compile Include="WindowsAndUserControls\Login\AdminUserForm.xaml.cs">
       <DependentUpon>AdminUserForm.xaml</DependentUpon>
     </Compile>
