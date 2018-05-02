@@ -17,24 +17,37 @@ namespace RudycommerceLibrary.DAL
         public static void CreateNonEnumProperty(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList)
         {
             var ctx = AppDBContext.Instance();
-
-            ctx.SpecificProductProperties.Add(specificProductPropertyModel);
-
-            ctx.SaveChanges();
-
-            foreach (Models.LanguageAndSpecificPropertyItem item in languageAndSpecificPropertyList)
+            
+            using (var dbContextTransaction = ctx.Database.BeginTransaction())
             {
-                LocalizedSpecificProductProperty localProductProperty = new LocalizedSpecificProductProperty
+                try
                 {
-                    SpecificProductPropertyID = specificProductPropertyModel.SpecificProductPropertyID,
-                    LanguageID = item.LanguageID,
-                    LookupName = item.PropertyName
-                };
+                    ctx.SpecificProductProperties.Add(specificProductPropertyModel);
 
-                ctx.LocalizedSpecificProductProperties.Add(localProductProperty);
+                    ctx.SaveChanges();
+
+                    foreach (Models.LanguageAndSpecificPropertyItem item in languageAndSpecificPropertyList)
+                    {
+                        LocalizedSpecificProductProperty localProductProperty = new LocalizedSpecificProductProperty
+                        {
+                            SpecificProductPropertyID = specificProductPropertyModel.SpecificProductPropertyID,
+                            LanguageID = item.LanguageID,
+                            LookupName = item.PropertyName
+                        };
+
+                        ctx.LocalizedSpecificProductProperties.Add(localProductProperty);
+                    }
+
+                    ctx.SaveChanges();
+
+                    dbContextTransaction.Commit();
+                }
+                catch (Exception)
+                {
+                    dbContextTransaction.Rollback();
+                }
             }
-
-            ctx.SaveChanges();
+            
         }
 
         public static void CreateEnumProperty(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList, List<PropertyEnumerations> propertyEnumerations)

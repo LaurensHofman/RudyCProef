@@ -44,6 +44,7 @@ namespace RudycommerceLibrary
         public DbSet<NecessaryProductPropertyViewItem> vNecessaryProductPropertiesView { get; set; }
         public DbSet<SpecificProductPropertyOverViewItem> vSpecificProductPropertyOverview { get; set; }
         public DbSet<ProductOverViewItem> vProductOverview { get; set; }
+        public DbSet<HomePageProductViewItem> vHomePageProductView { get; set; }
         #endregion
 
         private static AppDBContext _instance;

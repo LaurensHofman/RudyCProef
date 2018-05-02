@@ -17,33 +17,43 @@ namespace RudycommerceLibrary.DAL
         {
             var ctx = AppDBContext.Instance();
 
-            ctx.ProductCategories.Add(productCategoryModel);
-            
-
-            foreach (LanguageAndCategoryItem item in languageAndCategoryList)
+            using (var ctxTransaction = ctx.Database.BeginTransaction())
             {
-                LocalizedProductCategory localCategory = new LocalizedProductCategory();
+                try
+                {
+                    ctx.ProductCategories.Add(productCategoryModel);
 
-                localCategory.CategoryID = productCategoryModel.CategoryID;
-                localCategory.LanguageID = item.LanguageID;
-                localCategory.Name = item.CategoryName;
+                    foreach (LanguageAndCategoryItem item in languageAndCategoryList)
+                    {
+                        LocalizedProductCategory localCategory = new LocalizedProductCategory();
 
-                ctx.LocalizedProductCategories.Add(localCategory);
+                        localCategory.CategoryID = productCategoryModel.CategoryID;
+                        localCategory.LanguageID = item.LanguageID;
+                        localCategory.Name = item.CategoryName;
+
+                        ctx.LocalizedProductCategories.Add(localCategory);
+                    }
+
+                    foreach (PropertyAndCategoryItem item in propertyAndCategoriesList)
+                    {
+                        Category_SpecificProductProperties categoryProperties = new Category_SpecificProductProperties();
+
+                        categoryProperties.CategoryID = productCategoryModel.CategoryID;
+                        categoryProperties.SpecificProductPropertyID = item.PropertyID;
+                        categoryProperties.IsRequired = item.IsRequired;
+
+                        ctx.Category_SpecificProductProperties.Add(categoryProperties);
+                    }
+
+                    ctx.SaveChanges();
+
+                    ctxTransaction.Commit();
+                }
+                catch (Exception)
+                {
+                    ctxTransaction.Rollback();
+                }
             }
-
-            foreach (PropertyAndCategoryItem item in propertyAndCategoriesList)
-            {
-                Category_SpecificProductProperties categoryProperties = new Category_SpecificProductProperties();
-
-                categoryProperties.CategoryID = productCategoryModel.CategoryID;
-                categoryProperties.SpecificProductPropertyID = item.PropertyID;
-                categoryProperties.IsRequired = item.IsRequired;
-
-                ctx.Category_SpecificProductProperties.Add(categoryProperties);
-            }
-
-            ctx.SaveChanges();
-
         }
         
         public static List<ProductCategory> GetAll()

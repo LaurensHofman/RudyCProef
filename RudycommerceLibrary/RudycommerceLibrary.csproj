@@ -125,11 +125,20 @@
     <Compile Include="Migrations\201804261916183_img1.Designer.cs">
       <DependentUpon>201804261916183_img1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805021805088_homepageproducts.cs" />
+    <Compile Include="Migrations\201805021805088_homepageproducts.Designer.cs">
+      <DependentUpon>201805021805088_homepageproducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805021805580_homepageproducts1.cs" />
+    <Compile Include="Migrations\201805021805580_homepageproducts1.Designer.cs">
+      <DependentUpon>201805021805580_homepageproducts1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryItem.cs" />
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
     <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
     <Compile Include="Models\LocalizedLanguageItem.cs" />
     <Compile Include="Utilities\Validations\ProductValidations.cs" />
+    <Compile Include="View\HomePageProductViewItem.cs" />
     <Compile Include="View\LocalizedEnumerationViewItem.cs" />
     <Compile Include="View\NecessaryProductPropertyViewItem.cs" />
     <Compile Include="Models\PropertyAndCategoryItem.cs" />
@@ -178,6 +187,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804261916183_img1.resx">
       <DependentUpon>201804261916183_img1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805021805088_homepageproducts.resx">
+      <DependentUpon>201805021805088_homepageproducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805021805580_homepageproducts1.resx">
+      <DependentUpon>201805021805580_homepageproducts1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

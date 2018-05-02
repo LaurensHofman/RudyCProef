@@ -13,7 +13,7 @@ namespace RudycommerceLibrary.BL
     public static class BL_Product
     {
         public static void Create(Product productModel, List<LocalizedProduct> localizedProductList, 
-            List<Product_SpecificProductProperties> product_ProductPropertiesList, 
+            //List<Product_SpecificProductProperties> product_ProductPropertiesList, 
             List<Values_Product_SpecificProductProperties> localizedValuesProduct_SpecificProductProperties,
             List<ProductImage> productImages)
         {
@@ -45,6 +45,11 @@ namespace RudycommerceLibrary.BL
 
             DAL.DAL_Product.Create(productModel, localizedProductList, 
                 localizedValuesProduct_SpecificProductProperties, productImages);
+        }
+
+        public static HomePageProductViewItem[] GetHomePageProducts()
+        {
+            return DAL.DAL_Product.GetHomePageProducts();
         }
 
         public static List<ProductOverViewItem> GetProductOverview(Language userLanguage)

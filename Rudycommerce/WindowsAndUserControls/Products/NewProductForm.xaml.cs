@@ -29,48 +29,51 @@ namespace Rudycommerce
     /// </summary>
     public partial class NewProductForm : UserControl
     {
+        private Thickness _defaultMargin = new Thickness { Top = 20 };
+        private const int _defaultHeight = 30;
+        private const int _defaultWidth = 300;
+        private const int _defaultLabelFontSize = 18;
+        private Thickness _defaultLabelPadding = new Thickness { Left = 0, Top = -5, Right = 0, Bottom = -5 };
+        private Brush _defaultLabelForeground = Brushes.Black;
+
+        /// <summary>
+        /// defines the image that is being dragged
+        /// </summary>
         Image image_to_drag;
-
+        /// <summary>
+        /// List of added product images
+        /// </summary>
+        public List<ProductImage> ImageList { get; set; }
+        /// <summary>
+        /// List of category ID's with their name, to fill the category selection combobox
+        /// </summary>
         public List<CategoryItem> CategoryItemList { get; set; }
-
+        /// <summary>
+        /// List of properties belonging to the selected category
+        /// </summary>
         public List<NecessaryProductPropertyViewItem> NecessaryProductPropertiesList { get; set; }
-
+        /// <summary>
+        /// Model of the product, containing generic non-multilingual properties
+        /// </summary>
         public Product ProductModel { get; set; }
+        /// <summary>
+        /// List containing the generic multilingual properties of a product
+        /// </summary>
         public List<LocalizedProduct> LocalizedProductList { get; set; }
-
-        public List<Product_SpecificProductProperties> Product_ProductPropertiesList { get; set; }
-
+        /// <summary>
+        /// List containing the values of the properties belonging to the product
+        /// </summary>
         public List<Values_Product_SpecificProductProperties> LocalizedValuesProduct_SpecificProductProperties { get; set; }
-
+        /// <summary>
+        /// List of languages with their names
+        /// </summary>
         public List<LocalizedLanguageItem> LocalizedLanguageList { get; set; }
 
-        //bool firstSelectionChangedWhenUpdating = false;
+        //public List<Product_SpecificProductProperties> Product_ProductPropertiesList { get; set; }
 
-        //public NewProductForm(int productID)
-        //{
-        //    InitializeComponent();
-        //    grdNewProductForm.DataContext = this;
-
-        //    SetLanguageDictionary(Settings.UserLanguage);
-
-        //    ProductModel = BL_Product.GetProduct(productID);
-        //    LocalizedProductList = BL_Product.GetLocalizedProductList(productID);
-
-        //    Product_ProductPropertiesList = new List<Product_SpecificProductProperties>();
-        //    Product_ProductPropertiesListFromDB = BL_Product.GetPropertiesFromProduct(productID);
-
-        //    LocalizedValuesProduct_SpecificProductProperties = new List<Localized_Product_SpecificProductProperties>();
-        //    LocalizedValuesProduct_SpecificProductPropertiesFromDB = BL_Product.GetLocalizedPropertiesFromProduct(productID);
-
-
-
-
-
-        //    firstSelectionChangedWhenUpdating = true;
-
-        //    SetCategoryComboBoxContent();
-        //}
-
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public NewProductForm()
         {
             InitializeComponent();
@@ -78,9 +81,9 @@ namespace Rudycommerce
             ProductModel = new Product();
             LocalizedProductList = new List<LocalizedProduct>();
             LocalizedValuesProduct_SpecificProductProperties = new List<Values_Product_SpecificProductProperties>();
-            Product_ProductPropertiesList = new List<Product_SpecificProductProperties>();
-
             ImageList = new List<ProductImage>();
+
+            //Product_ProductPropertiesList = new List<Product_SpecificProductProperties>();
 
             grdNewProductForm.DataContext = this;
 
@@ -88,64 +91,77 @@ namespace Rudycommerce
 
             SetCategoryComboBoxContent();
         }
+
+        /// <summary>
+        /// Sets the language dictionary for the XAML content, based on the user's preferred language
+        /// </summary>
+        /// <param name="selectedLanguage"></param>
         private void SetLanguageDictionary(Language selectedLanguage)
         {
-            ResourceDictionary dict = new ResourceDictionary();
+            try
+            {
+                ResourceDictionary dict = new ResourceDictionary();
 
-            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
+                dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
 
-            this.Resources.MergedDictionaries.Add(dict);
+                this.Resources.MergedDictionaries.Add(dict);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " [180501A]", "NO-ML Error", MessageBoxButton.OK);
+                btnCancel_Click(null, null);
+            }            
         }
 
+        /// <summary>
+        /// Gets all categories and fills the designated combobox with these categories
+        /// </summary>
         private void SetCategoryComboBoxContent()
         {
-            CategoryItemList = BL_ProductCategory.GetCategoryNameWithID(Settings.UserLanguage);
-
-
-            //CategoryItemList = BL_ProductCategory.GetLocalizedProductCategory(Settings.UserLanguage);
-
-            //cmbxCategories.DataContext = CategoryItemList;
-            //cmbxCategories.ItemsSource = CategoryItemList;
+            try
+            {
+                CategoryItemList = BL_ProductCategory.GetCategoryNameWithID(Settings.UserLanguage);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " [180501B]", "NO-ML ERROR", MessageBoxButton.OK);
+                btnCancel_Click(null, null);
+            }
         }
 
+        /// <summary>
+        /// When the user selects a category, gets all the properties belonging to the category, and generates the necessary tabs, labels and inputs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbxCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            try
+            {
+                tabItemMultilingualProperties.Visibility = Visibility.Visible;
+                tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
 
-            //if (updatingExistingProduct)
-            //{
-            //    if (MessageBox.Show("NO-ML You are going to lose all content of all currently filled in properties","NO-ML OH NO!", MessageBoxButton.YesNo)
-            //        == MessageBoxResult.Yes)
-            //    {
-            //        tabItemMultilingualProperties.Visibility = Visibility.Visible;
-            //        tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
+                //Gets the properties belonging to the selected category
+                NecessaryProductPropertiesList = BL_SpecificProductProperty
+                    .GetNecessaryProductProperties(Settings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
 
-            //        NecessaryProductPropertiesList = BL_SpecificProductProperty
-            //            .GetNecessaryProductProperties(Settings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
+                LocalizedProductList.Clear();
 
-            //        LocalizedProductList.Clear();
-
-            //        CreateTabsForEachLanguage();
-            //        FillNonMultilingualInputTab();
-            //    }
-            //}
-            //else
-            //{
-            tabItemMultilingualProperties.Visibility = Visibility.Visible;
-            tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
-
-            NecessaryProductPropertiesList = BL_SpecificProductProperty
-                .GetNecessaryProductProperties(Settings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
-
-            LocalizedProductList.Clear();
-
-            CreateMultilingualTabsForEachLanguage();
-            FillNonMultilingualInputTab();
-            //}                
-
+                CreateMultilingualTabsForEachLanguage();
+                FillNonMultilingualInputTab();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " [180501C]", "NO-ML ERROR", MessageBoxButton.OK);
+                btnCancel_Click(null, null);
+            }            
         }
 
         #region Generate tab content for new Product
 
+        /// <summary>
+        /// Creates a tab for each language
+        /// </summary>
         private void CreateMultilingualTabsForEachLanguage()
         {
             TabControlLanguages.Items.Clear();
@@ -159,16 +175,21 @@ namespace Rudycommerce
                 CreateLocalizedTab(langItem);
             }
         }
-
+       
+        /// <summary>
+        /// Creates a tab for the given language
+        /// </summary>
+        /// <param name="langItem"></param>
         private void CreateLocalizedTab(LocalizedLanguageItem langItem)
         {
             MetroTabItem tabItem = CreateMetroTabItem(langItem);
             Grid tabGrid = new Grid { Style = Application.Current.Resources["GridBelowTabItem"] as Style };
 
+            //Creates a wrappanel, so the stackpanel with the labels and the stackpanel with the input are nicely next to eachother
             WrapPanel wrapForStacks = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Center };
 
-            StackPanel stackPanelLeft = CreateLeftStackPanelForLabelsNewProduct(langItem);
-            StackPanel stackPanelRight = CreateRightStackPanelForInputNewProduct(langItem);
+            StackPanel stackPanelLeft = CreateLeftStackPanelForLabelsMultilingual(langItem);
+            StackPanel stackPanelRight = CreateRightStackPanelForInputMultilingual(langItem);
 
             wrapForStacks.Children.Add(stackPanelLeft);
             wrapForStacks.Children.Add(stackPanelRight);
@@ -180,7 +201,12 @@ namespace Rudycommerce
             TabControlLanguages.Items.Add(tabItem);
         }
 
-        private StackPanel CreateRightStackPanelForInputNewProduct(LocalizedLanguageItem langItem)
+        /// <summary>
+        /// Creates the stackpanel with Input objects for the multilingual properties
+        /// </summary>
+        /// <param name="langItem"></param>
+        /// <returns></returns>
+        private StackPanel CreateRightStackPanelForInputMultilingual(LocalizedLanguageItem langItem)
         {
             // Creates localized product, which contains the name and description
             LocalizedProduct localProduct = new LocalizedProduct()
@@ -194,9 +220,9 @@ namespace Rudycommerce
 
             TextBox txtName = new TextBox
             {
-                Height = 30,
-                Width = 300,
-                Margin = new Thickness { Top = 20 },
+                Height = _defaultHeight,
+                Width = _defaultWidth,
+                Margin = _defaultMargin,
                 VerticalContentAlignment = VerticalAlignment.Center
             };
             Binding nameBinding = new Binding("Name")
@@ -208,10 +234,10 @@ namespace Rudycommerce
             TextBox txtDescription = new TextBox
             {
                 Height = 150,
-                Width = 300,
+                Width = _defaultWidth,
                 TextWrapping = TextWrapping.Wrap,
                 AcceptsReturn = true,
-                Margin = new Thickness { Top = 20 }
+                Margin = _defaultMargin
             };
             Binding descriptionBinding = new Binding("Description")
             {
@@ -234,6 +260,7 @@ namespace Rudycommerce
                 //    SpecificProductPropertyID = necessaryProperty.PropertyID
                 //};
 
+                //Makes a new property to store the value of the newly made textbox
                 Values_Product_SpecificProductProperties valueProperty = new Values_Product_SpecificProductProperties()
                 {
                     SpecificProductPropertyID = necessaryProperty.PropertyID,
@@ -244,10 +271,10 @@ namespace Rudycommerce
 
                 TextBox customTextbox = new TextBox
                 {
-                    Height = 30,
-                    Width = 300,
+                    Height = _defaultHeight,
+                    Width = _defaultWidth,
                     VerticalContentAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness { Top = 20 }
+                    Margin = _defaultMargin
                 };
                 Binding customTextboxBinding = new Binding("Value")
                 {
@@ -266,27 +293,32 @@ namespace Rudycommerce
             return stackRight;
         }
 
-        private StackPanel CreateLeftStackPanelForLabelsNewProduct(LocalizedLanguageItem langItem)
+        /// <summary>
+        /// Creates a stackpanel with Labels for the multilingual properties
+        /// </summary>
+        /// <param name="langItem"></param>
+        /// <returns></returns>
+        private StackPanel CreateLeftStackPanelForLabelsMultilingual(LocalizedLanguageItem langItem)
         {
             StackPanel stackLeft = new StackPanel();
             Label labelName = new Label
             {
                 Content = BL_Multilingual.NAME(Settings.UserLanguage) + " * : ",
-                Height = 30,
-                Foreground = Brushes.Black,
-                FontSize = 18,
-                Margin = new Thickness { Top = 20 },
-                Padding = new Thickness { Left = 0, Top = -5, Right = 0, Bottom = -5 },
+                Height = _defaultHeight,
+                Foreground = _defaultLabelForeground,
+                FontSize = _defaultLabelFontSize,
+                Margin = _defaultMargin,
+                Padding = _defaultLabelPadding,
                 HorizontalContentAlignment = HorizontalAlignment.Right
             };
             Label labelDescription = new Label
             {
                 Content = BL_Multilingual.DESCRIPTION(Settings.UserLanguage) + " * : ",
-                Height = 30,
-                Foreground = Brushes.Black,
-                FontSize = 18,
+                Height = _defaultHeight,
+                Foreground = _defaultLabelForeground,
+                FontSize = _defaultLabelFontSize,
                 Margin = new Thickness { Top = 20, Bottom = 120 },
-                Padding = new Thickness { Left = 0, Top = -5, Right = 0, Bottom = -5 },
+                Padding = _defaultLabelPadding,
                 HorizontalContentAlignment = HorizontalAlignment.Right
             };
 
@@ -299,11 +331,11 @@ namespace Rudycommerce
                 Label customLabel = new Label
                 {
                     Content = necessaryProperty.LookupName + (necessaryProperty.IsRequired ? " * " : " ") + ": ",
-                    Height = 30,
-                    Foreground = Brushes.Black,
-                    FontSize = 18,
-                    Margin = new Thickness { Top = 20 },
-                    Padding = new Thickness { Left = 0, Top = -5, Right = 0, Bottom = -5 },
+                    Height = _defaultHeight,
+                    Foreground = _defaultLabelForeground,
+                    FontSize = _defaultLabelFontSize,
+                    Margin = _defaultMargin,
+                    Padding = _defaultLabelPadding,
                     HorizontalContentAlignment = HorizontalAlignment.Right
                 };
                 stackLeft.Children.Add(customLabel);
@@ -312,6 +344,11 @@ namespace Rudycommerce
             return stackLeft;
         }
 
+        /// <summary>
+        /// Creates the TabItem, to give the tab an appropriate header
+        /// </summary>
+        /// <param name="langItem"></param>
+        /// <returns></returns>
         private MetroTabItem CreateMetroTabItem(LocalizedLanguageItem langItem)
         {
             MetroTabItem metroTab = new MetroTabItem
@@ -325,23 +362,31 @@ namespace Rudycommerce
             //https://stackoverflow.com/questions/23377194/overwrite-mahapps-metro-style-for-me-header-tabitem
             //https://social.msdn.microsoft.com/Forums/vstudio/en-US/ffcd8d49-267c-4ccb-8ceb-b80305447cb4/c-wpf-implementing-style-using-code?forum=wpf
 
+            // Creates a new style for the new tabItem
             Style AutoGeneratedTabItem = new Style
             {
                 TargetType = typeof(MetroTabItem)
             };
 
+            // Adds a setter to give the tabItem border
             Setter SelectedStyle = new Setter
             {
                 Property = TabItem.BorderThicknessProperty,
                 Value = new Thickness { Top = 2, Bottom = 2, Left = 2, Right = 2 }
             };
+
+            // Adds a new trigger, for when the tabItem is selected
             Trigger SelectedTrigger = new Trigger
             {
                 Property = TabItem.IsSelectedProperty,
                 Value = true
             };
+
+            // When the tabItem gets selected, it will generate borders, to clearly see which one is selected
             SelectedTrigger.Setters.Add(SelectedStyle);
 
+
+            // The same as above for when it is selected, but now to revert the change when unselected
             Setter NotSelectedStyle = new Setter
             {
                 Property = TabItem.BorderThicknessProperty,
@@ -365,11 +410,14 @@ namespace Rudycommerce
 
         #region NonMultilingualInput
 
+        /// <summary>
+        /// Fills the tab with non multilingual input and binds it to a newly generated input
+        /// </summary>
         private void FillNonMultilingualInputTab()
         {
             NonMLStackLeftLabels.Children.Clear();
             NonMLStackRightInput.Children.Clear();
-            Product_ProductPropertiesList.Clear();
+            //Product_ProductPropertiesList.Clear();
 
             foreach (NecessaryProductPropertyViewItem necessaryProperty in 
                 NecessaryProductPropertiesList.Where(np => np.IsMultilingual == false || np.IsEnumeration == true)
@@ -441,14 +489,19 @@ namespace Rudycommerce
             }
         }
 
+        /// <summary>
+        /// Creates a Non Multilingual Combobox
+        /// </summary>
+        /// <param name="valueProperty"></param>
+        /// <returns></returns>
         private ComboBox CreateNonMultilingualComboBox(Values_Product_SpecificProductProperties valueProperty)
         {
             ComboBox returnComboBox = new ComboBox
             {
-                Height = 30,
-                Width = 300,
+                Height = _defaultHeight,
+                Width = _defaultWidth,
                 VerticalContentAlignment = VerticalAlignment.Center,
-                Margin = new Thickness { Top = 20 },
+                Margin = _defaultMargin,
                 DisplayMemberPath = "Value",
                 SelectedValuePath = "EnumerationID"
             };
@@ -467,12 +520,17 @@ namespace Rudycommerce
             return returnComboBox;
         }
 
+        /// <summary>
+        /// Creates a non multilingual checkbox
+        /// </summary>
+        /// <param name="localValue"></param>
+        /// <returns></returns>
         private CheckBox CreateNonMultilingualCheckBox(Values_Product_SpecificProductProperties localValue)
         {
             CheckBox returnCheckBox = new CheckBox
             {
-                Height = 30,
-                Margin = new Thickness { Top = 20 },
+                Height = _defaultHeight,
+                Margin = _defaultMargin,
                 VerticalContentAlignment = VerticalAlignment.Center
             };
             Binding customCheckboxBinding = new Binding("Value")
@@ -484,14 +542,19 @@ namespace Rudycommerce
             return returnCheckBox;
         }
 
+        /// <summary>
+        /// Creates a non multilingual textbox
+        /// </summary>
+        /// <param name="localValue"></param>
+        /// <returns></returns>
         private TextBox createNonMultilingualTextBox(Values_Product_SpecificProductProperties localValue)
         {
             TextBox returnTextBox = new TextBox
             {
-                Height = 30,
-                Width = 300,
+                Height = _defaultHeight,
+                Width = _defaultWidth,
                 VerticalContentAlignment = VerticalAlignment.Center,
-                Margin = new Thickness { Top = 20 }
+                Margin = _defaultMargin
             };
             Binding customTextboxBinding = new Binding("Value")
             {
@@ -506,18 +569,34 @@ namespace Rudycommerce
 
         #endregion
 
+        /// <summary>
+        /// Returns to the navigation screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Submits the product
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            BL_Product.Create(ProductModel, LocalizedProductList, Product_ProductPropertiesList, 
+            BL_Product.Create(ProductModel, LocalizedProductList,/* Product_ProductPropertiesList, */
                 LocalizedValuesProduct_SpecificProductProperties, ImageList);
             Console.Beep();
         }
 
+        /// <summary>
+        /// Changes the border of a selected tabitem.
+        /// (For some reason it didn't work here with styles/setters/triggers)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AnimatedTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Thickness notSelected = new Thickness { Bottom = 0, Top = 0, Left = 1, Right = 1 };
@@ -543,53 +622,71 @@ namespace Rudycommerce
 
         #region Generating and moving images
 
-        public List<ProductImage> ImageList { get; set; }
         private int _imgCounter = 0;
         private const int _imgDefaultWidth = 120;
         private const int _imgDefaultHeight = 120;
         private const int _firstImageWidth = 250;
         private const int _firstImageHeight = 250;
 
-
+        /// <summary>
+        /// Opens a filedialog to select a wanted image, and adds it to the list of images
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addImage(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog();
-            
-            fileDialog.Filter = "Image File (*.jpg; *.png)| *.jpg; *.png";
-            
-            Nullable<bool> result = fileDialog.ShowDialog();
-
-            if (result == true)
+            try
             {
-                string filename = fileDialog.FileName;
-
-                Image img = new Image
+                Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog
                 {
-                    Source = new BitmapImage(new Uri(filename)),
-                    Width = _imgCounter != 0 ? _imgDefaultWidth : _firstImageWidth  ,
-                    Height = _imgCounter != 0 ? _imgDefaultHeight : _firstImageHeight,
-                    Margin = new Thickness(20, 0, 20, 0),
-                    AllowDrop = true,
-                    VerticalAlignment = VerticalAlignment.Stretch
-                };
-                img.DragEnter += Image_DragEnter;
-                img.MouseLeftButtonDown += Image_MouseLeftButtonDown;
-
-
-                ProductImage imgItem = new ProductImage
-                {
-                    fileLocation = filename,
-                    Order = _imgCounter
+                    Filter = "Image File (*.jpg; *.png)| *.jpg; *.png"
                 };
 
-                ImageList.Add(imgItem);
-                
-                imgPnl.Children.Add(img);
+                Nullable<bool> result = fileDialog.ShowDialog();
 
-                _imgCounter += 1;
-            }            
+                if (result == true)
+                {
+                    string filename = fileDialog.FileName;
+
+                    Image img = new Image
+                    {
+                        Source = new BitmapImage(new Uri(filename)),
+                        Width = _imgCounter != 0 ? _imgDefaultWidth : _firstImageWidth,
+                        Height = _imgCounter != 0 ? _imgDefaultHeight : _firstImageHeight,
+                        Margin = new Thickness(20, 0, 20, 0),
+                        AllowDrop = true,
+                        VerticalAlignment = VerticalAlignment.Stretch
+                    };
+                    img.DragEnter += Image_DragEnter;
+                    img.MouseLeftButtonDown += Image_MouseLeftButtonDown;
+
+
+                    ProductImage imgItem = new ProductImage
+                    {
+                        fileLocation = filename,
+                        Order = _imgCounter
+                    };
+
+                    ImageList.Add(imgItem);
+
+                    imgPnl.Children.Add(img);
+
+                    _imgCounter += 1;
+                }
+            }
+            catch (Exception)
+            {
+                // TODO
+                throw;
+            }
+            
         }
 
+        /// <summary>
+        /// Makes the images swap places when being dragged to another position
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Image_DragEnter(object sender, DragEventArgs e)
         {
             Image img = (Image)e.Source;
@@ -618,6 +715,11 @@ namespace Rudycommerce
             ImageList = ImageList.OrderBy(x => x.Order).ToList() ;            
         }
 
+        /// <summary>
+        /// Starts the dragging on the selected image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             image_to_drag = (Image)e.Source;

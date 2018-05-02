@@ -18,38 +18,57 @@ namespace RudycommerceLibrary.DAL
         {
             var ctx = AppDBContext.Instance();
 
-            ctx.Products.Add(productModel);
-
-            ctx.SaveChanges();
-
-            foreach (LocalizedProduct localProduct in localizedProductList)
+            using (var ctxTransaction = ctx.Database.BeginTransaction())
             {
-                localProduct.ProductID = productModel.ProductID;
-                ctx.LocalizedProducts.Add(localProduct);
-            }
+                try
+                {
+                    ctx.Products.Add(productModel);
 
-            ctx.SaveChanges();
+                    ctx.SaveChanges();
 
-            //foreach (Product_SpecificProductProperties p_prop in product_ProductPropertiesList)
-            //{
-            //    p_prop.ProductID = productModel.ProductID;
-            //    ctx.Product_SpecificProductProperties.Add(p_prop);
-            //}
+                    foreach (LocalizedProduct localProduct in localizedProductList)
+                    {
+                        localProduct.ProductID = productModel.ProductID;
+                        ctx.LocalizedProducts.Add(localProduct);
+                    }
 
-            foreach (Values_Product_SpecificProductProperties loc_p_prop in localizedValuesProduct_SpecificProductProperties)
-            {
-                loc_p_prop.ProductID = productModel.ProductID;
-                ctx.Localized_Product_SpecificProductProperties.Add(loc_p_prop);
-            }
+                    ctx.SaveChanges();
 
-            foreach (ProductImage img in productImages)
-            {
-                img.ProductID = productModel.ProductID;
-                img.ImageURL = DAL_ProductImages.uploadImage(img);
-                ctx.ProductImages.Add(img);
-            }
+                    //foreach (Product_SpecificProductProperties p_prop in product_ProductPropertiesList)
+                    //{
+                    //    p_prop.ProductID = productModel.ProductID;
+                    //    ctx.Product_SpecificProductProperties.Add(p_prop);
+                    //}
 
-            ctx.SaveChanges();
+                    foreach (Values_Product_SpecificProductProperties loc_p_prop in localizedValuesProduct_SpecificProductProperties)
+                    {
+                        loc_p_prop.ProductID = productModel.ProductID;
+                        ctx.Localized_Product_SpecificProductProperties.Add(loc_p_prop);
+                    }
+
+                    foreach (ProductImage img in productImages)
+                    {
+                        img.ProductID = productModel.ProductID;
+                        img.ImageURL = DAL_ProductImages.uploadImage(img);
+                        ctx.ProductImages.Add(img);
+                    }
+
+                    ctx.SaveChanges();
+
+                    ctxTransaction.Commit();
+                }
+                catch (Exception)
+                {
+                    ctxTransaction.Rollback();
+                }
+            }            
+        }
+
+        public static HomePageProductViewItem[] GetHomePageProducts()
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.vHomePageProductView.ToArray();
         }
 
         public static List<Product_SpecificProductProperties> GetPropertiesFromProduct(int productID)

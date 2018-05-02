@@ -11,14 +11,14 @@ namespace RudycommerceLibrary.DAL
 {
     public static class DAL_ProductImages
     {
-        public static string uploadImage(ProductImage img)
-        {
-            Account account = new Account(
+        private static Account myAccount = new Account (
                 "dhgcdhtlx",
                 "874148858628711",
                 "N7fTdEIRuW_vflagtsRJnAttx6A");
 
-            Cloudinary cloudinary = new Cloudinary(account);
+        public static string uploadImage(ProductImage img)
+        {
+            Cloudinary cloudinary = new Cloudinary(myAccount);
 
             var uploadParams = new ImageUploadParams()
             {
@@ -32,7 +32,6 @@ namespace RudycommerceLibrary.DAL
             string url = uploadResult.Uri.ToString();
 
             return url;
-            // http://res.cloudinary.com/dhgcdhtlx/image/upload/v1524849445/Products/ulu/haha.jpg
         }
     }
 }

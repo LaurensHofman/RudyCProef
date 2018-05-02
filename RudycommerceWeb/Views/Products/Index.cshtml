@@ -1,0 +1,22 @@
+﻿@model RudycommerceLibrary.View.HomePageProductViewItem[]
+
+<h2> @ViewBag.Title </h2>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <h4>@Html.ActionLink(product.Name, "Details",
+                new { id = product.ProductID})</h4>
+
+            <a href="@Url.Action("Detail", new { id = product.ProductID })">
+                <img src="@product.ImageURL" alt="@product.Name"
+                     class="img-responsive"/>
+            </a>
+        </div>
+    }
+</div>
+
+@{ 
+    ViewBag.Title = "Home";
+}

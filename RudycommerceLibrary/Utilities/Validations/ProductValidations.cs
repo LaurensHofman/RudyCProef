@@ -28,9 +28,27 @@ namespace RudycommerceLibrary.Utilities.Validations
                 return "NO-ML Please enter a valid number";
             }            
         }
+
+
         public static string UnitPriceValidation(object input)
         {
-            return null;
+            try
+            {
+                Decimal unitPrice = Decimal.Parse((string)input);
+
+                if (unitPrice <= 0)
+                {
+                    return "NO-ML Please enter a price over 0";
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return "NO-ML Please enter a valid price";
+            }
         }
     }
 }
