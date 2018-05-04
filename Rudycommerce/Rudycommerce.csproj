@@ -77,9 +77,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Validations\GenericDecimalValidation.cs" />
-    <Compile Include="Validations\GenericIntegerValidation.cs" />
-    <Compile Include="Validations\GenericStringValidation.cs" />
     <Compile Include="Validations\InitialStockValidation.cs" />
     <Compile Include="Validations\UnitPriceValidation.cs" />
     <Compile Include="WindowsAndUserControls\Login\AdminUserForm.xaml.cs">

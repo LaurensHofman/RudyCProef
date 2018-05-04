@@ -40,7 +40,7 @@ namespace RudycommerceLibrary.DAL
 
                         categoryProperties.CategoryID = productCategoryModel.CategoryID;
                         categoryProperties.SpecificProductPropertyID = item.PropertyID;
-                        categoryProperties.IsRequired = item.IsRequired;
+                        //categoryProperties.IsRequired = item.IsRequired;
 
                         ctx.Category_SpecificProductProperties.Add(categoryProperties);
                     }

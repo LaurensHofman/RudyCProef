@@ -16,8 +16,8 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
         [Column("specific_product_property_id")]
         public int SpecificProductPropertyID { get; set; }
 
-        [Column("is_required")]
-        public bool IsRequired { get; set; }
+        //[Column("is_required")]
+        //public bool IsRequired { get; set; }
 
         public override bool IsNew()
         {

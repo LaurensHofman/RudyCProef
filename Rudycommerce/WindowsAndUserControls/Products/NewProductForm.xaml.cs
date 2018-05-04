@@ -253,7 +253,7 @@ namespace Rudycommerce
             // Creates a textbox for each multilingual property (which isn't an enumeration)
             foreach (NecessaryProductPropertyViewItem necessaryProperty in
                 NecessaryProductPropertiesList.Where(np => np.IsMultilingual == true && np.IsEnumeration == false)
-                .OrderByDescending(np => np.IsRequired))
+                /*.OrderByDescending(np => np.IsRequired)*/)
             {
                 //Product_SpecificProductProperties productProp = new Product_SpecificProductProperties()
                 //{
@@ -326,11 +326,11 @@ namespace Rudycommerce
             stackLeft.Children.Add(labelDescription);
 
             foreach (NecessaryProductPropertyViewItem necessaryProperty in
-                NecessaryProductPropertiesList.Where(np => np.IsMultilingual == true && np.IsEnumeration == false).OrderByDescending(np => np.IsRequired))
+                NecessaryProductPropertiesList.Where(np => np.IsMultilingual == true && np.IsEnumeration == false)/*.OrderByDescending(np => np.IsRequired)*/)
             {
                 Label customLabel = new Label
                 {
-                    Content = necessaryProperty.LookupName + (necessaryProperty.IsRequired ? " * " : " ") + ": ",
+                    Content = necessaryProperty.LookupName /*+ (necessaryProperty.IsRequired ? " * " : " ")*/ + " : ",
                     Height = _defaultHeight,
                     Foreground = _defaultLabelForeground,
                     FontSize = _defaultLabelFontSize,
@@ -421,7 +421,7 @@ namespace Rudycommerce
 
             foreach (NecessaryProductPropertyViewItem necessaryProperty in 
                 NecessaryProductPropertiesList.Where(np => np.IsMultilingual == false || np.IsEnumeration == true)
-                .OrderByDescending(np => np.IsRequired))
+                /*.OrderByDescending(np => np.IsRequired)*/)
             {
                 #region Textbox/Checkbox/Combobox
 
@@ -475,7 +475,7 @@ namespace Rudycommerce
                 #region Label
                 Label customLabel = new Label
                 {
-                    Content = necessaryProperty.LookupName + (necessaryProperty.IsRequired ? " * " : " ") + ": ",
+                    Content = necessaryProperty.LookupName /*+ (necessaryProperty.IsRequired ? " * " : " ")*/ + " : ",
                     Height = 30,
                     Foreground = Brushes.Black,
                     FontSize = 18,

@@ -15,6 +15,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -72,26 +74,27 @@
                                             SelectedValuePath="CategoryID"
                                             SelectedValue="{Binding Path=ProductModel.CategoryID}" SelectionChanged="cmbxCategories_SelectionChanged"/>
 
-                                        <TextBox  Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70"
-                                             Validation.ErrorTemplate="{StaticResource ResourceKey=validationTemplate}">
-                                            <TextBox.Text>
-                                                <Binding Path="ProductModel.InitialStock" 
-                                                     UpdateSourceTrigger="LostFocus">
-                                                    <Binding.ValidationRules>
+                                        <TextBox Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70"
+                                            Validation.ErrorTemplate="{StaticResource ResourceKey=validationTemplate}">
+                                        <TextBox.Text>
+                                                <Binding Path="ProductModel.InitialStock" >
+                                                    <!--UpdateSourceTrigger="LostFocus">-->
+                                                    <!--<Binding.ValidationRules>
                                                         <validations:InitialStockValidation/>
-                                                    </Binding.ValidationRules>
+                                                    </Binding.ValidationRules>-->
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
 
                                         <TextBox Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70"
-                                             Validation.ErrorTemplate="{StaticResource ResourceKey=validationTemplate}">
+                                            Validation.ErrorTemplate="{StaticResource ResourceKey=validationTemplate}">
                                             <TextBox.Text>
                                                 <Binding Path="ProductModel.UnitPrice" StringFormat="N2" 
-                                                         ConverterCulture="nl-BE" UpdateSourceTrigger="LostFocus">
-                                                    <Binding.ValidationRules>
+                                                         ConverterCulture="nl-BE">
+                                                    <!--UpdateSourceTrigger="LostFocus">-->
+                                                    <!--<Binding.ValidationRules>
                                                         <validations:UnitPriceValidation/>
-                                                    </Binding.ValidationRules>
+                                                    </Binding.ValidationRules>-->
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>

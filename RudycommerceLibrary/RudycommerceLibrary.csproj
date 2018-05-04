@@ -133,6 +133,14 @@
     <Compile Include="Migrations\201805021805580_homepageproducts1.Designer.cs">
       <DependentUpon>201805021805580_homepageproducts1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805041313264_ripIsReq.cs" />
+    <Compile Include="Migrations\201805041313264_ripIsReq.Designer.cs">
+      <DependentUpon>201805041313264_ripIsReq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805041316161_ripIsReq1.cs" />
+    <Compile Include="Migrations\201805041316161_ripIsReq1.Designer.cs">
+      <DependentUpon>201805041316161_ripIsReq1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryItem.cs" />
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
     <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
@@ -193,6 +201,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805021805580_homepageproducts1.resx">
       <DependentUpon>201805021805580_homepageproducts1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805041313264_ripIsReq.resx">
+      <DependentUpon>201805041313264_ripIsReq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805041316161_ripIsReq1.resx">
+      <DependentUpon>201805041316161_ripIsReq1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

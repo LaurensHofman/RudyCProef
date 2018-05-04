@@ -30,8 +30,8 @@ namespace RudycommerceLibrary.View
         [Column("is_enumeration")]
         public bool IsEnumeration { get; set; }
 
-        [Column("is_required")]
-        public bool IsRequired { get; set; }
+        //[Column("is_required")]
+        //public bool IsRequired { get; set; }
 
         [Column("category_id")]
         public int CategoryID { get; set; }
