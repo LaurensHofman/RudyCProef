@@ -27,7 +27,7 @@ namespace Rudycommerce
     /// </summary>
     public partial class SpecificProductPropertyForm : UserControl
     {
-        public SpecificProductProperty SpecificProductPropertyModel { get; set; }
+        public ProductProperty SpecificProductPropertyModel { get; set; }
         public ObservableCollection<LanguageAndSpecificPropertyItem> LanguageAndSpecificPropertyList { get; set; }
 
         
@@ -40,15 +40,15 @@ namespace Rudycommerce
 
             InitializeModelsAndContents();
 
-            SetLanguageDictionary(RudycommerceLibrary.Settings.UserLanguage);
+            SetLanguageDictionary(UserSettings.UserLanguage);
         }
 
         private void InitializeModelsAndContents()
         {
-            SpecificProductPropertyModel = new SpecificProductProperty();
+            SpecificProductPropertyModel = new ProductProperty();
 
             // gets active languages
-            LanguageList = BL_Multilingual.GetLocalizedListOfLanguages(RudycommerceLibrary.Settings.UserLanguage);
+            LanguageList = BL_Multilingual.GetLocalizedListOfLanguages(UserSettings.UserLanguage);
 
             // creates items for the datagrid, based on the active languages
             LanguageAndSpecificPropertyList = new ObservableCollection<LanguageAndSpecificPropertyItem>();
@@ -86,7 +86,7 @@ namespace Rudycommerce
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            Visibility = Visibility.Collapsed;
+            this.Visibility = Visibility.Collapsed;
         }
 
         private void MLChecked(object sender, RoutedEventArgs e)
@@ -112,7 +112,7 @@ namespace Rudycommerce
 
             TextBlock header = new TextBlock()
             {
-                Text = BL_Multilingual.POTENTIAL_VALUES(Settings.UserLanguage)
+                Text = BL_Multilingual.POTENTIAL_VALUES(UserSettings.UserLanguage)
             };
 
             string Bindinglocation = "TemporaryNonMLValue";
@@ -174,7 +174,7 @@ namespace Rudycommerce
             foreach (var lang in LanguageList)
             {
                 newEnum.ValuesList.Add(
-                    new LocalizedPropertyEnumerationValues
+                    new LocalizedEnumerationValues
                     {
                         LanguageID = lang.ID
                     });

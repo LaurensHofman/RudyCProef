@@ -40,7 +40,7 @@ namespace Rudycommerce
 
             this.Model = model;
             
-            SetLanguageDictionary(Settings.UserLanguage);
+            SetLanguageDictionary(UserSettings.UserLanguage);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

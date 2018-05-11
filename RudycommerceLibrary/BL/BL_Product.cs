@@ -12,39 +12,49 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_Product
     {
-        public static void Create(Product productModel, List<LocalizedProduct> localizedProductList, 
-            //List<Product_SpecificProductProperties> product_ProductPropertiesList, 
-            List<Values_Product_SpecificProductProperties> localizedValuesProduct_SpecificProductProperties,
-            List<ProductImage> productImages)
+        public static void Create(Product productModel)
         {
+            // For each value where the language wasn't defined, saves the value for each language
+
             productModel.CurrentStock = productModel.InitialStock;
 
             List<Language> LanguageList = BL_Language.GetAllLanguages();
 
-            List<Values_Product_SpecificProductProperties> tempList = new List<Values_Product_SpecificProductProperties>();
+            List<Values_Product_ProductProperties> tempList = new List<Values_Product_ProductProperties>();
 
-            foreach (var item in localizedValuesProduct_SpecificProductProperties
+            foreach (var item in productModel.Values_Product_Properties
                                     .Where(x => x.LanguageID == null))
             {
+                bool firstLanguage = true;
                 foreach (Language lang in LanguageList)
                 {
-                    tempList.Add(
-                        new Values_Product_SpecificProductProperties
+                    if (firstLanguage == true)
+                    {
+                        item.LanguageID = lang.LanguageID;
+                    }
+                    else
+                    {
+                        tempList.Add(
+                        new Values_Product_ProductProperties
                         {
                             LanguageID = lang.LanguageID,
-                            SpecificProductPropertyID = item.SpecificProductPropertyID,
+                            ProductPropertyID = item.ProductPropertyID,
                             Value = item.Value,
                             EnumerationValueID = item.EnumerationValueID
                         });
+                    }             
+
+                    firstLanguage = false;
                 }                
             }
 
-            localizedValuesProduct_SpecificProductProperties.RemoveAll(x => x.LanguageID == null);
+            foreach (var tempItem in tempList)
+            {
+                productModel.Values_Product_Properties.Add(tempItem);
+            }
+            productModel.Values_Product_Properties = productModel.Values_Product_Properties.OrderBy(prop => prop.ProductPropertyID).ToList();
 
-            localizedValuesProduct_SpecificProductProperties.AddRange(tempList);
-
-            DAL.DAL_Product.Create(productModel, localizedProductList, 
-                localizedValuesProduct_SpecificProductProperties, productImages);
+            DAL.DAL_Product.Create(productModel);
         }
 
         public static HomePageProductViewItem[] GetHomePageProducts()
@@ -67,12 +77,12 @@ namespace RudycommerceLibrary.BL
             return DAL.DAL_Product.GetLocalizedProductList(productID);
         }
 
-        public static List<Product_SpecificProductProperties> GetPropertiesFromProduct(int productID)
+        public static List<Product_ProductProperties> GetPropertiesFromProduct(int productID)
         {
             return DAL.DAL_Product.GetPropertiesFromProduct(productID);
         }
 
-        public static List<Values_Product_SpecificProductProperties> GetLocalizedPropertiesFromProduct(int productID)
+        public static List<Values_Product_ProductProperties> GetLocalizedPropertiesFromProduct(int productID)
         {
             return DAL.DAL_Product.GetLocalizedPropertiesFromProduct(productID);
         }

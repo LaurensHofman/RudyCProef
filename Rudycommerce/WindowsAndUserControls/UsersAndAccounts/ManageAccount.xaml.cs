@@ -33,7 +33,7 @@ namespace Rudycommerce
         {
             InitializeComponent();
 
-            _preferredLanguage = BL_Language.GetLanguageByID(Settings.UserLanguage.LanguageID);
+            _preferredLanguage = BL_Language.GetLanguageByID(UserSettings.UserLanguage.LanguageID);
             _languageList = BL_Language.GetDesktopLanguages();
 
             SelectRadioButtonByLanguage();
@@ -69,20 +69,20 @@ namespace Rudycommerce
             if (rbPreferNL.IsChecked == true)
             {
                 _preferredLanguage = _languageList.Single(l => l.LocalName == "Nederlands");
-                Settings.CurrentUser.PreferredLanguageID = _preferredLanguage.LanguageID;
+                UserSettings.CurrentUser.PreferredLanguageID = _preferredLanguage.LanguageID;
                 SetLanguageDictionary(_preferredLanguage);
             }
             if (rbPreferEN.IsChecked == true)
             {
                 _preferredLanguage = _languageList.Single(l => l.LocalName == "English");
-                Settings.CurrentUser.PreferredLanguageID = _preferredLanguage.LanguageID;
+                UserSettings.CurrentUser.PreferredLanguageID = _preferredLanguage.LanguageID;
                 SetLanguageDictionary(_preferredLanguage);
             }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            BL_DesktopUser.Update(Settings.CurrentUser);
+            BL_DesktopUser.Update(UserSettings.CurrentUser);
             OnAccountSave(_preferredLanguage);
         }
 

@@ -31,14 +31,14 @@ namespace Rudycommerce.WindowsAndUserControls.Products
         {
             InitializeComponent();
 
-            SetLanguageDictionary(Settings.UserLanguage);
+            SetLanguageDictionary(UserSettings.UserLanguage);
 
             LoadDataGridItems();
         }
 
         private void LoadDataGridItems()
         {
-            PropertyOverview = new ObservableCollection<SpecificProductPropertyOverViewItem>(BL_SpecificProductProperty.GetPropertyOverview(Settings.UserLanguage));
+            PropertyOverview = new ObservableCollection<SpecificProductPropertyOverViewItem>(BL_SpecificProductProperty.GetPropertyOverview(UserSettings.UserLanguage));
             BindData();
         }
 

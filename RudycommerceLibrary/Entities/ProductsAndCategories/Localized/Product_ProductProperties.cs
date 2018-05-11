@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -8,19 +7,17 @@ using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
 {
-    [Table("localized_products")]
-    public class LocalizedProduct
+    [Table("product__product_properties")]
+    public class Product_ProductProperties
     {
         [Column("product_id")]
         public int ProductID { get; set; }
 
-        [Column("language_id")]
-        public int LanguageID { get; set; }
+        [Column("specific_product_property_id")]
+        public int PropertyID { get; set; }
 
-        [Column("name")]
-        public string Name { get; set; }
+        //[Column("non_multilingual_value")]
+        //public string NonMultilingualValue { get; set; }
 
-        [Column("description")]
-        public string Description { get; set; }
     }
 }

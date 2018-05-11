@@ -29,5 +29,7 @@ namespace RudycommerceLibrary.View
 
         [Column("image_url")]
         public string ImageURL { get; set; }
+
+        
     }
 }

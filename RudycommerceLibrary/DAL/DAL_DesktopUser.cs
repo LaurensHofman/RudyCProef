@@ -13,7 +13,6 @@ namespace RudycommerceLibrary.DAL
         public static bool AnyDesktopUser()
         {
             var ctx = AppDBContext.Instance();
-
             return ctx.DesktopUsers.Any(du => du.DeletedAt == null);
         }
 

@@ -22,20 +22,20 @@ namespace RudycommerceLibrary
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<SpecificProductProperty> SpecificProductProperties { get; set; }
+        public DbSet<ProductProperty> SpecificProductProperties { get; set; }
         public DbSet<Article> Articles { get; set; }
 
         public DbSet<ProductImage> ProductImages { get; set; }
 
         public DbSet<LocalizedProduct> LocalizedProducts { get; set; }
-        public DbSet<LocalizedProductCategory> LocalizedProductCategories { get; set; }
-        public DbSet<LocalizedSpecificProductProperty> LocalizedSpecificProductProperties { get; set; }
-        public DbSet<Category_SpecificProductProperties> Category_SpecificProductProperties { get; set; }
-        public DbSet<Product_SpecificProductProperties> Product_SpecificProductProperties { get; set; }
-        public DbSet<Values_Product_SpecificProductProperties> Localized_Product_SpecificProductProperties { get; set; }
+        public DbSet<LocalizedCategory> LocalizedProductCategories { get; set; }
+        public DbSet<LocalizedProperty> LocalizedSpecificProductProperties { get; set; }
+        public DbSet<Category_Property> Category_SpecificProductProperties { get; set; }
+        public DbSet<Product_ProductProperties> Product_SpecificProductProperties { get; set; }
+        public DbSet<Values_Product_ProductProperties> Localized_Product_SpecificProductProperties { get; set; }
 
         public DbSet<PropertyEnumerations> PropertyEnumerations { get; set; }
-        public DbSet<LocalizedPropertyEnumerationValues> LocalizedEnumValues { get; set; }
+        public DbSet<LocalizedEnumerationValues> LocalizedEnumValues { get; set; }
 
         #endregion
 
@@ -86,20 +86,20 @@ namespace RudycommerceLibrary
 
             #region SpecificProductProperty (1) to (many) Enumeration Values
             modelBuilder.Entity<PropertyEnumerations>()
-                .HasRequired<SpecificProductProperty>(enums => enums.Property)
+                .HasRequired<ProductProperty>(enums => enums.Property)
                 .WithMany(spp => spp.Enumerations)
                 .HasForeignKey<int>(enums => enums.PropertyID);
             #endregion
 
             #region PossibleEnumerationValues (1) to (many) Values_Product_Properties
-            modelBuilder.Entity<Values_Product_SpecificProductProperties>()
+            modelBuilder.Entity<Values_Product_ProductProperties>()
                 .HasOptional<PropertyEnumerations>(values => values.EnumerationValue)
                 .WithMany(enums => enums.Product_PropertyValues)
                 .HasForeignKey<int?>(values => values.EnumerationValueID);
             #endregion
 
             #region PropertyEnumerations (many) to (many) Languages
-            modelBuilder.Entity<LocalizedPropertyEnumerationValues>()
+            modelBuilder.Entity<LocalizedEnumerationValues>()
                 .HasKey(enumv => new { enumv.EnumerationID, enumv.LanguageID });
 
             modelBuilder.Entity<PropertyEnumerations>()
@@ -128,7 +128,7 @@ namespace RudycommerceLibrary
                 .HasForeignKey(lp => lp.LanguageID);
             #endregion
             #region Categories (many) to (many) Languages
-            modelBuilder.Entity<LocalizedProductCategory>()
+            modelBuilder.Entity<LocalizedCategory>()
                 .HasKey(lpc => new { lpc.CategoryID, lpc.LanguageID });
 
             modelBuilder.Entity<ProductCategory>()
@@ -142,13 +142,13 @@ namespace RudycommerceLibrary
                 .HasForeignKey(lpc => lpc.LanguageID);
             #endregion
             #region Product properties (many) to (many) Languages
-            modelBuilder.Entity<LocalizedSpecificProductProperty>()
-                .HasKey(lpp => new { lpp.SpecificProductPropertyID, lpp.LanguageID });
+            modelBuilder.Entity<LocalizedProperty>()
+                .HasKey(lpp => new { lpp.PropertyID, lpp.LanguageID });
 
-            modelBuilder.Entity<SpecificProductProperty>()
+            modelBuilder.Entity<ProductProperty>()
                 .HasMany(pp => pp.LocalizedSpecificProductProperties)
                 .WithRequired()
-                .HasForeignKey(lpp => lpp.SpecificProductPropertyID);
+                .HasForeignKey(lpp => lpp.PropertyID);
 
             modelBuilder.Entity<Language>()
                 .HasMany(sl => sl.LocalizedSpecificProductProperties)
@@ -156,13 +156,13 @@ namespace RudycommerceLibrary
                 .HasForeignKey(lpp => lpp.LanguageID);
             #endregion
             #region Product properties (many) to (many) categories
-            modelBuilder.Entity<Category_SpecificProductProperties>()
-                .HasKey(cpp => new { cpp.SpecificProductPropertyID, cpp.CategoryID });
+            modelBuilder.Entity<Category_Property>()
+                .HasKey(cpp => new { cpp.PropertyID, cpp.CategoryID });
 
-            modelBuilder.Entity<SpecificProductProperty>()
+            modelBuilder.Entity<ProductProperty>()
                 .HasMany(pp => pp.LocalizedSpecificProductProperties)
                 .WithRequired()
-                .HasForeignKey(cpp => cpp.SpecificProductPropertyID);
+                .HasForeignKey(cpp => cpp.PropertyID);
 
             modelBuilder.Entity<ProductCategory>()
                 .HasMany(pc => pc.Category_SpecificProductProperties)
@@ -170,32 +170,32 @@ namespace RudycommerceLibrary
                 .HasForeignKey(cpp => cpp.CategoryID);
             #endregion
             #region Products (many) to (many) SpecificProductProperties
-            modelBuilder.Entity<Product_SpecificProductProperties>()
-                .HasKey(ppp => new { ppp.ProductID, ppp.SpecificProductPropertyID });
+            modelBuilder.Entity<Product_ProductProperties>()
+                .HasKey(ppp => new { ppp.ProductID, ppp.PropertyID });
 
             modelBuilder.Entity<Product>()
                 .HasMany(p => p.Product_SpecificProductProperties)
                 .WithRequired()
                 .HasForeignKey(ppp => ppp.ProductID);
 
-            modelBuilder.Entity<SpecificProductProperty>()
+            modelBuilder.Entity<ProductProperty>()
                 .HasMany(pp => pp.Product_SpecificProductProperties)
                 .WithRequired()
-                .HasForeignKey(ppp => ppp.SpecificProductPropertyID);
+                .HasForeignKey(ppp => ppp.PropertyID);
             #endregion
             #region Product specific productproperties (many) to (many) Languages
-            modelBuilder.Entity<Values_Product_SpecificProductProperties>()
-                .HasKey(lppp => new { lppp.ProductID, lppp.SpecificProductPropertyID, lppp.LanguageID });
+            modelBuilder.Entity<Values_Product_ProductProperties>()
+                .HasKey(lppp => new { lppp.ProductID, lppp.ProductPropertyID, lppp.LanguageID });
 
             modelBuilder.Entity<Product>()
-                .HasMany(p => p.Localized_Product_SpecificProductProperties)
+                .HasMany(p => p.Values_Product_Properties)
                 .WithRequired()
                 .HasForeignKey(lppp => lppp.ProductID);
 
-            modelBuilder.Entity<SpecificProductProperty>()
+            modelBuilder.Entity<ProductProperty>()
                 .HasMany(pp => pp.Localized_Product_SpecificProductProperties)
                 .WithRequired()
-                .HasForeignKey(lppp => lppp.SpecificProductPropertyID);
+                .HasForeignKey(lppp => lppp.ProductPropertyID);
 
             modelBuilder.Entity<Language>()
                 .HasMany(sl => sl.Localized_Product_SpecificProductProperties)

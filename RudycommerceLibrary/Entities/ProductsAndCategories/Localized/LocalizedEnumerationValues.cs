@@ -8,19 +8,16 @@ using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
 {
-    [Table("localized_products")]
-    public class LocalizedProduct
+    [Table("localized_enumeration_values")]
+    public class LocalizedEnumerationValues
     {
-        [Column("product_id")]
-        public int ProductID { get; set; }
-
         [Column("language_id")]
         public int LanguageID { get; set; }
 
-        [Column("name")]
-        public string Name { get; set; }
+        [Column("value")]
+        public string Value { get; set; }
 
-        [Column("description")]
-        public string Description { get; set; }
+        [Column("enumeration_id")]
+        public int EnumerationID { get; set; }
     }
 }

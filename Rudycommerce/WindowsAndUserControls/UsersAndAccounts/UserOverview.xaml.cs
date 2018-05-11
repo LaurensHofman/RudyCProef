@@ -34,7 +34,7 @@ namespace Rudycommerce
             InitializeComponent();
             BindData();
             
-            SetLanguageDictionary(RudycommerceLibrary.Settings.UserLanguage);
+            SetLanguageDictionary(UserSettings.UserLanguage);
         }
 
         private void SetLanguageDictionary(Language preferredLanguage)
@@ -76,11 +76,11 @@ namespace Rudycommerce
         {
             var user = ((FrameworkElement)sender).DataContext as DesktopUser;
 
-            string messageboxContent = BL_Multilingual.UOVerifyAdminMessageBoxContent(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
-            string messageboxTitle = BL_Multilingual.UOVerifyAdminMessageBoxTitle(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
+            string messageboxContent = BL_Multilingual.UOVerifyAdminMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
+            string messageboxTitle = BL_Multilingual.UOVerifyAdminMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
 
-            MessageBoxManager.Yes = BL_Multilingual.YES(RudycommerceLibrary.Settings.UserLanguage);
-            MessageBoxManager.No = BL_Multilingual.NO(RudycommerceLibrary.Settings.UserLanguage);
+            MessageBoxManager.Yes = BL_Multilingual.YES(UserSettings.UserLanguage);
+            MessageBoxManager.No = BL_Multilingual.NO(UserSettings.UserLanguage);
             MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent, messageboxTitle, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -109,11 +109,11 @@ namespace Rudycommerce
         {
             var user = ((FrameworkElement)sender).DataContext as DesktopUser;
 
-            string messageboxContent = BL_Multilingual.UODeleteUserMessageBoxContent(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
-            string messageboxTitle = BL_Multilingual.UODeleteUserMessageBoxTitle(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
+            string messageboxContent = BL_Multilingual.UODeleteUserMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
+            string messageboxTitle = BL_Multilingual.UODeleteUserMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
 
-            MessageBoxManager.Yes = BL_Multilingual.YES(RudycommerceLibrary.Settings.UserLanguage);
-            MessageBoxManager.No = BL_Multilingual.NO(RudycommerceLibrary.Settings.UserLanguage);
+            MessageBoxManager.Yes = BL_Multilingual.YES(UserSettings.UserLanguage);
+            MessageBoxManager.No = BL_Multilingual.NO(UserSettings.UserLanguage);
             MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent,
@@ -134,11 +134,11 @@ namespace Rudycommerce
         {
             var user = ((FrameworkElement)sender).DataContext as DesktopUser;
 
-            string messageboxContent = BL_Multilingual.UOMakeUserAdminMessageBoxContent(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
-            string messageboxTitle = BL_Multilingual.UOMakeUserAdminMessageBoxTitle(user.LastName, user.FirstName, RudycommerceLibrary.Settings.UserLanguage);
+            string messageboxContent = BL_Multilingual.UOMakeUserAdminMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
+            string messageboxTitle = BL_Multilingual.UOMakeUserAdminMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
 
-            MessageBoxManager.Yes = BL_Multilingual.YES(RudycommerceLibrary.Settings.UserLanguage);
-            MessageBoxManager.No = BL_Multilingual.NO(RudycommerceLibrary.Settings.UserLanguage);
+            MessageBoxManager.Yes = BL_Multilingual.YES(UserSettings.UserLanguage);
+            MessageBoxManager.No = BL_Multilingual.NO(UserSettings.UserLanguage);
             MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent,

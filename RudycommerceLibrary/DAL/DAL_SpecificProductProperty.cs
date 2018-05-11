@@ -14,7 +14,7 @@ namespace RudycommerceLibrary.DAL
 {
     public static class DAL_SpecificProductProperty
     {
-        public static void CreateNonEnumProperty(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList)
+        public static void CreateNonEnumProperty(ProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList)
         {
             var ctx = AppDBContext.Instance();
             
@@ -28,9 +28,9 @@ namespace RudycommerceLibrary.DAL
 
                     foreach (Models.LanguageAndSpecificPropertyItem item in languageAndSpecificPropertyList)
                     {
-                        LocalizedSpecificProductProperty localProductProperty = new LocalizedSpecificProductProperty
+                        LocalizedProperty localProductProperty = new LocalizedProperty
                         {
-                            SpecificProductPropertyID = specificProductPropertyModel.SpecificProductPropertyID,
+                            PropertyID = specificProductPropertyModel.PropertyID,
                             LanguageID = item.LanguageID,
                             LookupName = item.PropertyName
                         };
@@ -50,7 +50,7 @@ namespace RudycommerceLibrary.DAL
             
         }
 
-        public static void CreateEnumProperty(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList, List<PropertyEnumerations> propertyEnumerations)
+        public static void CreateEnumProperty(ProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList, List<PropertyEnumerations> propertyEnumerations)
         {
             var ctx = AppDBContext.Instance();
 
@@ -60,9 +60,9 @@ namespace RudycommerceLibrary.DAL
 
             foreach (Models.LanguageAndSpecificPropertyItem item in languageAndSpecificPropertyList)
             {
-                LocalizedSpecificProductProperty localProductProperty = new LocalizedSpecificProductProperty
+                LocalizedProperty localProductProperty = new LocalizedProperty
                 {
-                    SpecificProductPropertyID = specificProductPropertyModel.SpecificProductPropertyID,
+                    PropertyID = specificProductPropertyModel.PropertyID,
                     LanguageID = item.LanguageID,
                     LookupName = item.PropertyName
                 };
@@ -74,7 +74,7 @@ namespace RudycommerceLibrary.DAL
 
             foreach (PropertyEnumerations enums in propertyEnumerations)
             {
-                enums.PropertyID = specificProductPropertyModel.SpecificProductPropertyID;
+                enums.PropertyID = specificProductPropertyModel.PropertyID;
 
                 ctx.PropertyEnumerations.Add(enums);
 
@@ -91,11 +91,11 @@ namespace RudycommerceLibrary.DAL
             ctx.SaveChanges();
         }
 
-        public static List<LocalizedSpecificProductProperty> GetLocalizedSpecificProductProperties(Language userLanguage)
+        public static List<LocalizedProperty> GetLocalizedSpecificProductProperties(Language userLanguage)
         {
             var ctx = AppDBContext.Instance();
 
-            return ctx.LocalizedSpecificProductProperties.Where(lspp => lspp.LanguageID == userLanguage.LanguageID && lspp.DeletedAt == null).ToList();
+            return ctx.LocalizedSpecificProductProperties.Where(lspp => lspp.LanguageID == userLanguage.LanguageID).ToList();
 
             //List<SpecificProductProperty> propertyList = new List<SpecificProductProperty>();
 
@@ -128,11 +128,11 @@ namespace RudycommerceLibrary.DAL
                                 && npp.CategoryID == categoryID).ToList() ;
         }
 
-        public static List<Category_SpecificProductProperties> GetProductPropertiesForCategory(int categoryID)
+        public static List<Category_Property> GetProductPropertiesForCategory(int categoryID)
         {
             var ctx = AppDBContext.Instance();
 
-            return ctx.Category_SpecificProductProperties.Where(cspp => cspp.CategoryID == categoryID && cspp.DeletedAt == null).ToList();
+            return ctx.Category_SpecificProductProperties.Where(cspp => cspp.CategoryID == categoryID).ToList();
         }
 
         public static IEnumerable GetPropertyEnumerations(Language userLanguage, int specificProductPropertyID)
@@ -149,15 +149,15 @@ namespace RudycommerceLibrary.DAL
         {
             var ctx = AppDBContext.Instance();
 
-            return ctx.LocalizedSpecificProductProperties.SingleOrDefault(sProp => sProp.SpecificProductPropertyID == specificProductPropertyID &&
+            return ctx.LocalizedSpecificProductProperties.SingleOrDefault(sProp => sProp.PropertyID == specificProductPropertyID &&
                                                                         sProp.LanguageID == userLanguage.LanguageID).LookupName;
         }
         
-        public static SpecificProductProperty GetProductPropertyByID(int specificProductPropertyID)
+        public static ProductProperty GetProductPropertyByID(int specificProductPropertyID)
         {
             var ctx = AppDBContext.Instance();
 
-            return ctx.SpecificProductProperties.SingleOrDefault(spp => spp.SpecificProductPropertyID == specificProductPropertyID && spp.DeletedAt == null);
+            return ctx.SpecificProductProperties.SingleOrDefault(spp => spp.PropertyID == specificProductPropertyID && spp.DeletedAt == null);
         }
 
         //public static void TestView()

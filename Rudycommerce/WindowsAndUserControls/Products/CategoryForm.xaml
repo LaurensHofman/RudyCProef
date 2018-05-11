@@ -75,7 +75,7 @@
                                         <TextBlock Text="{DynamicResource ResourceKey=LanguageName}" Typography.Capitals="SmallCaps"/>
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Path=CategoryName}" Width="400">
+                                <DataGridTextColumn Binding="{Binding Path=Name}" Width="400">
                                     <DataGridTextColumn.Header>
                                         <TextBlock Text="{DynamicResource ResourceKey=NewCategoryName}" Typography.Capitals="SmallCaps"/>
                                     </DataGridTextColumn.Header>

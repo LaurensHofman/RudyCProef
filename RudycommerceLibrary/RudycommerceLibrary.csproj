@@ -75,73 +75,29 @@
     <Compile Include="Entities\DesktopUsers\DesktopUser.cs" />
     <Compile Include="Entities\ProductsAndCategories\Article.cs" />
     <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedProduct.cs" />
-    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedProductCategory.cs" />
-    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedPropertyEnumerationValues.cs" />
-    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedSpecificProductProperty.cs" />
-    <Compile Include="Entities\ProductsAndCategories\Localized\Category_SpecificProductProperties.cs" />
-    <Compile Include="Entities\ProductsAndCategories\Localized\Values_Product_SpecificProductProperties.cs" />
-    <Compile Include="Entities\ProductsAndCategories\Localized\Product_SpecificProductProperties.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedCategory.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedEnumerationValues.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedProperty.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\Category_Property.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\Values_Product_ProductProperties.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\Product_ProductProperties.cs" />
     <Compile Include="Entities\ProductsAndCategories\ProductImage.cs" />
     <Compile Include="Entities\ProductsAndCategories\PropertyEnumerations.cs" />
     <Compile Include="Entities\ProductsAndCategories\Product.cs" />
     <Compile Include="Entities\ProductsAndCategories\ProductCategory.cs" />
     <Compile Include="Entities\ProductsAndCategories\SpecificProductProperty.cs" />
     <Compile Include="Entities\Language.cs" />
+    <Compile Include="Exceptions\NoDatabaseConnectionError.cs" />
     <Compile Include="LanguageResources\DutchCode.cs" />
     <Compile Include="LanguageResources\EnglishCode.cs" />
-    <Compile Include="Migrations\201804241856268_EnumLocsRestart.cs" />
-    <Compile Include="Migrations\201804241856268_EnumLocsRestart.Designer.cs">
-      <DependentUpon>201804241856268_EnumLocsRestart.cs</DependentUpon>
+    <Compile Include="Migrations\201805111011189_ShorterNames.cs" />
+    <Compile Include="Migrations\201805111011189_ShorterNames.Designer.cs">
+      <DependentUpon>201805111011189_ShorterNames.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804242025174_EnumLocsretry.cs" />
-    <Compile Include="Migrations\201804242025174_EnumLocsretry.Designer.cs">
-      <DependentUpon>201804242025174_EnumLocsretry.cs</DependentUpon>
+    <Compile Include="Migrations\201805111335119_Fix.cs" />
+    <Compile Include="Migrations\201805111335119_Fix.Designer.cs">
+      <DependentUpon>201805111335119_Fix.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804250636116_testListEnums.cs" />
-    <Compile Include="Migrations\201804250636116_testListEnums.Designer.cs">
-      <DependentUpon>201804250636116_testListEnums.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804251315548_testListEnums1.cs" />
-    <Compile Include="Migrations\201804251315548_testListEnums1.Designer.cs">
-      <DependentUpon>201804251315548_testListEnums1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804251318030_testListEnums2.cs" />
-    <Compile Include="Migrations\201804251318030_testListEnums2.Designer.cs">
-      <DependentUpon>201804251318030_testListEnums2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804251740594_necessaryProductProperties_AddedIsEnum.cs" />
-    <Compile Include="Migrations\201804251740594_necessaryProductProperties_AddedIsEnum.Designer.cs">
-      <DependentUpon>201804251740594_necessaryProductProperties_AddedIsEnum.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804251757357_vEnums.cs" />
-    <Compile Include="Migrations\201804251757357_vEnums.Designer.cs">
-      <DependentUpon>201804251757357_vEnums.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804261914014_img.cs" />
-    <Compile Include="Migrations\201804261914014_img.Designer.cs">
-      <DependentUpon>201804261914014_img.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804261916183_img1.cs" />
-    <Compile Include="Migrations\201804261916183_img1.Designer.cs">
-      <DependentUpon>201804261916183_img1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805021805088_homepageproducts.cs" />
-    <Compile Include="Migrations\201805021805088_homepageproducts.Designer.cs">
-      <DependentUpon>201805021805088_homepageproducts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805021805580_homepageproducts1.cs" />
-    <Compile Include="Migrations\201805021805580_homepageproducts1.Designer.cs">
-      <DependentUpon>201805021805580_homepageproducts1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805041313264_ripIsReq.cs" />
-    <Compile Include="Migrations\201805041313264_ripIsReq.Designer.cs">
-      <DependentUpon>201805041313264_ripIsReq.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805041316161_ripIsReq1.cs" />
-    <Compile Include="Migrations\201805041316161_ripIsReq1.Designer.cs">
-      <DependentUpon>201805041316161_ripIsReq1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CategoryItem.cs" />
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
     <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
     <Compile Include="Models\LocalizedLanguageItem.cs" />
@@ -150,7 +106,6 @@
     <Compile Include="View\LocalizedEnumerationViewItem.cs" />
     <Compile Include="View\NecessaryProductPropertyViewItem.cs" />
     <Compile Include="Models\PropertyAndCategoryItem.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="Utilities\MessageBoxManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,44 +124,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804241856268_EnumLocsRestart.resx">
-      <DependentUpon>201804241856268_EnumLocsRestart.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805111011189_ShorterNames.resx">
+      <DependentUpon>201805111011189_ShorterNames.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804242025174_EnumLocsretry.resx">
-      <DependentUpon>201804242025174_EnumLocsretry.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804250636116_testListEnums.resx">
-      <DependentUpon>201804250636116_testListEnums.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804251315548_testListEnums1.resx">
-      <DependentUpon>201804251315548_testListEnums1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804251318030_testListEnums2.resx">
-      <DependentUpon>201804251318030_testListEnums2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804251740594_necessaryProductProperties_AddedIsEnum.resx">
-      <DependentUpon>201804251740594_necessaryProductProperties_AddedIsEnum.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804251757357_vEnums.resx">
-      <DependentUpon>201804251757357_vEnums.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804261914014_img.resx">
-      <DependentUpon>201804261914014_img.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804261916183_img1.resx">
-      <DependentUpon>201804261916183_img1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805021805088_homepageproducts.resx">
-      <DependentUpon>201805021805088_homepageproducts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805021805580_homepageproducts1.resx">
-      <DependentUpon>201805021805580_homepageproducts1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805041313264_ripIsReq.resx">
-      <DependentUpon>201805041313264_ripIsReq.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805041316161_ripIsReq1.resx">
-      <DependentUpon>201805041316161_ripIsReq1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805111335119_Fix.resx">
+      <DependentUpon>201805111335119_Fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

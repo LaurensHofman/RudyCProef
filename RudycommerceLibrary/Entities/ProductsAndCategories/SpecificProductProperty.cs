@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.ProductsAndCategories
 {   
-    [Table("specific_product_properties")]
-    public class SpecificProductProperty : BaseEntity
+    [Table("product_properties")]
+    public class ProductProperty : BaseEntity
     {
         [Key]
-        [Column("specific_product_property_id")]
-        public int SpecificProductPropertyID { get; set; }
+        [Column("property_id")]
+        public int PropertyID { get; set; }
 
         [Column("is_multilingual")]
         public bool IsMultilingual { get; set; }
@@ -30,18 +30,18 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
 
         public override bool IsNew()
         {
-            return this.SpecificProductPropertyID <= 0;
+            return this.PropertyID <= 0;
         }
 
-        public SpecificProductProperty()
+        public ProductProperty()
         {
             IsMultilingual = true;
             Enumerations = new List<PropertyEnumerations>();
         }
 
-        public virtual ICollection<LocalizedSpecificProductProperty> LocalizedSpecificProductProperties { get; set; }
-        public virtual ICollection<Category_SpecificProductProperties> Category_SpecificProductProperties { get; set; }
-        public virtual ICollection<Product_SpecificProductProperties> Product_SpecificProductProperties { get; set; }
-        public virtual ICollection<Values_Product_SpecificProductProperties> Localized_Product_SpecificProductProperties { get; set; }
+        public virtual ICollection<LocalizedProperty> LocalizedSpecificProductProperties { get; set; }
+        public virtual ICollection<Category_Property> Category_SpecificProductProperties { get; set; }
+        public virtual ICollection<Product_ProductProperties> Product_SpecificProductProperties { get; set; }
+        public virtual ICollection<Values_Product_ProductProperties> Localized_Product_SpecificProductProperties { get; set; }
     }
 }

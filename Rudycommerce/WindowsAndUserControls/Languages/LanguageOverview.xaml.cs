@@ -31,7 +31,7 @@ namespace Rudycommerce
             InitializeComponent();
             BindData();
             
-            SetLanguageDictionary(Settings.UserLanguage);
+            SetLanguageDictionary(UserSettings.UserLanguage);
         }
 
         private void SetLanguageDictionary(Language preferredLanguage)

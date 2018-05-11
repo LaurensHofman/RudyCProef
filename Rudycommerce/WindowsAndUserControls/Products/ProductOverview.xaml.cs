@@ -31,7 +31,7 @@ namespace Rudycommerce.WindowsAndUserControls.Products
         {
             InitializeComponent();
 
-            SetLanguageDictionary(Settings.UserLanguage);
+            SetLanguageDictionary(UserSettings.UserLanguage);
 
             SetDataGridContent();            
         }
@@ -47,7 +47,7 @@ namespace Rudycommerce.WindowsAndUserControls.Products
 
         private void SetDataGridContent()
         {
-            ProductOverviewList = new ObservableCollection<ProductOverViewItem>( BL_Product.GetProductOverview(Settings.UserLanguage) );
+            ProductOverviewList = new ObservableCollection<ProductOverViewItem>( BL_Product.GetProductOverview(UserSettings.UserLanguage) );
             BindData();
         }
 

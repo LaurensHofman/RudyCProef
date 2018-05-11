@@ -12,9 +12,7 @@ namespace RudycommerceLibrary.DAL
 {
     public static class DAL_Product
     {
-        public static void Create(Product productModel, List<LocalizedProduct> localizedProductList, /*List<Product_SpecificProductProperties> product_ProductPropertiesList,*/ 
-            List<Values_Product_SpecificProductProperties> localizedValuesProduct_SpecificProductProperties,
-            List<ProductImage> productImages)
+        public static void Create(Product productModel)
         {
             var ctx = AppDBContext.Instance();
 
@@ -22,35 +20,16 @@ namespace RudycommerceLibrary.DAL
             {
                 try
                 {
+                    // Just learned about lazy loading in entity framework
+
                     ctx.Products.Add(productModel);
 
                     ctx.SaveChanges();
 
-                    foreach (LocalizedProduct localProduct in localizedProductList)
-                    {
-                        localProduct.ProductID = productModel.ProductID;
-                        ctx.LocalizedProducts.Add(localProduct);
-                    }
-
-                    ctx.SaveChanges();
-
-                    //foreach (Product_SpecificProductProperties p_prop in product_ProductPropertiesList)
-                    //{
-                    //    p_prop.ProductID = productModel.ProductID;
-                    //    ctx.Product_SpecificProductProperties.Add(p_prop);
-                    //}
-
-                    foreach (Values_Product_SpecificProductProperties loc_p_prop in localizedValuesProduct_SpecificProductProperties)
-                    {
-                        loc_p_prop.ProductID = productModel.ProductID;
-                        ctx.Localized_Product_SpecificProductProperties.Add(loc_p_prop);
-                    }
-
-                    foreach (ProductImage img in productImages)
+                    foreach (ProductImage img in productModel.Images)
                     {
                         img.ProductID = productModel.ProductID;
                         img.ImageURL = DAL_ProductImages.uploadImage(img);
-                        ctx.ProductImages.Add(img);
                     }
 
                     ctx.SaveChanges();
@@ -71,14 +50,14 @@ namespace RudycommerceLibrary.DAL
             return ctx.vHomePageProductView.ToArray();
         }
 
-        public static List<Product_SpecificProductProperties> GetPropertiesFromProduct(int productID)
+        public static List<Product_ProductProperties> GetPropertiesFromProduct(int productID)
         {
             var ctx = AppDBContext.Instance();
 
             return ctx.Product_SpecificProductProperties.Where(pspp => pspp.ProductID == productID).ToList();
         }
 
-        public static List<Values_Product_SpecificProductProperties> GetLocalizedPropertiesFromProduct(int productID)
+        public static List<Values_Product_ProductProperties> GetLocalizedPropertiesFromProduct(int productID)
         {
             var ctx = AppDBContext.Instance();
 

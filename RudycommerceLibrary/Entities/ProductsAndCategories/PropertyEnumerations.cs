@@ -20,20 +20,20 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         [Column("specific_property_id")]
         public int PropertyID { get; set; }
 
-        public SpecificProductProperty Property { get; set; }
-        public virtual ICollection<Values_Product_SpecificProductProperties> Product_PropertyValues { get; set; }
-        public virtual ICollection<LocalizedPropertyEnumerationValues> LocalizedEnumerationValues { get; set; }
+        public ProductProperty Property { get; set; }
+        public virtual ICollection<Values_Product_ProductProperties> Product_PropertyValues { get; set; }
+        public virtual ICollection<LocalizedEnumerationValues> LocalizedEnumerationValues { get; set; }
 
         [NotMapped]
-        public List<LocalizedPropertyEnumerationValues> ValuesList { get; set; }
+        public List<LocalizedEnumerationValues> ValuesList { get; set; }
         [NotMapped]
         public string TemporaryNonMLValue { get; set; }
 
         public PropertyEnumerations()
         {
-            Product_PropertyValues = new List<Values_Product_SpecificProductProperties>();
-            LocalizedEnumerationValues = new List<LocalizedPropertyEnumerationValues>();
-            ValuesList = new List<LocalizedPropertyEnumerationValues>();
+            Product_PropertyValues = new List<Values_Product_ProductProperties>();
+            LocalizedEnumerationValues = new List<LocalizedEnumerationValues>();
+            ValuesList = new List<LocalizedEnumerationValues>();
         }
     }
 }

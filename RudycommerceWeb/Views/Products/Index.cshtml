@@ -1,22 +1,57 @@
 ﻿@model RudycommerceLibrary.View.HomePageProductViewItem[]
 
-@{ 
+@{
     ViewBag.Title = "Home";
 }
 
-<h2> @ViewBag.Title </h2>
+@*<h1> @ViewBag.Title </h1>*@
+
+<h2> Onze nieuwste producten </h2>
 
 <div class="row">
     @foreach (var product in Model)
     {
         <div class="col-md-4">
-            <h4>@Html.ActionLink(product.Name, "Details",
-                new { id = product.ProductID})</h4>
+            <button type="button" class="add-to-cart">
+                @*<img src="~/Images/64_AddToShoppingCartBlack.png" />*@
+                +
+            </button>
+            <div class="card justify-content-top" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" title="@product.Name" data-content="@product.Description">
 
-            <a href="@Url.Action("Detail", new { id = product.ProductID })">
-                <img src="@product.ImageURL" alt="@product.Name"
-                     class="img-responsive"/>
-            </a>
+                <div class="card-image">
+                    <a href="@Url.Action("Detail", new { id = product.ProductID })">
+                        <img src="@product.ImageURL" alt="@product.Name"
+                             class="product-image" />
+                    </a>
+                </div>
+                <div class="card-header text-center">
+                    <div class="price">
+                        € @product.UnitPrice
+                    </div>
+                    <h3 class="text-center card-title">
+                        @Html.ActionLink(product.Name, "Details",
+                            new { id = product.ProductID }, new { @class = "product-title" })
+                    </h3>
+
+                    @*@if (product.Description.Length > 100)
+                    {
+                        <p>@(product.Description.Substring(0, Math.Min(product.Description.Length, 80)) + "...") </p>
+                    }
+                    else
+                    {
+                        <p>@(product.Description)</p>
+                    }*@
+
+
+                </div>
+            </div>
         </div>
     }
+    <hr />
 </div>
+@for (int i = 0; i < 100; i++)
+{
+    <p>
+        g
+    </p>
+}

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:Rudycommerce"
-        mc:Ignorable="d"
+                      mc:Ignorable="d"
         Title="{DynamicResource ResourceKey=NavigationWindowTitle}" WindowState="Maximized">
 
     <Window.Resources>
@@ -13,7 +13,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
+
             <Style TargetType="Controls:MetroAnimatedSingleRowTabControl" BasedOn="{StaticResource {x:Type Controls:MetroAnimatedSingleRowTabControl}}">
                 <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -32,120 +32,178 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid Background="Beige">
-        <Controls:MetroAnimatedSingleRowTabControl x:Name="AnimatedTabControl" SelectionChanged="AnimatedTabControl_SelectionChanged">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-            <Controls:MetroAnimatedSingleRowTabControl.Resources>
+        <DockPanel Grid.Column="0">
+            <Menu DockPanel.Dock="Left">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
 
-                <Style TargetType="{x:Type TabPanel}">
+                <MenuItem Click="menuItemSettings">
+                    <MenuItem.Header>
+                        <Image Source="/Resources/Icons/64_CogwheelSettings_WHITE.png" Height="20" Width="20"/>
+                    </MenuItem.Header>
+                </MenuItem>
 
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                <MenuItem Header="{DynamicResource ResourceKey=ManageProducts}">
+                    <MenuItem Header="{DynamicResource ResourceKey=AddProduct}" Click="menuItemAddProduct"/>
+                    <MenuItem Header="{DynamicResource ResourceKey=ProductOverview}" IsEnabled="False"/>
+                </MenuItem>
+                
+                <MenuItem Header="{DynamicResource ResourceKey=SpecificProductProperties}">
+                    <MenuItem Header="{DynamicResource ResourceKey=AddProductProperty}" Click="menuItemAddProperty"/>
+                    <MenuItem Header="{DynamicResource ResourceKey=PropertyOverview}" IsEnabled="False"/>
+                </MenuItem>
+                <MenuItem Header="{DynamicResource ResourceKey=Categories}">
+                    <MenuItem Header="{DynamicResource ResourceKey=AddCategory}" Click="menuItemAddCategory"/>
+                    <MenuItem Header="{DynamicResource ResourceKey=CategoryOverview}" IsEnabled="False"/>
+                </MenuItem>
 
-                </Style>
+                <MenuItem Header="{DynamicResource ResourceKey=ManageLanguages}">
+                    <MenuItem Header="{DynamicResource ResourceKey=AddLanguage}" Click="menuItemAddLanguage"/>
+                    <MenuItem Header="{DynamicResource ResourceKey=LanguageOverview}" Click="menuItemLanguageOverview"/>
+                </MenuItem>
 
-            </Controls:MetroAnimatedSingleRowTabControl.Resources>
+                <MenuItem x:Name="menuManageUsers" Header="{DynamicResource ResourceKey=ManageUsers}" Click="menuItemManageUsers"
+                          IsEnabled="False" Visibility="Collapsed"/>
+            </Menu>
+            <StackPanel></StackPanel>
+        </DockPanel>
 
-            <TabItem x:Name="tabItemProducts" Header="{DynamicResource ResourceKey=ProductsAndCategories}">
-                <Grid Style="{StaticResource ResourceKey=GridBelowTabItem}">
-                    <Separator Style="{StaticResource ResourceKey=SeperatorBelowTopTabs}"/>
-                    <ScrollViewer Style="{StaticResource ResourceKey=NavigationTabScroll}">
-                        <Grid x:Name="grdProducts" Style="{StaticResource ResourceKey=GridBelowTabItem}">
-                            <StackPanel Style="{StaticResource ResourceKey=NaviStackBelowTab}">
-                                <Label Style="{StaticResource ResourceKey=NavigationTabItemTitle}" Content="{DynamicResource ResourceKey=ProductsAndCategories}" />
+            
+        <Grid Grid.Column="1" Background="Beige" x:Name="gridUserControls" >
 
-                                <Separator Style="{StaticResource ResourceKey=SeperatorTileRegion}"/>
-                                <Label Style="{StaticResource ResourceKey=LabelTileRegion}" Content="{DynamicResource ResourceKey=Products}"></Label>
-                                <WrapPanel Style="{StaticResource ResourceKey=NaviWrapTileRegion}">
-                                    <Controls:Tile x:Name="tabTileAddProduct" Title="{DynamicResource ResourceKey=AddProduct}" Click="tabTileAddProduct_Click">
-                                        <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ImageInTile}"/>
-                                    </Controls:Tile>
-                                    <Controls:Tile x:Name="tabTileProductOverview" IsEnabled="False" Title="{DynamicResource ResourceKey=ProductOverview}" Click="tabTileProductOverview_Click">
-                                        <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ImageInTile}"/>
-                                    </Controls:Tile>
-                                </WrapPanel>
+            <ContentControl x:Name="ucAddProduct" Margin="0,0,0,0" />
+            <ContentControl x:Name="ucAddCategory" Margin="0,0,0,0" />
+            <ContentControl x:Name="ucAddProductProperty" Margin="0,0,0,0" />
+            <ContentControl x:Name="ucAddLanguage" Margin="0,0,0,0" />
+            <ContentControl x:Name="ucLanguageOverview" Margin="0,0,0,0" />
+            <ContentControl x:Name="ucManageUsers" Margin="0,0,0,0" />
+            <ContentControl x:Name="ucSettings" Margin="0,0,0,0" />
 
-                                <Separator Style="{StaticResource ResourceKey=SeperatorTileRegion}"/>
-                                <Label Style="{StaticResource ResourceKey=LabelTileRegion}" Content="{DynamicResource ResourceKey=Categories}"></Label>
-                                <WrapPanel Style="{StaticResource ResourceKey=NaviWrapTileRegion}">
-                                    <Controls:Tile x:Name="tabTileAddCategory" Title="{DynamicResource ResourceKey=AddCategory}" Click="tabTileAddCategory_Click">
-                                        <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
-                                    </Controls:Tile>
-                                </WrapPanel>
+        </Grid>        
+        
+            <!--<Controls:MetroAnimatedSingleRowTabControl x:Name="AnimatedTabControl" Margin="50,0,0,0" SelectionChanged="AnimatedTabControl_SelectionChanged">
 
-                                <Separator Style="{StaticResource ResourceKey=SeperatorTileRegion}"/>
-                                <Label Style="{StaticResource ResourceKey=LabelTileRegion}" Content="{DynamicResource ResourceKey=SpecificProductProperties}"></Label>
-                                <WrapPanel Style="{StaticResource ResourceKey=NaviWrapTileRegion}">
-                                    <Controls:Tile x:Name="tabTileAddProductProperty" Title="{DynamicResource ResourceKey=AddProductProperty}" Click="tabTileAddProductProperty_Click">
-                                        <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
-                                    </Controls:Tile>
-                                    <Controls:Tile x:Name="tabTilePropertyOverview" IsEnabled="False" Title="{DynamicResource ResourceKey=PropertyOverview}" Click="tabTilePropertyOverview_Click">
-                                        <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
-                                    </Controls:Tile>
-                                </WrapPanel>
-                            </StackPanel>
-                            <ContentControl x:Name="userControlProducts" Margin="0,20,0,0" />
-                        </Grid>
-                    </ScrollViewer>
-                </Grid>
-            </TabItem>
+                <Controls:MetroAnimatedSingleRowTabControl.Resources>
 
-            <TabItem x:Name="tabItemLanguages" Header="{DynamicResource ResourceKey=ManageLanguages}">
-                <Grid Background="Beige" Style="{StaticResource ResourceKey=GridBelowTabItem}">
-                    <Separator Style="{StaticResource ResourceKey=SeperatorBelowTopTabs}"/>
-                    <ScrollViewer Style="{StaticResource ResourceKey=NavigationTabScroll}">
-                        <Grid x:Name="grdLanguages" Style="{StaticResource ResourceKey=GridBelowTabItem}">
-                            <StackPanel Style="{StaticResource ResourceKey=NaviStackBelowTab}">
-                                <Label Style="{StaticResource ResourceKey=NavigationTabItemTitle}" Content="{DynamicResource ResourceKey=ManageLanguages}" />
+                    <Style TargetType="{x:Type TabPanel}">
 
-                                <Separator Style="{StaticResource ResourceKey=SeperatorTileRegion}"/>
-                                <Label Style="{StaticResource ResourceKey=LabelTileRegion}" Content="{DynamicResource ResourceKey=Languages}"></Label>
-                                <WrapPanel Style="{StaticResource ResourceKey=NaviWrapTileRegion}">
-                                    <Controls:Tile x:Name="tabTileAddLanguage" Title="{DynamicResource ResourceKey=AddLanguage}" Click="tabTileAddLanguage_Click" >
-                                        <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
-                                    </Controls:Tile>
-                                    <Controls:Tile x:Name="tabTileLanguageOverview" Title="{DynamicResource ResourceKey=LanguageOverview}" Click="tabTileLanguageOverview_Click">
-                                        <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
-                                    </Controls:Tile>
-                                </WrapPanel>
-                            </StackPanel>
-                            <ContentControl x:Name="userControlLanguages" Margin="0,20,0,0"/>
-                        </Grid>
-                    </ScrollViewer>
-                </Grid>
-            </TabItem>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
 
-            <TabItem x:Name="tabItemUsers" IsEnabled="False" Visibility="Collapsed" Header="{DynamicResource ResourceKey=ManageUsers}" >
-                <Grid Style="{StaticResource ResourceKey=GridBelowTabItem}">
-                    <Separator Style="{StaticResource ResourceKey=SeperatorBelowTopTabs}"/>
-                    <ScrollViewer Style="{StaticResource ResourceKey=NavigationTabScroll}">
-                        <Grid x:Name="grdUsers" Style="{StaticResource ResourceKey=GridBelowTabItem}">
-                            <StackPanel Style="{StaticResource ResourceKey=NaviStackBelowTab}">
-                                <Label Content="{DynamicResource ResourceKey=ManageUsers}" Style="{StaticResource ResourceKey=NavigationTabItemTitle}"/>
+                    </Style>
 
-                                <Separator Style="{StaticResource ResourceKey=SeperatorTileRegion}"/>
-                                <Label Style="{StaticResource ResourceKey=LabelTileRegion}" Content="{DynamicResource ResourceKey=Users}"/>
+                </Controls:MetroAnimatedSingleRowTabControl.Resources>
 
-                                <WrapPanel Style="{StaticResource ResourceKey=NaviWrapTileRegion}" >
-                                    <Controls:Tile x:Name="tabTileUserOverview" Title="{DynamicResource ResourceKey=UserOverview}" Click="tabTileUserOverview_Click">
-                                        <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ResourceKey=ImageInTile}"></Image>
-                                    </Controls:Tile>
-                                </WrapPanel>
-                            </StackPanel>
-                            <ContentControl x:Name="userControlUsers" Margin="0,20,0,0" />
-                        </Grid>
-                    </ScrollViewer>
-                </Grid>
-            </TabItem>
+                <TabItem x:Name="tabItemProducts" Header="{DynamicResource ResourceKey=ProductsAndCategories}">
+                    <Grid Style="{StaticResource ResourceKey=GridBelowTabItem}">
+                        <Separator Style="{StaticResource ResourceKey=SeperatorBelowTopTabs}"/>
+                        <ScrollViewer Style="{StaticResource ResourceKey=NavigationTabScroll}">
+                            <Grid x:Name="grdProducts" Style="{StaticResource ResourceKey=GridBelowTabItem}">
+                                <StackPanel Style="{StaticResource ResourceKey=NaviStackBelowTab}">
+                                    <Label Style="{StaticResource ResourceKey=NavigationTabItemTitle}" Content="{DynamicResource ResourceKey=ProductsAndCategories}" />
 
-            <TabItem x:Name="tabItemSettings">
-                <TabItem.Header>
-                    <Image Source="/Resources/Icons/32_CogwheelSettings.png" Height="20" Width="20"/>
-                </TabItem.Header>
-                <Grid x:Name="grdSettings" Style="{StaticResource ResourceKey=GridBelowTabItem}">
-                    <Separator Style="{StaticResource ResourceKey=SeperatorBelowTopTabs}"></Separator>
-                    <ContentControl x:Name="userControlSettings" HorizontalAlignment="Stretch" Margin="0,20,0,0" />
-                </Grid>
-            </TabItem>
-        </Controls:MetroAnimatedSingleRowTabControl>
+                                    <Separator Style="{StaticResource ResourceKey=SeperatorTileRegion}"/>
+                                    <Label Style="{StaticResource ResourceKey=LabelTileRegion}" Content="{DynamicResource ResourceKey=Products}"></Label>
+                                    <WrapPanel Style="{StaticResource ResourceKey=NaviWrapTileRegion}">
+                                        <Controls:Tile x:Name="tabTileAddProduct" Title="{DynamicResource ResourceKey=AddProduct}" Click="tabTileAddProduct_Click">
+                                            <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ImageInTile}"/>
+                                        </Controls:Tile>
+                                        <Controls:Tile x:Name="tabTileProductOverview" IsEnabled="False" Title="{DynamicResource ResourceKey=ProductOverview}" Click="tabTileProductOverview_Click">
+                                            <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ImageInTile}"/>
+                                        </Controls:Tile>
+                                    </WrapPanel>
+
+                                    <Separator Style="{StaticResource ResourceKey=SeperatorTileRegion}"/>
+                                    <Label Style="{StaticResource ResourceKey=LabelTileRegion}" Content="{DynamicResource ResourceKey=Categories}"></Label>
+                                    <WrapPanel Style="{StaticResource ResourceKey=NaviWrapTileRegion}">
+                                        <Controls:Tile x:Name="tabTileAddCategory" Title="{DynamicResource ResourceKey=AddCategory}" Click="tabTileAddCategory_Click">
+                                            <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
+                                        </Controls:Tile>
+                                    </WrapPanel>
+
+                                    <Separator Style="{StaticResource ResourceKey=SeperatorTileRegion}"/>
+                                    <Label Style="{StaticResource ResourceKey=LabelTileRegion}" Content="{DynamicResource ResourceKey=SpecificProductProperties}"></Label>
+                                    <WrapPanel Style="{StaticResource ResourceKey=NaviWrapTileRegion}">
+                                        <Controls:Tile x:Name="tabTileAddProductProperty" Title="{DynamicResource ResourceKey=AddProductProperty}" Click="tabTileAddProductProperty_Click">
+                                            <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
+                                        </Controls:Tile>
+                                        <Controls:Tile x:Name="tabTilePropertyOverview" IsEnabled="False" Title="{DynamicResource ResourceKey=PropertyOverview}" Click="tabTilePropertyOverview_Click">
+                                            <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
+                                        </Controls:Tile>
+                                    </WrapPanel>
+                                </StackPanel>
+                                <ContentControl x:Name="userControlProducts" Margin="0,20,0,0" />
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="tabItemLanguages" Header="{DynamicResource ResourceKey=ManageLanguages}">
+                    <Grid Background="Beige" Style="{StaticResource ResourceKey=GridBelowTabItem}">
+                        <Separator Style="{StaticResource ResourceKey=SeperatorBelowTopTabs}"/>
+                        <ScrollViewer Style="{StaticResource ResourceKey=NavigationTabScroll}">
+                            <Grid x:Name="grdLanguages" Style="{StaticResource ResourceKey=GridBelowTabItem}">
+                                <StackPanel Style="{StaticResource ResourceKey=NaviStackBelowTab}">
+                                    <Label Style="{StaticResource ResourceKey=NavigationTabItemTitle}" Content="{DynamicResource ResourceKey=ManageLanguages}" />
+
+                                    <Separator Style="{StaticResource ResourceKey=SeperatorTileRegion}"/>
+                                    <Label Style="{StaticResource ResourceKey=LabelTileRegion}" Content="{DynamicResource ResourceKey=Languages}"></Label>
+                                    <WrapPanel Style="{StaticResource ResourceKey=NaviWrapTileRegion}">
+                                        <Controls:Tile x:Name="tabTileAddLanguage" Title="{DynamicResource ResourceKey=AddLanguage}" Click="tabTileAddLanguage_Click" >
+                                            <Image Source="/Resources/Icons/256_Add.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
+                                        </Controls:Tile>
+                                        <Controls:Tile x:Name="tabTileLanguageOverview" Title="{DynamicResource ResourceKey=LanguageOverview}" Click="tabTileLanguageOverview_Click">
+                                            <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ResourceKey=ImageInTile}"/>
+                                        </Controls:Tile>
+                                    </WrapPanel>
+                                </StackPanel>
+                                <ContentControl x:Name="userControlLanguages" Margin="0,20,0,0"/>
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="tabItemUsers" IsEnabled="False" Visibility="Collapsed" Header="{DynamicResource ResourceKey=ManageUsers}" >
+                    <Grid Style="{StaticResource ResourceKey=GridBelowTabItem}">
+                        <Separator Style="{StaticResource ResourceKey=SeperatorBelowTopTabs}"/>
+                        <ScrollViewer Style="{StaticResource ResourceKey=NavigationTabScroll}">
+                            <Grid x:Name="grdUsers" Style="{StaticResource ResourceKey=GridBelowTabItem}">
+                                <StackPanel Style="{StaticResource ResourceKey=NaviStackBelowTab}">
+                                    <Label Content="{DynamicResource ResourceKey=ManageUsers}" Style="{StaticResource ResourceKey=NavigationTabItemTitle}"/>
+
+                                    <Separator Style="{StaticResource ResourceKey=SeperatorTileRegion}"/>
+                                    <Label Style="{StaticResource ResourceKey=LabelTileRegion}" Content="{DynamicResource ResourceKey=Users}"/>
+
+                                    <WrapPanel Style="{StaticResource ResourceKey=NaviWrapTileRegion}" >
+                                        <Controls:Tile x:Name="tabTileUserOverview" Title="{DynamicResource ResourceKey=UserOverview}" Click="tabTileUserOverview_Click">
+                                            <Image Source="/Resources/Icons/256_List.png" Style="{StaticResource ResourceKey=ImageInTile}"></Image>
+                                        </Controls:Tile>
+                                    </WrapPanel>
+                                </StackPanel>
+                                <ContentControl x:Name="userControlUsers" Margin="0,20,0,0" />
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="tabItemSettings">
+                    <TabItem.Header>
+                        <Image Source="/Resources/Icons/32_CogwheelSettings.png" Height="20" Width="20"/>
+                    </TabItem.Header>
+                    <Grid x:Name="grdSettings" Style="{StaticResource ResourceKey=GridBelowTabItem}">
+                        <Separator Style="{StaticResource ResourceKey=SeperatorBelowTopTabs}"></Separator>
+                        <ContentControl x:Name="userControlSettings" HorizontalAlignment="Stretch" Margin="0,20,0,0" />
+                    </Grid>
+                </TabItem>
+            </Controls:MetroAnimatedSingleRowTabControl>-->
+        
     </Grid>
 </Controls:MetroWindow>

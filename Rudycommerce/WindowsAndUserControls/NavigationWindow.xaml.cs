@@ -29,7 +29,7 @@ namespace Rudycommerce
         public NavigationWindow(int currentUserID)
         {
             InitializeComponent();
-            Settings.SetDesktopUser(currentUserID);
+            UserSettings.SetDesktopUser(currentUserID);
 
             SetLanguage();
             EnableUserTab();
@@ -37,17 +37,25 @@ namespace Rudycommerce
 
         private void EnableUserTab()
         {
-            if (Settings.CurrentUser.IsAdmin == true)
+            if (UserSettings.CurrentUser.IsAdmin == true)
             {
-                tabItemUsers.IsEnabled = true;
-                tabItemUsers.Visibility = Visibility.Visible;
+                menuManageUsers.IsEnabled = true;
+                menuManageUsers.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void HideAllUserControl()
+        {
+            foreach (ContentControl contentControl in gridUserControls.Children)
+            {
+                contentControl.Visibility = Visibility.Collapsed;
             }
         }
 
         private void SetLanguage()
         {
-            Settings.UserLanguage = BL_DesktopUser.UserPreferredLanguage(Settings.CurrentUser.UserID);
-            SetLanguageDictionary(RudycommerceLibrary.Settings.UserLanguage);
+            UserSettings.UserLanguage = BL_DesktopUser.UserPreferredLanguage(UserSettings.CurrentUser.UserID);
+            SetLanguageDictionary(UserSettings.UserLanguage);
         }
         
         private void SetLanguageDictionary(Language selectedLanguage)
@@ -59,42 +67,89 @@ namespace Rudycommerce
             this.Resources.MergedDictionaries.Add(dict);
         }
       
-        private void tabTileAddProduct_Click(object sender, RoutedEventArgs e)
+        private void menuItemAddProduct(object sender, RoutedEventArgs e)
         {
-            userControlProducts.Content = new NewProductForm();
+            HideAllUserControl();
+            if (ucAddProduct.Content == null || (ucAddProduct.Content as NewProductForm).Visibility == Visibility.Collapsed)
+            {
+                ucAddProduct.Content = new NewProductForm();
+            }
+            ucAddProduct.Visibility = Visibility.Visible;
+            (ucAddProduct.Content as NewProductForm).Visibility = Visibility.Visible;
         }
 
-        private void tabTileAddCategory_Click(object sender, RoutedEventArgs e)
+        private void menuItemAddCategory(object sender, RoutedEventArgs e)
         {
-            userControlProducts.Content = new CategoryForm();
+            HideAllUserControl();
+            if (ucAddCategory.Content == null || (ucAddCategory.Content as CategoryForm).Visibility == Visibility.Collapsed)
+            {
+                ucAddCategory.Content = new CategoryForm();
+            }
+            ucAddCategory.Visibility = Visibility.Visible;
+            (ucAddCategory.Content as CategoryForm).Visibility = Visibility.Visible;
         }
 
-        private void tabTileAddProductProperty_Click(object sender, RoutedEventArgs e)
+        private void menuItemAddProperty(object sender, RoutedEventArgs e)
         {
-            userControlProducts.Content = new SpecificProductPropertyForm();
+            HideAllUserControl();
+            if (ucAddProductProperty.Content == null || (ucAddProductProperty.Content as SpecificProductPropertyForm).Visibility == Visibility.Collapsed)
+            {
+                ucAddProductProperty.Content = new SpecificProductPropertyForm();
+            }
+            ucAddProductProperty.Visibility = Visibility.Visible;
+            (ucAddProductProperty.Content as SpecificProductPropertyForm).Visibility = Visibility.Visible;
         }
 
-        private void tabTileAddLanguage_Click(object sender, RoutedEventArgs e)
+        private void menuItemAddLanguage(object sender, RoutedEventArgs e)
         {
-            userControlLanguages.Content = new LanguageForm();
+            HideAllUserControl();
+            if (ucAddLanguage.Content == null || (ucAddLanguage.Content as LanguageForm).Visibility == Visibility.Collapsed)
+            {
+                ucAddLanguage.Content = new LanguageForm();
+            }
+            ucAddLanguage.Visibility = Visibility.Visible;
+            (ucAddLanguage.Content as LanguageForm).Visibility = Visibility.Visible;
         }
 
-        private void tabTileLanguageOverview_Click(object sender, RoutedEventArgs e)
+        private void menuItemLanguageOverview(object sender, RoutedEventArgs e)
         {
-            userControlLanguages.Content = new LanguageOverview();
+            HideAllUserControl();
+            if (ucLanguageOverview.Content == null || (ucLanguageOverview.Content as LanguageOverview).Visibility == Visibility.Collapsed)
+            {
+                ucLanguageOverview.Content = new LanguageOverview();
+            }
+            ucLanguageOverview.Visibility = Visibility.Visible;
+            (ucLanguageOverview.Content as LanguageOverview).Visibility = Visibility.Visible;
         }
 
-        private void tabTileUserOverview_Click(object sender, RoutedEventArgs e)
+        private void menuItemManageUsers(object sender, RoutedEventArgs e)
         {
-            UserOverview _userOverview = new UserOverview();
-            _userOverview.LostAdminRights += LogOut;
+            HideAllUserControl();
 
-            userControlUsers.Content = _userOverview;
+            if (ucManageUsers.Content == null || (ucManageUsers.Content as UserOverview).Visibility == Visibility.Collapsed)
+            {
+                UserOverview _userOverview = new UserOverview();
+                _userOverview.LostAdminRights += LogOut;
+
+                ucManageUsers.Content = _userOverview;
+            }
+            ucManageUsers.Visibility = Visibility.Visible;
+            (ucManageUsers.Content as UserOverview).Visibility = Visibility.Visible;
         }
 
-        private void tabTilePropertyOverview_Click(object sender, RoutedEventArgs e)
+        private void menuItemSettings(object sender, RoutedEventArgs e)
         {
-            userControlProducts.Content = new SpecificProductPropertyOverview();
+            HideAllUserControl();
+
+            if (ucSettings.Content == null || (ucManageUsers.Content as UserOverview).Visibility == Visibility.Collapsed)
+            {
+                ManageAccount _manageAccount = new ManageAccount();
+                _manageAccount.OnAccountSave += ApplySettings;
+
+                ucSettings.Content = _manageAccount;
+            }
+            ucSettings.Visibility = Visibility.Visible;
+            (ucManageUsers.Content as UserOverview).Visibility = Visibility.Visible;
         }
 
         private void LogOut()
@@ -104,58 +159,54 @@ namespace Rudycommerce
 
             this.Close();
         }
+
         private void ApplySettings(Language selectedLanguage)
         {
-            Settings.UserLanguage = selectedLanguage;
+            UserSettings.UserLanguage = selectedLanguage;
 
-            SetLanguageDictionary(RudycommerceLibrary.Settings.UserLanguage);
-            userControlSettings.Content = null;
-            userControlLanguages.Content = null;
-            userControlProducts.Content = null;
-            userControlUsers.Content = null;
+            SetLanguageDictionary(UserSettings.UserLanguage);
 
-            tabTileAddProduct_Click(null, null);
+            foreach (ContentControl contentControl in gridUserControls.Children)
+            {
+                contentControl.Content = null;
+            }            
         }
 
-        private void AnimatedTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (tabItemSettings.IsSelected)
-            {
-                var _settings = new ManageAccount();
-                _settings.OnAccountSave += ApplySettings;
+        //private void AnimatedTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (tabItemSettings.IsSelected)
+        //    {
+        //        var _settings = new ManageAccount();
+        //        _settings.OnAccountSave += ApplySettings;
 
-                userControlSettings.Content = _settings;
-            }
+        //        userControlSettings.Content = _settings;
+        //    }
 
-            Thickness notSelected = new Thickness { Bottom = 0, Top = 0, Left = 1, Right = 1 };
-            Thickness Selected = new Thickness { Bottom = 2, Top = 2, Left = 2, Right = 2 };
+        //    Thickness notSelected = new Thickness { Bottom = 0, Top = 0, Left = 1, Right = 1 };
+        //    Thickness Selected = new Thickness { Bottom = 2, Top = 2, Left = 2, Right = 2 };
 
-            tabItemProducts.BorderThickness = notSelected;
-            tabItemLanguages.BorderThickness = notSelected;
-            tabItemSettings.BorderThickness = notSelected;
-            tabItemUsers.BorderThickness = notSelected;
+        //    tabItemProducts.BorderThickness = notSelected;
+        //    tabItemLanguages.BorderThickness = notSelected;
+        //    tabItemSettings.BorderThickness = notSelected;
+        //    tabItemUsers.BorderThickness = notSelected;
 
-            if (tabItemProducts.IsSelected)
-            {
-                tabItemProducts.BorderThickness = Selected;
-            }
-            if (tabItemLanguages.IsSelected)
-            {
-                tabItemLanguages.BorderThickness = Selected;
-            }
-            if (tabItemSettings.IsSelected)
-            {
-                tabItemSettings.BorderThickness = Selected;
-            }
-            if (tabItemUsers.IsSelected)
-            {
-                tabItemUsers.BorderThickness = Selected;
-            }
-        }
-
-        private void tabTileProductOverview_Click(object sender, RoutedEventArgs e)
-        {
-            userControlProducts.Content = new ProductOverview();
-        }
+        //    if (tabItemProducts.IsSelected)
+        //    {
+        //        tabItemProducts.BorderThickness = Selected;
+        //    }
+        //    if (tabItemLanguages.IsSelected)
+        //    {
+        //        tabItemLanguages.BorderThickness = Selected;
+        //    }
+        //    if (tabItemSettings.IsSelected)
+        //    {
+        //        tabItemSettings.BorderThickness = Selected;
+        //    }
+        //    if (tabItemUsers.IsSelected)
+        //    {
+        //        tabItemUsers.BorderThickness = Selected;
+        //    }
+        //}
+        
     }
 }

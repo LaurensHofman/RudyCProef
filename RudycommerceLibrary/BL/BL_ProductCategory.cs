@@ -110,66 +110,31 @@ namespace RudycommerceLibrary.BL
             return DAL_ProductCategory.GetProductCategory(categoryID);
         }
 
-        public static List<CategoryItem> GetCategoryNameWithID(Language userLanguage)
+        public static List<ProductCategory> GetLocalizedCategories(Language userLanguage)
         {
             List<ProductCategory> categoryList = DAL_ProductCategory.GetAll();
 
-            List<CategoryItem> categoryItemList = new List<CategoryItem>();
-
-            foreach (ProductCategory category in categoryList)
+            foreach (ProductCategory cat in categoryList)
             {
-                categoryItemList.Add(new CategoryItem
-                {
-                    CategoryID = category.CategoryID,
-                    Name = GetLocalizedProductCategory(category.CategoryID, userLanguage).Name
-                });
+                cat.LocalizedName = cat.LocalizedProductCategories.SingleOrDefault(c => c.LanguageID == userLanguage.LanguageID).Name;
             }
-
-            return categoryItemList;
+                       
+            return categoryList;
         }
 
         //private static ProductCategory GetParentCategory(int? parentID)
         //{
         //    return DAL_ProductCategory.GetParentCategory(parentID);
         //}
-
-
-        public static void Save(ProductCategory productCategoryModel, List<LanguageAndCategoryItem> languageAndCategoryList, List<PropertyAndCategoryItem> propertyAndCategoriesList)
-        {
-            if (productCategoryModel.IsNew())
-            {
-                Create(productCategoryModel, languageAndCategoryList, propertyAndCategoriesList);
-            }
-        }
-
-
-
-
-        //public static void Save(ProductCategory productCategoryModel, LocalizedProductCategory localizedProductCategoryModel)
-        //{
-        //    if (productCategoryModel.IsNew())
-        //    {
-        //        Create(productCategoryModel, localizedProductCategoryModel);
-        //    }
-        //    else
-        //    {
-        //        Update(productCategoryModel, localizedProductCategoryModel);
-        //    }
-        //}
-
-        public static LocalizedProductCategory GetLocalizedProductCategory(int categoryID, Language language)
+        
+        public static LocalizedCategory GetLocalizedProductCategory(int categoryID, Language language)
         {
             return DAL_ProductCategory.GetLocalizedProductCategory(categoryID, language);
         }
 
-        private static void Update(ProductCategory productCategoryModel, List<LanguageAndCategoryItem> languageAndCategoryList)
+        public static void Create(ProductCategory productCategoryModel)
         {
-            throw new NotImplementedException();
-        }
-
-        private static void Create(ProductCategory productCategoryModel, List<LanguageAndCategoryItem> languageAndCategoryList, List<PropertyAndCategoryItem> propertyAndCategoriesList)
-        {
-            DAL_ProductCategory.Create(productCategoryModel, languageAndCategoryList, propertyAndCategoriesList);
+            DAL_ProductCategory.Create(productCategoryModel);
         }
 
 

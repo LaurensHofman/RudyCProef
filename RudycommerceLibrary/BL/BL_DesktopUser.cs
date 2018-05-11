@@ -1,5 +1,6 @@
 ﻿using RudycommerceLibrary.DAL;
 using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace RudycommerceLibrary.BL
             }
             catch (Exception)
             {
-                 throw;
+                throw /*new NoDatabaseConnectionError(BL_Multilingual.NO_DATABASE_CONNECTION()) ;*/ ;
             }
         }
 

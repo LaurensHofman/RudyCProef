@@ -22,7 +22,7 @@ namespace RudycommerceLibrary.DAL
 
             var uploadParams = new ImageUploadParams()
             {
-                File = new FileDescription(img.fileLocation),
+                File = new FileDescription(img.FileLocation),
                 PublicId = $"ID{img.ProductID}Ord{img.Order}",
                 Overwrite = true,
                 Folder = $"Products/{img.ProductID.ToString()}"

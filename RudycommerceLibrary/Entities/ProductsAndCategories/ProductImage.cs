@@ -27,6 +27,6 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         public Product Product { get; set; }
 
         [NotMapped]
-        public string fileLocation { get; set; }
+        public string FileLocation { get; set; }
     }
 }

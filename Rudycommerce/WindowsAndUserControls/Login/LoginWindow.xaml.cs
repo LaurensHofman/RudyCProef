@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Exceptions;
 
 namespace Rudycommerce
 {
@@ -25,16 +26,25 @@ namespace Rudycommerce
     {
         Language _preferredLanguage;
         private List<Language> _LanguageList;
+        private bool newWindow = false;
 
         public LoginWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
 
-            AnyDesktopUser();
+            try
+            {
+                AnyDesktopUser();
+                _LanguageList = BL_Language.GetDesktopLanguages();
+                rbPreferNL.IsChecked = true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error");
+                newWindow = true;
+                this.Close();
+            }
 
-            _LanguageList = BL_Language.GetDesktopLanguages();
-
-            rbPreferNL.IsChecked = true;
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -62,15 +72,26 @@ namespace Rudycommerce
 
         private void AnyDesktopUser()
         {
-            if (BL_DesktopUser.AnyDesktopUser())
+            try
             {
-                txtUsername.Focus();
+                bool anyDesktopUser = BL_DesktopUser.AnyDesktopUser();
+
+                if (BL_DesktopUser.AnyDesktopUser())
+                {
+                    txtUsername.Focus();
+                }
+                else
+                {
+                    newWindow = true;
+                    AdminUserForm NewDesktopUser = new AdminUserForm();
+                    NewDesktopUser.Show();
+                    this.Close();
+                }
             }
-            else
+            catch (NoDatabaseConnectionError ex)
             {
+                MessageBox.Show(ex.Message);
                 newWindow = true;
-                AdminUserForm NewDesktopUser = new AdminUserForm();
-                NewDesktopUser.Show();
                 this.Close();
             }
         }
@@ -117,8 +138,6 @@ namespace Rudycommerce
                 pwdPassword.Focus();
             }
         }
-
-        private bool newWindow = false;
 
         private void btnNewUser_Click(object sender, RoutedEventArgs e)
         {

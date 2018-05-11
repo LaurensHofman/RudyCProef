@@ -45,7 +45,7 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         }
 
         public virtual ICollection<Localized.LocalizedProduct> LocalizedProducts { get; set; }
-        public virtual ICollection<Localized.Product_SpecificProductProperties> Product_SpecificProductProperties { get; set; }
-        public virtual ICollection<Localized.Values_Product_SpecificProductProperties> Localized_Product_SpecificProductProperties { get; set; }
+        public virtual ICollection<Localized.Product_ProductProperties> Product_SpecificProductProperties { get; set; }
+        public virtual ICollection<Localized.Values_Product_ProductProperties> Values_Product_Properties { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace RudycommerceLibrary.View
         [Column("category_id")]
         public int CategoryID { get; set; }
 
-        [Column("specific_product_property_id")]
+        [Column("property_id")]
         public int PropertyID { get; set; }
 
         //[Column("parent_id")]

@@ -14,7 +14,7 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_SpecificProductProperty
     {
-        public static void Save(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList
+        public static void Save(ProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList
             , List<PropertyEnumerations> propertyEnumerations)
         {
             if (specificProductPropertyModel.IsNew())
@@ -23,7 +23,7 @@ namespace RudycommerceLibrary.BL
             }
         }
 
-        private static void Create(SpecificProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList
+        private static void Create(ProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList
             , List<PropertyEnumerations> propertyEnumerations)
         {
             if (specificProductPropertyModel.IsEnumeration == false)
@@ -54,7 +54,7 @@ namespace RudycommerceLibrary.BL
              
         }
 
-        public static List<LocalizedSpecificProductProperty> GetLocalizedSpecificProductProperties(Language userLanguage)
+        public static List<LocalizedProperty> GetLocalizedSpecificProductProperties(Language userLanguage)
         {
             return DAL.DAL_SpecificProductProperty.GetLocalizedSpecificProductProperties(userLanguage);
         }
@@ -96,12 +96,12 @@ namespace RudycommerceLibrary.BL
             return DAL.DAL_SpecificProductProperty.GetPropertyLookupName(specificProductPropertyID, lookupNameLanguage);
         }
 
-        public static SpecificProductProperty GetProductPropertyByID(int specificProductPropertyID)
+        public static ProductProperty GetProductPropertyByID(int specificProductPropertyID)
         {
             return DAL.DAL_SpecificProductProperty.GetProductPropertyByID(specificProductPropertyID);
         }
 
-        private static List<Category_SpecificProductProperties> GetProductPropertiesForCategory(int categoryID)
+        private static List<Category_Property> GetProductPropertiesForCategory(int categoryID)
         {
             return DAL.DAL_SpecificProductProperty.GetProductPropertiesForCategory(categoryID);
         }

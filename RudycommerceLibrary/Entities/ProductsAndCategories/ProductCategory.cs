@@ -18,9 +18,12 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         [Column("category_id")]
         public int CategoryID { get; set; }
         
+        [NotMapped]
+        public string LocalizedName { get; set; }
+
         public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<LocalizedProductCategory> LocalizedProductCategories { get; set; }
-        public virtual ICollection<Category_SpecificProductProperties> Category_SpecificProductProperties { get; set; }
+        public virtual ICollection<LocalizedCategory> LocalizedProductCategories { get; set; }
+        public virtual ICollection<Category_Property> Category_SpecificProductProperties { get; set; }
 
         public ProductCategory()
         {

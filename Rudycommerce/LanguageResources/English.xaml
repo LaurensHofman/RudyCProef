@@ -104,6 +104,13 @@
     <system:String x:Key="ProductOverview">Product overview</system:String>
     <system:String x:Key="CurrentStock">Current stock</system:String>
 
+    <system:String x:Key="Modify">Modify</system:String>
+    <system:String x:Key="IsEnumeration">Does the property have a specific list of values?</system:String>
+    <system:String x:Key="CategoryOverview">Category overview</system:String>
+
+
+
+
 
     <!-- duf: DesktopUserForm.xaml  --><!--
     <system:String x:Key="aufTitle">Create admin account</system:String>
