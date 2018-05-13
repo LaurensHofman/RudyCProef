@@ -1,5 +1,6 @@
 ﻿using RudycommerceLibrary;
 using RudycommerceLibrary.BL;
+using RudycommerceLibrary.CustomExceptions;
 using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
@@ -48,7 +49,16 @@ namespace Rudycommerce
             SpecificProductPropertyModel = new ProductProperty();
 
             // gets active languages
-            LanguageList = BL_Multilingual.GetLocalizedListOfLanguages(UserSettings.UserLanguage);
+            try
+            {
+                LanguageList = BL_Multilingual.GetLocalizedListOfLanguages(UserSettings.UserLanguage);
+            }
+            catch (DatabaseQueryError ex)
+            {
+                MessageBox.Show(ex.Message, "NO-ML ERROR", MessageBoxButton.OK);
+                btnCancel_Click(null, null);
+            }
+            
 
             // creates items for the datagrid, based on the active languages
             LanguageAndSpecificPropertyList = new ObservableCollection<LanguageAndSpecificPropertyItem>();
@@ -80,8 +90,15 @@ namespace Rudycommerce
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            BL_SpecificProductProperty.Save(SpecificProductPropertyModel, LanguageAndSpecificPropertyList.ToList(), EnumerationList.ToList());
-            Console.Beep();
+            try
+            {
+                BL_SpecificProductProperty.Save(SpecificProductPropertyModel, LanguageAndSpecificPropertyList.ToList(), EnumerationList.ToList());
+                Console.Beep();
+            }
+            catch (SaveFailed)
+            {
+                MessageBox.Show(BL_Multilingual.SaveFailedContent(UserSettings.UserLanguage), BL_Multilingual.SaveFailedTitle(UserSettings.UserLanguage), MessageBoxButton.OK);
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -190,6 +207,8 @@ namespace Rudycommerce
         {
             dgEnumeration.Visibility = SpecificProductPropertyModel.IsEnumeration ? Visibility.Visible : Visibility.Collapsed;
             btnAdd.Visibility = SpecificProductPropertyModel.IsEnumeration ? Visibility.Visible : Visibility.Collapsed;
+
+            SpecificProductPropertyModel.IsBool = false;
         }
     }
 }

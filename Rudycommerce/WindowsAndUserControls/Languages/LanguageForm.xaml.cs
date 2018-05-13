@@ -74,6 +74,40 @@ namespace Rudycommerce
             this.Resources.MergedDictionaries.Add(dict);
         }
 
+        private void addImage(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog
+                {
+                    Filter = "Image File (*.jpg; *.png)| *.jpg; *.png"
+                };
+
+                Nullable<bool> result = fileDialog.ShowDialog();
+
+                if (result == true)
+                {
+                    string filename = fileDialog.FileName;
+
+                    Model.LocalFlagIconPath = filename;
+
+                    btnAddImg.Visibility = Visibility.Collapsed;
+                    stackInput.Children.Add(
+                        new Image
+                        {
+                            Source = new BitmapImage(new Uri(filename)),
+                            Width = 80,
+                            Height = 80
+                        });
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+                    
+
         private bool ValidationOnSave()
         {
             string localNameError = SiteLanguageValidation.ValidateLocalName(txtLocalName.Text);
@@ -99,27 +133,27 @@ namespace Rudycommerce
         #region Validations on leaving textboxes
         private void txtLocalName_LostFocus(object sender, RoutedEventArgs e)
         {
-            txbLocalNameError.Text = SiteLanguageValidation.ValidateLocalName(txtLocalName.Text);
+            txbLocalNameError.Content = SiteLanguageValidation.ValidateLocalName(txtLocalName.Text);
         }
         private void txtDutchName_LostFocus(object sender, RoutedEventArgs e)
         {
-            txbDutchNameError.Text = SiteLanguageValidation.ValidateDutchName(txtDutchName.Text);
+            txbDutchNameError.Content = SiteLanguageValidation.ValidateDutchName(txtDutchName.Text);
         }
         private void txtEnglishName_LostFocus(object sender, RoutedEventArgs e)
         {
-            txbEnglishNameError.Text = SiteLanguageValidation.ValidateEnglishName(txtEnglishName.Text);
+            txbEnglishNameError.Content = SiteLanguageValidation.ValidateEnglishName(txtEnglishName.Text);
         }
         private void txtISO_LostFocus(object sender, RoutedEventArgs e)
         {
-            txbISOError.Text = SiteLanguageValidation.ValidateISO(txtISO.Text);
+            txbISOError.Content = SiteLanguageValidation.ValidateISO(txtISO.Text);
         }
         private void cbxIsActive_Click(object sender, RoutedEventArgs e)
         {
-            txbIsActiveError.Text = SiteLanguageValidation.ValidateDefaultActive(cbxIsActive.IsChecked.Value, cbxIsDefault.IsChecked.Value);
+            txbIsActiveError.Content = SiteLanguageValidation.ValidateDefaultActive(cbxIsActive.IsChecked.Value, cbxIsDefault.IsChecked.Value);
         }
         private void cbxIsDefault_Click(object sender, RoutedEventArgs e)
         {
-            txbIsActiveError.Text = SiteLanguageValidation.ValidateDefaultActive(cbxIsActive.IsChecked.Value, cbxIsDefault.IsChecked.Value);
+            txbIsActiveError.Content = SiteLanguageValidation.ValidateDefaultActive(cbxIsActive.IsChecked.Value, cbxIsDefault.IsChecked.Value);
         }
         #endregion
 

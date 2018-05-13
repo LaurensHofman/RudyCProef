@@ -16,16 +16,19 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         public int ProductID { get; set; }
 
         [Column("unit_price")]
+        [Required]
         public decimal? UnitPrice { get; set; }
 
         [Column("is_active")]
         public bool IsActive { get; set; }
 
         [Column("intial_stock")]
+        [Required]
         public int? InitialStock { get; set; }
 
         [Column("current_stock")]
-        public int? CurrentStock { get; set; }
+        [Required]
+        public int CurrentStock { get; set; }
         
         [Column("category_id")]
         public int CategoryID { get; set; }

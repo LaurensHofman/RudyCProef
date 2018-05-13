@@ -15,6 +15,9 @@ namespace Rudycommerce.LanguageResources
         public const string NO_PARENT = "Geen bovenliggende categorie";
         public const string POTENTIAL_VALUES = "Mogelijke waardes";
 
+        public const string SAVE_FAILED_CONTENT = "Het opslaan in de databank is gefaald, gelieve te verifiëren ofdat alle gegevens correct ingevoerd zijn.";
+        public static string SAVE_FAILED_TITLE = "Opslaan mislukt";
+
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName)
         {
             return $"Bent u zeker dat u {lastName} {firstName} toegang wil geven tot deze applicatie?";

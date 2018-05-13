@@ -1,10 +1,11 @@
 ﻿body {
     font-family: Arial;
+    background-color: #F5F5F5;
 }
 
 .navbarbackground {
     /*background: linear-gradient(#B6D7A8, #9AD481 );*/
-    background-color: #F5F5F5;
+    background-color: white;
     border: 1px solid lightgray;
 }
 
@@ -21,14 +22,30 @@
     display: inline-block;
 }
 
-button.shopping-cart {
+.shopping-cart {
     background-color: transparent;
-    border: solid 1.5px black;
-    border-radius: 50%;
+    border: 0px transparent;
     right: 5rem;
     position: absolute;
 }
 
+.shopping-cart img:first-child {
+    height: 3rem;
+}
+.shopping-cart img:last-child {
+    height: 1rem;
+}
+
 .body-content {
     padding-top: 2rem;
+}
+
+.footer-row .col-md-4 p:first-child {
+    text-decoration: underline;
+}
+
+.footer-row .col-md-4 ul {
+    list-style-type: none;
+    padding-left: 5px;
+    text-decoration: underline;
 }

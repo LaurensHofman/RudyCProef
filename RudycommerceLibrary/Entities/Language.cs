@@ -47,6 +47,13 @@ namespace RudycommerceLibrary.Entities
         [Column("is_default")]
         public bool IsDefault { get; set; }
 
+        [Column("flag_icon_url")]
+        [Required]
+        public string FlagIconURL { get; set; }
+
+        [NotMapped]
+        public string LocalFlagIconPath { get; set; }
+
         public virtual ICollection<DesktopUser> DesktopUsers { get; set; }
 
         public override bool IsNew()

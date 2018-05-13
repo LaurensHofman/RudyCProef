@@ -104,6 +104,36 @@ public static class BL_Multilingual
             }
         }
 
+        public static string SaveFailedContent(Language userLanguage)
+        {
+            switch (userLanguage.LocalName)
+            {
+                case "Nederlands":
+                    return DutchCode.SAVE_FAILED_CONTENT;
+
+                case "English":
+                    return EnglishCode.SAVE_FAILED_CONTENT;
+
+                default:
+                    return DutchCode.SAVE_FAILED_CONTENT;
+            }
+        }
+
+        public static string SaveFailedTitle(Language userLanguage)
+        {
+            switch (userLanguage.LocalName)
+            {
+                case "Nederlands":
+                    return DutchCode.SAVE_FAILED_TITLE;
+
+                case "English":
+                    return EnglishCode.SAVE_FAILED_TITLE;
+
+                default:
+                    return DutchCode.SAVE_FAILED_TITLE;
+            }
+        }
+
         public static string ExitMessageBoxContent(Language preferredLanguage)
         {
             switch (preferredLanguage.LocalName)

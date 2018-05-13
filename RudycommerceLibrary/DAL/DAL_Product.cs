@@ -23,13 +23,13 @@ namespace RudycommerceLibrary.DAL
                     // Just learned about lazy loading in entity framework
 
                     ctx.Products.Add(productModel);
-
+                     
                     ctx.SaveChanges();
 
                     foreach (ProductImage img in productModel.Images)
                     {
                         img.ProductID = productModel.ProductID;
-                        img.ImageURL = DAL_ProductImages.uploadImage(img);
+                        img.ImageURL = DAL_Images.uploadProductImage(img);
                     }
 
                     ctx.SaveChanges();
@@ -39,6 +39,8 @@ namespace RudycommerceLibrary.DAL
                 catch (Exception)
                 {
                     ctxTransaction.Rollback();
+                    throw;
+                    // TODO
                 }
             }            
         }

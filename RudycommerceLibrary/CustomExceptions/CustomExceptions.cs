@@ -10,4 +10,14 @@ namespace RudycommerceLibrary.CustomExceptions
     {
         public AlreadyADefaultLanguage() : base("") { }
     }
+
+    public class DatabaseQueryError : Exception
+    {
+        public DatabaseQueryError() : base("") { }
+    }
+
+    public class SaveFailed : Exception
+    {
+        public SaveFailed() : base ("") { }
+    }
 }

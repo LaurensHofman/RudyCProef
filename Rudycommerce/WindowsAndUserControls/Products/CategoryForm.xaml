@@ -46,20 +46,12 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid x:Name="grdCategoryForm" Margin="0,10,0,0">
+    <Grid x:Name="grdCategoryForm">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <Label x:Name="lblCategoryFormTitle" HorizontalContentAlignment="Center" FontSize="20" Height="50" Foreground="Black" Content ="{DynamicResource ResourceKey=NewCategory}" />
 
                 <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Center">
-                    <StackPanel>
-                    <!--<Label x:Name="lblParent" Style="{StaticResource ResourceKey=FormLabel}">
-                        <WrapPanel>
-                            <TextBlock Text="{DynamicResource ResourceKey=ParentCategory}"/>
-                            <TextBlock Text=" : "/>
-                        </WrapPanel>
-                        </Label>-->
-                    </StackPanel>
                     <StackPanel>
                         <!--<ComboBox x:Name="cmbxParent" Style="{StaticResource ResourceKey=FormInputComboBox}"
                               ItemsSource="{Binding Path=PotentialParents}"
@@ -68,7 +60,7 @@
                               SelectedValue="{Binding Path=ProductCategoryModel.ParentID}" FontSize="16" HorizontalAlignment="Left" Width="600"/>-->   
 
 
-                        <DataGrid Name="dgLocalizedCategories" Style="{StaticResource ResourceKey=SmallDataGrid}" Margin="0,40,0,20">
+                        <DataGrid Name="dgLocalizedCategories" Style="{StaticResource ResourceKey=SmallDataGrid}" Margin="0,0,0,20">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=LanguageName}" IsReadOnly="True" Width="200">
                                     <DataGridTextColumn.Header>
@@ -129,11 +121,11 @@
                                         </DataGridTextColumn.Header>
                                     </DataGridTextColumn>
 
-                                    <DataGridCheckBoxColumn Binding="{Binding IsRequired}">
+                                    <!--<DataGridCheckBoxColumn Binding="{Binding IsRequired}">
                                         <DataGridCheckBoxColumn.Header>
                                             <TextBlock Text="{DynamicResource ResourceKey=IsRequired}" Typography.Capitals="SmallCaps"/>
                                         </DataGridCheckBoxColumn.Header>
-                                    </DataGridCheckBoxColumn>
+                                    </DataGridCheckBoxColumn>-->
 
                                     <DataGridTemplateColumn>
                                         <DataGridTemplateColumn.CellTemplate>

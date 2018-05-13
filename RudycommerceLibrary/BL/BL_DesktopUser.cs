@@ -1,6 +1,5 @@
 ﻿using RudycommerceLibrary.DAL;
 using RudycommerceLibrary.Entities;
-using RudycommerceLibrary.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

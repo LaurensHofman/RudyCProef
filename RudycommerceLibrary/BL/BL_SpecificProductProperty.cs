@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RudycommerceLibrary.CustomExceptions;
 using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
@@ -17,15 +18,24 @@ namespace RudycommerceLibrary.BL
         public static void Save(ProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList
             , List<PropertyEnumerations> propertyEnumerations)
         {
-            if (specificProductPropertyModel.IsNew())
+            try
             {
-                Create(specificProductPropertyModel, languageAndSpecificPropertyList, propertyEnumerations);
+                if (specificProductPropertyModel.IsNew())
+                {
+                    Create(specificProductPropertyModel, languageAndSpecificPropertyList, propertyEnumerations);
+                }
             }
+            catch (Exception)
+            {
+                throw new SaveFailed();
+            }            
         }
 
         private static void Create(ProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList
             , List<PropertyEnumerations> propertyEnumerations)
         {
+            // I know, this isn't cleanly done, when I began on this project, I didn't know a thing about Lazy loading...
+            
             if (specificProductPropertyModel.IsEnumeration == false)
             {
                 DAL.DAL_SpecificProductProperty.CreateNonEnumProperty(specificProductPropertyModel, languageAndSpecificPropertyList);
@@ -50,8 +60,7 @@ namespace RudycommerceLibrary.BL
 
                     DAL.DAL_SpecificProductProperty.CreateEnumProperty(specificProductPropertyModel, languageAndSpecificPropertyList, propertyEnumerations);
                 }
-            }
-             
+            }             
         }
 
         public static List<LocalizedProperty> GetLocalizedSpecificProductProperties(Language userLanguage)

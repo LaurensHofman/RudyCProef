@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using RudycommerceLibrary;
 using RudycommerceLibrary.BL;
+using RudycommerceLibrary.CustomExceptions;
 using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
@@ -566,7 +567,7 @@ namespace Rudycommerce
         /// <param name="e"></param>
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -576,8 +577,15 @@ namespace Rudycommerce
         /// <param name="e"></param>
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            BL_Product.Create(ProductModel);
-            Console.Beep();
+            try
+            {
+                BL_Product.Create(ProductModel);
+                Console.Beep();
+            }
+            catch (SaveFailed)
+            {
+                MessageBox.Show(BL_Multilingual.SaveFailedContent(UserSettings.UserLanguage), BL_Multilingual.SaveFailedTitle(UserSettings.UserLanguage), MessageBoxButton.OK);
+            }
         }
 
         /// <summary>
@@ -682,24 +690,52 @@ namespace Rudycommerce
             int where_to_drop = imgPnl.Children.IndexOf(img);
             int initial_location = imgPnl.Children.IndexOf(image_to_drag);
 
-            imgPnl.Children.Remove(image_to_drag);       
+            imgPnl.Children.Remove(image_to_drag);
             imgPnl.Children.Insert(where_to_drop, image_to_drag);
+
+            int differenceLocation = Math.Abs(where_to_drop - initial_location);
+
+            if ( differenceLocation == 1 || differenceLocation == 0 )
+            {           
+                ProductImage temporary = ProductModel.Images.Single(x => x.Order == initial_location);
+                ProductImage temporary2 = ProductModel.Images.Single(x => x.Order == where_to_drop);
+
+                temporary.Order = where_to_drop;
+                temporary2.Order = initial_location;
+            }
+            else
+            {
+                if (initial_location < where_to_drop)
+                {
+                    ProductImage draggedImage = ProductModel.Images.Single(x => x.Order == initial_location);
+
+                    for (int i = initial_location + 1; i <= where_to_drop; i++)
+                    {
+                        ProductModel.Images.Single(x => x.Order == i).Order = i - 1;
+                    }
+
+                    draggedImage.Order = where_to_drop;
+                }
+                else
+                {
+                    ProductImage draggedImage = ProductModel.Images.Single(x => x.Order == initial_location);
+
+                    for (int i = initial_location - 1; i >= where_to_drop; i--)
+                    {
+                        ProductModel.Images.Single(x => x.Order == i).Order = i + 1;
+                    }
+
+                    draggedImage.Order = where_to_drop;
+                }                
+            }
 
             foreach (var item in imgPnl.Children)
             {
                 Image image = item as Image;
-                
-                image.Height = imgPnl.Children.IndexOf(image) != 0 ? _imgDefaultHeight : _firstImageHeight ;
+
+                image.Height = imgPnl.Children.IndexOf(image) != 0 ? _imgDefaultHeight : _firstImageHeight;
                 image.Width = imgPnl.Children.IndexOf(image) != 0 ? _imgDefaultWidth : _firstImageWidth;
             }
-
-            ProductImage temporary = ProductModel.Images.Single(x => x.Order == initial_location);
-            ProductImage temporary2 = ProductModel.Images.Single(x => x.Order == where_to_drop);
-
-            temporary.Order = where_to_drop;
-            temporary2.Order = initial_location;
-            
-            
 
             ProductModel.Images = ProductModel.Images.OrderBy(x => x.Order).ToList() ;            
         }

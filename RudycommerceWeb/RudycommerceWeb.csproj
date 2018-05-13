@@ -156,11 +156,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Layout.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\ProductLists.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Images\64_EmptyCartBlue.png" />
+    <Content Include="Images\64_AddToCartBlue.png" />
+    <Content Include="Images\64_ArrowDownProgDiscl.png" />
+    <Content Include="Images\64_DefaultCartBlue.png" />
+    <Content Include="Images\64_RemoveFromCartBlue.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -190,6 +193,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

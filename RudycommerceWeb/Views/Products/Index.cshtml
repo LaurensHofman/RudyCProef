@@ -4,21 +4,22 @@
     ViewBag.Title = "Home";
 }
 
-@*<h1> @ViewBag.Title </h1>*@
-
-<h2> Onze nieuwste producten </h2>
+<head>
+    <link href="~/Content/ProductLists.css" rel="stylesheet" type="text/css" />
+</head>
 
 <div class="row">
+    <h2> Onze nieuwste producten </h2>
+    <hr />
     @foreach (var product in Model)
     {
         <div class="col-md-4">
             <button type="button" class="add-to-cart">
-                @*<img src="~/Images/64_AddToShoppingCartBlack.png" />*@
-                +
+                <img src="~/Images/64_AddToCartBlue.png" />
             </button>
             <div class="card justify-content-top" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" title="@product.Name" data-content="@product.Description">
 
-                <div class="card-image">
+                <div class="card-image text-center">
                     <a href="@Url.Action("Detail", new { id = product.ProductID })">
                         <img src="@product.ImageURL" alt="@product.Name"
                              class="product-image" />
@@ -30,28 +31,21 @@
                     </div>
                     <h3 class="text-center card-title">
                         @Html.ActionLink(product.Name, "Details",
-                            new { id = product.ProductID }, new { @class = "product-title" })
+                                 new { id = product.ProductID }, new { @class = "product-title" })
                     </h3>
 
                     @*@if (product.Description.Length > 100)
-                    {
-                        <p>@(product.Description.Substring(0, Math.Min(product.Description.Length, 80)) + "...") </p>
-                    }
-                    else
-                    {
-                        <p>@(product.Description)</p>
-                    }*@
+                        {
+                            <p>@(product.Description.Substring(0, Math.Min(product.Description.Length, 80)) + "...") </p>
+                        }
+                        else
+                        {
+                            <p>@(product.Description)</p>
+                        }*@
 
 
                 </div>
             </div>
         </div>
     }
-    <hr />
 </div>
-@for (int i = 0; i < 100; i++)
-{
-    <p>
-        g
-    </p>
-}

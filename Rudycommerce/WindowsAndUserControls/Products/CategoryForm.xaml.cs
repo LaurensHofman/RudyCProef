@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using RudycommerceLibrary;
 using RudycommerceLibrary.BL;
+using RudycommerceLibrary.CustomExceptions;
 using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
@@ -169,8 +170,15 @@ namespace Rudycommerce
         
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            BL_ProductCategory.Create(ProductCategoryModel);
-            Console.Beep();
+            try
+            {
+                BL_ProductCategory.Create(ProductCategoryModel);
+                Console.Beep();
+            }
+            catch (SaveFailed)
+            {
+                MessageBox.Show(BL_Multilingual.SaveFailedContent(UserSettings.UserLanguage), BL_Multilingual.SaveFailedTitle(UserSettings.UserLanguage), MessageBoxButton.OK);
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

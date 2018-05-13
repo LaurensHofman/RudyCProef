@@ -18,9 +18,11 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
         public int LanguageID { get; set; }
 
         [Column("name")]
+        [Required]
         public string Name { get; set; }
 
         [Column("description")]
+        [Required]
         public string Description { get; set; }
     }
 }

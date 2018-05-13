@@ -19,9 +19,11 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         public int ProductID { get; set; }
 
         [Column("order")]
+        [Required]
         public int Order { get; set; }
 
         [Column("image_url")]
+        [Required]
         public string ImageURL { get; set; }
         
         public Product Product { get; set; }

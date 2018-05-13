@@ -14,8 +14,28 @@ namespace RudycommerceLibrary.DAL
         {
             var ctx = AppDBContext.Instance();
 
-            ctx.Languages.Add(model);
-            ctx.SaveChanges();
+            using (var ctxTransaction = ctx.Database.BeginTransaction())
+            {
+                try
+                {
+                    ctx.Languages.Add(model);
+                    ctx.SaveChanges();
+
+                    if (model.LocalFlagIconPath != null)
+                    {
+                        model.FlagIconURL = DAL_Images.uploadFlagIcon(model);
+                    }
+
+                    ctx.SaveChanges();
+
+                    ctxTransaction.Commit();
+                }
+                catch (Exception)
+                {
+                    ctxTransaction.Rollback();
+                    throw;
+                }
+            }
         }
 
         public static Language GetDefaultLanguage()

@@ -24,24 +24,30 @@ namespace RudycommerceLibrary.Entities
         public bool VerifiedByAdmin { get; set; }
 
         [Column("last_name")]
+        [Required]
         public string LastName { get; set; }
 
         [Column("first_name")]
+        [Required]
         public string FirstName { get; set; }
 
         [Column("email")]
+        [Required]
         public string EMail { get; set; }
 
         [Column("preferred_language_id")]
         public int PreferredLanguageID { get; set; }
 
         [Column("username")]
+        [Required]
         public string Username { get; set; }
 
         [Column("encrypted_password")]
+        [Required]
         public string EncryptedPassword { get; set; }
 
         [Column("salt")]
+        [Required]
         public string Salt { get; set; }
 
         public Language Language { get; set; }

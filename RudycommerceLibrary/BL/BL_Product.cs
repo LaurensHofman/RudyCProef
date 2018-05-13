@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RudycommerceLibrary.CustomExceptions;
 using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
@@ -14,47 +15,55 @@ namespace RudycommerceLibrary.BL
     {
         public static void Create(Product productModel)
         {
-            // For each value where the language wasn't defined, saves the value for each language
 
-            productModel.CurrentStock = productModel.InitialStock;
-
-            List<Language> LanguageList = BL_Language.GetAllLanguages();
-
-            List<Values_Product_ProductProperties> tempList = new List<Values_Product_ProductProperties>();
-
-            foreach (var item in productModel.Values_Product_Properties
-                                    .Where(x => x.LanguageID == null))
+            try
             {
-                bool firstLanguage = true;
-                foreach (Language lang in LanguageList)
+                // For each value where the language wasn't defined, saves the value for each language
+
+                productModel.CurrentStock = productModel.InitialStock.Value;
+
+                List<Language> LanguageList = BL_Language.GetAllLanguages();
+
+                List<Values_Product_ProductProperties> tempList = new List<Values_Product_ProductProperties>();
+
+                foreach (var item in productModel.Values_Product_Properties
+                                        .Where(x => x.LanguageID == null))
                 {
-                    if (firstLanguage == true)
+                    bool firstLanguage = true;
+                    foreach (Language lang in LanguageList)
                     {
-                        item.LanguageID = lang.LanguageID;
-                    }
-                    else
-                    {
-                        tempList.Add(
-                        new Values_Product_ProductProperties
+                        if (firstLanguage == true)
                         {
-                            LanguageID = lang.LanguageID,
-                            ProductPropertyID = item.ProductPropertyID,
-                            Value = item.Value,
-                            EnumerationValueID = item.EnumerationValueID
-                        });
-                    }             
+                            item.LanguageID = lang.LanguageID;
+                        }
+                        else
+                        {
+                            tempList.Add(
+                            new Values_Product_ProductProperties
+                            {
+                                LanguageID = lang.LanguageID,
+                                ProductPropertyID = item.ProductPropertyID,
+                                Value = item.Value,
+                                EnumerationValueID = item.EnumerationValueID
+                            });
+                        }
 
-                    firstLanguage = false;
-                }                
+                        firstLanguage = false;
+                    }
+                }
+
+                foreach (var tempItem in tempList)
+                {
+                    productModel.Values_Product_Properties.Add(tempItem);
+                }
+                productModel.Values_Product_Properties = productModel.Values_Product_Properties.OrderBy(prop => prop.ProductPropertyID).ToList();
+
+                DAL.DAL_Product.Create(productModel);
             }
-
-            foreach (var tempItem in tempList)
+            catch (Exception)
             {
-                productModel.Values_Product_Properties.Add(tempItem);
-            }
-            productModel.Values_Product_Properties = productModel.Values_Product_Properties.OrderBy(prop => prop.ProductPropertyID).ToList();
-
-            DAL.DAL_Product.Create(productModel);
+                throw new SaveFailed();
+            }            
         }
 
         public static HomePageProductViewItem[] GetHomePageProducts()

@@ -87,7 +87,6 @@
     <Compile Include="Entities\ProductsAndCategories\ProductCategory.cs" />
     <Compile Include="Entities\ProductsAndCategories\SpecificProductProperty.cs" />
     <Compile Include="Entities\Language.cs" />
-    <Compile Include="Exceptions\NoDatabaseConnectionError.cs" />
     <Compile Include="LanguageResources\DutchCode.cs" />
     <Compile Include="LanguageResources\EnglishCode.cs" />
     <Compile Include="Migrations\201805111011189_ShorterNames.cs" />
@@ -97,6 +96,18 @@
     <Compile Include="Migrations\201805111335119_Fix.cs" />
     <Compile Include="Migrations\201805111335119_Fix.Designer.cs">
       <DependentUpon>201805111335119_Fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805121424320_flagurl.cs" />
+    <Compile Include="Migrations\201805121424320_flagurl.Designer.cs">
+      <DependentUpon>201805121424320_flagurl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805131736528_requiredsEntities.cs" />
+    <Compile Include="Migrations\201805131736528_requiredsEntities.Designer.cs">
+      <DependentUpon>201805131736528_requiredsEntities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805131739521_nullables.cs" />
+    <Compile Include="Migrations\201805131739521_nullables.Designer.cs">
+      <DependentUpon>201805131739521_nullables.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
     <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
@@ -129,6 +140,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805111335119_Fix.resx">
       <DependentUpon>201805111335119_Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121424320_flagurl.resx">
+      <DependentUpon>201805121424320_flagurl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131736528_requiredsEntities.resx">
+      <DependentUpon>201805131736528_requiredsEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131739521_nullables.resx">
+      <DependentUpon>201805131739521_nullables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

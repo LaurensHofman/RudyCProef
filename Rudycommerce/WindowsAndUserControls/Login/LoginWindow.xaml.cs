@@ -15,7 +15,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
-using RudycommerceLibrary.Exceptions;
 
 namespace Rudycommerce
 {
@@ -88,7 +87,7 @@ namespace Rudycommerce
                     this.Close();
                 }
             }
-            catch (NoDatabaseConnectionError ex)
+            catch (/*NoDatabaseConnectionError*/ Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 newWindow = true;

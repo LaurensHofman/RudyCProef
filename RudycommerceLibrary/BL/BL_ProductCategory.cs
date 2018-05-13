@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RudycommerceLibrary.CustomExceptions;
 using RudycommerceLibrary.DAL;
 using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
@@ -134,7 +135,14 @@ namespace RudycommerceLibrary.BL
 
         public static void Create(ProductCategory productCategoryModel)
         {
-            DAL_ProductCategory.Create(productCategoryModel);
+            try
+            {
+                DAL_ProductCategory.Create(productCategoryModel);
+            }
+            catch (Exception)
+            {
+                throw new SaveFailed();
+            }
         }
 
 

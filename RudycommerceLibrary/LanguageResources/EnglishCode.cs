@@ -15,6 +15,9 @@ namespace Rudycommerce.LanguageResources
         public const string NO_PARENT = "No parent";
         public const string POTENTIAL_VALUES = "Potential values";
 
+        public static string SAVE_FAILED_CONTENT = "Saving into the database has failed, please verify that all data was inserted correctly.";
+        public static string SAVE_FAILED_TITLE = "Save failed";
+
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName)
         {
             return $"Are you sure you want to give {lastName} {firstName} access to the application?";
