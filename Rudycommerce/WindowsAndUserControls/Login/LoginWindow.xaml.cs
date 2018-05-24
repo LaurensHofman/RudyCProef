@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Properties;
 
 namespace Rudycommerce
 {
@@ -166,11 +167,11 @@ namespace Rudycommerce
             }
             else
             {
-                string messageboxContent = BL_Multilingual.ExitMessageBoxContent(_preferredLanguage);
-                string messageboxTitle = BL_Multilingual.ExitMessageBoxTitle(_preferredLanguage);
+                string messageboxContent = LangResource.MBExitContent;
+                string messageboxTitle = LangResource.MBExitTitle;
 
-                MessageBoxManager.Yes = BL_Multilingual.YES(_preferredLanguage);
-                MessageBoxManager.No = BL_Multilingual.NO(_preferredLanguage);
+                MessageBoxManager.Yes = LangResource.Yes;
+                MessageBoxManager.No = LangResource.No;
                 MessageBoxManager.Register();
 
                 if (MessageBox.Show(messageboxContent, messageboxTitle, MessageBoxButton.YesNo) == MessageBoxResult.Yes)

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -55,7 +56,7 @@ namespace Rudycommerce
         private void SetLanguage()
         {
             UserSettings.UserLanguage = BL_DesktopUser.UserPreferredLanguage(UserSettings.CurrentUser.UserID);
-            SetLanguageDictionary(UserSettings.UserLanguage);
+            SetLanguageDictionary(UserSettings.UserLanguage);            
         }
         
         private void SetLanguageDictionary(Language selectedLanguage)
@@ -65,6 +66,8 @@ namespace Rudycommerce
             dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
 
             this.Resources.MergedDictionaries.Add(dict);
+
+            Thread.CurrentThread.CurrentUICulture = BL_Multilingual.GetCulture(selectedLanguage);
         }
       
         private void menuItemAddProduct(object sender, RoutedEventArgs e)
@@ -149,7 +152,7 @@ namespace Rudycommerce
                 ucSettings.Content = _manageAccount;
             }
             ucSettings.Visibility = Visibility.Visible;
-            (ucManageUsers.Content as UserOverview).Visibility = Visibility.Visible;
+            (ucSettings.Content as ManageAccount).Visibility = Visibility.Visible;
         }
 
         private void LogOut()

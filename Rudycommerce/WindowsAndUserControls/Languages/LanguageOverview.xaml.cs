@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,6 +42,8 @@ namespace Rudycommerce
             dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(preferredLanguage), UriKind.Relative);
 
             this.Resources.MergedDictionaries.Add(dict);
+
+            Thread.CurrentThread.CurrentUICulture = BL_Multilingual.GetCulture(preferredLanguage);
         }
 
         public ObservableCollection<Language> dataSourceLanguages { get; set; }

@@ -157,72 +157,75 @@ namespace RudycommerceLibrary.BL
 
         public static void SendMailToUser(string firstname, string lastname, string email, string username, Language language)
         {
-            string subject;
-            StringBuilder message;
-
-            switch (language.LocalName)
-            {
-                case "Nederlands":
-                    subject = $"Account aangemaakt bij Rudycommerce";
-                    message = new StringBuilder();
-                    message.AppendLine($"Beste {firstname} {lastname},");
-                    message.AppendLine("");
-                    message.AppendLine($"Uw account (met gebruikersnaam {username}) is aangemaakt, maar nu moet u afwachten tot de beheerder van de applicatie u de toegangsrechten zal toekennen.");
-                    message.AppendLine($"Gelieve de applicatiebeheerde te contacteren indien u te lang moet wachten.");
-                    message.AppendLine("");
-                    message.AppendLine("Met vriendelijke groeten,");
-                    message.AppendLine("RudyCommerce");
-
-                    break;
-
-                case "English":
-                    subject = $"Account made with Rudycommerce";
-                    message = new StringBuilder();
-                    message.AppendLine($"Dear {firstname} {lastname},");
-                    message.AppendLine("");
-                    message.AppendLine($"Your account (with username {username}) has been created, but now your administrator has to give you the rights to the application.");
-                    message.AppendLine($"Please contact your administrator in case it takes too long.");
-                    message.AppendLine("");
-                    message.AppendLine("Kind regard,");
-                    message.AppendLine("RudyCommerce");
-
-                    break;
-                default:
-                    subject = $"Account aangemaakt bij Rudycommerce";
-                    message = new StringBuilder();
-                    message.AppendLine($"Beste {firstname} {lastname},");
-                    message.AppendLine("");
-                    message.AppendLine($"Uw account (met gebruikersnaam {username}) is aangemaakt, maar nu moet u afwachten tot de beheerder van de applicatie u de toegangsrechten zal toekennen.");
-                    message.AppendLine($"Gelieve de applicatiebeheerde te contacteren indien u te lang moet wachten.");
-                    message.AppendLine("");
-                    message.AppendLine("Met vriendelijke groeten,");
-                    message.AppendLine("RudyCommerce");
-                    
-                    break;
-            }
             
-            var fromAddress = new MailAddress("infoecommrudy@gmail.com", "Rudycommerce");
-            var toAddress = new MailAddress(email, firstname + " " + lastname);
-            const string fromPassword = "infoecomm";
+                string subject;
+                StringBuilder message;
 
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                switch (language.LocalName)
+                {
+                    case "Nederlands":
+                        subject = $"Account aangemaakt bij Rudycommerce";
+                        message = new StringBuilder();
+                        message.AppendLine($"Beste {firstname} {lastname},");
+                        message.AppendLine("");
+                        message.AppendLine($"Uw account (met gebruikersnaam {username}) is aangemaakt, maar nu moet u afwachten tot de beheerder van de applicatie u de toegangsrechten zal toekennen.");
+                        message.AppendLine($"Gelieve de applicatiebeheerde te contacteren indien u te lang moet wachten.");
+                        message.AppendLine("");
+                        message.AppendLine("Met vriendelijke groeten,");
+                        message.AppendLine("RudyCommerce");
 
-            };
-            using (var newMail = new MailMessage(fromAddress, toAddress)
-            {
-                Subject = subject,
-                Body = message.ToString()
-            })
-            {
-                smtp.Send(newMail);
-            }
+                        break;
+
+                    case "English":
+                        subject = $"Account made with Rudycommerce";
+                        message = new StringBuilder();
+                        message.AppendLine($"Dear {firstname} {lastname},");
+                        message.AppendLine("");
+                        message.AppendLine($"Your account (with username {username}) has been created, but now your administrator has to give you the rights to the application.");
+                        message.AppendLine($"Please contact your administrator in case it takes too long.");
+                        message.AppendLine("");
+                        message.AppendLine("Kind regard,");
+                        message.AppendLine("RudyCommerce");
+
+                        break;
+                    default:
+                        subject = $"Account aangemaakt bij Rudycommerce";
+                        message = new StringBuilder();
+                        message.AppendLine($"Beste {firstname} {lastname},");
+                        message.AppendLine("");
+                        message.AppendLine($"Uw account (met gebruikersnaam {username}) is aangemaakt, maar nu moet u afwachten tot de beheerder van de applicatie u de toegangsrechten zal toekennen.");
+                        message.AppendLine($"Gelieve de applicatiebeheerde te contacteren indien u te lang moet wachten.");
+                        message.AppendLine("");
+                        message.AppendLine("Met vriendelijke groeten,");
+                        message.AppendLine("RudyCommerce");
+
+                        break;
+                }
+
+                var fromAddress = new MailAddress("infoecommrudy@gmail.com", "Rudycommerce");
+                var toAddress = new MailAddress(email, firstname + " " + lastname);
+                const string fromPassword = "infoecomm";
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+
+                };
+                using (var newMail = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = message.ToString()
+                })
+                {
+                    smtp.Send(newMail);
+                }
+            
+            
         }
 
     }

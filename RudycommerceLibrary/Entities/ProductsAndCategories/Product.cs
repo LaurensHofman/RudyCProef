@@ -33,8 +33,6 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         [Column("category_id")]
         public int CategoryID { get; set; }
 
-        public virtual ICollection<ProductImage> Images { get; set; }
-        public virtual ICollection<Article> Articles { get; set; }
         public ProductCategory ProductCategory { get; set; }
 
         public Product()
@@ -47,6 +45,8 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
             return this.ProductID <= 0;
         }
 
+        public virtual ICollection<ProductImage> Images { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
         public virtual ICollection<Localized.LocalizedProduct> LocalizedProducts { get; set; }
         public virtual ICollection<Localized.Product_ProductProperties> Product_SpecificProductProperties { get; set; }
         public virtual ICollection<Localized.Values_Product_ProductProperties> Values_Product_Properties { get; set; }

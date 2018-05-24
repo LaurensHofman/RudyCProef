@@ -1,6 +1,7 @@
 ﻿using Rudycommerce.LanguageResources;
 using RudycommerceLibrary.BL;
 using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Properties;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -79,8 +80,8 @@ namespace Rudycommerce
             string messageboxContent = BL_Multilingual.UOVerifyAdminMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
             string messageboxTitle = BL_Multilingual.UOVerifyAdminMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
 
-            MessageBoxManager.Yes = BL_Multilingual.YES(UserSettings.UserLanguage);
-            MessageBoxManager.No = BL_Multilingual.NO(UserSettings.UserLanguage);
+            MessageBoxManager.Yes = LangResource.Yes;
+            MessageBoxManager.No = LangResource.No;
             MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent, messageboxTitle, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -112,8 +113,8 @@ namespace Rudycommerce
             string messageboxContent = BL_Multilingual.UODeleteUserMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
             string messageboxTitle = BL_Multilingual.UODeleteUserMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
 
-            MessageBoxManager.Yes = BL_Multilingual.YES(UserSettings.UserLanguage);
-            MessageBoxManager.No = BL_Multilingual.NO(UserSettings.UserLanguage);
+            MessageBoxManager.Yes = LangResource.Yes;
+            MessageBoxManager.No = LangResource.No;
             MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent,
@@ -137,8 +138,8 @@ namespace Rudycommerce
             string messageboxContent = BL_Multilingual.UOMakeUserAdminMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
             string messageboxTitle = BL_Multilingual.UOMakeUserAdminMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
 
-            MessageBoxManager.Yes = BL_Multilingual.YES(UserSettings.UserLanguage);
-            MessageBoxManager.No = BL_Multilingual.NO(UserSettings.UserLanguage);
+            MessageBoxManager.Yes = LangResource.Yes;
+            MessageBoxManager.No = LangResource.No;
             MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent,

@@ -23,19 +23,19 @@
 
 
     <ControlTemplate x:Key="validationTemplate">
-        <!--<WrapPanel>
+        <WrapPanel>
             <AdornedElementPlaceholder x:Name="testt"/>
-            --><!--<TextBlock Text="{Binding [0].ErrorContent}" Style="{DynamicResource ResourceKey=ErrorTextBlock}"/>--><!--
-        </WrapPanel>-->
+            <TextBlock Text="{Binding [0].ErrorContent}" Style="{DynamicResource ResourceKey=ErrorTextBlock}"/>
+        </WrapPanel>
     </ControlTemplate>
 
-    <!--<Style x:Key="ErrorTextBlock" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+    <Style x:Key="ErrorTextBlock" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
         <Setter Property="Foreground" Value="Red"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Margin" Value="20,0,0,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Visibility" Value="Collapsed"/>
-    </Style>-->
+    </Style>
 
     <Style x:Key="UserControlGrid" TargetType="Grid">
         <Setter Property="Margin" Value="0,10,0,0"/>

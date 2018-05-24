@@ -2,6 +2,7 @@
 using RudycommerceLibrary.Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,94 +90,19 @@ public static class BL_Multilingual
             return returnListLanguages;
         }
 
-        public static string NO_PARENT(Language userLanguage)
+        public static CultureInfo GetCulture(Language selectedLanguage)
         {
-            switch (userLanguage.LocalName)
+            switch (selectedLanguage.LocalName)
             {
                 case "Nederlands":
-                    return DutchCode.NO_PARENT;
+                    return CultureInfo.CreateSpecificCulture("nl");
 
                 case "English":
-                    return EnglishCode.NO_PARENT;
+                    return CultureInfo.CreateSpecificCulture("en");
 
                 default:
-                    return DutchCode.NO_PARENT;
-            }
-        }
-
-        public static string SaveFailedContent(Language userLanguage)
-        {
-            switch (userLanguage.LocalName)
-            {
-                case "Nederlands":
-                    return DutchCode.SAVE_FAILED_CONTENT;
-
-                case "English":
-                    return EnglishCode.SAVE_FAILED_CONTENT;
-
-                default:
-                    return DutchCode.SAVE_FAILED_CONTENT;
-            }
-        }
-
-        public static string SaveFailedTitle(Language userLanguage)
-        {
-            switch (userLanguage.LocalName)
-            {
-                case "Nederlands":
-                    return DutchCode.SAVE_FAILED_TITLE;
-
-                case "English":
-                    return EnglishCode.SAVE_FAILED_TITLE;
-
-                default:
-                    return DutchCode.SAVE_FAILED_TITLE;
-            }
-        }
-
-        public static string ExitMessageBoxContent(Language preferredLanguage)
-        {
-            switch (preferredLanguage.LocalName)
-            {
-                case "Nederlands":
-                    return DutchCode.ExitMessageBoxContent();
-
-                case "English":
-                    return EnglishCode.ExitMessageBoxContent();
-
-                default:
-                    return DutchCode.ExitMessageBoxContent();
-            }
-        }
-
-        public static string POTENTIAL_VALUES(Language userLanguage)
-        {
-            switch (userLanguage.LocalName)
-            {
-                case "Nederlands":
-                    return DutchCode.POTENTIAL_VALUES;
-
-                case "English":
-                    return EnglishCode.POTENTIAL_VALUES;
-
-                default:
-                    return DutchCode.POTENTIAL_VALUES;
-            }
-        }
-
-        public static string ExitMessageBoxTitle(Language preferredLanguage)
-        {
-            switch (preferredLanguage.LocalName)
-            {
-                case "Nederlands":
-                    return DutchCode.ExitMessageBoxTitle();
-
-                case "English":
-                    return EnglishCode.ExitMessageBoxTitle();
-
-                default:
-                    return DutchCode.ExitMessageBoxTitle();
-            }
+                    return CultureInfo.CreateSpecificCulture("nl");                    
+            };
         }
 
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName, Language preferredLanguage)
@@ -225,67 +151,6 @@ public static class BL_Multilingual
                     return defaultLanguage.DutchName;
             }
         }
-
-        public static string YES(Language preferredLanguage)
-        {
-            switch (preferredLanguage.LocalName)
-            {
-                case "Nederlands":
-                    return DutchCode.YES;
-
-                case "English":
-                    return EnglishCode.YES;
-
-                default:
-                    return DutchCode.YES;
-            }
-        }
-
-        public static string NAME(Language userLanguage)
-        {
-            switch (userLanguage.LocalName)
-            {
-                case "Nederlands":
-                    return DutchCode.NAME;
-
-                case "English":
-                    return EnglishCode.NAME;
-
-                default:
-                    return DutchCode.NAME;
-            }
-        }
-
-        public static string DESCRIPTION(Language userLanguage)
-        {
-            switch (userLanguage.LocalName)
-            {
-                case "Nederlands":
-                    return DutchCode.DESCRIPTION;
-
-                case "English":
-                    return EnglishCode.DESCRIPTION;
-
-                default:
-                    return DutchCode.DESCRIPTION;
-            }
-        }
-
-        public static string NO(Language preferredLanguage)
-        {
-            switch (preferredLanguage.LocalName)
-            {
-                case "Nederlands":
-                    return DutchCode.NO;
-
-                case "English":
-                    return EnglishCode.NO;
-
-                default:
-                    return DutchCode.NO;
-            }
-        }
-
         public static string UODeleteUserMessageBoxContent(string lastName, string firstName, Language preferredLanguage)
         {
             switch (preferredLanguage.LocalName)

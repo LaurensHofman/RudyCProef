@@ -72,6 +72,8 @@ namespace Rudycommerce
             dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
 
             this.Resources.MergedDictionaries.Add(dict);
+
+            Thread.CurrentThread.CurrentUICulture = BL_Multilingual.GetCulture(selectedLanguage);
         }
 
         private void addImage(object sender, RoutedEventArgs e)

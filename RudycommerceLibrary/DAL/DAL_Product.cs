@@ -12,7 +12,7 @@ namespace RudycommerceLibrary.DAL
 {
     public static class DAL_Product
     {
-        public static void Create(Product productModel)
+        public static async Task Create(Product productModel)
         {
             var ctx = AppDBContext.Instance();
 
@@ -23,16 +23,14 @@ namespace RudycommerceLibrary.DAL
                     // Just learned about lazy loading in entity framework
 
                     ctx.Products.Add(productModel);
-                     
-                    ctx.SaveChanges();
 
                     foreach (ProductImage img in productModel.Images)
                     {
                         img.ProductID = productModel.ProductID;
-                        img.ImageURL = DAL_Images.uploadProductImage(img);
+                        img.ImageURL = await Task.FromResult<string>(DAL_Images.UploadProductImage(img).Result);
                     }
 
-                    ctx.SaveChanges();
+                    await ctx.SaveChangesAsync();
 
                     ctxTransaction.Commit();
                 }

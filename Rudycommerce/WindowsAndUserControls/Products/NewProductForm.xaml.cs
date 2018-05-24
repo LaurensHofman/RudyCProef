@@ -9,7 +9,10 @@ using RudycommerceLibrary.Models;
 using RudycommerceLibrary.View;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +25,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RudycommerceLibrary.Properties;
 
 namespace Rudycommerce
 {
@@ -79,7 +83,6 @@ namespace Rudycommerce
             ProductModel.Values_Product_Properties = new List<Values_Product_ProductProperties>();
             ProductModel.Images = new List<ProductImage>();
             
-
             grdNewProductForm.DataContext = this;
 
             SetLanguageDictionary(UserSettings.UserLanguage);
@@ -100,6 +103,8 @@ namespace Rudycommerce
                 dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
 
                 this.Resources.MergedDictionaries.Add(dict);
+
+                Thread.CurrentThread.CurrentUICulture = BL_Multilingual.GetCulture(selectedLanguage);
             }
             catch (Exception ex)
             {
@@ -294,7 +299,7 @@ namespace Rudycommerce
             StackPanel stackLeft = new StackPanel();
             Label labelName = new Label
             {
-                Content = BL_Multilingual.NAME(UserSettings.UserLanguage) + " : ",
+                Content = LangResource.Name + " : ",
                 Height = _defaultHeight,
                 Foreground = _defaultLabelForeground,
                 FontSize = _defaultLabelFontSize,
@@ -304,7 +309,7 @@ namespace Rudycommerce
             };
             Label labelDescription = new Label
             {
-                Content = BL_Multilingual.DESCRIPTION(UserSettings.UserLanguage) + " : ",
+                Content = LangResource.Description +  " : ",
                 Height = _defaultHeight,
                 Foreground = _defaultLabelForeground,
                 FontSize = _defaultLabelFontSize,
@@ -567,7 +572,7 @@ namespace Rudycommerce
         /// <param name="e"></param>
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            //this.Visibility = Visibility.Collapsed;
+            this.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -575,16 +580,19 @@ namespace Rudycommerce
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        private async void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                BL_Product.Create(ProductModel);
+                prog.IsIndeterminate = true;
+                await BL_Product.Create(ProductModel);
                 Console.Beep();
+                prog.IsIndeterminate = false;
             }
             catch (SaveFailed)
             {
-                MessageBox.Show(BL_Multilingual.SaveFailedContent(UserSettings.UserLanguage), BL_Multilingual.SaveFailedTitle(UserSettings.UserLanguage), MessageBoxButton.OK);
+                MessageBox.Show(LangResource.ErrSaveFailedContent, LangResource.ErrSaveFailedTitle, MessageBoxButton.OK);
+                prog.IsIndeterminate = false;
             }
         }
 

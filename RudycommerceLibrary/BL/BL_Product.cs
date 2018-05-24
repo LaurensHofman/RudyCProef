@@ -13,7 +13,7 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_Product
     {
-        public static void Create(Product productModel)
+        public static async Task Create(Product productModel)
         {
 
             try
@@ -58,7 +58,7 @@ namespace RudycommerceLibrary.BL
                 }
                 productModel.Values_Product_Properties = productModel.Values_Product_Properties.OrderBy(prop => prop.ProductPropertyID).ToList();
 
-                DAL.DAL_Product.Create(productModel);
+                await DAL.DAL_Product.Create(productModel);
             }
             catch (Exception)
             {

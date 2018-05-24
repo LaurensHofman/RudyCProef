@@ -16,7 +16,7 @@ namespace RudycommerceLibrary.DAL
                 "874148858628711",
                 "N7fTdEIRuW_vflagtsRJnAttx6A");
 
-        public static string uploadProductImage(ProductImage img)
+        public static async Task<string> UploadProductImage(ProductImage img)
         {
             Cloudinary cloudinary = new Cloudinary(myAccount);
 
@@ -27,7 +27,8 @@ namespace RudycommerceLibrary.DAL
                 Overwrite = true,
                 Folder = $"Products/{img.ProductID.ToString()}"
             };
-            var uploadResult = cloudinary.Upload(uploadParams);
+
+            var uploadResult = await Task.FromResult(cloudinary.UploadAsync(uploadParams).Result);
 
             string url = uploadResult.Uri.ToString();
 

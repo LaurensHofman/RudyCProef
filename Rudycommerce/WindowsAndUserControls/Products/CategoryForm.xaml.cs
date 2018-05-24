@@ -20,7 +20,7 @@ using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
 using RudycommerceLibrary.Models;
-
+using RudycommerceLibrary.Properties;
 
 namespace Rudycommerce
 {
@@ -177,7 +177,7 @@ namespace Rudycommerce
             }
             catch (SaveFailed)
             {
-                MessageBox.Show(BL_Multilingual.SaveFailedContent(UserSettings.UserLanguage), BL_Multilingual.SaveFailedTitle(UserSettings.UserLanguage), MessageBoxButton.OK);
+                MessageBox.Show(LangResource.ErrSaveFailedContent, LangResource.ErrSaveFailedTitle, MessageBoxButton.OK);
             }
         }
 

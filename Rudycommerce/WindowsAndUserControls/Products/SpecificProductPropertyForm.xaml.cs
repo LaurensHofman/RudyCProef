@@ -5,6 +5,7 @@ using RudycommerceLibrary.Entities;
 using RudycommerceLibrary.Entities.ProductsAndCategories;
 using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
 using RudycommerceLibrary.Models;
+using RudycommerceLibrary.Properties;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -97,7 +98,7 @@ namespace Rudycommerce
             }
             catch (SaveFailed)
             {
-                MessageBox.Show(BL_Multilingual.SaveFailedContent(UserSettings.UserLanguage), BL_Multilingual.SaveFailedTitle(UserSettings.UserLanguage), MessageBoxButton.OK);
+                MessageBox.Show(LangResource.ErrSaveFailedContent, LangResource.ErrSaveFailedTitle, MessageBoxButton.OK);
             }
         }
 
@@ -129,7 +130,7 @@ namespace Rudycommerce
 
             TextBlock header = new TextBlock()
             {
-                Text = BL_Multilingual.POTENTIAL_VALUES(UserSettings.UserLanguage)
+                Text = LangResource.PotentialValues
             };
 
             string Bindinglocation = "TemporaryNonMLValue";
