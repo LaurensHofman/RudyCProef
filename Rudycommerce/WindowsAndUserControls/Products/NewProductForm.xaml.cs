@@ -45,30 +45,37 @@ namespace Rudycommerce
         /// defines the image that is being dragged
         /// </summary>
         Image image_to_drag;
+
         ///// <summary>
         ///// List of added product images
         ///// </summary>
         //public List<ProductImage> ImageList { get; set; }
+
         /// <summary>
         /// List of category ID's with their name, to fill the category selection combobox
         /// </summary>
         public List<ProductCategory> CategoryList { get; set; }
+        
         /// <summary>
         /// List of properties belonging to the selected category
         /// </summary>
         public List<NecessaryProductPropertyViewItem> NecessaryProductPropertiesList { get; set; }
+
         /// <summary>
         /// Model of the product, containing generic non-multilingual properties
         /// </summary>
         public Product ProductModel { get; set; }
+
         ///// <summary>
         ///// List containing the values of the properties belonging to the product
         ///// </summary>
         //public List<Values_Product_SpecificProductProperties> LocalizedValuesProduct_SpecificProductProperties { get; set; }
+
         /// <summary>
         /// List of languages with their names
         /// </summary>
         public List<LocalizedLanguageItem> LocalizedLanguageList { get; set; }
+
         
 
         /// <summary>

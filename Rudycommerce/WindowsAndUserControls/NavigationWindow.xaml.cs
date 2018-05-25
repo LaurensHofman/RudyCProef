@@ -174,7 +174,7 @@ namespace Rudycommerce
                 contentControl.Content = null;
             }            
         }
-
+        
         //private void AnimatedTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
         //    if (tabItemSettings.IsSelected)
@@ -210,6 +210,6 @@ namespace Rudycommerce
         //        tabItemUsers.BorderThickness = Selected;
         //    }
         //}
-        
+
     }
 }
