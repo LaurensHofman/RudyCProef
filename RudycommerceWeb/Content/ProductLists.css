@@ -74,19 +74,19 @@ a.product-title {
     text-align: center;
 }
 
-    .add-to-cart button {
-        width: 60%;
+.add-to-cart button {
+        min-width: 60%;
         background: #f9c61d;
         border-radius: 1rem;
         border: 2px solid black;
-    }
-
-.add-to-cart button img {
-    height: 2.5rem;
 }
 
+    .add-to-cart button img {
+        height: 2.5rem;
+    }
+
 .add-to-cart button span {
-    font-size: 1.5rem;
+        font-size: calc(12px + 0.5vw);
 }
 
 .row hr {

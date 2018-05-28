@@ -26,6 +26,9 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
         [Column("enumeration_value_id")]
         public int? EnumerationValueID { get; set; }
 
-        public PropertyEnumerations EnumerationValue { get; set; }
+        public virtual PropertyEnumerations EnumerationValue { get; set; }
+
+        [NotMapped]
+        public string DisplayValue { get; set; }
     }
 }

@@ -20,5 +20,9 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
         [Column("lookup_name")]
         [Required]
         public string LookupName { get; set; }
+
+        [Column("advice_description")]
+        [DataType(DataType.MultilineText)]
+        public string AdviceDescription { get; set; }
     }
 }

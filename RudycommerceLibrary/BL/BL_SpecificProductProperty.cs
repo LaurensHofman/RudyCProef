@@ -68,6 +68,43 @@ namespace RudycommerceLibrary.BL
             return DAL.DAL_SpecificProductProperty.GetLocalizedSpecificProductProperties(userLanguage);
         }
 
+        public static List<LocalizedProperty> GetLocalizedSpecificProductProperties(int userLanguageID)
+        {
+            return DAL.DAL_SpecificProductProperty.GetLocalizedSpecificProductProperties(userLanguageID);
+        }
+
+        public static List<PropertyDetails> GetPropertyDetails(List<Values_Product_ProductProperties> prodValues, int engID)
+        {
+            List<int> propIDs = new List<int>();
+            
+            foreach (Values_Product_ProductProperties val in prodValues)
+            {
+                propIDs.Add(val.ProductPropertyID);
+            }
+
+            //List<LocalizedProperty> locProps = DAL.DAL_SpecificProductProperty.GetLocalizedSpecificProductProperties(propIDs, engID);
+
+            List<ProductProperty> props = DAL.DAL_SpecificProductProperty.GetProperties(propIDs);
+
+            List<PropertyDetails> returnDetails = new List<PropertyDetails>();
+
+            foreach (var prop in props)
+            {
+                PropertyDetails det = new PropertyDetails
+                {
+                    IsBool = prop.IsBool,
+                    IsEnumeration = prop.IsEnumeration,
+                    IsMultilingual = prop.IsMultilingual,
+                    PropertyID = prop.PropertyID,
+                    LookupName = prop.LocalizedSpecificProductProperties.SingleOrDefault(lp => lp.LanguageID == engID).LookupName
+                };
+
+                returnDetails.Add(det);
+            }
+
+            return returnDetails;
+        }
+
         public static List<SpecificProductPropertyOverViewItem> GetPropertyOverview(Language userLanguage)
         {
             return DAL.DAL_SpecificProductProperty.GetPropertyOverview(userLanguage);

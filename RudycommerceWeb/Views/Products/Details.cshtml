@@ -1,0 +1,43 @@
+﻿@model RudycommerceLibrary.Models.ProductDetails
+
+
+<h2>Details</h2>
+
+<p>
+    <ul>
+        <li> @Model.Product.LocalizedProducts.SingleOrDefault(p => p.LanguageID == ViewBag.LangID).Name </li>
+        <li> @Model.Product.LocalizedProducts.SingleOrDefault(p => p.LanguageID == ViewBag.LangID).Description </li>
+
+        @foreach (var prop in Model.Product.Values_Product_Properties)
+        {
+            <li>
+                @Model.PropertyDetails.SingleOrDefault(pn => pn.PropertyID == prop.ProductPropertyID).LookupName :
+
+                @if (!Model.PropertyDetails.SingleOrDefault(pd => pd.PropertyID == prop.ProductPropertyID).IsBool)
+                {
+                    @prop.DisplayValue
+                }
+                else
+                {
+                    if ( prop.DisplayValue == "True" )
+                    {
+                        <img width="30" height="30" src="~/Images/64_GreenCheck.png"/>
+                    }
+                    else
+                    {
+                        <img width="30 " height="30" src="~/Images/64_RedCross.png" />
+                    }
+                }
+            </li>
+        }
+
+        @foreach (var img in Model.Product.Images)
+        {
+            <li>
+                <img width="100" height="100" src="@img.ImageURL" />
+            </li>
+        }
+
+    </ul>
+</p>
+

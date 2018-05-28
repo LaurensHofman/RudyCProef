@@ -9,7 +9,7 @@
 </head>
 
 <div class="row">
-    <h2> Onze nieuwste producten </h2>
+    <h2> Our newest products </h2>
     <hr />
     @foreach (var product in Model)
     {
@@ -18,7 +18,7 @@
         <div class="card justify-content-top" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" title="@product.Name" data-content="@product.Description">
 
             <div class="card-image text-center">
-                <a href="@Url.Action("Detail", new { id = product.ProductID })">
+                <a href="@Url.Action("Details", new { ProductID = product.ProductID })">
                     <img src="@product.ImageURL" alt="@product.Name"
                          class="product-image" />
                 </a>
@@ -29,7 +29,7 @@
                 </div>
                 <h3 class="text-center card-title">
                     @Html.ActionLink(product.Name, "Details",
-                             new { id = product.ProductID }, new { @class = "product-title" })
+                             new { ProductID = product.ProductID }, new { @class = "product-title" })
                 </h3>
 
                 @*@if (product.Description.Length > 100)

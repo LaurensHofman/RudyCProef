@@ -109,9 +109,15 @@
     <Compile Include="Migrations\201805131739521_nullables.Designer.cs">
       <DependentUpon>201805131739521_nullables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805281502246_Advice-Start.cs" />
+    <Compile Include="Migrations\201805281502246_Advice-Start.Designer.cs">
+      <DependentUpon>201805281502246_Advice-Start.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\LanguageAndCategoryItem.cs" />
     <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
     <Compile Include="Models\LocalizedLanguageItem.cs" />
+    <Compile Include="Models\ProductDetails.cs" />
+    <Compile Include="Models\PropertyDetails.cs" />
     <Compile Include="Properties\LangResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805131739521_nullables.resx">
       <DependentUpon>201805131739521_nullables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805281502246_Advice-Start.resx">
+      <DependentUpon>201805281502246_Advice-Start.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\LangResource.en.resx" />
     <EmbeddedResource Include="Properties\LangResource.nl.resx">

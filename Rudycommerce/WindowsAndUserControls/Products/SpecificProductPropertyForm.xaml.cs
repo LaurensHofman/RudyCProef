@@ -29,6 +29,48 @@ namespace Rudycommerce
     /// </summary>
     public partial class SpecificProductPropertyForm : UserControl
     {
+
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //  TODO ADD PROPERTY GROUPS
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public ProductProperty SpecificProductPropertyModel { get; set; }
         public ObservableCollection<LanguageAndSpecificPropertyItem> LanguageAndSpecificPropertyList { get; set; }
 

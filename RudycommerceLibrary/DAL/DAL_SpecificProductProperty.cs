@@ -96,23 +96,29 @@ namespace RudycommerceLibrary.DAL
             var ctx = AppDBContext.Instance();
 
             return ctx.LocalizedSpecificProductProperties.Where(lspp => lspp.LanguageID == userLanguage.LanguageID).ToList();
-
-            //List<SpecificProductProperty> propertyList = new List<SpecificProductProperty>();
-
-            //List<PropertyAndNameView> returnList = new List<PropertyAndNameView>();
-
-            //propertyList = ctx.SpecificProductProperties.Where(prop => prop.DeletedAt == null).ToList();
-
-            //foreach (var property in propertyList)
-            //{
-            //    returnList.Add(new PropertyAndNameView() { PropertyID = property.SpecificProductPropertyID
-            //                                        , PropertyName = GetPropertyLookupName(property.SpecificProductPropertyID, userLanguage) });
-            //}
-
-            //return returnList;
         }
 
+        public static List<LocalizedProperty> GetLocalizedSpecificProductProperties(int userLanguageID)
+        {
+            var ctx = AppDBContext.Instance();
 
+            return ctx.LocalizedSpecificProductProperties.Where(lspp => lspp.LanguageID == userLanguageID).ToList();
+        }
+
+        public static List<ProductProperty> GetProperties(List<int> propIDs)
+        {
+            var ctx = AppDBContext.Instance();
+
+            return ctx.SpecificProductProperties.Where(p => propIDs.Contains(p.PropertyID)).ToList();
+        }
+
+        //public static List<LocalizedProperty> GetLocalizedSpecificProductProperties(List<int> propIDs, int engID)
+        //{
+        //    var ctx = AppDBContext.Instance();
+
+        //    return ctx.LocalizedSpecificProductProperties.Where(x => propIDs.Contains(x.PropertyID) && x.LanguageID == engID).ToList() ;
+        //}
+        
         public static List<SpecificProductPropertyOverViewItem> GetPropertyOverview(Language userLanguage)
         {
             var ctx = AppDBContext.Instance();

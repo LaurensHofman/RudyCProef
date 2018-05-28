@@ -33,7 +33,7 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         [Column("category_id")]
         public int CategoryID { get; set; }
 
-        public ProductCategory ProductCategory { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
 
         public Product()
         {

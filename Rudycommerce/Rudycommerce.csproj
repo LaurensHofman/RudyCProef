@@ -271,8 +271,6 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\64_CogwheelSettings_WHITE.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="vali\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
