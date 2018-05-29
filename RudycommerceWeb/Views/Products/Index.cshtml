@@ -13,44 +13,46 @@
     <hr />
     @foreach (var product in Model)
     {
-    <div class="col-md-4">
+        <div class="col-md-4">
 
-        <div class="card justify-content-top" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" title="@product.Name" data-content="@product.Description">
+            <div class="card justify-content-top" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" title="@product.Name" data-content="@product.Description">
 
-            <div class="card-image text-center">
-                <a href="@Url.Action("Details", new { ProductID = product.ProductID })">
-                    <img src="@product.ImageURL" alt="@product.Name"
-                         class="product-image" />
-                </a>
-            </div>
-            <div class="card-header text-center">
-                <div class="price">
-                    € @product.UnitPrice
+                <div class="card-image text-center">
+                    <a href="@Url.Action("Details", new { ProductID = product.ProductID })">
+                        <img src="@product.ImageURL" alt="@product.Name"
+                             class="product-image" />
+                    </a>
                 </div>
-                <h3 class="text-center card-title">
-                    @Html.ActionLink(product.Name, "Details",
-                             new { ProductID = product.ProductID }, new { @class = "product-title" })
-                </h3>
+                <div class="card-header text-center">
+                    <div class="price">
+                        € @product.UnitPrice
+                    </div>
+                    <h3 class="text-center card-title">
+                        @Html.ActionLink(product.Name, "Details",
+                                 new { ProductID = product.ProductID }, new { @class = "product-title" })
+                    </h3>
 
-                @*@if (product.Description.Length > 100)
-            {
-                <p>@(product.Description.Substring(0, Math.Min(product.Description.Length, 80)) + "...") </p>
-            }
-            else
-            {
-                <p>@(product.Description)</p>
-            }*@
+                    @*@if (product.Description.Length > 100)
+                        {
+                            <p>@(product.Description.Substring(0, Math.Min(product.Description.Length, 80)) + "...") </p>
+                        }
+                        else
+                        {
+                            <p>@(product.Description)</p>
+                        }*@
+                </div>
+                <div class="add-to-cart">
+                    <button type="button" class="text-center">
+                        <span>Add to cart</span>
+                        <img src="~/Images/64_AddToCartBlue.png" />
+                    </button>
+                </div>
+
+
             </div>
-            <div class="add-to-cart">
-                <button type="button" class="text-center">
-                    <span>Add to cart</span>
-                    <img src="~/Images/64_AddToCartBlue.png" />
-                </button>
-            </div>
-                
-                
+
         </div>
-        
-    </div>
     }
 </div>
+
+

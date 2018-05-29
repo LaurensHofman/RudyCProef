@@ -15,14 +15,14 @@ namespace RudycommerceLibrary.BL
 {
     public static class BL_SpecificProductProperty
     {
-        public static void Save(ProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList
+        public static void Save(ProductProperty specificProductPropertyModel/*, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList*/
             , List<PropertyEnumerations> propertyEnumerations)
         {
             try
             {
                 if (specificProductPropertyModel.IsNew())
                 {
-                    Create(specificProductPropertyModel, languageAndSpecificPropertyList, propertyEnumerations);
+                    Create(specificProductPropertyModel/*, languageAndSpecificPropertyList*/, propertyEnumerations);
                 }
             }
             catch (Exception)
@@ -31,20 +31,20 @@ namespace RudycommerceLibrary.BL
             }            
         }
 
-        private static void Create(ProductProperty specificProductPropertyModel, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList
+        private static void Create(ProductProperty specificProductPropertyModel/*, List<LanguageAndSpecificPropertyItem> languageAndSpecificPropertyList*/
             , List<PropertyEnumerations> propertyEnumerations)
         {
             // I know, this isn't cleanly done, when I began on this project, I didn't know a thing about Lazy loading...
             
             if (specificProductPropertyModel.IsEnumeration == false)
             {
-                DAL.DAL_SpecificProductProperty.CreateNonEnumProperty(specificProductPropertyModel, languageAndSpecificPropertyList);
+                DAL.DAL_SpecificProductProperty.CreateNonEnumProperty(specificProductPropertyModel/*, languageAndSpecificPropertyList*/);
             }
             else
             {
                 if (specificProductPropertyModel.IsMultilingual == true)
                 {
-                    DAL.DAL_SpecificProductProperty.CreateEnumProperty(specificProductPropertyModel, languageAndSpecificPropertyList, propertyEnumerations);
+                    DAL.DAL_SpecificProductProperty.CreateEnumProperty(specificProductPropertyModel/*, languageAndSpecificPropertyList*/, propertyEnumerations);
                 }
                 else
                 {
@@ -58,7 +58,7 @@ namespace RudycommerceLibrary.BL
                         }
                     }
 
-                    DAL.DAL_SpecificProductProperty.CreateEnumProperty(specificProductPropertyModel, languageAndSpecificPropertyList, propertyEnumerations);
+                    DAL.DAL_SpecificProductProperty.CreateEnumProperty(specificProductPropertyModel/*, languageAndSpecificPropertyList*/, propertyEnumerations);
                 }
             }             
         }
@@ -90,13 +90,16 @@ namespace RudycommerceLibrary.BL
 
             foreach (var prop in props)
             {
+                var locproperty = prop.LocalizedSpecificProductProperties.SingleOrDefault(lp => lp.LanguageID == engID);
+
                 PropertyDetails det = new PropertyDetails
                 {
                     IsBool = prop.IsBool,
                     IsEnumeration = prop.IsEnumeration,
                     IsMultilingual = prop.IsMultilingual,
                     PropertyID = prop.PropertyID,
-                    LookupName = prop.LocalizedSpecificProductProperties.SingleOrDefault(lp => lp.LanguageID == engID).LookupName
+                    LookupName = locproperty.LookupName,
+                    AdviceDescription = locproperty.AdviceDescription
                 };
 
                 returnDetails.Add(det);

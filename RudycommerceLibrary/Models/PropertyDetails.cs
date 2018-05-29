@@ -17,5 +17,7 @@ namespace RudycommerceLibrary.Models
         public bool IsEnumeration { get; set; }
 
         public bool IsBool { get; set; } 
+
+        public string AdviceDescription { get; set; }
     }
 }

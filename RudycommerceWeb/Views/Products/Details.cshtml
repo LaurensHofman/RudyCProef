@@ -10,25 +10,35 @@
 
         @foreach (var prop in Model.Product.Values_Product_Properties)
         {
-            <li>
-                @Model.PropertyDetails.SingleOrDefault(pn => pn.PropertyID == prop.ProductPropertyID).LookupName :
 
-                @if (!Model.PropertyDetails.SingleOrDefault(pd => pd.PropertyID == prop.ProductPropertyID).IsBool)
-                {
-                    @prop.DisplayValue
-                }
-                else
-                {
-                    if ( prop.DisplayValue == "True" )
+            if (prop.DisplayValue != null)
+            {
+                <li>
+                    @Model.PropertyDetails.SingleOrDefault(pn => pn.PropertyID == prop.ProductPropertyID).LookupName :
+
+                    @if (!Model.PropertyDetails.SingleOrDefault(pd => pd.PropertyID == prop.ProductPropertyID).IsBool)
                     {
-                        <img width="30" height="30" src="~/Images/64_GreenCheck.png"/>
+                        @prop.DisplayValue
                     }
                     else
                     {
-                        <img width="30 " height="30" src="~/Images/64_RedCross.png" />
+                        if (prop.DisplayValue == "True")
+                        {
+                            <img width="30" height="30" src="~/Images/64_GreenCheck.png" />
+                        }
+                        else
+                        {
+                            <img width="30 " height="30" src="~/Images/64_RedCross.png" />
+                        }
                     }
-                }
-            </li>
+
+                    @if (Model.PropertyDetails.SingleOrDefault(pd => pd.PropertyID == prop.ProductPropertyID).AdviceDescription != null)
+                    {
+                        <button data-toggle="popover" data-trigger="click" data-placement="right"
+                                data-content="@Model.PropertyDetails.SingleOrDefault(pd => pd.PropertyID == prop.ProductPropertyID).AdviceDescription">?</button>
+                    }
+                </li>
+            }
         }
 
         @foreach (var img in Model.Product.Images)

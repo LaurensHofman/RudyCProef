@@ -61,6 +61,15 @@ namespace RudycommerceLibrary.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uitbreidende uitleg.
+        /// </summary>
+        public static string AdviceDescription {
+            get {
+                return ResourceManager.GetString("AdviceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beschrijving.
         /// </summary>
         public static string Description {
