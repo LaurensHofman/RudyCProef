@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.ProductsAndCategories
 {
@@ -13,22 +13,22 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
     {
         [Key]
         [Column("image_id")]
-        public int ImageID { get; set; }
+        public int ImageID { get; set; }
 
         [Column("product_id")]
-        public int ProductID { get; set; }
+        public int ProductID { get; set; }
 
         [Column("order")]
         [Required]
-        public int Order { get; set; }
+        public int Order { get; set; }
 
         [Column("image_url")]
         [Required]
-        public string ImageURL { get; set; }
+        public string ImageURL { get; set; }
         
-        public Product Product { get; set; }
+        public Product Product { get; set; }
 
         [NotMapped]
-        public string FileLocation { get; set; }
+        public string FileLocation { get; set; }
     }
 }

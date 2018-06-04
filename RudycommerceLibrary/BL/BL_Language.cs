@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RudycommerceLibrary.DAL;
-using RudycommerceLibrary.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using RudycommerceLibrary.DAL;
+using RudycommerceLibrary.Entities;
 
 namespace RudycommerceLibrary.BL
 {
@@ -14,16 +14,16 @@ namespace RudycommerceLibrary.BL
         {
             if (model.IsDefault == true)
             {
-                MakeNewLanguageDefault();
+                MakeNewLanguageDefault();
             }
 
             if (model.IsNew())
             {
-                Create(model);
+                Create(model);
             }
             else
             {
-                Update(model);
+                Update(model);
             }
         }
 
@@ -31,72 +31,72 @@ namespace RudycommerceLibrary.BL
         {
             if (IsThereAlreadyADefaultLanguage())
             {
-                throw new CustomExceptions.AlreadyADefaultLanguage();
+                throw new CustomExceptions.AlreadyADefaultLanguage();
             }
         }
 
         private static bool IsThereAlreadyADefaultLanguage()
         {
-            return DAL_Language.GetDefaultLanguage() != null;
+            return DAL_Language.GetDefaultLanguage() != null;
         }
 
         public static void ToggleOldDefaultLanguage()
         {
-            Language oldDefaultLanguage = GetDefaultLanguage();
-            oldDefaultLanguage.IsDefault = false;
-            Update(oldDefaultLanguage);
+            Language oldDefaultLanguage = GetDefaultLanguage();
+            oldDefaultLanguage.IsDefault = false;
+            Update(oldDefaultLanguage);
         }
 
         public static List<Language> GetDesktopLanguages()
         {
-            return DAL_Language.GetDesktopLanguages();
+            return DAL_Language.GetDesktopLanguages();
         }
 
         public static Language GetLanguageByID(int preferredLanguageID)
         {
-            return DAL_Language.GetLanguageByID(preferredLanguageID);
+            return DAL_Language.GetLanguageByID(preferredLanguageID);
         }        
 
         public static void Delete(Language model)
         {
-            model.DeletedAt = DateTime.Now;
-            Update(model);
+            model.DeletedAt = DateTime.Now;
+            Update(model);
         }
 
         private static void Update(Language model)
         {
-            model.ModifiedAt = DateTime.Now;
-            DAL_Language.Update(model);
+            model.ModifiedAt = DateTime.Now;
+            DAL_Language.Update(model);
         }
 
         private static void Create(Language model)
         {
-            DAL_Language.Create(model);
+            DAL_Language.Create(model);
         }
 
         public static Language GetDefaultLanguage()
         {
-            return DAL_Language.GetDefaultLanguage();
+            return DAL_Language.GetDefaultLanguage();
         }
 
         public static List<Language> GetAllLanguages()
         {
-            return DAL_Language.GetAllLanguages();
+            return DAL_Language.GetAllLanguages();
         }
 
         public static string[] GetAllISOCodes()
         {
-            return DAL_Language.GetAllISOCodes();
+            return DAL_Language.GetAllISOCodes();
         }
 
         public static void MakeLanguageDefault(Language language)
         {
-            ToggleOldDefaultLanguage();
+            ToggleOldDefaultLanguage();
 
-            language.IsActive = true;
-            language.IsDefault = true;
+            language.IsActive = true;
+            language.IsDefault = true;
 
-            Update(language);
+            Update(language);
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
 {
@@ -12,13 +12,13 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories.Localized
     public class LocalizedEnumerationValues
     {
         [Column("language_id")]
-        public int LanguageID { get; set; }
+        public int LanguageID { get; set; }
 
         [Column("value")]
         [Required]
-        public string Value { get; set; }
+        public string Value { get; set; }
 
         [Column("enumeration_id")]
-        public int EnumerationID { get; set; }
+        public int EnumerationID { get; set; }
     }
 }

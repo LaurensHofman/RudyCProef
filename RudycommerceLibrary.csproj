@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE6DBF33-7E33-4801-AA6B-DDD64DF4350F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RudycommerceLibrary</RootNamespace>
+    <AssemblyName>RudycommerceLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CloudinaryDotNet, Version=1.3.0.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
+      <HintPath>..\packages\CloudinaryDotNet.1.3.0\lib\net40\CloudinaryDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\CloudinaryDotNet.1.3.0\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BL\BL_DesktopUser.cs" />
+    <Compile Include="BL\BL_Encryption.cs" />
+    <Compile Include="BL\BL_Language.cs" />
+    <Compile Include="BL\BL_Mailing.cs" />
+    <Compile Include="BL\BL_Multilingual.cs" />
+    <Compile Include="BL\BL_Product.cs" />
+    <Compile Include="BL\BL_ProductCategory.cs" />
+    <Compile Include="BL\BL_SpecificProductProperty.cs" />
+    <Compile Include="BL\Enumerations.cs" />
+    <Compile Include="CustomExceptions\CustomExceptions.cs" />
+    <Compile Include="DAL\DAL_DesktopUser.cs" />
+    <Compile Include="DAL\DAL_Language.cs" />
+    <Compile Include="DAL\DAL_Product.cs" />
+    <Compile Include="DAL\DAL_ProductCategory.cs" />
+    <Compile Include="DAL\DAL_ProductImages.cs" />
+    <Compile Include="DAL\DAL_SpecificProductProperty.cs" />
+    <Compile Include="Data\AppDBContext.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\DesktopUsers\DesktopUser.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Article.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedProduct.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedCategory.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedEnumerationValues.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\LocalizedProperty.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\Category_Property.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\Values_Product_ProductProperties.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Localized\Product_ProductProperties.cs" />
+    <Compile Include="Entities\ProductsAndCategories\ProductImage.cs" />
+    <Compile Include="Entities\ProductsAndCategories\PropertyEnumerations.cs" />
+    <Compile Include="Entities\ProductsAndCategories\Product.cs" />
+    <Compile Include="Entities\ProductsAndCategories\ProductCategory.cs" />
+    <Compile Include="Entities\ProductsAndCategories\SpecificProductProperty.cs" />
+    <Compile Include="Entities\Language.cs" />
+    <Compile Include="LanguageResources\DutchCode.cs" />
+    <Compile Include="LanguageResources\EnglishCode.cs" />
+    <Compile Include="Migrations\201805111011189_ShorterNames.cs" />
+    <Compile Include="Migrations\201805111011189_ShorterNames.Designer.cs">
+      <DependentUpon>201805111011189_ShorterNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805111335119_Fix.cs" />
+    <Compile Include="Migrations\201805111335119_Fix.Designer.cs">
+      <DependentUpon>201805111335119_Fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805121424320_flagurl.cs" />
+    <Compile Include="Migrations\201805121424320_flagurl.Designer.cs">
+      <DependentUpon>201805121424320_flagurl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805131736528_requiredsEntities.cs" />
+    <Compile Include="Migrations\201805131736528_requiredsEntities.Designer.cs">
+      <DependentUpon>201805131736528_requiredsEntities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805131739521_nullables.cs" />
+    <Compile Include="Migrations\201805131739521_nullables.Designer.cs">
+      <DependentUpon>201805131739521_nullables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805281502246_Advice-Start.cs" />
+    <Compile Include="Migrations\201805281502246_Advice-Start.Designer.cs">
+      <DependentUpon>201805281502246_Advice-Start.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LanguageAndCategoryItem.cs" />
+    <Compile Include="Models\LanguageAndSpecificPropertyItem.cs" />
+    <Compile Include="Models\LocalizedLanguageItem.cs" />
+    <Compile Include="Models\ProductDetails.cs" />
+    <Compile Include="Models\PropertyDetails.cs" />
+    <Compile Include="Properties\LangResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LangResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\LangResource.nl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LangResource.nl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Validations\ProductValidations.cs" />
+    <Compile Include="View\HomePageProductViewItem.cs" />
+    <Compile Include="View\LocalizedEnumerationViewItem.cs" />
+    <Compile Include="View\NecessaryProductPropertyViewItem.cs" />
+    <Compile Include="Models\PropertyAndCategoryItem.cs" />
+    <Compile Include="Utilities\MessageBoxManager.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\SecurityExtensions.cs" />
+    <Compile Include="Utilities\StringExtensions.cs" />
+    <Compile Include="Utilities\Validations\SiteLanguageValidation.cs" />
+    <Compile Include="Utilities\Validations\StringValidation.cs" />
+    <Compile Include="View\ProductOverViewItem.cs" />
+    <Compile Include="View\SpecificProductPropertyOverViewItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805111011189_ShorterNames.resx">
+      <DependentUpon>201805111011189_ShorterNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805111335119_Fix.resx">
+      <DependentUpon>201805111335119_Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121424320_flagurl.resx">
+      <DependentUpon>201805121424320_flagurl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131736528_requiredsEntities.resx">
+      <DependentUpon>201805131736528_requiredsEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131739521_nullables.resx">
+      <DependentUpon>201805131739521_nullables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805281502246_Advice-Start.resx">
+      <DependentUpon>201805281502246_Advice-Start.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\LangResource.en.resx" />
+    <EmbeddedResource Include="Properties\LangResource.nl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LangResource.nl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\LangResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LangResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

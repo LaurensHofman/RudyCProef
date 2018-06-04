@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace RudycommerceLibrary.Properties {
-    using System;
+    using System;
     
     
     /// <summary>
@@ -24,9 +24,9 @@ namespace RudycommerceLibrary.Properties {
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class LangResource {
         
-        private static global::System.Resources.ResourceManager resourceMan;
+        private static global::System.Resources.ResourceManager resourceMan;
         
-        private static global::System.Globalization.CultureInfo resourceCulture;
+        private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal LangResource() {
@@ -39,10 +39,10 @@ namespace RudycommerceLibrary.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RudycommerceLibrary.Properties.LangResource", typeof(LangResource).Assembly);
-                    resourceMan = temp;
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RudycommerceLibrary.Properties.LangResource", typeof(LangResource).Assembly);
+                    resourceMan = temp;
                 }
-                return resourceMan;
+                return resourceMan;
             }
         }
         
@@ -53,10 +53,10 @@ namespace RudycommerceLibrary.Properties {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         public static global::System.Globalization.CultureInfo Culture {
             get {
-                return resourceCulture;
+                return resourceCulture;
             }
             set {
-                resourceCulture = value;
+                resourceCulture = value;
             }
         }
         
@@ -65,7 +65,7 @@ namespace RudycommerceLibrary.Properties {
         /// </summary>
         public static string AdviceDescription {
             get {
-                return ResourceManager.GetString("AdviceDescription", resourceCulture);
+                return ResourceManager.GetString("AdviceDescription", resourceCulture);
             }
         }
         
@@ -74,7 +74,7 @@ namespace RudycommerceLibrary.Properties {
         /// </summary>
         public static string Description {
             get {
-                return ResourceManager.GetString("Description", resourceCulture);
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
@@ -83,7 +83,7 @@ namespace RudycommerceLibrary.Properties {
         /// </summary>
         public static string ErrSaveFailedContent {
             get {
-                return ResourceManager.GetString("ErrSaveFailedContent", resourceCulture);
+                return ResourceManager.GetString("ErrSaveFailedContent", resourceCulture);
             }
         }
         
@@ -92,7 +92,7 @@ namespace RudycommerceLibrary.Properties {
         /// </summary>
         public static string ErrSaveFailedTitle {
             get {
-                return ResourceManager.GetString("ErrSaveFailedTitle", resourceCulture);
+                return ResourceManager.GetString("ErrSaveFailedTitle", resourceCulture);
             }
         }
         
@@ -101,7 +101,7 @@ namespace RudycommerceLibrary.Properties {
         /// </summary>
         public static string MBExitContent {
             get {
-                return ResourceManager.GetString("MBExitContent", resourceCulture);
+                return ResourceManager.GetString("MBExitContent", resourceCulture);
             }
         }
         
@@ -110,7 +110,7 @@ namespace RudycommerceLibrary.Properties {
         /// </summary>
         public static string MBExitTitle {
             get {
-                return ResourceManager.GetString("MBExitTitle", resourceCulture);
+                return ResourceManager.GetString("MBExitTitle", resourceCulture);
             }
         }
         
@@ -119,7 +119,7 @@ namespace RudycommerceLibrary.Properties {
         /// </summary>
         public static string Name {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -128,7 +128,7 @@ namespace RudycommerceLibrary.Properties {
         /// </summary>
         public static string No {
             get {
-                return ResourceManager.GetString("No", resourceCulture);
+                return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
@@ -137,7 +137,7 @@ namespace RudycommerceLibrary.Properties {
         /// </summary>
         public static string NoParent {
             get {
-                return ResourceManager.GetString("NoParent", resourceCulture);
+                return ResourceManager.GetString("NoParent", resourceCulture);
             }
         }
         
@@ -146,7 +146,7 @@ namespace RudycommerceLibrary.Properties {
         /// </summary>
         public static string PotentialValues {
             get {
-                return ResourceManager.GetString("PotentialValues", resourceCulture);
+                return ResourceManager.GetString("PotentialValues", resourceCulture);
             }
         }
         
@@ -155,7 +155,7 @@ namespace RudycommerceLibrary.Properties {
         /// </summary>
         public static string Yes {
             get {
-                return ResourceManager.GetString("Yes", resourceCulture);
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

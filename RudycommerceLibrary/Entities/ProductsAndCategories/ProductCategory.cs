@@ -1,12 +1,12 @@
-﻿using RudycommerceLibrary.BL;
-using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RudycommerceLibrary.BL;
+using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.ProductsAndCategories
 {
@@ -16,30 +16,30 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("category_id")]
-        public int CategoryID { get; set; }
+        public int CategoryID { get; set; }
         
         [NotMapped]
-        public string LocalizedName { get; set; }
+        public string LocalizedName { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<LocalizedCategory> LocalizedProductCategories { get; set; }
-        public virtual ICollection<Category_Property> Category_SpecificProductProperties { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<LocalizedCategory> LocalizedProductCategories { get; set; }
+        public virtual ICollection<Category_Property> Category_SpecificProductProperties { get; set; }
 
         public ProductCategory()
         {
-            //Children = new List<ProductCategory>();
-            Products = new List<Product>();
+            //Children = new List<ProductCategory>();
+            Products = new List<Product>();
         }
 
         public override bool IsNew()
         {
-            return this.CategoryID == 0;
+            return this.CategoryID == 0;
         }
 
     }
 }
 //[Column("parent_id")]
-//public int? ParentID { get; set; }
+//public int? ParentID { get; set; }
 
 
 //Zie: Children Vertonen NOTES
@@ -47,5 +47,5 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
 
 
 //[ForeignKey("ParentID")]
-//public virtual ProductCategory Parent { get; set; }
-//public virtual ICollection<ProductCategory> Children { get; set; }
+//public virtual ProductCategory Parent { get; set; }
+//public virtual ICollection<ProductCategory> Children { get; set; }

@@ -1,9 +1,9 @@
-﻿using RudycommerceLibrary.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RudycommerceLibrary.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.BL
 {
@@ -11,16 +11,16 @@ namespace RudycommerceLibrary.BL
     {
         public static string GenerateSalt()
         {
-            string _salt = SecurityExtensions.GenerateSalt();
+            string _salt = SecurityExtensions.GenerateSalt();
 
-            return _salt;
+            return _salt;
         }
 
         public static string EncryptPassword(string salt, string password)
         {
-            string _encryptedPassword = SecurityExtensions.Encrypt(salt, password);
+            string _encryptedPassword = SecurityExtensions.Encrypt(salt, password);
 
-            return _encryptedPassword;
+            return _encryptedPassword;
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RudycommerceLibrary.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using RudycommerceLibrary.Entities;
 
 namespace RudycommerceLibrary.DAL
 {
@@ -12,79 +12,79 @@ namespace RudycommerceLibrary.DAL
     {
         public static bool AnyDesktopUser()
         {
-            var ctx = AppDBContext.Instance();
-            return ctx.DesktopUsers.Any(du => du.DeletedAt == null);
+            var ctx = AppDBContext.Instance();
+            return ctx.DesktopUsers.Any(du => du.DeletedAt == null);
         }
 
         public static void Create(DesktopUser newDesktopUser)
         {
-            var ctx = AppDBContext.Instance();
+            var ctx = AppDBContext.Instance();
 
-            ctx.DesktopUsers.Add(newDesktopUser);
-            ctx.SaveChanges();
+            ctx.DesktopUsers.Add(newDesktopUser);
+            ctx.SaveChanges();
         }
 
         public static DesktopUser GetAdminUser()
         {
-            var ctx = AppDBContext.Instance();
+            var ctx = AppDBContext.Instance();
 
-            return ctx.DesktopUsers.SingleOrDefault(du => du.IsAdmin == true);
+            return ctx.DesktopUsers.SingleOrDefault(du => du.IsAdmin == true);
         }
 
         public static DesktopUser FindUser(string username)
         {
-            var ctx = AppDBContext.Instance();
+            var ctx = AppDBContext.Instance();
 
-            return ctx.DesktopUsers.SingleOrDefault(du => du.Username.ToLower() == username.ToLower() && du.VerifiedByAdmin == true && du.DeletedAt == null);
+            return ctx.DesktopUsers.SingleOrDefault(du => du.Username.ToLower() == username.ToLower() && du.VerifiedByAdmin == true && du.DeletedAt == null);
         }
 
         public static int GetUserID(string username)
         {
-            var ctx = AppDBContext.Instance();
+            var ctx = AppDBContext.Instance();
 
-            return ctx.DesktopUsers.SingleOrDefault(du => du.Username.ToLower() == username.ToLower() && du.DeletedAt == null).UserID;
+            return ctx.DesktopUsers.SingleOrDefault(du => du.Username.ToLower() == username.ToLower() && du.DeletedAt == null).UserID;
         }
 
         
 
         public static Language GetUserPreferredLanguage(int currentUserID)
         {
-            var ctx = AppDBContext.Instance();
+            var ctx = AppDBContext.Instance();
 
-            return ctx.DesktopUsers.SingleOrDefault(du => du.UserID == currentUserID && du.DeletedAt == null).PreferredLanguage;
+            return ctx.DesktopUsers.SingleOrDefault(du => du.UserID == currentUserID && du.DeletedAt == null).PreferredLanguage;
         }
 
         public static bool IsUserAdmin(int currentUserID)
         {
-            var ctx = AppDBContext.Instance();
+            var ctx = AppDBContext.Instance();
 
-            return ctx.DesktopUsers.SingleOrDefault(du => du.UserID == currentUserID && du.DeletedAt == null).IsAdmin;
+            return ctx.DesktopUsers.SingleOrDefault(du => du.UserID == currentUserID && du.DeletedAt == null).IsAdmin;
         }
 
         public static List<DesktopUser> GetAll()
         {
-            var ctx = AppDBContext.Instance();
+            var ctx = AppDBContext.Instance();
 
             return ctx.DesktopUsers.Where(du => du.DeletedAt == null)
                     .OrderByDescending(du => du.IsAdmin)
                     .ThenByDescending(du => du.VerifiedByAdmin)
                     .ThenBy(du => du.LastName)
-                    .ToList();
+                    .ToList();
         }
         
         public static DesktopUser GetCurrentUserByID(int currentUserID)
         {
-            var ctx = AppDBContext.Instance();
+            var ctx = AppDBContext.Instance();
 
-            return ctx.DesktopUsers.SingleOrDefault(du => du.UserID == currentUserID && du.DeletedAt == null);
+            return ctx.DesktopUsers.SingleOrDefault(du => du.UserID == currentUserID && du.DeletedAt == null);
         }
 
         public static void Update(DesktopUser currentUser)
         {
-            var ctx = AppDBContext.Instance();
+            var ctx = AppDBContext.Instance();
 
-            ctx.Entry(currentUser).State = EntityState.Modified;
-            ctx.SaveChanges();
+            ctx.Entry(currentUser).State = EntityState.Modified;
+            ctx.SaveChanges();
         }
     }
 }

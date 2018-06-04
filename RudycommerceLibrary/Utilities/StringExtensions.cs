@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Mail;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Utilities
 {
@@ -13,13 +13,13 @@ namespace RudycommerceLibrary.Utilities
         {
             try
             {
-                MailAddress m = new MailAddress(eMail);
+                MailAddress m = new MailAddress(eMail);
 
-                return true;
+                return true;
             }
             catch (FormatException)
             {
-                return false;
+                return false;
             }
         }
     }

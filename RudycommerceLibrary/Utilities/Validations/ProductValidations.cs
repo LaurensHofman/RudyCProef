@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Utilities.Validations
 {
@@ -12,20 +12,20 @@ namespace RudycommerceLibrary.Utilities.Validations
         {
             try
             {
-                int initialStock = int.Parse((string)input);
+                int initialStock = int.Parse((string)input);
 
                 if (initialStock < 0)
                 {
-                    return "NO-ML Please enter a positive number";
+                    return "NO-ML Please enter a positive number";
                 }
                 else
                 {
-                    return null;
+                    return null;
                 }
             }
             catch (Exception)
             {
-                return "NO-ML Please enter a valid number";
+                return "NO-ML Please enter a valid number";
             }            
         }
 
@@ -34,20 +34,20 @@ namespace RudycommerceLibrary.Utilities.Validations
         {
             try
             {
-                Decimal unitPrice = Decimal.Parse((string)input);
+                Decimal unitPrice = Decimal.Parse((string)input);
 
                 if (unitPrice <= 0)
                 {
-                    return "NO-ML Please enter a price over 0";
+                    return "NO-ML Please enter a price over 0";
                 }
                 else
                 {
-                    return null;
+                    return null;
                 }
             }
             catch (Exception)
             {
-                return "NO-ML Please enter a valid price";
+                return "NO-ML Please enter a valid price";
             }
         }
     }

@@ -1,11 +1,11 @@
-﻿using Rudycommerce.LanguageResources;
-using RudycommerceLibrary.Entities;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Rudycommerce.LanguageResources;
+using RudycommerceLibrary.Entities;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.BL
 {
@@ -13,13 +13,13 @@ namespace RudycommerceLibrary.BL
     //switch (preferredLanguage)
     //        {
     //            case "Nederlands":
-    //                return DutchCode.;
+    //                return DutchCode.;
 
     //            case "English":
-    //                return EnglishCode.;
+    //                return EnglishCode.;
 
     //            default:
-    //                return DutchCode.;
+    //                return DutchCode.;
     //        }
 
 public static class BL_Multilingual
@@ -29,21 +29,21 @@ public static class BL_Multilingual
             switch (selectedLanguage.LocalName)
             {
                 case "Nederlands":
-                    return "..\\LanguageResources\\Dutch.xaml";
+                    return "..\\LanguageResources\\Dutch.xaml";
                     
                 case "English":
-                    return "..\\LanguageResources\\English.xaml";
+                    return "..\\LanguageResources\\English.xaml";
 
                 default:
-                    return "..\\LanguageResources\\Dutch.xaml";
+                    return "..\\LanguageResources\\Dutch.xaml";
             }
         }
         
         public static List<Models.LocalizedLanguageItem> GetLocalizedListOfLanguages(Language selectedLanguage)
         {
-            List<Language> languages = BL_Language.GetAllLanguages();
+            List<Language> languages = BL_Language.GetAllLanguages();
 
-            List<Models.LocalizedLanguageItem> returnListLanguages = new List<Models.LocalizedLanguageItem>();
+            List<Models.LocalizedLanguageItem> returnListLanguages = new List<Models.LocalizedLanguageItem>();
 
             switch (selectedLanguage.LocalName)
             {
@@ -52,42 +52,42 @@ public static class BL_Multilingual
                     languages = languages.OrderByDescending(l => l.IsDefault)
                         .ThenByDescending(l => l.IsDesktopLanguage)
                         .ThenBy(l => l.DutchName)
-                        .ToList();
+                        .ToList();
 
                     foreach (Language language in languages)
                     {
-                        returnListLanguages.Add(new Models.LocalizedLanguageItem { ID = language.LanguageID, Name = language.DutchName });
+                        returnListLanguages.Add(new Models.LocalizedLanguageItem { ID = language.LanguageID, Name = language.DutchName });
                     }
-                    break;
+                    break;
 
                 case "English":
 
                     languages = languages.OrderByDescending(l => l.IsDefault)
                         .ThenByDescending(l => l.IsDesktopLanguage)
                         .ThenBy(l => l.EnglishName)
-                        .ToList();
+                        .ToList();
 
                     foreach (Language language in languages)
                     {
-                        returnListLanguages.Add(new Models.LocalizedLanguageItem { ID = language.LanguageID, Name = language.EnglishName });
+                        returnListLanguages.Add(new Models.LocalizedLanguageItem { ID = language.LanguageID, Name = language.EnglishName });
                     }
-                    break;
+                    break;
 
                 default:
 
                     languages = languages.OrderByDescending(l => l.IsDefault)
                         .ThenByDescending(l => l.IsDesktopLanguage)
                         .ThenBy(l => l.DutchName)
-                        .ToList();
+                        .ToList();
 
                     foreach (Language language in languages)
                     {
-                        returnListLanguages.Add(new Models.LocalizedLanguageItem { ID = language.LanguageID, Name = language.DutchName });
+                        returnListLanguages.Add(new Models.LocalizedLanguageItem { ID = language.LanguageID, Name = language.DutchName });
                     }
-                    break;
+                    break;
             }
 
-            return returnListLanguages;
+            return returnListLanguages;
         }
 
         public static CultureInfo GetCulture(Language selectedLanguage)
@@ -95,14 +95,14 @@ public static class BL_Multilingual
             switch (selectedLanguage.LocalName)
             {
                 case "Nederlands":
-                    return CultureInfo.CreateSpecificCulture("nl");
+                    return CultureInfo.CreateSpecificCulture("nl");
 
                 case "English":
-                    return CultureInfo.CreateSpecificCulture("en");
+                    return CultureInfo.CreateSpecificCulture("en");
 
                 default:
-                    return CultureInfo.CreateSpecificCulture("nl");                    
-            };
+                    return CultureInfo.CreateSpecificCulture("nl");                    
+            };
         }
 
         public static string UOVerifyAdminMessageBoxContent(string lastName, string firstName, Language preferredLanguage)
@@ -110,13 +110,13 @@ public static class BL_Multilingual
             switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
-                    return DutchCode.UOVerifyAdminMessageBoxContent(lastName, firstName);
+                    return DutchCode.UOVerifyAdminMessageBoxContent(lastName, firstName);
 
                 case "English":
-                    return EnglishCode.UOVerifyAdminMessageBoxContent(lastName, firstName);
+                    return EnglishCode.UOVerifyAdminMessageBoxContent(lastName, firstName);
 
                 default:
-                    return DutchCode.UOVerifyAdminMessageBoxContent(lastName, firstName);
+                    return DutchCode.UOVerifyAdminMessageBoxContent(lastName, firstName);
             }
         }
         
@@ -125,30 +125,30 @@ public static class BL_Multilingual
             switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
-                    return DutchCode.UOVerifyAdminMessageBoxTitle(lastName, firstName);
+                    return DutchCode.UOVerifyAdminMessageBoxTitle(lastName, firstName);
 
                 case "English":
-                    return EnglishCode.UOVerifyAdminMessageBoxTitle(lastName, firstName);
+                    return EnglishCode.UOVerifyAdminMessageBoxTitle(lastName, firstName);
 
                 default:
-                    return DutchCode.UOVerifyAdminMessageBoxTitle(lastName, firstName);
+                    return DutchCode.UOVerifyAdminMessageBoxTitle(lastName, firstName);
             }
         }
 
         public static string GetTranslatedDefaultLanguage(Language preferredLanguage)
         {
-            Language defaultLanguage = BL_Language.GetDefaultLanguage();
+            Language defaultLanguage = BL_Language.GetDefaultLanguage();
 
             switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
-                    return defaultLanguage.DutchName;
+                    return defaultLanguage.DutchName;
 
                 case "English":
-                    return defaultLanguage.EnglishName;
+                    return defaultLanguage.EnglishName;
 
                 default:
-                    return defaultLanguage.DutchName;
+                    return defaultLanguage.DutchName;
             }
         }
         public static string UODeleteUserMessageBoxContent(string lastName, string firstName, Language preferredLanguage)
@@ -156,13 +156,13 @@ public static class BL_Multilingual
             switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
-                    return DutchCode.UODeleteUserMessageBoxContent(lastName, firstName);
+                    return DutchCode.UODeleteUserMessageBoxContent(lastName, firstName);
 
                 case "English":
-                    return EnglishCode.UODeleteUserMessageBoxContent(lastName, firstName);
+                    return EnglishCode.UODeleteUserMessageBoxContent(lastName, firstName);
 
                 default:
-                    return DutchCode.UODeleteUserMessageBoxContent(lastName, firstName);
+                    return DutchCode.UODeleteUserMessageBoxContent(lastName, firstName);
             }
         }
 
@@ -171,13 +171,13 @@ public static class BL_Multilingual
             switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
-                    return DutchCode.UODeleteUserMessageBoxTitle(lastName, firstName);
+                    return DutchCode.UODeleteUserMessageBoxTitle(lastName, firstName);
 
                 case "English":
-                    return EnglishCode.UODeleteUserMessageBoxTitle(lastName, firstName);
+                    return EnglishCode.UODeleteUserMessageBoxTitle(lastName, firstName);
 
                 default:
-                    return DutchCode.UODeleteUserMessageBoxTitle(lastName, firstName);
+                    return DutchCode.UODeleteUserMessageBoxTitle(lastName, firstName);
             }
         }
 
@@ -186,13 +186,13 @@ public static class BL_Multilingual
             switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
-                    return DutchCode.UOMakeUserAdminMessageBoxContent(lastName, firstName);
+                    return DutchCode.UOMakeUserAdminMessageBoxContent(lastName, firstName);
 
                 case "English":
-                    return EnglishCode.UOMakeUserAdminMessageBoxContent(lastName, firstName);
+                    return EnglishCode.UOMakeUserAdminMessageBoxContent(lastName, firstName);
 
                 default:
-                    return DutchCode.UOMakeUserAdminMessageBoxContent(lastName, firstName);
+                    return DutchCode.UOMakeUserAdminMessageBoxContent(lastName, firstName);
             }
         }
 
@@ -201,13 +201,13 @@ public static class BL_Multilingual
             switch (preferredLanguage.LocalName)
             {
                 case "Nederlands":
-                    return DutchCode.UOMakeUserAdminMessageBoxTitle(lastName, firstName);
+                    return DutchCode.UOMakeUserAdminMessageBoxTitle(lastName, firstName);
 
                 case "English":
-                    return EnglishCode.UOMakeUserAdminMessageBoxTitle(lastName, firstName);
+                    return EnglishCode.UOMakeUserAdminMessageBoxTitle(lastName, firstName);
 
                 default:
-                    return DutchCode.UOMakeUserAdminMessageBoxTitle(lastName, firstName);
+                    return DutchCode.UOMakeUserAdminMessageBoxTitle(lastName, firstName);
             }
         }
     }

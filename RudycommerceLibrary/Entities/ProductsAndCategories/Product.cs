@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RudycommerceLibrary.Entities.ProductsAndCategories
 {
@@ -13,42 +13,42 @@ namespace RudycommerceLibrary.Entities.ProductsAndCategories
     {
         [Key]
         [Column("product_id")]
-        public int ProductID { get; set; }
+        public int ProductID { get; set; }
 
         [Column("unit_price")]
         [Required]
-        public decimal? UnitPrice { get; set; }
+        public decimal? UnitPrice { get; set; }
 
         [Column("is_active")]
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         [Column("intial_stock")]
         [Required]
-        public int? InitialStock { get; set; }
+        public int? InitialStock { get; set; }
 
         [Column("current_stock")]
         [Required]
-        public int CurrentStock { get; set; }
+        public int CurrentStock { get; set; }
         
         [Column("category_id")]
-        public int CategoryID { get; set; }
+        public int CategoryID { get; set; }
 
-        public virtual ProductCategory ProductCategory { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
 
         public Product()
         {
-            this.IsActive = true;
+            this.IsActive = true;
         }
 
         public override bool IsNew()
         {
-            return this.ProductID <= 0;
+            return this.ProductID <= 0;
         }
 
-        public virtual ICollection<ProductImage> Images { get; set; }
-        public virtual ICollection<Article> Articles { get; set; }
-        public virtual ICollection<Localized.LocalizedProduct> LocalizedProducts { get; set; }
-        public virtual ICollection<Localized.Product_ProductProperties> Product_SpecificProductProperties { get; set; }
-        public virtual ICollection<Localized.Values_Product_ProductProperties> Values_Product_Properties { get; set; }
+        public virtual ICollection<ProductImage> Images { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
+        public virtual ICollection<Localized.LocalizedProduct> LocalizedProducts { get; set; }
+        public virtual ICollection<Localized.Product_ProductProperties> Product_SpecificProductProperties { get; set; }
+        public virtual ICollection<Localized.Values_Product_ProductProperties> Values_Product_Properties { get; set; }
     }
 }
