@@ -1,31 +1,31 @@
-﻿using MahApps.Metro.Controls;
-using RudycommerceLibrary;
-using RudycommerceLibrary.BL;
-using RudycommerceLibrary.CustomExceptions;
-using RudycommerceLibrary.Entities;
-using RudycommerceLibrary.Entities.ProductsAndCategories;
-using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
-using RudycommerceLibrary.Models;
-using RudycommerceLibrary.View;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using RudycommerceLibrary.Properties;
+﻿using MahApps.Metro.Controls;
+using RudycommerceLibrary;
+using RudycommerceLibrary.BL;
+using RudycommerceLibrary.CustomExceptions;
+using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Entities.ProductsAndCategories;
+using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
+using RudycommerceLibrary.Models;
+using RudycommerceLibrary.View;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
+using System.Linq;
+using System.Resources;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using RudycommerceLibrary.Properties;
 
 namespace Rudycommerce
 {
@@ -34,47 +34,47 @@ namespace Rudycommerce
     /// </summary>
     public partial class NewProductForm : UserControl
     {
-        private Thickness _defaultMargin = new Thickness { Top = 20 };
-        private const int _defaultHeight = 30;
-        private const int _defaultWidth = 300;
-        private const int _defaultLabelFontSize = 18;
-        private Thickness _defaultLabelPadding = new Thickness { Left = 0, Top = -5, Right = 0, Bottom = -5 };
-        private Brush _defaultLabelForeground = Brushes.Black;
+        private Thickness _defaultMargin = new Thickness { Top = 20 };
+        private const int _defaultHeight = 30;
+        private const int _defaultWidth = 300;
+        private const int _defaultLabelFontSize = 18;
+        private Thickness _defaultLabelPadding = new Thickness { Left = 0, Top = -5, Right = 0, Bottom = -5 };
+        private Brush _defaultLabelForeground = Brushes.Black;
 
         /// <summary>
         /// defines the image that is being dragged
         /// </summary>
-        Image image_to_drag;
+        Image image_to_drag;
 
         ///// <summary>
         ///// List of added product images
         ///// </summary>
-        //public List<ProductImage> ImageList { get; set; }
+        //public List<ProductImage> ImageList { get; set; }
 
         /// <summary>
         /// List of category ID's with their name, to fill the category selection combobox
         /// </summary>
-        public List<ProductCategory> CategoryList { get; set; }
+        public List<ProductCategory> CategoryList { get; set; }
         
         /// <summary>
         /// List of properties belonging to the selected category
         /// </summary>
-        public List<NecessaryProductPropertyViewItem> NecessaryProductPropertiesList { get; set; }
+        public List<NecessaryProductPropertyViewItem> NecessaryProductPropertiesList { get; set; }
 
         /// <summary>
         /// Model of the product, containing generic non-multilingual properties
         /// </summary>
-        public Product ProductModel { get; set; }
+        public Product ProductModel { get; set; }
 
         ///// <summary>
         ///// List containing the values of the properties belonging to the product
         ///// </summary>
-        //public List<Values_Product_SpecificProductProperties> LocalizedValuesProduct_SpecificProductProperties { get; set; }
+        //public List<Values_Product_SpecificProductProperties> LocalizedValuesProduct_SpecificProductProperties { get; set; }
 
         /// <summary>
         /// List of languages with their names
         /// </summary>
-        public List<LocalizedLanguageItem> LocalizedLanguageList { get; set; }
+        public List<LocalizedLanguageItem> LocalizedLanguageList { get; set; }
 
         
 
@@ -83,18 +83,18 @@ namespace Rudycommerce
         /// </summary>
         public NewProductForm()
         {
-            InitializeComponent();
+            InitializeComponent();
 
-            ProductModel = new Product();
+            ProductModel = new Product();
             
-            ProductModel.Values_Product_Properties = new List<Values_Product_ProductProperties>();
-            ProductModel.Images = new List<ProductImage>();
+            ProductModel.Values_Product_Properties = new List<Values_Product_ProductProperties>();
+            ProductModel.Images = new List<ProductImage>();
             
-            grdNewProductForm.DataContext = this;
+            grdNewProductForm.DataContext = this;
 
-            SetLanguageDictionary(UserSettings.UserLanguage);
+            SetLanguageDictionary(UserSettings.UserLanguage);
 
-            SetCategoryComboBoxContent();
+            SetCategoryComboBoxContent();
         }
 
         /// <summary>
@@ -105,18 +105,18 @@ namespace Rudycommerce
         {
             try
             {
-                ResourceDictionary dict = new ResourceDictionary();
+                ResourceDictionary dict = new ResourceDictionary();
 
-                dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
+                dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
 
-                this.Resources.MergedDictionaries.Add(dict);
+                this.Resources.MergedDictionaries.Add(dict);
 
-                Thread.CurrentThread.CurrentUICulture = BL_Multilingual.GetCulture(selectedLanguage);
+                Thread.CurrentThread.CurrentUICulture = BL_Multilingual.GetCulture(selectedLanguage);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " [180501A]", "NO-ML Error", MessageBoxButton.OK);
-                btnCancel_Click(null, null);
+                MessageBox.Show(ex.Message + " [180501A]", "NO-ML Error", MessageBoxButton.OK);
+                btnCancel_Click(null, null);
             }            
         }
 
@@ -127,12 +127,12 @@ namespace Rudycommerce
         {
             try
             {
-                CategoryList = BL_ProductCategory.GetLocalizedCategories(UserSettings.UserLanguage);
+                CategoryList = BL_ProductCategory.GetLocalizedCategories(UserSettings.UserLanguage);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " [180501B]", "NO-ML ERROR", MessageBoxButton.OK);
-                btnCancel_Click(null, null);
+                MessageBox.Show(ex.Message + " [180501B]", "NO-ML ERROR", MessageBoxButton.OK);
+                btnCancel_Click(null, null);
             }
         }
 
@@ -145,23 +145,23 @@ namespace Rudycommerce
         {
             try
             {
-                tabItemMultilingualProperties.Visibility = Visibility.Visible;
-                tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
+                tabItemMultilingualProperties.Visibility = Visibility.Visible;
+                tabItemNonMultilingualProperties.Visibility = Visibility.Visible;
 
                 //Gets the properties belonging to the selected category
                 NecessaryProductPropertiesList = BL_SpecificProductProperty
-                    .GetNecessaryProductProperties(UserSettings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
+                    .GetNecessaryProductProperties(UserSettings.UserLanguage, int.Parse(cmbxCategories.SelectedValue.ToString()));
 
-                ProductModel.LocalizedProducts = new List<LocalizedProduct>();
-                ProductModel.Values_Product_Properties = new List<Values_Product_ProductProperties>();
+                ProductModel.LocalizedProducts = new List<LocalizedProduct>();
+                ProductModel.Values_Product_Properties = new List<Values_Product_ProductProperties>();
 
-                CreateMultilingualTabsForEachLanguage();
-                FillNonMultilingualInputTab();
+                CreateMultilingualTabsForEachLanguage();
+                FillNonMultilingualInputTab();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " [180501C]", "NO-ML ERROR", MessageBoxButton.OK);
-                btnCancel_Click(null, null);
+                MessageBox.Show(ex.Message + " [180501C]", "NO-ML ERROR", MessageBoxButton.OK);
+                btnCancel_Click(null, null);
             }            
         }
 
@@ -172,14 +172,14 @@ namespace Rudycommerce
         /// </summary>
         private void CreateMultilingualTabsForEachLanguage()
         {
-            TabControlLanguages.Items.Clear();
+            TabControlLanguages.Items.Clear();
 
-            LocalizedLanguageList = BL_Multilingual.GetLocalizedListOfLanguages(UserSettings.UserLanguage);
+            LocalizedLanguageList = BL_Multilingual.GetLocalizedListOfLanguages(UserSettings.UserLanguage);
 
             // Creates tab for each language
             foreach (LocalizedLanguageItem langItem in LocalizedLanguageList)
             {
-                CreateLocalizedTab(langItem);
+                CreateLocalizedTab(langItem);
             }
         }
        
@@ -189,23 +189,23 @@ namespace Rudycommerce
         /// <param name="langItem"></param>
         private void CreateLocalizedTab(LocalizedLanguageItem langItem)
         {
-            MetroTabItem tabItem = CreateMetroTabItem(langItem);
-            Grid tabGrid = new Grid { Style = Application.Current.Resources["GridBelowTabItem"] as Style };
+            MetroTabItem tabItem = CreateMetroTabItem(langItem);
+            Grid tabGrid = new Grid { Style = Application.Current.Resources["GridBelowTabItem"] as Style };
 
             //Creates a wrappanel, so the stackpanel with the labels and the stackpanel with the input are nicely next to eachother
-            WrapPanel wrapForStacks = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Center };
+            WrapPanel wrapForStacks = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Center };
 
-            StackPanel stackPanelLeft = CreateLeftStackPanelForLabelsMultilingual(langItem);
-            StackPanel stackPanelRight = CreateRightStackPanelForInputMultilingual(langItem);
+            StackPanel stackPanelLeft = CreateLeftStackPanelForLabelsMultilingual(langItem);
+            StackPanel stackPanelRight = CreateRightStackPanelForInputMultilingual(langItem);
 
-            wrapForStacks.Children.Add(stackPanelLeft);
-            wrapForStacks.Children.Add(stackPanelRight);
+            wrapForStacks.Children.Add(stackPanelLeft);
+            wrapForStacks.Children.Add(stackPanelRight);
 
-            tabGrid.Children.Add(wrapForStacks);
+            tabGrid.Children.Add(wrapForStacks);
 
-            tabItem.Content = tabGrid;
+            tabItem.Content = tabGrid;
 
-            TabControlLanguages.Items.Add(tabItem);
+            TabControlLanguages.Items.Add(tabItem);
         }
 
         /// <summary>
@@ -219,11 +219,11 @@ namespace Rudycommerce
             LocalizedProduct localProduct = new LocalizedProduct()
             {
                 LanguageID = langItem.ID
-            };
+            };
 
             #region Creates textboxes for name and description
 
-            StackPanel stackRight = new StackPanel();
+            StackPanel stackRight = new StackPanel();
 
             TextBox txtName = new TextBox
             {
@@ -231,12 +231,12 @@ namespace Rudycommerce
                 Width = _defaultWidth,
                 Margin = _defaultMargin,
                 VerticalContentAlignment = VerticalAlignment.Center
-            };
+            };
             Binding nameBinding = new Binding("Name")
             {
                 Source = localProduct
-            };
-            txtName.SetBinding(TextBox.TextProperty, nameBinding);
+            };
+            txtName.SetBinding(TextBox.TextProperty, nameBinding);
 
             TextBox txtDescription = new TextBox
             {
@@ -245,15 +245,15 @@ namespace Rudycommerce
                 TextWrapping = TextWrapping.Wrap,
                 AcceptsReturn = true,
                 Margin = _defaultMargin
-            };
+            };
             Binding descriptionBinding = new Binding("Description")
             {
                 Source = localProduct
-            };
-            txtDescription.SetBinding(TextBox.TextProperty, descriptionBinding);
+            };
+            txtDescription.SetBinding(TextBox.TextProperty, descriptionBinding);
 
-            stackRight.Children.Add(txtName);
-            stackRight.Children.Add(txtDescription);
+            stackRight.Children.Add(txtName);
+            stackRight.Children.Add(txtDescription);
 
             #endregion
 
@@ -268,7 +268,7 @@ namespace Rudycommerce
                 {
                     ProductPropertyID = necessaryProperty.PropertyID,
                     LanguageID = langItem.ID
-                };
+                };
 
                 // Make textbox
 
@@ -278,22 +278,22 @@ namespace Rudycommerce
                     Width = _defaultWidth,
                     VerticalContentAlignment = VerticalAlignment.Center,
                     Margin = _defaultMargin
-                };
+                };
                 Binding customTextboxBinding = new Binding("Value")
                 {
                     Source = valueProperty
-                };
-                customTextbox.SetBinding(TextBox.TextProperty, customTextboxBinding);
+                };
+                customTextbox.SetBinding(TextBox.TextProperty, customTextboxBinding);
 
-                stackRight.Children.Add(customTextbox);
+                stackRight.Children.Add(customTextbox);
 
-                ProductModel.Values_Product_Properties.Add(valueProperty);
-                //Product_ProductPropertiesList.Add(productProp);
+                ProductModel.Values_Product_Properties.Add(valueProperty);
+                //Product_ProductPropertiesList.Add(productProp);
             }
 
-            ProductModel.LocalizedProducts.Add(localProduct);
+            ProductModel.LocalizedProducts.Add(localProduct);
 
-            return stackRight;
+            return stackRight;
         }
 
         /// <summary>
@@ -303,7 +303,7 @@ namespace Rudycommerce
         /// <returns></returns>
         private StackPanel CreateLeftStackPanelForLabelsMultilingual(LocalizedLanguageItem langItem)
         {
-            StackPanel stackLeft = new StackPanel();
+            StackPanel stackLeft = new StackPanel();
             Label labelName = new Label
             {
                 Content = LangResource.Name + " : ",
@@ -313,7 +313,7 @@ namespace Rudycommerce
                 Margin = _defaultMargin,
                 Padding = _defaultLabelPadding,
                 HorizontalContentAlignment = HorizontalAlignment.Right
-            };
+            };
             Label labelDescription = new Label
             {
                 Content = LangResource.Description +  " : ",
@@ -323,10 +323,10 @@ namespace Rudycommerce
                 Margin = new Thickness { Top = 20, Bottom = 120 },
                 Padding = _defaultLabelPadding,
                 HorizontalContentAlignment = HorizontalAlignment.Right
-            };
+            };
 
-            stackLeft.Children.Add(labelName);
-            stackLeft.Children.Add(labelDescription);
+            stackLeft.Children.Add(labelName);
+            stackLeft.Children.Add(labelDescription);
 
             foreach (NecessaryProductPropertyViewItem necessaryProperty in
                 NecessaryProductPropertiesList.Where(np => np.IsMultilingual == true && np.IsEnumeration == false)/*.OrderByDescending(np => np.IsRequired)*/)
@@ -340,11 +340,11 @@ namespace Rudycommerce
                     Margin = _defaultMargin,
                     Padding = _defaultLabelPadding,
                     HorizontalContentAlignment = HorizontalAlignment.Right
-                };
-                stackLeft.Children.Add(customLabel);
+                };
+                stackLeft.Children.Add(customLabel);
             }
 
-            return stackLeft;
+            return stackLeft;
         }
 
         /// <summary>
@@ -360,7 +360,7 @@ namespace Rudycommerce
                 Name = $"tab{langItem.ID}",
                 Padding = new Thickness { Left = 25, Right = 25 },
                 Background = Brushes.Beige
-            };
+            };
 
             //https://stackoverflow.com/questions/23377194/overwrite-mahapps-metro-style-for-me-header-tabitem
             //https://social.msdn.microsoft.com/Forums/vstudio/en-US/ffcd8d49-267c-4ccb-8ceb-b80305447cb4/c-wpf-implementing-style-using-code?forum=wpf
@@ -369,24 +369,24 @@ namespace Rudycommerce
             Style AutoGeneratedTabItem = new Style
             {
                 TargetType = typeof(MetroTabItem)
-            };
+            };
 
             // Adds a setter to give the tabItem border
             Setter SelectedStyle = new Setter
             {
                 Property = TabItem.BorderThicknessProperty,
                 Value = new Thickness { Top = 2, Bottom = 2, Left = 2, Right = 2 }
-            };
+            };
 
             // Adds a new trigger, for when the tabItem is selected
             Trigger SelectedTrigger = new Trigger
             {
                 Property = TabItem.IsSelectedProperty,
                 Value = true
-            };
+            };
 
             // When the tabItem gets selected, it will generate borders, to clearly see which one is selected
-            SelectedTrigger.Setters.Add(SelectedStyle);
+            SelectedTrigger.Setters.Add(SelectedStyle);
 
 
             // The same as above for when it is selected, but now to revert the change when unselected
@@ -394,21 +394,21 @@ namespace Rudycommerce
             {
                 Property = TabItem.BorderThicknessProperty,
                 Value = new Thickness { Top = 0, Bottom = 0, Left = 1, Right = 1 }
-            };
+            };
             Trigger NotSelectedTrigger = new Trigger
             {
                 Property = TabItem.IsSelectedProperty,
                 Value = false
-            };
-            NotSelectedTrigger.Setters.Add(NotSelectedStyle);
+            };
+            NotSelectedTrigger.Setters.Add(NotSelectedStyle);
 
-            AutoGeneratedTabItem.Triggers.Add(SelectedTrigger);
-            AutoGeneratedTabItem.Triggers.Add(NotSelectedTrigger);
+            AutoGeneratedTabItem.Triggers.Add(SelectedTrigger);
+            AutoGeneratedTabItem.Triggers.Add(NotSelectedTrigger);
 
-            AutoGeneratedTabItem.Setters.Add(new Setter() { Property = ControlsHelper.HeaderFontSizeProperty, Value = 18.0 });
-            metroTab.Style = AutoGeneratedTabItem;
+            AutoGeneratedTabItem.Setters.Add(new Setter() { Property = ControlsHelper.HeaderFontSizeProperty, Value = 18.0 });
+            metroTab.Style = AutoGeneratedTabItem;
 
-            return metroTab;
+            return metroTab;
         }
 
         #region NonMultilingualInput
@@ -418,9 +418,9 @@ namespace Rudycommerce
         /// </summary>
         private void FillNonMultilingualInputTab()
         {
-            NonMLStackLeftLabels.Children.Clear();
-            NonMLStackRightInput.Children.Clear();
-            //Product_ProductPropertiesList.Clear();
+            NonMLStackLeftLabels.Children.Clear();
+            NonMLStackRightInput.Children.Clear();
+            //Product_ProductPropertiesList.Clear();
 
             foreach (NecessaryProductPropertyViewItem necessaryProperty in 
                 NecessaryProductPropertiesList.Where(np => np.IsMultilingual == false || np.IsEnumeration == true)
@@ -433,29 +433,29 @@ namespace Rudycommerce
                     //Product_SpecificProductProperties productProperty = new Product_SpecificProductProperties()
                     //{
                     //    SpecificProductPropertyID = necessaryProperty.PropertyID
-                    //};
+                    //};
 
                     Values_Product_ProductProperties localValue = new Values_Product_ProductProperties()
                     {
                         ProductPropertyID = necessaryProperty.PropertyID,
                         LanguageID = null
-                    };
+                    };
                     
                     if (necessaryProperty.IsBool == false)
                     {
-                        TextBox customTextbox = createNonMultilingualTextBox(localValue);
+                        TextBox customTextbox = createNonMultilingualTextBox(localValue);
 
-                        NonMLStackRightInput.Children.Add(customTextbox);
-                        //Product_ProductPropertiesList.Add(productProperty);
-                        ProductModel.Values_Product_Properties.Add(localValue);
+                        NonMLStackRightInput.Children.Add(customTextbox);
+                        //Product_ProductPropertiesList.Add(productProperty);
+                        ProductModel.Values_Product_Properties.Add(localValue);
                     }
                     else
                     {
-                        CheckBox customCheckbox = CreateNonMultilingualCheckBox(localValue);
+                        CheckBox customCheckbox = CreateNonMultilingualCheckBox(localValue);
 
-                        NonMLStackRightInput.Children.Add(customCheckbox);
-                        //Product_ProductPropertiesList.Add(productProperty);
-                        ProductModel.Values_Product_Properties.Add(localValue);
+                        NonMLStackRightInput.Children.Add(customCheckbox);
+                        //Product_ProductPropertiesList.Add(productProperty);
+                        ProductModel.Values_Product_Properties.Add(localValue);
                     }
                 }
                 else
@@ -464,13 +464,13 @@ namespace Rudycommerce
                     {
                         ProductPropertyID = necessaryProperty.PropertyID,
                         LanguageID = null
-                    };
+                    };
 
-                    ComboBox customComboBox = CreateNonMultilingualComboBox(valueProperty);
+                    ComboBox customComboBox = CreateNonMultilingualComboBox(valueProperty);
 
-                    NonMLStackRightInput.Children.Add(customComboBox);
+                    NonMLStackRightInput.Children.Add(customComboBox);
 
-                    ProductModel.Values_Product_Properties.Add(valueProperty);
+                    ProductModel.Values_Product_Properties.Add(valueProperty);
                 }                             
 
                 #endregion
@@ -485,9 +485,9 @@ namespace Rudycommerce
                     Margin = new Thickness { Top = 20 },
                     Padding = new Thickness { Left = 0, Top = -5, Right = 0, Bottom = -5 },
                     HorizontalContentAlignment = HorizontalAlignment.Right
-                };
+                };
 
-                NonMLStackLeftLabels.Children.Add(customLabel);
+                NonMLStackLeftLabels.Children.Add(customLabel);
                 #endregion
             }
         }
@@ -507,20 +507,20 @@ namespace Rudycommerce
                 Margin = _defaultMargin,
                 DisplayMemberPath = "Value",
                 SelectedValuePath = "EnumerationID"
-            };
+            };
 
             returnComboBox.SetBinding(ItemsControl.ItemsSourceProperty,
                 new Binding
                 {
                     Source = BL_SpecificProductProperty.
                     GetPropertyEnumerations(UserSettings.UserLanguage, valueProperty.ProductPropertyID)
-                });
+                });
 
             returnComboBox.SetBinding(
                Selector.SelectedValueProperty,
-               new Binding("EnumerationValueID") { Source = valueProperty });
+               new Binding("EnumerationValueID") { Source = valueProperty });
 
-            return returnComboBox;
+            return returnComboBox;
         }
 
         /// <summary>
@@ -535,14 +535,14 @@ namespace Rudycommerce
                 Height = _defaultHeight,
                 Margin = _defaultMargin,
                 VerticalContentAlignment = VerticalAlignment.Center
-            };
+            };
             Binding customCheckboxBinding = new Binding("Value")
             {
                 Source = localValue
-            };
-            returnCheckBox.SetBinding(CheckBox.IsCheckedProperty, customCheckboxBinding);
+            };
+            returnCheckBox.SetBinding(CheckBox.IsCheckedProperty, customCheckboxBinding);
 
-            return returnCheckBox;
+            return returnCheckBox;
         }
 
         /// <summary>
@@ -558,14 +558,14 @@ namespace Rudycommerce
                 Width = _defaultWidth,
                 VerticalContentAlignment = VerticalAlignment.Center,
                 Margin = _defaultMargin
-            };
+            };
             Binding customTextboxBinding = new Binding("Value")
             {
                 Source = localValue
-            };
-            returnTextBox.SetBinding(TextBox.TextProperty, customTextboxBinding);
+            };
+            returnTextBox.SetBinding(TextBox.TextProperty, customTextboxBinding);
 
-            return returnTextBox;
+            return returnTextBox;
         }
 
         #endregion
@@ -579,7 +579,7 @@ namespace Rudycommerce
         /// <param name="e"></param>
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Collapsed;
+            this.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -591,15 +591,15 @@ namespace Rudycommerce
         {
             try
             {
-                prog.IsIndeterminate = true;
-                await BL_Product.Create(ProductModel);
-                Console.Beep();
-                prog.IsIndeterminate = false;
+                prog.IsIndeterminate = true;
+                await BL_Product.Create(ProductModel);
+                Console.Beep();
+                prog.IsIndeterminate = false;
             }
             catch (SaveFailed)
             {
-                MessageBox.Show(LangResource.ErrSaveFailedContent, LangResource.ErrSaveFailedTitle, MessageBoxButton.OK);
-                prog.IsIndeterminate = false;
+                MessageBox.Show(LangResource.ErrSaveFailedContent, LangResource.ErrSaveFailedTitle, MessageBoxButton.OK);
+                prog.IsIndeterminate = false;
             }
         }
 
@@ -611,34 +611,34 @@ namespace Rudycommerce
         /// <param name="e"></param>
         private void AnimatedTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Thickness notSelected = new Thickness { Bottom = 0, Top = 0, Left = 1, Right = 1 };
-            Thickness Selected = new Thickness { Bottom = 2, Top = 2, Left = 2, Right = 2 };
+            Thickness notSelected = new Thickness { Bottom = 0, Top = 0, Left = 1, Right = 1 };
+            Thickness Selected = new Thickness { Bottom = 2, Top = 2, Left = 2, Right = 2 };
 
-            tabItemGeneral.BorderThickness = notSelected;
-            tabItemMultilingualProperties.BorderThickness = notSelected;
-            tabItemNonMultilingualProperties.BorderThickness = notSelected;
+            tabItemGeneral.BorderThickness = notSelected;
+            tabItemMultilingualProperties.BorderThickness = notSelected;
+            tabItemNonMultilingualProperties.BorderThickness = notSelected;
 
             if (tabItemGeneral.IsSelected)
             {
-                tabItemGeneral.BorderThickness = Selected;
+                tabItemGeneral.BorderThickness = Selected;
             }
             if (tabItemMultilingualProperties.IsSelected)
             {
-                tabItemMultilingualProperties.BorderThickness = Selected;
+                tabItemMultilingualProperties.BorderThickness = Selected;
             }
             if (tabItemNonMultilingualProperties.IsSelected)
             {
-                tabItemNonMultilingualProperties.BorderThickness = Selected;
+                tabItemNonMultilingualProperties.BorderThickness = Selected;
             }
         }
 
         #region Generating and moving images
 
-        private int _imgCounter = 0;
-        private const int _imgDefaultWidth = 120;
-        private const int _imgDefaultHeight = 120;
-        private const int _firstImageWidth = 250;
-        private const int _firstImageHeight = 250;
+        private int _imgCounter = 0;
+        private const int _imgDefaultWidth = 120;
+        private const int _imgDefaultHeight = 120;
+        private const int _firstImageWidth = 250;
+        private const int _firstImageHeight = 250;
 
         /// <summary>
         /// Opens a filedialog to select a wanted image, and adds it to the list of images
@@ -651,14 +651,14 @@ namespace Rudycommerce
             {
                 Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog
                 {
-                    Filter = "Image File (*.jpg; *.png)| *.jpg; *.png"
-                };
+                    Filter = "Image File (*.jpg; *.png)| *.jpg; *.png"
+                };
 
-                Nullable<bool> result = fileDialog.ShowDialog();
+                Nullable<bool> result = fileDialog.ShowDialog();
 
                 if (result == true)
                 {
-                    string filename = fileDialog.FileName;
+                    string filename = fileDialog.FileName;
 
                     Image img = new Image
                     {
@@ -668,28 +668,28 @@ namespace Rudycommerce
                         Margin = new Thickness(20, 0, 20, 0),
                         AllowDrop = true,
                         VerticalAlignment = VerticalAlignment.Stretch
-                    };
-                    img.DragEnter += Image_DragEnter;
-                    img.MouseLeftButtonDown += Image_MouseLeftButtonDown;
+                    };
+                    img.DragEnter += Image_DragEnter;
+                    img.MouseLeftButtonDown += Image_MouseLeftButtonDown;
 
 
                     ProductImage imgItem = new ProductImage
                     {
                         FileLocation = filename,
                         Order = _imgCounter
-                    };
+                    };
 
-                    ProductModel.Images.Add(imgItem);
+                    ProductModel.Images.Add(imgItem);
 
-                    imgPnl.Children.Add(img);
+                    imgPnl.Children.Add(img);
 
-                    _imgCounter += 1;
+                    _imgCounter += 1;
                 }
             }
             catch (Exception)
             {
                 // TODO
-                throw;
+                throw;
             }
             
         }
@@ -701,58 +701,58 @@ namespace Rudycommerce
         /// <param name="e"></param>
         private void Image_DragEnter(object sender, DragEventArgs e)
         {
-            Image img = (Image)e.Source;
-            int where_to_drop = imgPnl.Children.IndexOf(img);
-            int initial_location = imgPnl.Children.IndexOf(image_to_drag);
+            Image img = (Image)e.Source;
+            int where_to_drop = imgPnl.Children.IndexOf(img);
+            int initial_location = imgPnl.Children.IndexOf(image_to_drag);
 
-            imgPnl.Children.Remove(image_to_drag);
-            imgPnl.Children.Insert(where_to_drop, image_to_drag);
+            imgPnl.Children.Remove(image_to_drag);
+            imgPnl.Children.Insert(where_to_drop, image_to_drag);
 
-            int differenceLocation = Math.Abs(where_to_drop - initial_location);
+            int differenceLocation = Math.Abs(where_to_drop - initial_location);
 
             if ( differenceLocation == 1 || differenceLocation == 0 )
             {           
-                ProductImage temporary = ProductModel.Images.Single(x => x.Order == initial_location);
-                ProductImage temporary2 = ProductModel.Images.Single(x => x.Order == where_to_drop);
+                ProductImage temporary = ProductModel.Images.Single(x => x.Order == initial_location);
+                ProductImage temporary2 = ProductModel.Images.Single(x => x.Order == where_to_drop);
 
-                temporary.Order = where_to_drop;
-                temporary2.Order = initial_location;
+                temporary.Order = where_to_drop;
+                temporary2.Order = initial_location;
             }
             else
             {
                 if (initial_location < where_to_drop)
                 {
-                    ProductImage draggedImage = ProductModel.Images.Single(x => x.Order == initial_location);
+                    ProductImage draggedImage = ProductModel.Images.Single(x => x.Order == initial_location);
 
-                    for (int i = initial_location + 1; i <= where_to_drop; i++)
+                    for (int i = initial_location + 1; i <= where_to_drop; i++)
                     {
-                        ProductModel.Images.Single(x => x.Order == i).Order = i - 1;
+                        ProductModel.Images.Single(x => x.Order == i).Order = i - 1;
                     }
 
-                    draggedImage.Order = where_to_drop;
+                    draggedImage.Order = where_to_drop;
                 }
                 else
                 {
-                    ProductImage draggedImage = ProductModel.Images.Single(x => x.Order == initial_location);
+                    ProductImage draggedImage = ProductModel.Images.Single(x => x.Order == initial_location);
 
-                    for (int i = initial_location - 1; i >= where_to_drop; i--)
+                    for (int i = initial_location - 1; i >= where_to_drop; i--)
                     {
-                        ProductModel.Images.Single(x => x.Order == i).Order = i + 1;
+                        ProductModel.Images.Single(x => x.Order == i).Order = i + 1;
                     }
 
-                    draggedImage.Order = where_to_drop;
+                    draggedImage.Order = where_to_drop;
                 }                
             }
 
             foreach (var item in imgPnl.Children)
             {
-                Image image = item as Image;
+                Image image = item as Image;
 
-                image.Height = imgPnl.Children.IndexOf(image) != 0 ? _imgDefaultHeight : _firstImageHeight;
-                image.Width = imgPnl.Children.IndexOf(image) != 0 ? _imgDefaultWidth : _firstImageWidth;
+                image.Height = imgPnl.Children.IndexOf(image) != 0 ? _imgDefaultHeight : _firstImageHeight;
+                image.Width = imgPnl.Children.IndexOf(image) != 0 ? _imgDefaultWidth : _firstImageWidth;
             }
 
-            ProductModel.Images = ProductModel.Images.OrderBy(x => x.Order).ToList() ;            
+            ProductModel.Images = ProductModel.Images.OrderBy(x => x.Order).ToList() ;            
         }
 
         /// <summary>
@@ -762,8 +762,8 @@ namespace Rudycommerce
         /// <param name="e"></param>
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            image_to_drag = (Image)e.Source;
-            DragDrop.DoDragDrop(image_to_drag, image_to_drag, DragDropEffects.Move);
+            image_to_drag = (Image)e.Source;
+            DragDrop.DoDragDrop(image_to_drag, image_to_drag, DragDropEffects.Move);
         }
 
         #endregion

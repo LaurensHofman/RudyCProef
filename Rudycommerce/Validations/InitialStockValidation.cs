@@ -1,11 +1,11 @@
-﻿using RudycommerceLibrary.Utilities.Validations;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using RudycommerceLibrary.Utilities.Validations;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Rudycommerce.Validations
 {
@@ -15,15 +15,15 @@ namespace Rudycommerce.Validations
 
         public override ValidationResult Validate(object input, CultureInfo cultureInfo)
         {
-            string errorMessage = ProductValidations.InitialStockValidation(input);
+            string errorMessage = ProductValidations.InitialStockValidation(input);
 
             if (errorMessage == null)
             {
-                return ValidationResult.ValidResult;
+                return ValidationResult.ValidResult;
             }
             else
             {
-                return new ValidationResult(false, errorMessage);
+                return new ValidationResult(false, errorMessage);
             }
         }
     }

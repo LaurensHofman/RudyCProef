@@ -1,22 +1,22 @@
-﻿using RudycommerceLibrary;
-using RudycommerceLibrary.BL;
-using RudycommerceLibrary.Entities;
-using RudycommerceLibrary.View;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using RudycommerceLibrary;
+using RudycommerceLibrary.BL;
+using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.View;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace Rudycommerce.WindowsAndUserControls.Products
 {
@@ -25,48 +25,48 @@ namespace Rudycommerce.WindowsAndUserControls.Products
     /// </summary>
     public partial class ProductOverview : UserControl
     {
-        public ObservableCollection<ProductOverViewItem> ProductOverviewList { get; set; }
+        public ObservableCollection<ProductOverViewItem> ProductOverviewList { get; set; }
 
         public ProductOverview()
         {
-            InitializeComponent();
+            InitializeComponent();
 
-            SetLanguageDictionary(UserSettings.UserLanguage);
+            SetLanguageDictionary(UserSettings.UserLanguage);
 
-            SetDataGridContent();            
+            SetDataGridContent();            
         }
 
         private void SetLanguageDictionary(Language selectedLanguage)
         {
-            ResourceDictionary dict = new ResourceDictionary();
+            ResourceDictionary dict = new ResourceDictionary();
 
-            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
+            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
 
-            this.Resources.MergedDictionaries.Add(dict);
+            this.Resources.MergedDictionaries.Add(dict);
         }
 
         private void SetDataGridContent()
         {
-            ProductOverviewList = new ObservableCollection<ProductOverViewItem>( BL_Product.GetProductOverview(UserSettings.UserLanguage) );
-            BindData();
+            ProductOverviewList = new ObservableCollection<ProductOverViewItem>( BL_Product.GetProductOverview(UserSettings.UserLanguage) );
+            BindData();
         }
 
         private void BindData()
         {
-            dgProductOverview.DataContext = ProductOverviewList;
-            dgProductOverview.ItemsSource = ProductOverviewList; 
+            dgProductOverview.DataContext = ProductOverviewList;
+            dgProductOverview.ItemsSource = ProductOverviewList; 
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Collapsed;
+            this.Visibility = Visibility.Collapsed;
         }
 
         private void ModifyProduct_Click(object sender, RoutedEventArgs e)
         {
-            //int productID = (((FrameworkElement)sender).DataContext as ProductOverViewItem).ProductID;
+            //int productID = (((FrameworkElement)sender).DataContext as ProductOverViewItem).ProductID;
 
-            //this.Content = new NewProductForm(productID);
+            //this.Content = new NewProductForm(productID);
         }
     }
 }

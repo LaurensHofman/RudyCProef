@@ -1,24 +1,24 @@
-﻿using Rudycommerce.LanguageResources;
-using RudycommerceLibrary.BL;
-using RudycommerceLibrary.Entities;
-using RudycommerceLibrary.Properties;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using Rudycommerce.LanguageResources;
+using RudycommerceLibrary.BL;
+using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Properties;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace Rudycommerce
 {
@@ -27,34 +27,34 @@ namespace Rudycommerce
     /// </summary>
     public partial class UserOverview : UserControl
     {
-        public delegate void AdminLostRights();
-        public event AdminLostRights LostAdminRights;
+        public delegate void AdminLostRights();
+        public event AdminLostRights LostAdminRights;
 
         public UserOverview()
         {
-            InitializeComponent();
-            BindData();
+            InitializeComponent();
+            BindData();
             
-            SetLanguageDictionary(UserSettings.UserLanguage);
+            SetLanguageDictionary(UserSettings.UserLanguage);
         }
 
         private void SetLanguageDictionary(Language preferredLanguage)
         {
-            ResourceDictionary dict = new ResourceDictionary();
+            ResourceDictionary dict = new ResourceDictionary();
 
-            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(preferredLanguage), UriKind.Relative);
+            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(preferredLanguage), UriKind.Relative);
 
-            this.Resources.MergedDictionaries.Add(dict);
+            this.Resources.MergedDictionaries.Add(dict);
         }
 
-        public ObservableCollection<DesktopUser> dataSourceUsers { get; set; }
+        public ObservableCollection<DesktopUser> dataSourceUsers { get; set; }
 
         private void BindData()
         {
-            dataSourceUsers = new ObservableCollection<DesktopUser>(BL_DesktopUser.GetAll());
-            dataSourceUsers.CollectionChanged += DataSourceChanged;
-            dgrdUserOverview.ItemsSource = dataSourceUsers;
-            dgrdUserOverview.DataContext = dataSourceUsers;
+            dataSourceUsers = new ObservableCollection<DesktopUser>(BL_DesktopUser.GetAll());
+            dataSourceUsers.CollectionChanged += DataSourceChanged;
+            dgrdUserOverview.ItemsSource = dataSourceUsers;
+            dgrdUserOverview.DataContext = dataSourceUsers;
         }
         
         private void DataSourceChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -63,59 +63,59 @@ namespace Rudycommerce
             {
                 case NotifyCollectionChangedAction.Add:
                     foreach (DesktopUser du in e.NewItems)
-                        BL_DesktopUser.Update(du);
-                    break;
+                        BL_DesktopUser.Update(du);
+                    break;
 
                 case NotifyCollectionChangedAction.Remove:
                     foreach (DesktopUser du in e.OldItems)
-                        BL_DesktopUser.Delete(du);
-                    break;
+                        BL_DesktopUser.Delete(du);
+                    break;
             }
         }
         
         private void btnVerifyByAdmin_Click(object sender, RoutedEventArgs e)
         {
-            var user = ((FrameworkElement)sender).DataContext as DesktopUser;
+            var user = ((FrameworkElement)sender).DataContext as DesktopUser;
 
-            string messageboxContent = BL_Multilingual.UOVerifyAdminMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
-            string messageboxTitle = BL_Multilingual.UOVerifyAdminMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
+            string messageboxContent = BL_Multilingual.UOVerifyAdminMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
+            string messageboxTitle = BL_Multilingual.UOVerifyAdminMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
 
-            MessageBoxManager.Yes = LangResource.Yes;
-            MessageBoxManager.No = LangResource.No;
-            MessageBoxManager.Register();
+            MessageBoxManager.Yes = LangResource.Yes;
+            MessageBoxManager.No = LangResource.No;
+            MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent, messageboxTitle, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                MessageBoxManager.Unregister();
+                MessageBoxManager.Unregister();
 
-                BL_Mailing.UserVerified(user.LastName, user.FirstName, user.EMail, user.Username, user.PreferredLanguage);
+                BL_Mailing.UserVerified(user.LastName, user.FirstName, user.EMail, user.Username, user.PreferredLanguage);
 
-                BL_DesktopUser.VerifyByAdmin(user);
+                BL_DesktopUser.VerifyByAdmin(user);
 
-                BindData();                
+                BindData();                
             }
             else
-            { MessageBoxManager.Unregister(); }
+            { MessageBoxManager.Unregister(); }
         }
 
         private void dgrdUserOverview_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
-            DataGridRow _dgRow = e.Row;
-            var _changedValue = _dgRow.DataContext as DesktopUser;
+            DataGridRow _dgRow = e.Row;
+            var _changedValue = _dgRow.DataContext as DesktopUser;
 
-            BL_DesktopUser.Update(_changedValue);
+            BL_DesktopUser.Update(_changedValue);
         }
 
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
-            var user = ((FrameworkElement)sender).DataContext as DesktopUser;
+            var user = ((FrameworkElement)sender).DataContext as DesktopUser;
 
-            string messageboxContent = BL_Multilingual.UODeleteUserMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
-            string messageboxTitle = BL_Multilingual.UODeleteUserMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
+            string messageboxContent = BL_Multilingual.UODeleteUserMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
+            string messageboxTitle = BL_Multilingual.UODeleteUserMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
 
-            MessageBoxManager.Yes = LangResource.Yes;
-            MessageBoxManager.No = LangResource.No;
-            MessageBoxManager.Register();
+            MessageBoxManager.Yes = LangResource.Yes;
+            MessageBoxManager.No = LangResource.No;
+            MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent,
                                 messageboxTitle,
@@ -123,24 +123,24 @@ namespace Rudycommerce
                                 MessageBoxImage.Warning) 
                 == MessageBoxResult.Yes)
             {
-                MessageBoxManager.Unregister();
+                MessageBoxManager.Unregister();
 
-                dataSourceUsers.Remove(user);
+                dataSourceUsers.Remove(user);
             }
             else
-            { MessageBoxManager.Unregister(); }
+            { MessageBoxManager.Unregister(); }
         }
 
         private void btnMakeUserAdmin_Click(object sender, RoutedEventArgs e)
         {
-            var user = ((FrameworkElement)sender).DataContext as DesktopUser;
+            var user = ((FrameworkElement)sender).DataContext as DesktopUser;
 
-            string messageboxContent = BL_Multilingual.UOMakeUserAdminMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
-            string messageboxTitle = BL_Multilingual.UOMakeUserAdminMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
+            string messageboxContent = BL_Multilingual.UOMakeUserAdminMessageBoxContent(user.LastName, user.FirstName, UserSettings.UserLanguage);
+            string messageboxTitle = BL_Multilingual.UOMakeUserAdminMessageBoxTitle(user.LastName, user.FirstName, UserSettings.UserLanguage);
 
-            MessageBoxManager.Yes = LangResource.Yes;
-            MessageBoxManager.No = LangResource.No;
-            MessageBoxManager.Register();
+            MessageBoxManager.Yes = LangResource.Yes;
+            MessageBoxManager.No = LangResource.No;
+            MessageBoxManager.Register();
 
             if (MessageBox.Show(messageboxContent,
                                 messageboxTitle,
@@ -148,21 +148,21 @@ namespace Rudycommerce
                                 MessageBoxImage.Warning)
                 == MessageBoxResult.Yes)
             {
-                user.IsAdmin = true;
-                user.VerifiedByAdmin = true;
-                BL_DesktopUser.AdminLoseHisRights();
+                user.IsAdmin = true;
+                user.VerifiedByAdmin = true;
+                BL_DesktopUser.AdminLoseHisRights();
 
-                MessageBoxManager.Unregister();
+                MessageBoxManager.Unregister();
 
-                LostAdminRights();
+                LostAdminRights();
             }
             else
-            { MessageBoxManager.Unregister(); }
+            { MessageBoxManager.Unregister(); }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            Visibility = Visibility.Collapsed;
+            Visibility = Visibility.Collapsed;
         }
     }
 }

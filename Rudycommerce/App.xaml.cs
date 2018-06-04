@@ -1,11 +1,11 @@
-﻿using RudycommerceLibrary;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using RudycommerceLibrary;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace Rudycommerce
 {
@@ -14,6 +14,6 @@ namespace Rudycommerce
     /// </summary>
     public partial class App : Application
     {
-        AppDBContext ctx = AppDBContext.Instance(ConfigurationManager.ConnectionStrings["AppDbCS"].ConnectionString);
+        AppDBContext ctx = AppDBContext.Instance(ConfigurationManager.ConnectionStrings["AppDbCS"].ConnectionString);
     }
 }

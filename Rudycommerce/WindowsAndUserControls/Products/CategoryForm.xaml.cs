@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using RudycommerceLibrary;
-using RudycommerceLibrary.BL;
-using RudycommerceLibrary.CustomExceptions;
-using RudycommerceLibrary.Entities;
-using RudycommerceLibrary.Entities.ProductsAndCategories;
-using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
-using RudycommerceLibrary.Models;
-using RudycommerceLibrary.Properties;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using RudycommerceLibrary;
+using RudycommerceLibrary.BL;
+using RudycommerceLibrary.CustomExceptions;
+using RudycommerceLibrary.Entities;
+using RudycommerceLibrary.Entities.ProductsAndCategories;
+using RudycommerceLibrary.Entities.ProductsAndCategories.Localized;
+using RudycommerceLibrary.Models;
+using RudycommerceLibrary.Properties;
 
 namespace Rudycommerce
 {
@@ -29,27 +29,27 @@ namespace Rudycommerce
     /// </summary>
     public partial class CategoryForm : UserControl
     {
-        public ProductCategory ProductCategoryModel { get; set; }
+        public ProductCategory ProductCategoryModel { get; set; }
 
-        public List<LocalizedLanguageItem> LanguageList { get; set; }
+        public List<LocalizedLanguageItem> LanguageList { get; set; }
 
-        //public ObservableCollection<LanguageAndCategoryItem> LanguageAndCategoryList { get; set; }
-        //public ObservableCollection<PropertyAndCategoryItem> PropertyAndCategoryList { get; set; }
+        //public ObservableCollection<LanguageAndCategoryItem> LanguageAndCategoryList { get; set; }
+        //public ObservableCollection<PropertyAndCategoryItem> PropertyAndCategoryList { get; set; }
 
 
             
-        public ObservableCollection<LocalizedProperty> LocalizedSpecificProductPropertyList { get; set; }
+        public ObservableCollection<LocalizedProperty> LocalizedSpecificProductPropertyList { get; set; }
 
 
         public CategoryForm()
         {
-            InitializeComponent();
+            InitializeComponent();
 
-            SetLanguageDictionary(UserSettings.UserLanguage);
+            SetLanguageDictionary(UserSettings.UserLanguage);
 
-            InitializeModelsAndContents();
+            InitializeModelsAndContents();
 
-            SetSelectPropertyDataGridContent();
+            SetSelectPropertyDataGridContent();
         }
 
         #region PropertySelectionDataGrid
@@ -58,15 +58,15 @@ namespace Rudycommerce
         {            
             // Didn't apply EF Lazy Loading everywhere yet, if I knew earlier about it, I actually would've done it. Same with similar cases.
             
-            LocalizedSpecificProductPropertyList = new ObservableCollection<LocalizedProperty>(BL_SpecificProductProperty.GetLocalizedSpecificProductProperties(UserSettings.UserLanguage).OrderBy(prop => prop.LookupName));
+            LocalizedSpecificProductPropertyList = new ObservableCollection<LocalizedProperty>(BL_SpecificProductProperty.GetLocalizedSpecificProductProperties(UserSettings.UserLanguage).OrderBy(prop => prop.LookupName));
 
-            BindPropertySelectionData();
+            BindPropertySelectionData();
         }
 
         private void BindPropertySelectionData()
         {
-            dgSelectProperty.ItemsSource = LocalizedSpecificProductPropertyList.OrderBy(prop => prop.LookupName);
-            dgSelectProperty.DataContext = LocalizedSpecificProductPropertyList;
+            dgSelectProperty.ItemsSource = LocalizedSpecificProductPropertyList.OrderBy(prop => prop.LookupName);
+            dgSelectProperty.DataContext = LocalizedSpecificProductPropertyList;
         }
 
         private void AddSelectedProperty(LocalizedProperty propertyAndName)
@@ -76,22 +76,22 @@ namespace Rudycommerce
                 {
                     PropertyID = propertyAndName.PropertyID,
                     PropertyName = propertyAndName.LookupName
-                });
+                });
 
-            BindPropertyAndCategoryData();
+            BindPropertyAndCategoryData();
         }
 
         private void AddProperty_Click(object sender, RoutedEventArgs e)
         {
-            LocalizedProperty prop = ((FrameworkElement)sender).DataContext as LocalizedProperty;
-            AddSelectedProperty(prop);
-            RemoveSelectedPropertyFromList(prop);
+            LocalizedProperty prop = ((FrameworkElement)sender).DataContext as LocalizedProperty;
+            AddSelectedProperty(prop);
+            RemoveSelectedPropertyFromList(prop);
         }
 
         private void RemoveSelectedPropertyFromList(LocalizedProperty prop)
         {
-            LocalizedSpecificProductPropertyList.Remove(prop);
-            BindPropertySelectionData();
+            LocalizedSpecificProductPropertyList.Remove(prop);
+            BindPropertySelectionData();
         }
         #endregion
                 
@@ -99,9 +99,9 @@ namespace Rudycommerce
         
         private void RemoveProperty_Click(object sender, RoutedEventArgs e)
         {
-            Category_Property prop = ((FrameworkElement)sender).DataContext as Category_Property;
-            RemoveSelectedPropertyFromAddedList(prop);
-            AddPropertyBackToSelectionList(prop);
+            Category_Property prop = ((FrameworkElement)sender).DataContext as Category_Property;
+            RemoveSelectedPropertyFromAddedList(prop);
+            AddPropertyBackToSelectionList(prop);
         }
         
         private void AddPropertyBackToSelectionList(Category_Property prop)
@@ -111,79 +111,79 @@ namespace Rudycommerce
                 {
                     PropertyID = prop.PropertyID,
                     LookupName = prop.PropertyName
-                });
+                });
 
-            BindPropertySelectionData();
+            BindPropertySelectionData();
         }
         
         private void RemoveSelectedPropertyFromAddedList(Category_Property prop)
         {
-            ProductCategoryModel.Category_SpecificProductProperties.Remove(prop);
-            BindPropertyAndCategoryData();
+            ProductCategoryModel.Category_SpecificProductProperties.Remove(prop);
+            BindPropertyAndCategoryData();
         }
 
         private void BindPropertyAndCategoryData()
         {
-            dgCategory_SpecificProductProperty.ItemsSource = ProductCategoryModel.Category_SpecificProductProperties;
-            dgCategory_SpecificProductProperty.DataContext = ProductCategoryModel.Category_SpecificProductProperties;
+            dgCategory_SpecificProductProperty.ItemsSource = ProductCategoryModel.Category_SpecificProductProperties;
+            dgCategory_SpecificProductProperty.DataContext = ProductCategoryModel.Category_SpecificProductProperties;
         }
         #endregion
 
         private void SetLanguageDictionary(Language selectedLanguage)
         {
-            ResourceDictionary dict = new ResourceDictionary();
+            ResourceDictionary dict = new ResourceDictionary();
 
-            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
+            dict.Source = new Uri(BL_Multilingual.ChooseLanguageDictionary(selectedLanguage), UriKind.Relative);
 
-            this.Resources.MergedDictionaries.Add(dict);
+            this.Resources.MergedDictionaries.Add(dict);
         }
 
         private void InitializeModelsAndContents()
         {
-            ProductCategoryModel = new ProductCategory();
-            //PotentialParents = BL_ProductCategory.GetPotentialParents(RudycommerceLibrary.Settings.UserLanguage);
+            ProductCategoryModel = new ProductCategory();
+            //PotentialParents = BL_ProductCategory.GetPotentialParents(RudycommerceLibrary.Settings.UserLanguage);
 
-            ProductCategoryModel.Category_SpecificProductProperties = new ObservableCollection<Category_Property>();
-            ProductCategoryModel.LocalizedProductCategories = new ObservableCollection<LocalizedCategory>();
+            ProductCategoryModel.Category_SpecificProductProperties = new ObservableCollection<Category_Property>();
+            ProductCategoryModel.LocalizedProductCategories = new ObservableCollection<LocalizedCategory>();
 
             // gets active languages
-            LanguageList = BL_Multilingual.GetLocalizedListOfLanguages(UserSettings.UserLanguage);
+            LanguageList = BL_Multilingual.GetLocalizedListOfLanguages(UserSettings.UserLanguage);
 
             // creates items for the datagrid, based on the active languages
             foreach (LocalizedLanguageItem li in LanguageList)
             {
                 ProductCategoryModel.LocalizedProductCategories.Add(
-                new LocalizedCategory() { LanguageID = li.ID, LanguageName = li.Name, Name = null });
+                new LocalizedCategory() { LanguageID = li.ID, LanguageName = li.Name, Name = null });
             }
             
 
-            grdCategoryForm.DataContext = this;
+            grdCategoryForm.DataContext = this;
 
-            SetDataGridItemsToModelList();
+            SetDataGridItemsToModelList();
         }
 
         private void SetDataGridItemsToModelList()
         {
-            dgLocalizedCategories.ItemsSource = ProductCategoryModel.LocalizedProductCategories;
-            dgLocalizedCategories.DataContext = ProductCategoryModel.LocalizedProductCategories;
+            dgLocalizedCategories.ItemsSource = ProductCategoryModel.LocalizedProductCategories;
+            dgLocalizedCategories.DataContext = ProductCategoryModel.LocalizedProductCategories;
         }
         
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                BL_ProductCategory.Create(ProductCategoryModel);
-                Console.Beep();
+                BL_ProductCategory.Create(ProductCategoryModel);
+                Console.Beep();
             }
             catch (SaveFailed)
             {
-                MessageBox.Show(LangResource.ErrSaveFailedContent, LangResource.ErrSaveFailedTitle, MessageBoxButton.OK);
+                MessageBox.Show(LangResource.ErrSaveFailedContent, LangResource.ErrSaveFailedTitle, MessageBoxButton.OK);
             }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            Visibility = Visibility.Collapsed;
+            Visibility = Visibility.Collapsed;
         }
     }
 }
