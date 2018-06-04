@@ -1,51 +1,51 @@
 ﻿body {
-    font-family: Arial;
-    background-color: #F5F5F5;
+    font-family: Arial;
+    background-color: #F5F5F5;
 }
 
 .navbarbackground {
-    /*background: linear-gradient(#B6D7A8, #9AD481 );*/
-    background-color: white;
-    border: 1px solid lightgray;
+    /*background: linear-gradient(#B6D7A8, #9AD481 );*/
+    background-color: white;
+    border: 1px solid lightgray;
 }
 
 .navbar {
-    padding-left: 5rem;
+    padding-left: 5rem;
 }
 
 .navbar-link {
-    font-weight: bold;
-    color: #121510;
+    font-weight: bold;
+    color: #121510;
 }
 
 .navbar-nav {
-    display: inline-block;
+    display: inline-block;
 }
 
 .shopping-cart {
-    background-color: transparent;
-    border: 0px transparent;
-    right: 5rem;
-    position: absolute;
+    background-color: transparent;
+    border: 0px transparent;
+    right: 5rem;
+    position: absolute;
 }
 
 .shopping-cart img:first-child {
-    height: 3rem;
+    height: 3rem;
 }
 .shopping-cart img:last-child {
-    height: 1rem;
+    height: 1rem;
 }
 
 .body-content {
-    padding-top: 2rem;
+    padding-top: 2rem;
 }
 
 .footer-row .col-md-4 p:first-child {
-    text-decoration: underline;
+    text-decoration: underline;
 }
 
 .footer-row .col-md-4 ul {
-    list-style-type: none;
-    padding-left: 5px;
-    text-decoration: underline;
+    list-style-type: none;
+    padding-left: 5px;
+    text-decoration: underline;
 }

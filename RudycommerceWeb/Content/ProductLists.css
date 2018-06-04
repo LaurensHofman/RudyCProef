@@ -1,104 +1,104 @@
 ﻿h1 {
-    font-size: 2rem;
-    margin: 10px;
-    align-self: center;
+    font-size: 2rem;
+    margin: 10px;
+    align-self: center;
 }
 
 .row {
-    margin: 10px;
+    margin: 10px;
 }
 
 a.product-title {
-    font-size: 1.2rem;
-    text-align: center;
-    color: black;
-    text-decoration: underline;
+    font-size: 1.2rem;
+    text-align: center;
+    color: black;
+    text-decoration: underline;
 }
 
 .card-body {
-    padding-right: 0px;
-    padding-left: 0px;
-    margin-bottom: -5rem;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-bottom: -5rem;
 }
 
 .product-image {
-    max-width: 100%;
-    height: 100%;
+    max-width: 100%;
+    height: 100%;
 }
 
 .card-image {
-    width: 100%;
-    height: 10rem;
+    width: 100%;
+    height: 10rem;
 }
 
 .card {
-    margin-top: 1rem;
-    height: 22rem;
-    background-color: white;
+    margin-top: 1rem;
+    height: 22rem;
+    background-color: white;
 }
 
 .card-header {
-    top: 0px;
-    position: relative;
-    background: transparent;
-    border: 0px;
+    top: 0px;
+    position: relative;
+    background: transparent;
+    border: 0px;
 }
 
     .card-header .price {
-        /*position: absolute;
-    bottom: 0px;
-    right: 5px;*/
-        font-size: 1.5rem;
+        /*position: absolute;
+    bottom: 0px;
+    right: 5px;*/
+        font-size: 1.5rem;
     }
 
 .card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    height: 5rem;
 }
 
 .add-to-cart {
-    /*width: 30%;
-    right: 0px;
-    position: absolute;
-    z-index: 1;
-    background-color: #f9c61d;
-    transform: scale(0.8);
-    border-color: black;
-    border-radius: 50%;*/
-    bottom: 5px;
-    position: absolute;
-    width: 100%;
-    text-align: center;
+    /*width: 30%;
+    right: 0px;
+    position: absolute;
+    z-index: 1;
+    background-color: #f9c61d;
+    transform: scale(0.8);
+    border-color: black;
+    border-radius: 50%;*/
+    bottom: 5px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
 }
 
 .add-to-cart button {
-        min-width: 60%;
-        background: #f9c61d;
-        border-radius: 1rem;
-        border: 2px solid black;
+        min-width: 60%;
+        background: #f9c61d;
+        border-radius: 1rem;
+        border: 2px solid black;
 }
 
     .add-to-cart button img {
-        height: 2.5rem;
+        height: 2.5rem;
     }
 
 .add-to-cart button span {
-        font-size: calc(12px + 0.5vw);
+        font-size: calc(12px + 0.5vw);
 }
 
 .row hr {
-    border: 1px solid lightgray;
-    width: 100%;
+    border: 1px solid lightgray;
+    width: 100%;
 }
 
 .card-header p {
-    width: 90%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    max-height: 8rem;
-    word-wrap: break-word;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    max-height: 8rem;
+    word-wrap: break-word;
 }
